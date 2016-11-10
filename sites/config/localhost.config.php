@@ -17,9 +17,9 @@ $CONFIG = array(
 	'app_uid'				=> $app_uid,
 	'charset'			=> 'UTF-8',
 	'path'				=> array(
-							'cache' => 'cache',
-							'backup' => 'backup',
-							'upload' => 'upload',
+							'cache' => 'cache/'.$app_uid,
+							'backup' => 'backup/'.$app_uid,
+							'upload' => 'upload/'.$app_uid,
 							'system' => 'system',
 							'azbn7' => 'system/azbn7',
 							'app' => 'sites/apps/'.$app_uid,
@@ -28,9 +28,9 @@ $CONFIG = array(
 	'mysql' 			=> array(
 						0 => array(
 							'host' => 'localhost',
-							'user' => 'azbn7',
-							'pass' => 'azbn7',
-							'db' => 'azbn7',
+							'user' => $app_uid,
+							'pass' => $app_uid,
+							'db' => $app_uid,
 							'charset' => 'UTF8',
 							'prefix' => $app_uid,
 							'max_value' => array(
@@ -44,6 +44,7 @@ $CONFIG = array(
 								'sysopt' => $app_uid . '_sysopt',
 								'sysopt_data' => $app_uid . '_sysopt_data',
 								'alias' => $app_uid . '_alias',
+								'log' => $app_uid . '_log',
 								
 								
 								//'cache' => $app_uid . '_cache',
@@ -60,7 +61,7 @@ $CONFIG = array(
 								'entity' => $app_uid . '_entity',
 								'entity_type' => $app_uid . '_entity_type',
 								'entity_data' => $app_uid . '_entity_data',
-								'entity_catalog' => $app_uid . '_entity_catalog',
+								'entity_cat' => $app_uid . '_entity_cat',
 							),
 						),
 	),

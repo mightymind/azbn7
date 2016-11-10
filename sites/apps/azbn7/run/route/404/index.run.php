@@ -7,6 +7,9 @@ $this->Azbn7->mdl('Req')
 		'Content-type: text/plain; charset=' . $this->Azbn7->config['charset'],
 	));
 
-$this->Azbn7->mdl('Viewer')
-	->tpl('404/index', array())
+//$this->Azbn7->mdl('Viewer')
+//	->tpl('404/index', array())
+//;
+$this->Azbn7->mdl('Site')
+	->render('404/index', array())
 ;

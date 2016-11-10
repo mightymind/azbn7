@@ -109,7 +109,7 @@ class AppRouter
 		
 		$req_str = implode('/', $req);
 		
-		$entity = $this->Azbn7->mdl('Site')->entity(0, $req_str);
+		$entity = $this->Azbn7->mdl('Entity')->get(0, $req_str);
 		
 		if(isset($entity['entity']['id'])) {
 			$res = true;

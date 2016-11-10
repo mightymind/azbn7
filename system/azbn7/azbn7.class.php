@@ -7,11 +7,12 @@ public $data = array();
 public $__events = array();
 public $__modules = array();
 public $version = array(
-	'number' => '1.0 alfa',
-	'update_at' => '201610130852',
+	'number' => 0.0101,
+	'update_at' => '201611100827',
 	'secret' => 'NemoMeImpuneLacessit',
 	'php' => 0.0,
 );
+public $event_prefix = 'system.azbn7';
 	
 	public function __construct($config = array()) // Конструктор класса
 	{
@@ -161,9 +162,10 @@ public $version = array(
 	Перенаправление на другой адрес
 	*/
 
-	public function go2($url)
+	public function go2($url = '/')
 	{
-		Header("Location: $url");
+		Header('HTTP/1.1 301 Moved Permanently'); 
+		Header('Location: ' . $url);
 		return $this;
 	}
 

@@ -49,6 +49,12 @@ $Azbn7
 	))
 	->load(array(
 		'dir' => 'app',
+		'mdl' => 'Entity',
+		'uid' => 'Entity',
+		'param' => array()
+	))
+	->load(array(
+		'dir' => 'app',
 		'mdl' => 'Viewer',
 		'uid' => 'Viewer',
 		'param' => array()

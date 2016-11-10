@@ -36,6 +36,18 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['log'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`created_at` BIGINT DEFAULT '0',
+				`user` BIGINT DEFAULT '0',
+				`profile` BIGINT DEFAULT '0',
+				`entity` BIGINT DEFAULT '0',
+				`uid` VARCHAR(256) DEFAULT '',
+				`param` MEDIUMBLOB DEFAULT '',
+				INDEX uid_index (uid(64))
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
 		
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity'] . "` (
@@ -48,8 +60,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`pos` BIGINT DEFAULT '{$default['max_bigint']}',
 				`created_at` BIGINT DEFAULT '0',
 				`updated_at` BIGINT DEFAULT '0',
-				`uid` VARCHAR(256) NOT NULL UNIQUE,
-				`url` BLOB DEFAULT '',
+				`url` TEXT DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT '',
 				INDEX url_index (url(64))
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -74,25 +85,44 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
-		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_catalog'] . "` (
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_cat'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`visible` TINYINT DEFAULT '1',
+				`type` BIGINT DEFAULT '0',
+				`user` BIGINT DEFAULT '0',
+				`profile` BIGINT DEFAULT '0',
 				`parent` BIGINT DEFAULT '0',
 				`pos` BIGINT DEFAULT '{$default['max_bigint']}',
-				`uid` VARCHAR(256) NOT NULL UNIQUE,
-				`title` VARCHAR(256) DEFAULT '',
-				`url` BLOB DEFAULT '',
-				`param` MEDIUMBLOB DEFAULT ''
+				`created_at` BIGINT DEFAULT '0',
+				`updated_at` BIGINT DEFAULT '0',
+				`url` TEXT DEFAULT '',
+				`param` MEDIUMBLOB DEFAULT '',
+				INDEX url_index (url(64))
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
 	;
 	
+	$this->Azbn7->mdl('Site')
+		->log('site.db.create_tables', array(
+			
+		))
+	;
+	
+	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.created_at', 'title' => 'Дата и время инсталяции сайта'));
+	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.version', 'title' => 'Версия движка Azbn7'));
+	
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
-	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.created_at', 'title' => 'Момент инсталяции сайта'));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.version', 'value' => $this->Azbn7->version['number']));
+	
+	$this->Azbn7->mdl('Site')
+		->log('site.create_sysopt', array(
+			
+		))
+	;
 	
 	/*	1		*/
-	$t['page'] = $this->Azbn7->mdl('Site')->createEntityType(array(
+	$t['page'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => 0,
 		'uid' => 'page',
 		'title' => 'Страница',
@@ -103,7 +133,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		),
 	));
 	/*	2		*/
-	$t['upload'] = $this->Azbn7->mdl('Site')->createEntityType(array(
+	$t['upload'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => 0,
 		'uid' => 'upload',
 		'title' => 'Загруженный файл',
@@ -113,7 +143,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		),
 	));
 	/*	3		*/
-	$t['img'] = $this->Azbn7->mdl('Site')->createEntityType(array(
+	$t['img'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => $t['upload'],
 		'uid' => 'img',
 		'title' => 'Изображение',
@@ -124,7 +154,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	));
 	
 	/*	4		*/
-	$t['file'] = $this->Azbn7->mdl('Site')->createEntityType(array(
+	$t['file'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => $t['upload'],
 		'uid' => 'file',
 		'title' => 'Файл',
@@ -134,20 +164,32 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		),
 	));
 	
+	$this->Azbn7->mdl('Site')
+		->log('site.create_entity_types', array(
+			
+		))
+	;
+	
+	
+	
 	$this->Azbn7->mdl('DB')->create('alias', array('pos' => 0, 'find' => 'установлено', 'set' => 'install/installed', 'title' => 'Страница информации после установки'));
 	
+	$this->Azbn7->mdl('Site')
+		->log('site.create_aliases', array(
+			
+		))
+	;
 	
 	
+	$e = array();
 	
-	
-	
-	$this->Azbn7->mdl('Site')->createEntity(array(
+	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
 		'entity' => array(
 			'visible' => 1,
 			'parent' => 0,
 			'pos' => 0,
-			'uid' => $this->Azbn7->randstr(32),
+			//'uid' => $this->Azbn7->randstr(32),
 			'url' => 'mainpage',
 			'param' => $this->Azbn7->arr2json(array()),
 		),
@@ -159,13 +201,20 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		),
 	));
 	
-	$this->Azbn7->mdl('Site')->createEntity(array(
+	$this->Azbn7->mdl('Site')
+		->log('site.create_entity', array(
+			'entity' => $e[0],
+			'title' => 'Создание главной страницы',
+		))
+	;
+	
+	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
 		'entity' => array(
 			'visible' => 1,
 			'parent' => 0,
 			'pos' => $default['max_bigint'],
-			'uid' => $this->Azbn7->randstr(32),
+			//'uid' => $this->Azbn7->randstr(32),
 			'url' => 'помощь',
 			'param' => $this->Azbn7->arr2json(array()),
 		),
@@ -176,6 +225,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'param' => $this->Azbn7->arr2json(array()),
 		),
 	));
+	
+	$this->Azbn7->mdl('Site')
+		->log('site.create_entity', array(
+			'entity' => $e[1],
+			'title' => 'Создание страницы помощи',
+		))
+	;
 	
 	$this->Azbn7->event(array(
 		'action' => 'app.run.route.install.main.after',

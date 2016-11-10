@@ -6,7 +6,13 @@ if(count($tables)) {
 	foreach($tables as $t) {
 		
 		$this->Azbn7->mdl('DB')
-			->exec('DROP TABLE IF EXISTS `' . $this->Azbn7->mdl('Site')->getEntityTable($t['uid']) . '`')
+			->exec('DROP TABLE IF EXISTS `' . $this->Azbn7->mdl('Entity')->getTable($t['uid']) . '`')
+		;
+		
+		$this->Azbn7->mdl('Site')
+			->log('site.db.drop_table', array(
+				'table' => $this->Azbn7->mdl('Entity')->getTable($t['uid']),
+			))
 		;
 		
 	}
@@ -17,6 +23,12 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		
 		$this->Azbn7->mdl('DB')
 			->exec('DROP TABLE IF EXISTS `' . $v . '`')
+		;
+		
+		$this->Azbn7->mdl('Site')
+			->log('site.db.drop_table', array(
+				'table' => $v,
+			))
 		;
 		
 	}
