@@ -112,6 +112,15 @@ public $event_prefix = 'system.azbn7';
 		}
 	}
 	
+	public function is_mdl($uid)
+	{
+		if($this->__modules[$uid]) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public function run($dir, $file, &$param)
 	{
 		$file = $this->config['path'][$dir] . '/run/' . $file . '.run.php';

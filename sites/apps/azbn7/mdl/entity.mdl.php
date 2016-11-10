@@ -81,6 +81,8 @@ class Entity
 			
 			if($e['item']['id']) {
 				
+				$this->Azbn7->run('app', 'search/entity/reindex', $e);
+				
 				return $e['entity']['id'];
 				
 			} else {

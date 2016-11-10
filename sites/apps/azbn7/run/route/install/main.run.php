@@ -101,6 +101,17 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_search'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`entity` BIGINT DEFAULT '0',
+				`created_at` BIGINT DEFAULT '0',
+				`updated_at` BIGINT DEFAULT '0',
+				`content` LONGTEXT DEFAULT '',
+				INDEX by_entity (`entity`),
+				FULLTEXT KEY `search` (`content`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
 	;
 	
 	$this->Azbn7->mdl('Site')
@@ -129,7 +140,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'field' => array(
 			'title' => "VARCHAR(256) DEFAULT ''",
 			'preview' => "TEXT DEFAULT ''",
-			'main_info' => "MEDIUMTEXT DEFAULT ''",
+			'content' => "MEDIUMTEXT DEFAULT ''",
 		),
 	));
 	/*	2		*/
@@ -196,7 +207,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'item' => array(
 			'title' => 'Главная страница',
 			'preview' => 'Краткое описание',
-			'main_info' => 'Полный текст',
+			'content' => 'Полный текст',
 			'param' => $this->Azbn7->arr2json(array()),
 		),
 	));
@@ -221,7 +232,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'item' => array(
 			'title' => 'Страница помощи',
 			'preview' => 'Что делать после установки',
-			'main_info' => '<p>Полный текст страницы помощи</p>',
+			'content' => '<p>Полный текст страницы помощи</p>',
 			'param' => $this->Azbn7->arr2json(array()),
 		),
 	));
