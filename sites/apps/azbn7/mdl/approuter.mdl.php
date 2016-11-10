@@ -27,19 +27,31 @@ class AppRouter
 			
 			if($this->checkFileExists($req)) {
 				
-				
+				// найден файл-обработчик
 				
 			} elseif($this->checkRouteExists($req)) {
 				
+				// найден адрес для роутера
+				
 			} elseif($this->checkEntityExists($req)) {
 				
+				// найдена запись в БД
+				
+			} elseif($this->checkCatExists($req)) {
+				
+				// найдена категория в БД
+				
 			} else {
+				
+				// страница ошибки
 				
 				$this->page404($req);
 				
 			}
 			
 		} else {
+			
+			// главная страница
 			
 			$this->Azbn7->run('app', 'route/index', $_req);
 			
@@ -80,8 +92,6 @@ class AppRouter
 	public function checkRouteExists($req)
 	{
 		
-		//$item = $this->Azbn7->mdl('DB')->one('route', "url = '$url'");
-		
 		$_req = $req;
 		
 		$res = false;
@@ -103,13 +113,11 @@ class AppRouter
 	public function checkEntityExists($req)
 	{
 		
-		//$item = $this->Azbn7->mdl('DB')->one('route', "url = '$url'");
-		
 		$res = false;
 		
 		$req_str = implode('/', $req);
 		
-		$entity = $this->Azbn7->mdl('Entity')->get(0, $req_str);
+		$entity = $this->Azbn7->mdl('Entity')->item(0, $req_str);
 		
 		if(isset($entity['entity']['id'])) {
 			$res = true;
@@ -120,6 +128,15 @@ class AppRouter
 			
 			$this->Azbn7->run('app', 'route/entity/item', $p);
 		}
+		
+		return $res;
+		
+	}
+	
+	public function checkCatExists($req)
+	{
+		
+		$res = false;
 		
 		return $res;
 		

@@ -97,7 +97,7 @@ class Entity
 	
 	}
 	
-	public function get($id = 0, $url = '')
+	public function item($id = 0, $url = '')
 	{
 		$entity = array(
 			'entity' => array(

@@ -4,7 +4,7 @@
 <html class="no-js" >
 <head>
 
-<title>Azbn7 TITLE</title>
+<title><?=$param['entity']['item']['title'];?></title>
 
 <meta name="referrer" content="never">
 
