@@ -99,6 +99,31 @@ class Entity
 	
 	}
 	
+	public function createBound($b = array(
+		'parent' => 0,
+		'child' => 0,
+	))
+	{
+		$res = 0;
+		
+		$bound = $this->Azbn7->mdl('DB')->one('entity_bound', "parent = '{$b['parent']}' AND child = '{$b['child']}'");
+		
+		if($bound['id']) {
+			
+			$res = $bound['id'];
+			
+		} else {
+			
+			$b['id'] = $this->Azbn7->mdl('DB')->create('entity_bound', $b);
+			
+			$res = $b['id'];
+			
+		}
+		
+		return $res;
+		
+	}
+	
 	public function item($id = 0, $url = '')
 	{
 		$entity = array(

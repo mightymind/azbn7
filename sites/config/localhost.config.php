@@ -61,8 +61,8 @@ $CONFIG = array(
 								
 								'entity' => $app_uid . '_entity',
 								'entity_type' => $app_uid . '_entity_type',
+								'entity_bound' => $app_uid . '_entity_bound',
 								'entity_data' => $app_uid . '_entity_data',
-								'entity_cat' => $app_uid . '_entity_cat',
 								'entity_search' => $app_uid . '_entity_search',
 							),
 						),

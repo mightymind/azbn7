@@ -75,6 +75,15 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_bound'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`parent` BIGINT DEFAULT '0',
+				`child` BIGINT DEFAULT '0',
+				INDEX parent_index (`parent`),
+				INDEX child_index (`child`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_data'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`json` TINYINT DEFAULT '0',
@@ -82,22 +91,6 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`uid` VARCHAR(256) DEFAULT '',
 				`value` MEDIUMBLOB DEFAULT '',
 				INDEX main_index (entity, uid(64))
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-		")
-		
-		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_cat'] . "` (
-				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`visible` TINYINT DEFAULT '1',
-				`type` BIGINT DEFAULT '0',
-				`user` BIGINT DEFAULT '0',
-				`profile` BIGINT DEFAULT '0',
-				`parent` BIGINT DEFAULT '0',
-				`pos` BIGINT DEFAULT '{$default['max_bigint']}',
-				`created_at` BIGINT DEFAULT '0',
-				`updated_at` BIGINT DEFAULT '0',
-				`url` TEXT DEFAULT '',
-				`param` MEDIUMBLOB DEFAULT '',
-				INDEX url_index (url(64))
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
@@ -121,9 +114,11 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	;
 	
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.created_at', 'title' => 'Дата и время инсталяции сайта'));
+	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.updated_at', 'title' => 'Дата и время последнего обновления'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.version', 'title' => 'Версия движка Azbn7'));
 	
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.updated_at', 'value' => $this->Azbn7->created_at));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.version', 'value' => $this->Azbn7->version['number']));
 	
 	$this->Azbn7->mdl('Site')
@@ -132,7 +127,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		))
 	;
 	
-	/*	1		*/
+	
 	$t['page'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => 0,
 		'uid' => 'page',
@@ -143,7 +138,18 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'content' => "MEDIUMTEXT DEFAULT ''",
 		),
 	));
-	/*	2		*/
+	
+	$t['category'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'parent' => 0,
+		'uid' => 'category',
+		'title' => 'Категория',
+		'field' => array(
+			'title' => "VARCHAR(256) DEFAULT ''",
+			'preview' => "TEXT DEFAULT ''",
+			'content' => "MEDIUMTEXT DEFAULT ''",
+		),
+	));
+	
 	$t['upload'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => 0,
 		'uid' => 'upload',
@@ -153,7 +159,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'path' => "TEXT DEFAULT ''",
 		),
 	));
-	/*	3		*/
+	
 	$t['img'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => $t['upload'],
 		'uid' => 'img',
@@ -164,11 +170,31 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		),
 	));
 	
-	/*	4		*/
+	
 	$t['file'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => $t['upload'],
 		'uid' => 'file',
-		'title' => 'Файл',
+		'title' => 'Файл любого формата',
+		'field' => array(
+			'title' => "VARCHAR(256) DEFAULT ''",
+			'path' => "TEXT DEFAULT ''",
+		),
+	));
+	
+	$t['audio'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'parent' => $t['upload'],
+		'uid' => 'audio',
+		'title' => 'Аудио',
+		'field' => array(
+			'title' => "VARCHAR(256) DEFAULT ''",
+			'path' => "TEXT DEFAULT ''",
+		),
+	));
+	
+	$t['video'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'parent' => $t['upload'],
+		'uid' => 'video',
+		'title' => 'Видео',
 		'field' => array(
 			'title' => "VARCHAR(256) DEFAULT ''",
 			'path' => "TEXT DEFAULT ''",
@@ -193,6 +219,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	
 	$e = array();
+	$b = array();
 	
 	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
@@ -243,6 +270,11 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'title' => 'Создание страницы помощи',
 		))
 	;
+	
+	$b[] = $this->Azbn7->mdl('Entity')->createBound(array(
+		'parent' => $e[0],
+		'child' => $e[1],
+	));
 	
 	$this->Azbn7->event(array(
 		'action' => 'app.run.route.install.main.after',
