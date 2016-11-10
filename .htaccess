@@ -1,0 +1,26 @@
+#RewriteEngine on
+#RewriteBase /
+
+#Redirect 301 /aboutme http://azbn.ru/portfolio/
+#Redirect 301 /aboutme/ http://azbn.ru/portfolio/
+#Redirect 301 /page/item/kratko-obo-mne/ http://azbn.ru/portfolio/
+
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+#RewriteCond $1/ !^(index\.php|favicon\.ico|img|js|css|upload|download|import)/
+#RewriteRule ^(.*)$ /index.php/$1 [L]
+
+#<IfModule mod_expires.c>
+#	ExpiresActive On
+#	ExpiresDefault "access plus 5 minutes"
+#
+#	ExpiresByType image/gif "access plus 10 days"
+#	ExpiresByType image/jpeg "access plus 10 days"
+#</IfModule>
+
+RewriteEngine On
+#RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php [L]

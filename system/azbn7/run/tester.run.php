@@ -1,0 +1,2 @@
+<?
+echo 'And All';
