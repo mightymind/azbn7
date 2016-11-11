@@ -16,6 +16,7 @@ $CONFIG = array(
 	'debug' 			=> 1,
 	'app_uid'				=> $app_uid,
 	'charset'			=> 'UTF-8',
+	'theme'				=> 'azbn-tpl',
 	'path'				=> array(
 							'cache' => 'cache/'.$app_uid,
 							'backup' => 'backup/'.$app_uid,

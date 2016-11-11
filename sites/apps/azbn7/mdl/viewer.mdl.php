@@ -13,7 +13,7 @@ class Viewer
 			
 		}
 		
-		$file = $this->Azbn7->config['path']['app'] . '/tpl/' . strtolower($tpl) . '.tpl.php';
+		$file = $this->Azbn7->config['path']['app'] . '/tpl/' . $this->Azbn7->config['theme'] . '/' . strtolower($tpl) . '.tpl.php';
 		
 		if(file_exists($file)) {
 			
