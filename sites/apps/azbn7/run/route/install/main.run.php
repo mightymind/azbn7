@@ -14,7 +14,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`json` ENUM('0', '1') DEFAULT '0',
 				`editable` ENUM('0', '1') DEFAULT '0',
 				`uid` VARCHAR(256) NOT NULL UNIQUE,
-				`value` MEDIUMBLOB DEFAULT ''
+				`value` MEDIUMBLOB DEFAULT '',
+				INDEX uid_index (uid(64))
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
@@ -36,19 +37,15 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
-		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['log'] . "` (
+		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_type'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`created_at` BIGINT DEFAULT '0',
-				`user` BIGINT DEFAULT '0',
-				`profile` BIGINT DEFAULT '0',
-				`entity` BIGINT DEFAULT '0',
-				`uid` VARCHAR(256) DEFAULT '',
-				`param` MEDIUMBLOB DEFAULT '',
-				INDEX uid_index (uid(64))
+				`parent` BIGINT DEFAULT '0',
+				`uid` VARCHAR(256) NOT NULL UNIQUE,
+				`title` VARCHAR(256) DEFAULT '',
+				`param` MEDIUMBLOB DEFAULT ''
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
-		
-		
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -62,25 +59,32 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`updated_at` BIGINT DEFAULT '0',
 				`url` TEXT DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT '',
-				INDEX url_index (url(64))
+				INDEX url_index (url(64)),
+				FOREIGN KEY (type) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity_type'] . "(id)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
-		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_type'] . "` (
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['log'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`parent` BIGINT DEFAULT '0',
-				`uid` VARCHAR(256) NOT NULL UNIQUE,
-				`title` VARCHAR(256) DEFAULT '',
-				`param` MEDIUMBLOB DEFAULT ''
+				`created_at` BIGINT DEFAULT '0',
+				`user` BIGINT DEFAULT '0',
+				`profile` BIGINT DEFAULT '0',
+				`entity` BIGINT DEFAULT '0',
+				`uid` VARCHAR(256) DEFAULT '',
+				`param` MEDIUMBLOB DEFAULT '',
+				INDEX uid_index (uid(64)),
+				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
+		
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_bound'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`parent` BIGINT DEFAULT '0',
 				`child` BIGINT DEFAULT '0',
 				INDEX parent_index (`parent`),
-				INDEX child_index (`child`)
+				INDEX child_index (`child`),
+				FOREIGN KEY (parent) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
@@ -90,7 +94,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`entity` BIGINT DEFAULT '0',
 				`uid` VARCHAR(256) DEFAULT '',
 				`value` MEDIUMBLOB DEFAULT '',
-				INDEX main_index (entity, uid(64))
+				INDEX main_index (entity, uid(64)),
+				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
@@ -101,6 +106,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`updated_at` BIGINT DEFAULT '0',
 				`content` LONGTEXT DEFAULT '',
 				INDEX by_entity (`entity`),
+				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE,
 				FULLTEXT KEY `search` (`content`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")

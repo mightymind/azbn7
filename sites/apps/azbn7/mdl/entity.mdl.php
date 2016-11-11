@@ -36,7 +36,8 @@ class Entity
 							`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 							`entity` BIGINT DEFAULT '0',
 							{$field_str} ,
-							`param` MEDIUMBLOB DEFAULT ''
+							`param` MEDIUMBLOB DEFAULT '',
+							FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
 						) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 					")
 				;
