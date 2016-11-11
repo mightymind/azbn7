@@ -46,6 +46,8 @@ $CONFIG = array(
 								'sysopt_data' => $app_uid . '_sysopt_data',
 								'alias' => $app_uid . '_alias',
 								'log' => $app_uid . '_log',
+								'user' => $app_uid . '_user',
+								'profile' => $app_uid . '_profile',
 								
 								
 								//'cache' => $app_uid . '_cache',

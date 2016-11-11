@@ -42,6 +42,18 @@ class Entity
 					")
 				;
 				
+				$this->Azbn7->event(array(
+					'action' => $this->event_prefix . '.create.entity_type.after',
+					'title' => 'Сущности: создание типа',
+				));
+				
+				$this->Azbn7->mdl('Site')
+					->log('site.entity.create.entity_type', array(
+						'id' => $e['id'],
+						'uid' => $e['uid'],
+					))
+				;
+				
 				return $e['id'];
 				
 			} else {
@@ -84,6 +96,17 @@ class Entity
 				
 				$this->Azbn7->run('app', 'search/entity/reindex', $e);
 				
+				$this->Azbn7->event(array(
+					'action' => $this->event_prefix . '.create.entity.after',
+					'title' => 'Сущности: создание записи',
+				));
+				
+				$this->Azbn7->mdl('Site')
+					->log('site.entity.create.entity', array(
+						'entity' => $e['entity']['id'],
+					))
+				;
+				
 				return $e['entity']['id'];
 				
 			} else {
@@ -118,6 +141,20 @@ class Entity
 			$b['id'] = $this->Azbn7->mdl('DB')->create('entity_bound', $b);
 			
 			$res = $b['id'];
+			
+			$this->Azbn7->event(array(
+				'action' => $this->event_prefix . '.create.entity_bound.after',
+				'title' => 'Сущности: создание связи между записями',
+			));
+			
+			$this->Azbn7->mdl('Site')
+				->log('site.entity.create.entity_bound', array(
+					'entity' => $b['parent'],
+					'parent' => $b['parent'],
+					'child' => $b['child'],
+					'id' => $b['id'],
+				))
+			;
 			
 		}
 		

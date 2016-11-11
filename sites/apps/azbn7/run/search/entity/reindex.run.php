@@ -3,6 +3,8 @@
 переиндексатор
 */
 
+$event_prefix = 'app.run.search.entity.reindex';
+
 if(isset($param['entity']['id'])) {
 	
 	$entity = $this->Azbn7->mdl('Entity')->item($param['entity']['id']);
@@ -56,6 +58,17 @@ if(isset($param['entity']['id'])) {
 				));
 				
 			}
+			
+			$this->Azbn7->event(array(
+				'action' => $event_prefix,
+				'title' => 'Поиск: индексация ' . $param['entity']['id'],
+			));
+			
+			$this->Azbn7->mdl('Site')
+				->log('site.entity.search.reindex', array(
+					'entity' => $param['entity']['id'],
+				))
+			;
 			
 		}
 	}

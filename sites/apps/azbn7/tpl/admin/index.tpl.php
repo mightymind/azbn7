@@ -42,3 +42,5 @@ $this->Azbn7->mdl('Viewer')->tpl('_/hierarchy/select', array(
 	'start_index' => 0,
 ));
 ?>
+
+<p><a href="/admin/logout/" >Выйти</a></p>

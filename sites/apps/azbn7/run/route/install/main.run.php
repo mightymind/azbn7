@@ -5,6 +5,9 @@ $default = array(
 	'max_bigint' => $this->Azbn7->config['mysql'][0]['max_value']['bigint'],
 );
 
+$this->Azbn7->mdl('Session')->logout('user');
+$this->Azbn7->mdl('Session')->logout('profile');
+
 if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	$this->Azbn7->mdl('DB')
@@ -74,6 +77,27 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`param` MEDIUMBLOB DEFAULT '',
 				INDEX uid_index (uid(64)),
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['user'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`status` TINYINT DEFAULT '1',
+				`created_at` BIGINT DEFAULT '0',
+				`login` VARCHAR(64) NOT NULL UNIQUE,
+				`pass` VARCHAR(64) DEFAULT '',
+				`email` VARCHAR(256) DEFAULT '',
+				`param` MEDIUMBLOB DEFAULT ''
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['profile'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`status` TINYINT DEFAULT '1',
+				`created_at` BIGINT DEFAULT '0',
+				`login` VARCHAR(64) NOT NULL UNIQUE,
+				`pass` VARCHAR(64) DEFAULT '',
+				`email` VARCHAR(256) DEFAULT '',
+				`param` MEDIUMBLOB DEFAULT ''
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
@@ -233,7 +257,6 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	;
 	
 	
-	
 	$this->Azbn7->mdl('DB')->create('alias', array('pos' => 0, 'find' => 'установлено', 'set' => 'install/installed', 'title' => 'Страница информации после установки'));
 	
 	$this->Azbn7->mdl('Site')
@@ -300,6 +323,19 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'parent' => $e[0],
 		'child' => $e[1],
 	));
+	
+	
+	
+	$this->Azbn7->mdl('DB')->create('user', array('created_at' => $this->Azbn7->created_at, 'login' => 'system', 'email' => 'i@azbn.ru', 'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system')));
+	$this->Azbn7->mdl('DB')->create('user', array('created_at' => $this->Azbn7->created_at, 'login' => 'admin', 'email' => 'i@azbn.ru', 'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin')));
+	
+	$this->Azbn7->mdl('Site')
+		->log('site.create_users', array(
+			
+		))
+	;
+	
+	
 	
 	$this->Azbn7->event(array(
 		'action' => 'app.run.route.install.main.after',

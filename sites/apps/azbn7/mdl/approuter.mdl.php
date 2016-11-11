@@ -21,6 +21,8 @@ class AppRouter
 			
 			$this->checkURLAlias($req);
 			
+			$this->checkIsUser($req);
+			
 			if(count($_POST)) {
 				
 			}
@@ -174,6 +176,23 @@ class AppRouter
 		}
 		
 		$req = explode('/', $req_str);
+		
+	}
+	
+	public function checkIsUser(&$req)
+	{
+		
+		if($req[0] == 'admin') {
+			if($this->Azbn7->mdl('Site')->is('user')) {
+				
+			} else {
+				if($req[1] == 'login') {
+					
+				} else {
+					$this->Azbn7->go2('/admin/login/');
+				}
+			}
+		}
 		
 	}
 	

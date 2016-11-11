@@ -2,10 +2,11 @@
 /*
 основной обработчик API
 
-$request = array(
-	'method' => 'entity/item/get',
-	'key' => 'public',
-)
+$this->Azbn7->mdl('Site')
+	->log('site.api.version', array(
+		//'table' => $this->Azbn7->mdl('Entity')->getTable($t['uid']),
+	))
+;
 
 */
 
