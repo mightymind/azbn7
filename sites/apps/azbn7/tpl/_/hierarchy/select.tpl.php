@@ -14,7 +14,7 @@ $param = array(
 
 //$func_name = 'showItemWithChildren_' . $tpl_uid;
 
-$func = function(&$catalog, $item_id, $tab = "&nbsp;&nbsp; ") use (&$func) {
+$func = function(&$catalog, $item_id, $tab = "&nbsp; ") use (&$func) {
 	?>
 	<option value="<?=$catalog['items'][$item_id]['id'];?>" data-uid="<?=$catalog['items'][$item_id]['uid'];?>" ><?=$tab.$catalog['items'][$item_id]['title'];?></option>
 	<?
@@ -22,7 +22,7 @@ $func = function(&$catalog, $item_id, $tab = "&nbsp;&nbsp; ") use (&$func) {
 		foreach($catalog['tree'][$item_id] as $k => $v) {
 			?>
 			<?
-			$func($catalog, $k, $tab.$tab);
+			$func($catalog, $k, $tab.'- ');
 			?>
 			<?
 		}

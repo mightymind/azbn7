@@ -170,17 +170,6 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		),
 	));
 	
-	
-	$t['file'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'parent' => $t['upload'],
-		'uid' => 'file',
-		'title' => 'Файл любого формата',
-		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'path' => "TEXT DEFAULT ''",
-		),
-	));
-	
 	$t['audio'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => $t['upload'],
 		'uid' => 'audio',
@@ -195,6 +184,36 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'parent' => $t['upload'],
 		'uid' => 'video',
 		'title' => 'Видео',
+		'field' => array(
+			'title' => "VARCHAR(256) DEFAULT ''",
+			'path' => "TEXT DEFAULT ''",
+		),
+	));
+	
+	$t['file'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'parent' => $t['upload'],
+		'uid' => 'file',
+		'title' => 'Файл любого формата',
+		'field' => array(
+			'title' => "VARCHAR(256) DEFAULT ''",
+			'path' => "TEXT DEFAULT ''",
+		),
+	));
+	
+	$t['youtube'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'parent' => $t['video'],
+		'uid' => 'youtube',
+		'title' => 'Видео YouTube',
+		'field' => array(
+			'title' => "VARCHAR(256) DEFAULT ''",
+			'yt_uid' => "VARCHAR(256) DEFAULT ''",
+		),
+	));
+	
+	$t['link'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'parent' => 0,
+		'uid' => 'link',
+		'title' => 'Ссылка',
 		'field' => array(
 			'title' => "VARCHAR(256) DEFAULT ''",
 			'path' => "TEXT DEFAULT ''",
