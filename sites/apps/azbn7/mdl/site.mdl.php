@@ -37,4 +37,21 @@ class Site
 			->tpl('_/footer', $p);
 	}
 	
+	public function buildHierarchy(&$arr = array())
+	{
+		$res_arr = array(
+			'items' => array(),
+			'tree' => array(),
+		);
+		
+		if(count($arr)) {
+			foreach($arr as $k => $v) {
+				$res_arr['items'][$v['id']] = $v;
+				$res_arr['tree'][$v['parent']][$v['id']] = &$res_arr['items'][$v['id']];
+			}
+		}
+		
+		return $res_arr;
+	}
+	
 }

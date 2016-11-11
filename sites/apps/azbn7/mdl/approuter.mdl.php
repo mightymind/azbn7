@@ -147,7 +147,7 @@ class AppRouter
 		
 		$this->data['alias_arr'] = array();
 		
-		$alias = $this->Azbn7->mdl('DB')->read('alias', 'visible = 1 ORDER BY pos');
+		$alias = $this->Azbn7->mdl('DB')->read('alias', "visible = '1' ORDER BY pos");
 		
 		if(count($alias)) {
 			foreach($alias as $a) {

@@ -11,8 +11,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['sysopt'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`json` TINYINT DEFAULT '0',
-				`editable` TINYINT DEFAULT '0',
+				`json` ENUM('0', '1') DEFAULT '0',
+				`editable` ENUM('0', '1') DEFAULT '0',
 				`uid` VARCHAR(256) NOT NULL UNIQUE,
 				`value` MEDIUMBLOB DEFAULT ''
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -29,7 +29,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['alias'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`pos` BIGINT DEFAULT '{$default['max_bigint']}',
-				`visible` TINYINT DEFAULT '1',
+				`visible` ENUM('0', '1') DEFAULT '1',
 				`find` VARCHAR(256) DEFAULT '',
 				`set` VARCHAR(256) DEFAULT '',
 				`title` VARCHAR(256) DEFAULT ''
@@ -52,7 +52,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`visible` TINYINT DEFAULT '1',
+				`visible` ENUM('0', '1') DEFAULT '1',
 				`type` BIGINT DEFAULT '0',
 				`user` BIGINT DEFAULT '0',
 				`profile` BIGINT DEFAULT '0',
@@ -86,7 +86,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_data'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`json` TINYINT DEFAULT '0',
+				`json` ENUM('0', '1') DEFAULT '0',
 				`entity` BIGINT DEFAULT '0',
 				`uid` VARCHAR(256) DEFAULT '',
 				`value` MEDIUMBLOB DEFAULT '',
@@ -115,7 +115,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.created_at', 'title' => 'Дата и время инсталяции сайта'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.updated_at', 'title' => 'Дата и время последнего обновления'));
-	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.version', 'title' => 'Версия движка Azbn7'));
+	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.install_version', 'title' => 'Версия движка Azbn7 при установке'));
 	
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.updated_at', 'value' => $this->Azbn7->created_at));

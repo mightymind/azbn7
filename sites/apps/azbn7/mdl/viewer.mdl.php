@@ -5,6 +5,8 @@ class Viewer
 	
 	public function tpl($tpl, $param = array())
 	{
+		$tpl_uid = $this->Azbn7->randstr(16);
+		
 		if(!isset($this->Azbn7->mdl('Req')->data['headers_sended'])) {
 			
 			$this->Azbn7->mdl('Req')->genHeaders(true);
