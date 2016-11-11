@@ -6,9 +6,11 @@
 
 $(function(){
 	
-	Azbn7.API({}, function(resp){
+	/*
+	Azbn7.api({}, function(resp){
 		console.log(resp);
 	});
+	*/
 	
 });
 
