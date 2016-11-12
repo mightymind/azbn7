@@ -146,10 +146,12 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.created_at', 'title' => 'Дата и время инсталяции сайта'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.updated_at', 'title' => 'Дата и время последнего обновления'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.install_version', 'title' => 'Версия движка Azbn7 при установке'));
+	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.default.theme', 'title' => 'Тема сайта по умолчанию'));
 	
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.updated_at', 'value' => $this->Azbn7->created_at));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.version', 'value' => $this->Azbn7->version['number']));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.default.theme', 'value' => $this->Azbn7->config['theme']));
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_sysopt', array(

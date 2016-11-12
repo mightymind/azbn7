@@ -23,7 +23,7 @@ class AppRouter
 			
 			$this->checkIsUser($req);
 			
-			$this->selectTheme($req);
+			$this->Azbn7->mdl('Site')->selectTheme();
 			
 			if(count($_POST)) {
 				
@@ -194,25 +194,6 @@ class AppRouter
 					$this->Azbn7->go2('/admin/login/');
 				}
 			}
-		}
-		
-	}
-	
-	public function selectTheme(&$req)
-	{
-		
-		if($this->Azbn7->mdl('Site')->is('user')) {
-			
-			if(isset($_SESSION['user']['param']['theme'])) {
-				$this->Azbn7->config['theme'] = $_SESSION['user']['param']['theme'];
-			}
-			
-		} elseif($this->Azbn7->mdl('Site')->is('profile')) {
-			
-			if(isset($_SESSION['profile']['param']['theme'])) {
-				$this->Azbn7->config['theme'] = $_SESSION['profile']['param']['theme'];
-			}
-			
 		}
 		
 	}

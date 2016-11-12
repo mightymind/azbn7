@@ -101,8 +101,23 @@ class Storage_MySQL
 		}
 		
 		$query = $this->q('SELECT ' . $fields . ' FROM `' . $table . '` WHERE ' . $where);
+		
 		//$query->setFetchMode(PDO::FETCH_ASSOC);
 		//while($row = $query->fetch()){$row};
+		
+		if($query) {
+			return $query->fetchAll(PDO::FETCH_ASSOC);
+		} else {
+			return array();
+		}
+		
+	}
+	
+	public function join($tables = '', $where = '1', $fields = '*')
+	{
+		
+		$query = $this->q('SELECT ' . $fields . ' FROM ' . $tables . ' WHERE ' . $where);
+		
 		if($query) {
 			return $query->fetchAll(PDO::FETCH_ASSOC);
 		} else {

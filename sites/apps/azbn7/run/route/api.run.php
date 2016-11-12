@@ -22,7 +22,7 @@ if(!isset($this->Azbn7->mdl('Req')->data['headers_sended'])) {
 }
 
 $resp = array(
-	'info' => array(
+	'meta' => array(
 		'version' => $this->Azbn7->version['number'],
 		'created_at' => $this->Azbn7->created_at,
 		'created_at_str'=>date('Y/m/d H:i:s', $this->Azbn7->created_at),
@@ -31,6 +31,10 @@ $resp = array(
 			'type' => 'info',
 			'text' => 'info message',
 		),
+		'need' => array(
+			'reload' => 0,
+		),
+		'notifies' => array(),
 	),
 	'response' => array(
 		'entity' => array(),

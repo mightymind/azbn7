@@ -70,6 +70,7 @@ function Azbn7Constructor($, cfg) {
 						
 						ctrl.ss.obj2s('me.' + type, resp.response.entity);
 						_cb(type, resp.response.entity);
+						ctrl.needReload(parseInt(resp.meta.need.reload));
 						
 					} else {
 						
@@ -107,13 +108,24 @@ function Azbn7Constructor($, cfg) {
 			
 		});
 		
-	}
+	};
+	
+	ctrl.needReload = function(need) {
+		
+		if(need) {
+			
+			window.location.reload();
+			
+		}
+		
+	};
 	
 	return ctrl;
 	
 };
 
 window.Azbn7 = new Azbn7Constructor(jQuery, {});
+
 window.Azbn7.me('user', function(type, entity){
 	
 	console.log('I am ' + type + ' with ID ' + entity.id);
@@ -123,6 +135,7 @@ window.Azbn7.me('user', function(type, entity){
 	}
 	
 });
+
 window.Azbn7.me('profile', function(type, entity){
 	console.log('I am ' + type + ' with ID ' + entity.id);
 });
