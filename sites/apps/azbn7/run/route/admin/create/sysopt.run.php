@@ -1,32 +1,36 @@
 <?
 
-$item = array(
-	'json' => $this->Azbn7->c_s($_POST['item']['json']),
-	'editable' => $this->Azbn7->c_s($_POST['item']['editable']),
-	'uid' => $this->Azbn7->c_s($_POST['item']['uid']),
-	'value' => $_POST['item']['value'],
-);
+if(count($_POST['item'])) {
+	
+	$item = array(
+		'json' => $this->Azbn7->c_s($_POST['item']['json']),
+		'editable' => $this->Azbn7->c_s($_POST['item']['editable']),
+		'uid' => $this->Azbn7->c_s($_POST['item']['uid']),
+		'value' => $_POST['item']['value'],
+	);
 
-$opt = $this->Azbn7->mdl('DB')->one('sysopt', "uid = '{$item['uid']}'");
+	$opt = $this->Azbn7->mdl('DB')->one('sysopt', "uid = '{$item['uid']}'");
 
-if($opt['id']) {
-	
-	
-	
-} else {
-	
-	$item['id'] = $this->Azbn7->mdl('DB')->create('sysopt', $item);
-	
-}
+	if($opt['id']) {
+		
+		
+		
+	} else {
+		
+		$item['id'] = $this->Azbn7->mdl('DB')->create('sysopt', $item);
+		
+	}
 
-if($item['id']) {
-	
-	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => $item['uid'], 'title' => $this->Azbn7->c_s($_POST['item_data']['title'])));
-	
-	$this->Azbn7->go2('/admin/all/sysopt/');
-	
-} else {
-	
-	$this->Azbn7->go2('/admin/add/sysopt/');
+	if($item['id']) {
+		
+		$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => $item['uid'], 'title' => $this->Azbn7->c_s($_POST['item_data']['title'])));
+		
+		$this->Azbn7->go2('/admin/all/sysopt/');
+		
+	} else {
+		
+		$this->Azbn7->go2('/admin/add/sysopt/');
+		
+	}
 	
 }

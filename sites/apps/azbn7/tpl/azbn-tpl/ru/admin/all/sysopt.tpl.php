@@ -12,6 +12,7 @@ if(count($param['items'])) {
 			if($v['editable']) {
 				?>
 				<input type="text" value="<?=$v['value'];?>" disabled />
+				<a href="/admin/edit/sysopt/<?=$v['id'];?>/" >Редактировать</a>
 				<?
 			} else {
 				?>

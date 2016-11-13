@@ -2,14 +2,14 @@
 // Административный шаблон
 ?>
 
-<form action="/admin/create/sysopt/" method="POST" >
+<form action="/admin/update/sysopt/<?=$param['item']['id'];?>/" method="POST" >
 	
 	<div>
-		<input type="text" name="item[uid]" value="" placeholder="Уникальный ID" />
+		<input type="text" name="item[uid]" value="<?=$param['item']['uid'];?>" placeholder="Уникальный ID" />
 	</div>
 	
 	<div>
-		<input type="text" name="item_data[title]" value="" placeholder="Название (пояснение)" />
+		<input type="text" name="item_data[title]" value="<?=$param['item']['title'];?>" placeholder="Название (пояснение)" />
 	</div>
 	
 	<div>
@@ -27,11 +27,11 @@
 	</div>
 	
 	<div>
-		<input type="text" name="item[value]" value="" placeholder="Значение" />
+		<input type="text" name="item[value]" value="<?=$param['item']['value'];?>" placeholder="Значение" />
 	</div>
 	
 	<div>
-		<input type="submit" value="Создать" />
+		<input type="submit" value="Обновить" />
 	</div>
 	
 </form>
