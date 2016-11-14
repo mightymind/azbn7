@@ -16,7 +16,25 @@ class Entity
 	{
 		if(isset($e['uid']) && isset($e['title'])) {
 			
-			$e['id'] = $this->Azbn7->mdl('DB')->create('entity_type', array('parent' => $this->Azbn7->as_int($e['parent']), 'uid' => $e['uid'], 'title' => $e['title']), true);
+			$field_struct_arr = array();
+			
+			if(count($e['field'])) {
+				foreach($e['field'] as $k => $v) {
+					$field_struct_arr[$k] = array(
+						'type' => $this->Azbn7->c_s($v['type']),
+						'editor' => $this->Azbn7->c_s($v['editor']),
+					);
+				}
+			}
+			
+			$e['id'] = $this->Azbn7->mdl('DB')->create('entity_type', array(
+				'parent' => $this->Azbn7->as_int($e['parent']),
+				'uid' => $e['uid'],
+				'title' => $e['title'],
+				'param' => $this->Azbn7->arr2json(array(
+					'field' => $field_struct_arr,
+				)),
+			), true);
 			
 			if($e['id']) {
 				
@@ -25,7 +43,7 @@ class Entity
 				
 				if(count($e['field'])) {
 					foreach($e['field'] as $k => $v) {
-						$field_arr[] = "`$k` $v";
+						$field_arr[] = "`$k` {$v['type']}";
 					}
 					$field_str = implode(', ', $field_arr);
 				}
@@ -41,6 +59,13 @@ class Entity
 						) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 					")
 				;
+				
+				/*
+				$this->Azbn7->mdl('DB')->update('entity_type', array('param' => array(
+					'field' => array(
+						
+					))));
+				*/
 				
 				$this->Azbn7->event(array(
 					'action' => $this->event_prefix . '.create.entity_type.after',

@@ -165,9 +165,18 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'page',
 		'title' => 'Страница',
 		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'preview' => "TEXT DEFAULT ''",
-			'content' => "MEDIUMTEXT DEFAULT ''",
+			'title' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+			),
+			'preview' => array(
+				'type' => "TEXT DEFAULT ''",
+				'editor' => 'textarea',
+			),
+			'content' => array(
+				'type' => "MEDIUMTEXT DEFAULT ''",
+				'editor' => 'wysiwyg',
+			),
 		),
 	));
 	
@@ -176,9 +185,18 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'category',
 		'title' => 'Категория',
 		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'preview' => "TEXT DEFAULT ''",
-			'content' => "MEDIUMTEXT DEFAULT ''",
+			'title' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+			),
+			'preview' => array(
+				'type' => "TEXT DEFAULT ''",
+				'editor' => 'textarea',
+			),
+			'content' => array(
+				'type' => "MEDIUMTEXT DEFAULT ''",
+				'editor' => 'wysiwyg',
+			),
 		),
 	));
 	
@@ -187,8 +205,14 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'upload',
 		'title' => 'Загруженный файл',
 		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'path' => "TEXT DEFAULT ''",
+			'title' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+			),
+			'path' => array(
+				'type' => "TEXT DEFAULT ''",
+				'editor' => 'upload',
+			),
 		),
 	));
 	
@@ -197,8 +221,14 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'img',
 		'title' => 'Изображение',
 		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'path' => "TEXT DEFAULT ''",
+			'title' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+			),
+			'path' => array(
+				'type' => "TEXT DEFAULT ''",
+				'editor' => 'uploadimg',
+			),
 		),
 	));
 	
@@ -207,8 +237,14 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'audio',
 		'title' => 'Аудио',
 		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'path' => "TEXT DEFAULT ''",
+			'title' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+			),
+			'path' => array(
+				'type' => "TEXT DEFAULT ''",
+				'editor' => 'upload',
+			),
 		),
 	));
 	
@@ -217,8 +253,14 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'video',
 		'title' => 'Видео',
 		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'path' => "TEXT DEFAULT ''",
+			'title' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+			),
+			'path' => array(
+				'type' => "TEXT DEFAULT ''",
+				'editor' => 'upload',
+			),
 		),
 	));
 	
@@ -227,8 +269,14 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'file',
 		'title' => 'Файл любого формата',
 		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'path' => "TEXT DEFAULT ''",
+			'title' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+			),
+			'path' => array(
+				'type' => "TEXT DEFAULT ''",
+				'editor' => 'upload',
+			),
 		),
 	));
 	
@@ -237,9 +285,16 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'youtube',
 		'title' => 'Видео YouTube',
 		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'yt_uid' => "VARCHAR(256) DEFAULT ''",
+			'title' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+			),
+			'yt_uid' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+			),
 		),
+		
 	));
 	
 	$t['link'] = $this->Azbn7->mdl('Entity')->createType(array(
@@ -328,8 +383,24 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	
 	
-	$this->Azbn7->mdl('DB')->create('user', array('created_at' => $this->Azbn7->created_at, 'login' => 'system', 'email' => 'i@azbn.ru', 'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system')));
-	$this->Azbn7->mdl('DB')->create('user', array('created_at' => $this->Azbn7->created_at, 'login' => 'admin', 'email' => 'i@azbn.ru', 'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin')));
+	$this->Azbn7->mdl('DB')->create('user', array(
+		'created_at' => $this->Azbn7->created_at,
+		'login' => 'system',
+		'email' => 'i@azbn.ru',
+		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
+		'param' => $this->Azbn7->arr2json(array(
+			'theme' => 'azbn-tpl/ru',
+		)),
+	));
+	$this->Azbn7->mdl('DB')->create('user', array(
+		'created_at' => $this->Azbn7->created_at,
+		'login' => 'admin',
+		'email' => 'i@azbn.ru',
+		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
+		'param' => $this->Azbn7->arr2json(array(
+			'theme' => 'azbn-tpl/ru',
+		)),
+	));
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_users', array(

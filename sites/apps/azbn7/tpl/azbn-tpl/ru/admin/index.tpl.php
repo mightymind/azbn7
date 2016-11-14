@@ -40,6 +40,7 @@ $this->Azbn7->mdl('Viewer')->tpl('_/hierarchy/select', array(
 	'html' => 'class="" id=""',
 	'hierarchy' => $entity_type_h,
 	'start_index' => 0,
+	'hide_zero' => 0,
 ));
 ?>
 

@@ -17,7 +17,7 @@ class Session
 		
 		if($item['id']) {
 			
-			$item['param'] = json_decode($item['param']);
+			$item['param'] = json_decode($item['param'], true);
 			
 			$_SESSION[$type] = $item;
 			

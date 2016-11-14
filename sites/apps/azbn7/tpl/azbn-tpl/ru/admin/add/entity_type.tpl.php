@@ -27,12 +27,16 @@
 		<input type="text" name="item[title]" value="" placeholder="Название (пояснение)" />
 	</div>
 	
-	<div class="" >
+	<div class="field-list" >
 		
-		<div class="" >
-			<input type="" name="item[param][fields][0][uid]" value="" placeholder="Название поля" />
-			<input type="" name="item[param][fields][0][type]" value="" placeholder="Тип поля (MySQL)" />
-			<input type="" name="item[param][fields][0][editor]" value="" placeholder="Редактировать через" />
+		<div class="field-item" >
+			<input type="" name="item[param][field][0][uid]" value="" placeholder="Название поля" />
+			<input type="" name="item[param][field][0][type]" value="" placeholder="Тип поля (MySQL)" />
+			<input type="" name="item[param][field][0][editor]" value="" placeholder="Редактировать через" />
+		</div>
+		
+		<div class="btn-panel" >
+			<a href="#add-field" class="add-btn" >+</a>
 		</div>
 		
 	</div>
@@ -42,3 +46,27 @@
 	</div>
 	
 </form>
+
+<script>
+$(function(){
+	
+	$(document.body).on('azbn.reset', '.field-list .field-item', {}, function(event){
+		event.preventDefault();
+		
+		var block = $(this);
+		block.find('input').val('');
+		
+	});
+	
+	$(document.body).on('click', '.field-list .btn-panel .add-btn', {}, function(event){
+		event.preventDefault();
+		
+		var block = $('.field-list');
+		var last = block.find('.field-item').eq(-1);
+		
+		last.clone(true).insertAfter(last).trigger('azbn.reset');
+		
+	});
+	
+});
+</script>

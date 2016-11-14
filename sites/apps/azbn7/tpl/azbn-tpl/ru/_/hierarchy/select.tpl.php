@@ -32,6 +32,15 @@ $func = function(&$catalog, $item_id, $tab = "&nbsp; ") use (&$func) {
 if(count($param['hierarchy']) && count($param['hierarchy']['items'])) {
 	?>
 	<select <?=$param['html'];?> >
+		<?
+		if($param['hide_zero']) {
+			
+		} else {
+		?>
+		<option value="0" data-uid="" >Без родителя</option>
+		<?
+		}
+		?>
 	<?
 	if(count($param['hierarchy']['tree'][$param['start_index']])) {
 		foreach($param['hierarchy']['tree'][$param['start_index']] as $k => $v) {
