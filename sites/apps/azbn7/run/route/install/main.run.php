@@ -390,6 +390,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
+			'wysiwyg' => 'textarea',
 		)),
 	));
 	$this->Azbn7->mdl('DB')->create('user', array(
@@ -399,6 +400,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
+			'wysiwyg' => 'textarea',
 		)),
 	));
 	
