@@ -43,4 +43,4 @@ $this->Azbn7->mdl('Viewer')->tpl('_/hierarchy/select', array(
 ));
 ?>
 
-<p><a href="/admin/logout/" >Выйти</a></p>
+<p><a href="/admin/all/entity_type/" >Типы сущностей</a> <a href="/admin/all/sysopt/" >Параметры</a> <a href="/admin/logout/" >Выйти</a></p>
