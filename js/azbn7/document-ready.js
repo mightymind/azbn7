@@ -1,6 +1,6 @@
 'use strict';
 
-(function(){
+(function($){
 	
 	var a7_class = 'azbn7';
 	var a7admin_class = 'azbn7-admin';
@@ -84,4 +84,4 @@
 		
 	});
 	
-})();
+})(jQuery);
