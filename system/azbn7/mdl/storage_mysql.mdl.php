@@ -161,4 +161,5 @@ class Storage_MySQL
 		return $this->connection->exec('DELETE FROM `' . $table . '` WHERE ' . $where);
 	}
 	
+	
 }
