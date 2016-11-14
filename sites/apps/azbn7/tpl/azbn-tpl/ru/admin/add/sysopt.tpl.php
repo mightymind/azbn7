@@ -9,7 +9,7 @@
 	</div>
 	
 	<div>
-		<input type="text" name="item_data[title]" value="" placeholder="Название (пояснение)" />
+		<input type="text" name="item[data][title]" value="" placeholder="Название (пояснение)" />
 	</div>
 	
 	<div>

@@ -23,7 +23,7 @@ if(count($_POST['item'])) {
 
 	if($item['id']) {
 		
-		$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => $item['uid'], 'title' => $this->Azbn7->c_s($_POST['item_data']['title'])));
+		$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => $item['uid'], 'title' => $this->Azbn7->c_s($_POST['item']['data']['title'])));
 		
 		$this->Azbn7->go2('/admin/all/sysopt/');
 		

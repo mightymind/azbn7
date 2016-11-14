@@ -27,3 +27,5 @@ if(count($param['items'])) {
 	}
 }
 ?>
+
+<a href="/admin/add/sysopt/" >Добавить</a>

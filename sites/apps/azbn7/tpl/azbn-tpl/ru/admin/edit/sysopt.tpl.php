@@ -2,14 +2,27 @@
 // Административный шаблон
 ?>
 
-<form action="/admin/update/sysopt/<?=$param['item']['id'];?>/" method="POST" >
+<script>
+
+$(function(){
+	
+	$('select[name="item[json]"]').val('<?=$param['item']['json'];?>');
+	$('select[name="item[editable]"]').val('<?=$param['item']['editable'];?>');
+	
+});
+
+</script>
+
+<form action="/admin/update/sysopt/" method="POST" >
+	
+	<input type="hidden" name="item[id]" value="<?=$param['item']['id'];?>" />
 	
 	<div>
-		<input type="text" name="item[uid]" value="<?=$param['item']['uid'];?>" placeholder="Уникальный ID" />
+		<?=$param['item']['uid'];?>
 	</div>
 	
 	<div>
-		<input type="text" name="item_data[title]" value="<?=$param['item']['title'];?>" placeholder="Название (пояснение)" />
+		<input type="text" name="item[data][title]" value="<?=$param['item']['title'];?>" placeholder="Название (пояснение)" />
 	</div>
 	
 	<div>
