@@ -2,6 +2,7 @@
 // виджет
 ?>
 
-<div class="" >
-	<textarea name="" ></textarea>
+<div <?=$param['html'];?> >
+	<label><?=$param['title'];?></label>
+	<textarea name="<?=$param['name'];?>" ><?=$param['value'];?></textarea>
 </div>

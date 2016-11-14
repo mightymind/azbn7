@@ -2,19 +2,8 @@
 // footer сайта
 ?>
 
-<script>
-
-$(function(){
-	
-	/*
-	Azbn7.api({}, function(resp){
-		console.log(resp);
-	});
-	*/
-	
-});
-
-</script>
+<script src="/js/azbn7/azbn7.js" ></script>
+<script src="/js/azbn7/document-ready.js" ></script>
 
 </body>
 </html>

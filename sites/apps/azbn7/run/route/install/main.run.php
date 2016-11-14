@@ -168,14 +168,17 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
+				'title' => 'Заголовок',
 			),
 			'preview' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'textarea',
+				'title' => 'Краткое описание',
 			),
 			'content' => array(
 				'type' => "MEDIUMTEXT DEFAULT ''",
 				'editor' => 'wysiwyg',
+				'title' => 'Основное содержание',
 			),
 		),
 	));
@@ -188,14 +191,17 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
+				'title' => 'Заголовок',
 			),
 			'preview' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'textarea',
+				'title' => 'Краткое описание',
 			),
 			'content' => array(
 				'type' => "MEDIUMTEXT DEFAULT ''",
 				'editor' => 'wysiwyg',
+				'title' => 'Основное содержание',
 			),
 		),
 	));
@@ -208,10 +214,12 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
+				'title' => 'Заголовок',
 			),
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'upload',
+				'title' => 'Путь до файла',
 			),
 		),
 	));
@@ -224,10 +232,12 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
+				'title' => 'Заголовок',
 			),
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
-				'editor' => 'uploadimg',
+				'editor' => 'upload',
+				'title' => 'Путь до файла',
 			),
 		),
 	));
@@ -240,10 +250,12 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
+				'title' => 'Заголовок',
 			),
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'upload',
+				'title' => 'Путь до файла',
 			),
 		),
 	));
@@ -256,10 +268,12 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
+				'title' => 'Заголовок',
 			),
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'upload',
+				'title' => 'Путь до файла',
 			),
 		),
 	));
@@ -272,10 +286,12 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
+				'title' => 'Заголовок',
 			),
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'upload',
+				'title' => 'Путь до файла',
 			),
 		),
 	));
@@ -288,10 +304,12 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
+				'title' => 'Заголовок',
 			),
 			'yt_uid' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
+				'title' => 'UID ролика на YouTube',
 			),
 		),
 		
@@ -302,8 +320,16 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'link',
 		'title' => 'Ссылка',
 		'field' => array(
-			'title' => "VARCHAR(256) DEFAULT ''",
-			'path' => "TEXT DEFAULT ''",
+			'title' => array(
+				'type' => "VARCHAR(256) DEFAULT ''",
+				'editor' => 'input',
+				'title' => 'Заголовок',
+			),
+			'path' => array(
+				'type' => "TEXT DEFAULT ''",
+				'editor' => 'input',
+				'title' => 'Адрес',
+			),
 		),
 	));
 	

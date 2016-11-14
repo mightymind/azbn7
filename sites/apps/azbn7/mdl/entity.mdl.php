@@ -23,6 +23,7 @@ class Entity
 					$field_struct_arr[$k] = array(
 						'type' => $this->Azbn7->c_s($v['type']),
 						'editor' => $this->Azbn7->c_s($v['editor']),
+						'title' => $this->Azbn7->c_s($v['title']),
 					);
 				}
 			}

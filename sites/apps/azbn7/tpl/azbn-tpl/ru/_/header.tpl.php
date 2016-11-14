@@ -34,7 +34,6 @@
 <script src="/js/device.min.js" ></script>
 
 <script src="/js/jquery.min.js" ></script>
-<script src="/js/azbn7/azbn7.js" ></script>
 
 </head>
-<body class="fecss full-height is-mainpage touchswipe theme-b0w overflow-hidden " data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
+<body class="fecss full-height is-mainpage touchswipe theme-b0w overflow-hidden <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >

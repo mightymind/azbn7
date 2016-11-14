@@ -185,6 +185,8 @@ class AppRouter
 	{
 		
 		if($req[0] == 'admin') {
+			$this->Azbn7->mdl('Viewer')->addBodyClass('azbn7-admin');
+			
 			if($this->Azbn7->mdl('Site')->is('user')) {
 				
 			} else {

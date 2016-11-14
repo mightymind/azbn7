@@ -2,17 +2,6 @@
 // Административный шаблон
 ?>
 
-<script>
-
-$(function(){
-	
-	$('select[name="item[json]"]').val('<?=$param['item']['json'];?>');
-	$('select[name="item[editable]"]').val('<?=$param['item']['editable'];?>');
-	
-});
-
-</script>
-
 <form action="/admin/update/sysopt/" method="POST" >
 	
 	<input type="hidden" name="item[id]" value="<?=$param['item']['id'];?>" />
@@ -26,14 +15,14 @@ $(function(){
 	</div>
 	
 	<div>
-		Формат <select name="item[json]" >
+		Формат <select name="item[json]" data-select-value="<?=$param['item']['json'];?>" >
 			<option value="0" >любой</option>
 			<option value="1" >JSON</option>
 		</select>
 	</div>
 	
 	<div>
-		Возможность редактирования <select name="item[editable]" >
+		Возможность редактирования <select name="item[editable]" data-select-value="<?=$param['item']['editable'];?>" >
 			<option value="0" >нет, параметр нельзя редактировать</option>
 			<option value="1" >да, параметр можно редактировать</option>
 		</select>
