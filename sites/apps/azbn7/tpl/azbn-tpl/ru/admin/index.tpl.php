@@ -41,7 +41,7 @@
 			}
 			?>
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/user/');?>">Админ</a>
+			<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/user/');?>">Администратор</a>
 			<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/profile/');?>">Профиль пользователя</a>
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/sysopt/');?>">Параметр</a>

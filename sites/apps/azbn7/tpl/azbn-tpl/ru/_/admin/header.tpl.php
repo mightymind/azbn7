@@ -64,10 +64,19 @@
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Сущности</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity/');?>" >Все</a>
 					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity-add" >Добавить</a>
-					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity-search" >Поиск</a>
+					<div class="dropdown-divider"></div>
+					<?
+					$types = $this->Azbn7->mdl('DB')->read('entity_type');
+					if(count($types)) {
+						foreach($types as $t) {
+							?>
+							<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity/?type=' . $t['id']);?>" ><?=$t['title'];?></a>
+							<?
+						}
+					}
+					?>
 				</div>
 			</li>
 			
