@@ -29,7 +29,8 @@
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous" />
-<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/dashboard.css');?>" />
+<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/dashboard.css');?>" />-->
+<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7-admin.css');?>" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -46,23 +47,18 @@
 <body class=" <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
 
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
-	<button type="button" class="navbar-toggler hidden-md-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation"></button>
+	
+	<button type="button" class="navbar-toggler hidden-md-up" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" ></button>
 	<a class="navbar-brand" href="<?=$this->Azbn7->mdl('Site')->url('/admin/');?>">CMS Azbn7</a>
 	
-	<div id="navbar">
+	<div id="navbarResponsive" class="collapse navbar-toggleable-sm " >
 		
 		<ul class="nav navbar-nav float-xs-left nav-inline">
 			
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Типы</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity_type/');?>" >Все</a>
-					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity_type-add" >Добавить</a>
-				</div>
-			</li>
+			<li class="nav-item "><div class="divider"></div></li>
 			
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Сущности</a>
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Контент</a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity-add" >Добавить</a>
 					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity-search" >Поиск</a>
@@ -90,13 +86,42 @@
 				</div>
 			</li>
 			
-			<li class="nav-item">
-				<a class="nav-link " href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/sysopt/');?>" >Настройки</a>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Параметры</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/alias/');?>" >Перенаправления</a>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/sysopt/');?>" >Настройки движка</a>
+				</div>
 			</li>
 			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ресурсы</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/');?>" >Администрирование</a>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/');?>" >Главная сайта</a>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/logout/');?>" >Выйти</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="http://azbn.ru/" >Сайт разработчика</a>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/cms/info/');?>" >Информация о CMS</a>
+				</div>
+			</li>
+			
+			
+			<!--
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Типы данных</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity_type/');?>" >Все</a>
+					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity_type-add" >Добавить</a>
+				</div>
+			</li>
+			-->
+			
+			<!--
 			<li class="nav-item">
 				<a class="nav-link " href="<?=$this->Azbn7->mdl('Site')->url('/admin/logout/');?>" >Выйти</a>
 			</li>
+			-->
 			
 		</ul>
 		
