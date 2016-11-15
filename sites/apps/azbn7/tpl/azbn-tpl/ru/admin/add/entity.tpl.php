@@ -8,7 +8,7 @@
 
 <h1><?=$param['type']['title'];?></h1>
 
-<form action="/admin/create/entity/" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/entity/');?>" method="POST" >
 	
 	<input type="hidden" name="type[id]" value="<?=$param['type']['id'];?>" />
 	

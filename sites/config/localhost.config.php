@@ -18,6 +18,7 @@ $CONFIG = array(
 	'charset'			=> 'UTF-8',
 	'theme'				=> 'azbn-tpl/ru',
 	'path'				=> array(
+							'root' => '',
 							'cache' => 'cache/'.$app_uid,
 							'backup' => 'backup/'.$app_uid,
 							'upload' => 'upload/'.$app_uid,

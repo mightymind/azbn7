@@ -6,7 +6,7 @@
 //echo $tpl_uid;
 ?>
 
-<form action="/admin/create/entity_type/" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/entity_type/');?>" method="POST" >
 	
 	<?
 	$entity_type = $this->Azbn7->mdl('DB')->read('entity_type');

@@ -2,37 +2,150 @@
 // Административный шаблон
 ?>
 
-<?
+<div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 sidebar " >
+	
+	<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/search/');?>" >
+		<div class="form-group">
+			<input type="text" name="text" class="form-control azbn7-search-input" data-result="fast-search-result" data placeholder="Быстрый поиск...">
+		</div>
+		
+		<div class="list-group" data-result="fast-search-result" >
+			<!--
+			<a href="#" class="list-group-item list-group-item-action ">
+				<h5 class="list-group-item-heading">Название сущности</h5>
+				<p class="list-group-item-text">Описание найденной сущности</p>
+			</a>
+			-->
+		</div>
+	</form>
+	
+	<hr />
+	
+	
+	<?
+	$types = $this->Azbn7->mdl('DB')->read('entity_type');
+	if(count($types)) {
+	?>
+	<div class="dropdown ">
+		<button type="button" class="btn btn-danger btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Добавить
+		</button>
+		<div class="dropdown-menu">
+			<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity_type-add" >Тип данных</a>
+			<div class="dropdown-divider"></div>
+			<?
+			foreach($types as $t) {
+				?>
+				<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/entity/?type=' . $t['id']);?>"><?=$t['title'];?></a>
+				<?
+			}
+			?>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/user/');?>">Админ</a>
+			<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/profile/');?>">Профиль пользователя</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/sysopt/');?>">Параметр</a>
+		</div>
+	</div>
+	
+	<hr />
+	<?
+	}
+	?>
+	
+</div>
+<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2 main" >
+	
+	<h1>CMS Azbn7. Управление сайтом</h1>
+	
+	<!--
+	<table class="table table-bordered table-striped table-hover ">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Username</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">1</th>
+				<td>Mark</td>
+				<td>Otto</td>
+				<td>@mdo</td>
+			</tr>
+			<tr>
+				<th scope="row">2</th>
+				<td>Mark</td>
+				<td>Otto</td>
+				<td>@TwBootstrap</td>
+			</tr>
+		</tbody>
+	</table>
+	-->
+	
+	<?
 $sysopt = $this->Azbn7->mdl('DB')->read('sysopt');
 
 if(count($sysopt)) {
+	
+	$sysopt_data = array();
+	$sysopt_data_raw = $this->Azbn7->mdl('DB')->read('sysopt_data');
+	if(count($sysopt_data_raw)) {
+		foreach($sysopt_data_raw as $opt) {
+			$sysopt_data[$opt['uid']] = $opt['title'];
+		}
+	}
+	
+	?>
+	
+	<table class="table table-bordered table-striped table-hover ">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Параметр</th>
+				<th>Описание</th>
+				<th>Значение</th>
+				<th>Функции</th>
+			</tr>
+		</thead>
+		<tbody>
+	
+	<?
 	foreach($sysopt as $k => $v) {
 		
 		?>
 		
-		<p>
-			<?=$v['uid'];?>:
-			<?
-			if($v['editable']) {
-				?>
-				<input type="text" value="<?=$v['value'];?>" disabled />
-				<?
-			} else {
-				?>
-				<?=$v['value'];?>
-				<?
-			}
-			?>
-		</p>
+			<tr>
+				<th scope="row"><?=$v['id'];?></th>
+				<td><?=$v['uid'];?></td>
+				<td><?=$sysopt_data[$v['uid']];?></td>
+				<td><?=$v['value'];?></td>
+				<td>
+					<?
+					if($v['editable']) {
+						?>
+					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/sysopt/' . $v['id'] . '/');?>" >Редактировать</a>
+						<?
+					}
+					?>
+				</td>
+			</tr>
 		
 		<?
 		
 	}
+	?>
+		</tbody>
+	</table>
+	<?
 }
 ?>
 
 
 <?
+/*
 $entity_type = $this->Azbn7->mdl('DB')->read('entity_type');
 $entity_type_h = $this->Azbn7->mdl('Site')->buildHierarchy($entity_type);
 
@@ -42,6 +155,7 @@ $this->Azbn7->mdl('Viewer')->tpl('_/hierarchy/select', array(
 	'start_index' => 0,
 	'hide_zero' => 0,
 ));
+*/
 ?>
 
-<p><a href="/admin/all/entity_type/" >Типы сущностей</a> <a href="/admin/all/sysopt/" >Параметры</a> <a href="/admin/logout/" >Выйти</a></p>
+</div>

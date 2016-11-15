@@ -25,6 +25,11 @@ class Site
 		return $this->Azbn7->mdl('DB')->create('log', $item);
 	}
 	
+	public function url($url = '')
+	{
+		return $this->Azbn7->config['path']['root'] . $url;
+	}
+	
 	public function sysopt_set($uid, $value = '')
 	{
 		$res = 0;

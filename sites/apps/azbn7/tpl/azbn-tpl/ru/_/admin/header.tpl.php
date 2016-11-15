@@ -1,14 +1,16 @@
 <?
 // header админки
 ?><!DOCTYPE html>
-<html class="no-js" >
+<html lang="ru" class="no-js" >
 <head>
 
 <title><?=$param['entity']['item']['title'];?></title>
+<meta name="description" content="">
+<meta name="author" content="">
 
 <meta name="referrer" content="never">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!--
@@ -16,13 +18,18 @@
 <meta name="resource-type" content="document" />
 -->
 
+<meta charset="utf-8">
 <meta HTTP-EQUIV="Cache-Control" content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
-<link type="image/x-icon" href="/favicon.ico" rel="icon" />
+<link type="image/x-icon" href="<?=$this->Azbn7->mdl('Site')->url('/favicon.ico');?>" rel="shortcut icon" />
+<link type="image/x-icon" href="<?=$this->Azbn7->mdl('Site')->url('/favicon.ico');?>" rel="icon" />
 
-<meta property="og:image" content="https://azbn.ru/favicon.ico" />
+<meta property="og:image" content="<?=$this->Azbn7->mdl('Site')->url('/favicon.ico');?>" />
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous" />
+<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/dashboard.css');?>" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -30,12 +37,71 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script src="/js/modernizr-custom.js" ></script>
-<script src="/js/device.min.js" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr-custom.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
 
-<script src="/js/jquery.min.js" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>
 
 </head>
 <body class=" <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
 
-<div class="azbn7-container" >
+<nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+	<button type="button" class="navbar-toggler hidden-md-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation"></button>
+	<a class="navbar-brand" href="<?=$this->Azbn7->mdl('Site')->url('/admin/');?>">CMS Azbn7</a>
+	
+	<div id="navbar">
+		
+		<ul class="nav navbar-nav float-xs-left nav-inline">
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Типы</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity_type/');?>" >Все</a>
+					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity_type-add" >Добавить</a>
+				</div>
+			</li>
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Сущности</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity/');?>" >Все</a>
+					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity-add" >Добавить</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity-search" >Поиск</a>
+				</div>
+			</li>
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Пользователи</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/user/');?>" >Админы</a>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/profile/');?>" >Профили пользователей</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/log/');?>" >Логи</a>
+				</div>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/sysopt/');?>" >Настройки</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " href="<?=$this->Azbn7->mdl('Site')->url('/admin/logout/');?>" >Выйти</a>
+			</li>
+			
+		</ul>
+		
+		<!--
+		<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/search/');?>" class="float-xs-right">
+			<input type="text" name="text" class="form-control" placeholder="Поиск...">
+		</form>
+		-->
+		
+	</div>
+</nav>
+
+<div class="container-fluid azbn7-container ">
+	
+	<div class="row">
+	
+	

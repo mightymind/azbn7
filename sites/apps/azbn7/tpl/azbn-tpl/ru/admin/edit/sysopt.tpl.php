@@ -2,7 +2,7 @@
 // Административный шаблон
 ?>
 
-<form action="/admin/update/sysopt/" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/sysopt/');?>" method="POST" >
 	
 	<input type="hidden" name="item[id]" value="<?=$param['item']['id'];?>" />
 	

@@ -12,7 +12,7 @@ if(count($param['items'])) {
 			if($v['editable']) {
 				?>
 				<input type="text" value="<?=$v['value'];?>" disabled />
-				<a href="/admin/edit/sysopt/<?=$v['id'];?>/" >Редактировать</a>
+				<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/sysopt/' . $v['id'] . '/');?>" >Редактировать</a>
 				<?
 			} else {
 				?>
@@ -28,4 +28,4 @@ if(count($param['items'])) {
 }
 ?>
 
-<a href="/admin/add/sysopt/" >Добавить</a>
+<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/sysopt/');?>" >Добавить</a>

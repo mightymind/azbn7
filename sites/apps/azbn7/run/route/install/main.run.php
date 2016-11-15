@@ -131,7 +131,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`content` LONGTEXT DEFAULT '',
 				INDEX by_entity (`entity`),
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE,
-				FULLTEXT KEY `search` (`content`)
+				FULLTEXT KEY `content_search` (`content`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
@@ -150,7 +150,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.updated_at', 'value' => $this->Azbn7->created_at));
-	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.version', 'value' => $this->Azbn7->version['number']));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.install_version', 'value' => $this->Azbn7->version['number']));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.default.theme', 'value' => $this->Azbn7->config['theme']));
 	
 	$this->Azbn7->mdl('Site')

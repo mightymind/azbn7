@@ -2,7 +2,7 @@
 // Административный шаблон
 ?>
 
-<form action="/admin/create/sysopt/" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/sysopt/');?>" method="POST" >
 	
 	<div>
 		<input type="text" name="item[uid]" value="" placeholder="Уникальный ID" />

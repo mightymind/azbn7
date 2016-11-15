@@ -2,7 +2,7 @@
 // Административный шаблон
 ?>
 
-<form action="/admin/login/" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/login/');?>" method="POST" >
 	
 	<input type="text" name="login" value="" />
 	<input type="password" name="pass" value="" />

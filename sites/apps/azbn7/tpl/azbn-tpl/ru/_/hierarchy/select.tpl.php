@@ -31,6 +31,15 @@ $func = function(&$catalog, $item_id, $tab = "&nbsp; ") use (&$func) {
 
 if(count($param['hierarchy']) && count($param['hierarchy']['items'])) {
 	?>
+	
+	<?
+	if(isset($param['title'])) {
+	?>
+	<label><?=$param['title'];?></label>
+	<?
+	}
+	?>
+	
 	<select <?=$param['html'];?> >
 		<?
 		if($param['hide_zero']) {

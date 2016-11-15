@@ -19,10 +19,10 @@
 <meta HTTP-EQUIV="Cache-Control" content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
-<link type="image/x-icon" href="/favicon.ico" rel="icon" />
+<link type="image/x-icon" href="<?=$this->Azbn7->mdl('Site')->url('/favicon.ico');?>" rel="shortcut icon" />
+<link type="image/x-icon" href="<?=$this->Azbn7->mdl('Site')->url('/favicon.ico');?>" rel="icon" />
 
-<meta property="og:image" content="https://azbn.ru/favicon.ico" />
+<meta property="og:image" content="<?=$this->Azbn7->mdl('Site')->url('/favicon.ico');?>" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -30,10 +30,10 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script src="/js/modernizr-custom.js" ></script>
-<script src="/js/device.min.js" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr-custom.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
 
-<script src="/js/jquery.min.js" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>
 
 </head>
 <body class="fecss full-height is-mainpage touchswipe theme-b0w overflow-hidden <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
