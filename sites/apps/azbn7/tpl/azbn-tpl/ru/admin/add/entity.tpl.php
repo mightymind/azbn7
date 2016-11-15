@@ -12,6 +12,11 @@
 	
 	<input type="hidden" name="type[id]" value="<?=$param['type']['id'];?>" />
 	
+	<input type="hidden" name="entity[visible]" value="1" />
+	<input type="hidden" name="entity[parent]" value="0" />
+	<input type="hidden" name="entity[pos]" value="0" />
+	<input type="text" name="entity[url]" value="<?=$this->Azbn7->randstr(16);?>" placeholder="URL" />
+	
 	<?
 	//var_dump($param['type']);
 	if(count($param['type']['param']['field'])) {

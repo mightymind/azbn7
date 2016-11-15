@@ -4,6 +4,7 @@ class Viewer
 	public $event_prefix = 'app.mdl.viewer';
 	
 	public $body_class = 'azbn7';
+	public $is_admin_tpl = false;
 	
 	public function tpl($tpl, $param = array())
 	{

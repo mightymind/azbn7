@@ -116,14 +116,21 @@ class Site
 	
 	public function render($tpl = 'default', $p)
 	{
+		
+		if($this->Azbn7->mdl('Viewer')->is_admin_tpl) {
+			$admin_str = '/admin';
+		} else {
+			$admin_str = '';
+		}
+		
 		$this->Azbn7->mdl('Viewer')
-			->tpl('_/header', $p);
+			->tpl('_' . $admin_str . '/header', $p);
 		
 		$this->Azbn7->mdl('Viewer')
 			->tpl($tpl, $p);
 		
 		$this->Azbn7->mdl('Viewer')
-			->tpl('_/footer', $p);
+			->tpl('_' . $admin_str . '/footer', $p);
 	}
 	
 	public function buildHierarchy(&$arr = array())

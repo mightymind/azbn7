@@ -152,9 +152,9 @@ public $event_prefix = 'system.azbn7';
 		}
 	}
 	
-	public function ch($string,$changes=array("'"=>'&#039;'))
+	public function ch($string, $changes = array("'" => '&#039;'))
 	{
-		return strtr(stripcslashes(mysqli_real_escape_string($string)),$changes);
+		return strtr(stripcslashes($string), $changes);
 	}
 	
 	public function c_s($string)

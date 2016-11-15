@@ -5,6 +5,8 @@
 	var a7_class = 'azbn7';
 	var a7admin_class = 'azbn7-admin';
 	
+	var container_class = '.azbn7-container';
+	
 	$(function(){
 		
 		/*
@@ -28,7 +30,7 @@
 				
 				// загрузка значений при редактировании
 				
-				var block = $(a7admin_class + ' form[action*="/admin/update/"]');
+				var block = $(container_class + ' form[action*="/admin/update/"]');
 				
 				if(block.length) {
 					
@@ -59,7 +61,7 @@
 				
 				// создание нового типа сущностей
 				
-				$(document.body).on('azbn7.field-list.field-item.reset', '.field-list .field-item', {}, function(event){
+				$(document.body).on('azbn7.field-list.field-item.reset', container_class + ' .field-list .field-item', {}, function(event){
 					event.preventDefault();
 					
 					var block = $(this);
@@ -67,7 +69,7 @@
 					
 				});
 				
-				$(document.body).on('click.azbn7', '.field-list .btn-panel .btn-add-item', {}, function(event){
+				$(document.body).on('click.azbn7', container_class + ' .field-list .btn-panel .btn-add-item', {}, function(event){
 					event.preventDefault();
 					
 					var btn = $(this);
