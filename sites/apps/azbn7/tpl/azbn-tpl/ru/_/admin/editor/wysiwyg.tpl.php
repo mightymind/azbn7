@@ -2,7 +2,7 @@
 // виджет
 ?>
 
-<div <?=$param['html'];?> >
+<div class="form-group" <?=$param['html'];?> >
 	<label><?=$param['title'];?></label>
-	<textarea name="<?=$param['name'];?>" ><?=$param['value'];?></textarea>
+	<textarea class="form-control" name="<?=$param['name'];?>" rows="5" ><?=$param['value'];?></textarea>
 </div>

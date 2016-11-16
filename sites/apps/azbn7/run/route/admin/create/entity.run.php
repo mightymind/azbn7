@@ -37,7 +37,7 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 	
 	if($item['entity']['id']) {
 		
-		$this->Azbn7->go2('/admin/all/entity/');
+		$this->Azbn7->go2('/admin/all/entity/?type=' . $type_id);
 		
 	}
 	
