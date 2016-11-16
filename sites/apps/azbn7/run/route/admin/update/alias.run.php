@@ -2,24 +2,18 @@
 
 if(count($_POST['item'])) {
 	
+	$item_id = $this->Azbn7->as_int($_POST['item']['id']);
+	
 	$item = array(
-		'pos' => $this->Azbn7->as_int($_POST['item']['pos']),
+		'pos' => $this->Azbn7->c_s($_POST['item']['pos']),
 		'visible' => $this->Azbn7->as_int($_POST['item']['visible']),
 		'find' => $this->Azbn7->c_s($_POST['item']['find']),
 		'set' => $this->Azbn7->c_s($_POST['item']['set']),
 		'title' => $this->Azbn7->c_s($_POST['item']['title']),
 	);
 	
-	$item['id'] = $this->Azbn7->mdl('DB')->create('alias', $item);
+	$this->Azbn7->mdl('DB')->update('alias', $item, "id = '$item_id'");
 	
-	if($item['id']) {
-		
-		$this->Azbn7->go2('/admin/all/alias/');
-		
-	} else {
-		
-		$this->Azbn7->go2('/admin/add/alias/');
-		
-	}
+	$this->Azbn7->go2('/admin/edit/alias/' . $item_id . '/');
 	
 }

@@ -30,7 +30,7 @@
 				
 				// загрузка значений при редактировании
 				
-				var block = $(container_class + ' form[action*="/admin/update/"]');
+				var block = $(container_class + ' form[action*="/admin/update/"], ' + container_class + ' form[action*="/admin/create/"]');
 				
 				if(block.length) {
 					
@@ -46,6 +46,15 @@
 					(function(){
 						
 						var select = block.find('select[name="item[editable]"]');
+						var val = parseInt(select.attr('data-select-value')) || 0;
+						
+						select.val(val);
+						
+					})();
+					
+					(function(){
+						
+						var select = block.find('select[name="item[visible]"]');
 						var val = parseInt(select.attr('data-select-value')) || 0;
 						
 						select.val(val);
@@ -111,10 +120,10 @@
 					
 					var input = $(this);
 					var val = input.val();
-					var target = input.attr('data-item-pos-view') || '';
 					
 					input
 						.attr('title', val)
+						.attr('value', val)
 					;
 					
 					input.closest('.form-group').find('.item-pos-view').html(val);

@@ -39,6 +39,7 @@ $CONFIG = array(
 							'max_value' => array(
 								'int' => '2147483647',
 								'bigint' => '9223372036854775807',
+								'js_int' => '9007199254740992',
 							),
 							'connect_settings' => array(
 								PDO::ATTR_PERSISTENT => true,

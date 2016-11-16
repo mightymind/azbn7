@@ -2,16 +2,26 @@
 // Административный шаблон
 ?>
 
-<h2 class="mt-2 mb-1" >Создание перенаправления</h2>
+<h2 class="mt-2 mb-1" >Редактирование перенаправления</h2>
 
-<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/alias/');?>" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/alias/');?>" method="POST" >
+	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/hidden', array(
+		//'title' => 'Идентификатор параметра',
+		'html' => ' id="" ',
+		'name' => 'item[id]',
+		'value' => $param['item']['id'],
+		//'path' => 'entity',
+	));
+	?>
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
 		'title' => 'Название перенаправления',
 		'html' => ' id="" ',
 		'name' => 'item[title]',
-		'value' => '',
+		'value' => $param['item']['title'],
 		//'path' => 'entity',
 	));
 	?>
@@ -21,7 +31,7 @@
 		'title' => 'Позиция элемента в общем списке',
 		'html' => ' id="" ',
 		'name' => 'item[pos]',
-		'value' => $this->Azbn7->config['mysql'][0]['max_value']['js_int'],
+		'value' => $param['item']['pos'],
 		//'path' => 'entity',
 	));
 	?>
@@ -31,7 +41,7 @@
 		'title' => 'Использовать в работе',
 		'html' => ' id="" ',
 		'name' => 'item[visible]',
-		'value' => '1',
+		'value' => $param['item']['visible'],
 		//'path' => 'entity',
 	));
 	?>
@@ -41,7 +51,7 @@
 		'title' => 'Искать в строке адреса (виртуальный адрес)',
 		'html' => ' id="" ',
 		'name' => 'item[find]',
-		'value' => '',
+		'value' => $param['item']['find'],
 		//'path' => 'entity',
 	));
 	?>
@@ -51,11 +61,11 @@
 		'title' => 'Pfvtyznm в строке адреса на (реальный адрес)',
 		'html' => ' id="" ',
 		'name' => 'item[set]',
-		'value' => '',
+		'value' => $param['item']['set'],
 		//'path' => 'entity',
 	));
 	?>
 	
-	<button type="submit" class="btn btn-primary">Создать</button>
+	<button type="submit" class="btn btn-primary">Обновить</button>
 	
 </form>

@@ -6,37 +6,55 @@
 
 <form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/sysopt/');?>" method="POST" >
 	
-	<div class="form-group">
-		<label >Идентификатор параметра</label>
-		<input type="text" class="form-control" name="item[uid]" value="<?=$param['item']['uid'];?>" >
-		<small class="form-text text-muted">Изменить значение нельзя</small>
-	</div>
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+		'title' => 'Идентификатор параметра',
+		'html' => ' id="" ',
+		'name' => 'item[uid]',
+		'value' => 'site.some.sysopt',
+		//'path' => 'entity',
+	));
+	?>
 	
-	<div class="form-group">
-		<label >Название (пояснение)</label>
-		<input type="text" class="form-control" name="item[data][title]" value="<?=$param['item']['title'];?>" >
-	</div>
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+		'title' => 'Название (пояснение)',
+		'html' => ' id="" ',
+		'name' => 'item[data][title]',
+		'value' => 'Произвольный параметр',
+		//'path' => 'entity',
+	));
+	?>
 	
-	<div class="form-group">
-		<label >Формат</label>
-		<select class="form-control" name="item[json]" data-select-value="<?=$param['item']['json'];?>" >
-			<option value="0" >любой</option>
-			<option value="1" >JSON</option>
-		</select>
-	</div>
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/sysopt/json', array(
+		'title' => 'Формат',
+		'html' => ' id="" ',
+		'name' => 'item[json]',
+		'value' => '0',
+		//'path' => 'entity',
+	));
+	?>
 	
-	<div class="form-group">
-		<label >Возможность редактирования</label>
-		<select class="form-control" name="item[editable]" data-select-value="<?=$param['item']['editable'];?>" >
-			<option value="0" >нет, параметр нельзя редактировать</option>
-			<option value="1" >да, параметр можно редактировать</option>
-		</select>
-	</div>
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/sysopt/editable', array(
+		'title' => 'Возможность редактирования',
+		'html' => ' id="" ',
+		'name' => 'item[editable]',
+		'value' => '0',
+		//'path' => 'entity',
+	));
+	?>
 	
-	<div class="form-group">
-		<label >Значение параметра</label>
-		<textarea class="form-control" name="item[value]" rows="3"><?=$param['item']['value'];?></textarea>
-	</div>
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/textarea', array(
+		'title' => 'Значение параметра',
+		'html' => ' id="" ',
+		'name' => 'item[value]',
+		'value' => '',
+		//'path' => 'entity',
+	));
+	?>
 	
 	<!--
 	<div class="form-check">

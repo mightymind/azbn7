@@ -4,7 +4,14 @@
 
 
 
-<h2 class="mt-2 mb-1" >Параметры CMS</h2>
+<h2 class="mt-2 mb-1" >
+	Параметры CMS
+	
+	<div class="float-xs-right item-base-functions" >
+		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/sysopt/');?>" ><i class="fa fa-plus-circle" aria-hidden="true" title="Создать запись" ></i></a>
+	</div>
+	
+</h2>
 
 
 <?
