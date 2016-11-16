@@ -6,43 +6,76 @@
 //echo $tpl_uid;
 ?>
 
+<h2 class="mt-2 mb-1" >Создание типа данных</h2>
+
 <form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/entity_type/');?>" method="POST" >
+	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+		'title' => 'Название (пояснение)',
+		'html' => ' id="" ',
+		'name' => 'item[title]',
+		'value' => '',
+		//'path' => 'entity',
+	));
+	?>
+	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+		'title' => 'Уникальный ID',
+		'html' => ' id="" ',
+		'name' => 'item[uid]',
+		'value' => $this->Azbn7->randstr(16),
+		//'path' => 'entity',
+	));
+	?>
 	
 	<?
 	$entity_type = $this->Azbn7->mdl('DB')->read('entity_type');
 	$entity_type_h = $this->Azbn7->mdl('Site')->buildHierarchy($entity_type);
 
 	$this->Azbn7->mdl('Viewer')->tpl('_/hierarchy/select', array(
-		'html' => 'class="" id="" name="item[parent]"',
+		'title' => 'Родительский тип',
+		'html' => ' id="" ',
+		'name' => 'item[parent]',
+		'value' => $this->Azbn7->randstr(16),
 		'hierarchy' => $entity_type_h,
 		'start_index' => 0,
 	));
 	?>
 	
-	<div>
-		<input type="text" name="item[uid]" value="" placeholder="Уникальный ID" />
-	</div>
-	
-	<div>
-		<input type="text" name="item[title]" value="" placeholder="Название (пояснение)" />
-	</div>
-	
 	<div class="field-list" >
 		
-		<div class="field-item" >
-			<input type="" name="item[param][field][0][uid]" value="" placeholder="Название поля" />
-			<input type="" name="item[param][field][0][type]" value="" placeholder="Тип поля (MySQL)" />
-			<input type="" name="item[param][field][0][editor]" value="" placeholder="Редактировать через" />
+		<hr />
+		
+		<label>Поля данных для записей</label>
+		
+		<div class="row field-item mb-2" >
+			
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >
+				<input type="text" class="form-control" name="item[param][field][0][uid]" value="" placeholder="Название поля" />
+			</div>
+			
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >
+				<input type="text" class="form-control" name="item[param][field][0][type]" value="" placeholder="Тип поля (MySQL)" />
+			</div>
+			
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >
+				<input type="text" class="form-control" name="item[param][field][0][editor]" value="" placeholder="Редактировать через" />
+			</div>
+			
 		</div>
 		
-		<div class="btn-panel" >
-			<input type="button" class="btn-add-item" value="+" />
+		<div class="row btn-panel" >
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+				<input type="button" class="btn btn-success btn-add-item" value="+" />
+			</div>
 		</div>
+		
+		<hr />
 		
 	</div>
 	
-	<div>
-		<input type="submit" value="Создать" />
-	</div>
+	<button type="submit" class="btn btn-primary">Создать</button>
 	
 </form>

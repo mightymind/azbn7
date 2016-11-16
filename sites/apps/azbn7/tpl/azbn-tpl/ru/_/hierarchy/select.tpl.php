@@ -32,6 +32,8 @@ $func = function(&$catalog, $item_id, $tab = "&nbsp; ") use (&$func) {
 if(count($param['hierarchy']) && count($param['hierarchy']['items'])) {
 	?>
 	
+<div class="form-group " <?=$param['html'];?> >
+	
 	<?
 	if(isset($param['title'])) {
 	?>
@@ -40,7 +42,7 @@ if(count($param['hierarchy']) && count($param['hierarchy']['items'])) {
 	}
 	?>
 	
-	<select <?=$param['html'];?> >
+	<select class="form-control" name="<?=$param['name'];?>" data-select-value="<?=$param['value'];?>" >
 		<?
 		if($param['hide_zero']) {
 			
@@ -58,6 +60,8 @@ if(count($param['hierarchy']) && count($param['hierarchy']['items'])) {
 	}
 	?>
 	</select>
+</div>
+	
 	<?
 }
 

@@ -20,6 +20,10 @@ function Azbn7Constructor($, cfg) {
 			method : 'version',
 		}, cfg);
 	
+	ctrl.randstr = function() {
+		return (Math.random().toString(36).split('.'))[1];
+	};
+	
 	ctrl.ls = {
 		set : function(id,value) {localStorage.setItem(ctrl.config.prefix + id,value);},
 		get : function(id) {var item = localStorage.getItem(ctrl.config.prefix + id);if(typeof item !== 'undefined' && item != null) {return item;} else {return null;}},

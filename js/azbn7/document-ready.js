@@ -74,7 +74,20 @@
 					event.preventDefault();
 					
 					var block = $(this);
-					block.find('input').val('');
+					var nid = Azbn7.randstr();
+					
+					block.find('input')
+						.val('')
+						.each(function(index){
+							
+							var input = $(this);
+							var name = input.attr('name');
+							
+							name = name.replace('[0]', '[' + nid + ']');
+							input.attr('name', name);
+							
+						})
+					;
 					
 				});
 				
@@ -83,9 +96,9 @@
 					
 					var btn = $(this);
 					var block = btn.closest('.field-list');
-					var last = block.find('.field-item').eq(-1);
+					var last = block.find('.field-item').eq(0);
 					
-					last.clone(true).insertAfter(last).trigger('azbn7.field-list.field-item.reset');
+					last.clone(true).insertAfter(block.find('.field-item').eq(-1)).trigger('azbn7.field-list.field-item.reset');
 					
 				});
 				

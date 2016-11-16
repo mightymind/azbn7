@@ -93,6 +93,7 @@
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/alias/');?>" >Перенаправления</a>
 					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/sysopt/');?>" >Настройки CMS</a>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity_type/');?>" >Типы данных</a>
 				</div>
 			</li>
 			
