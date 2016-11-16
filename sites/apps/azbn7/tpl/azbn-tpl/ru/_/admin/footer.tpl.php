@@ -1,8 +1,17 @@
 <?
 // footer админки
 ?>
-	
-	
+		
+		</div>
+		
+		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 " >
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/admin/sidebar/default', $param);
+			?>
+			
+		</div>
+		
 	</div>
 
 </div><!-- /container-fluid azbn7-container -->

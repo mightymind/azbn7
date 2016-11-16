@@ -85,6 +85,49 @@
 			
 			(function(){
 				
+				// запрос при нажатии на кнопку удаления
+				
+				$(document.body).on('click.azbn7', container_class + ' .delete-confirm', {}, function(event){
+					event.preventDefault();
+					
+					var btn = $(this);
+					var href = btn.attr('href');
+					
+					if(confirm('Вы действительно хотите удалить запись?')) {
+						window.location.href = href;
+					}
+					
+				});
+				
+			})();
+			
+			
+			(function(){
+				
+				// изменение input type=range
+				
+				$(document.body).on('change.azbn7', container_class + ' .item-pos-range', {}, function(event){
+					event.preventDefault();
+					
+					var input = $(this);
+					var val = input.val();
+					var target = input.attr('data-item-pos-view') || '';
+					
+					input
+						.attr('title', val)
+					;
+					
+					input.closest('.form-group').find('.item-pos-view').html(val);
+					
+				});
+				
+				$(container_class + ' .item-pos-range').trigger('change.azbn7');
+				
+			})();
+			
+			
+			(function(){
+				
 				// быстрый поиск
 				
 				$(document.body).on('azbn7.field-list.field-item.reset', container_class + ' .field-list .field-item', {}, function(event){

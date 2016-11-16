@@ -2,9 +2,19 @@
 // Административный шаблон
 ?>
 
-<h2 class="mt-2 mb-1" >Создание параметра</h2>
+<h2 class="mt-2 mb-1" >Создание перенаправления</h2>
 
-<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/sysopt/');?>" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/alias/');?>" method="POST" >
+	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/pos', array(
+		'title' => 'Позиция элемента в общем списке',
+		'html' => ' id="" ',
+		'name' => 'item[pos]',
+		'value' => '9223372036854775807',
+		//'path' => 'entity',
+	));
+	?>
 	
 	<div class="form-group">
 		<label >Идентификатор параметра</label>

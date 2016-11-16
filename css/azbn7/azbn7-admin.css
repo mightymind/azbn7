@@ -1,3 +1,19 @@
 body {
 	padding-top:51px;
 }
+
+.azbn7-admin .item-edit-functions {
+	font-size:1.25em;
+	text-align:center;
+}
+.azbn7-admin .item-edit-functions a {
+	margin:0 0.1em;
+}
+
+.azbn7-admin .item-base-functions {
+	
+}
+
+.azbn7-admin .item-pos-range {
+	padding:0;
+}
