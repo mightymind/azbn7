@@ -47,7 +47,7 @@ if(count($param['items'])) {
 				<td><?=$v['title'];?></td>
 				<td class="item-edit-functions" >
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/alias/' . $v['id'] . '/');?>" ><i class="fa fa-pencil-square-o" aria-hidden="true" title="Редактировать" ></i></a>
-					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/delete/alias/' . $v['id'] . '/');?>" class="" ><i class="fa fa-times" aria-hidden="true" title="Удалить" ></i></a>
+					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/delete/alias/' . $v['id'] . '/');?>" class="delete-confirm " ><i class="fa fa-times" aria-hidden="true" title="Удалить" ></i></a>
 				</td>
 			</tr>
 		

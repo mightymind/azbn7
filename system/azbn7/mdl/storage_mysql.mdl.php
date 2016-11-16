@@ -158,6 +158,10 @@ class Storage_MySQL
 	
 	public function delete($table = '', $where = '1')
 	{
+		if(isset($this->t[$table])) {
+			$table = $this->t[$table];
+		}
+		
 		return $this->connection->exec('DELETE FROM `' . $table . '` WHERE ' . $where);
 	}
 	
