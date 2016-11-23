@@ -2,9 +2,9 @@
 // Административный шаблон
 ?>
 
-<h2 class="mt-2 mb-1" >Редактирование перенаправления</h2>
+<h2 class="mt-2 mb-1" >Настройки администратора</h2>
 
-<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/alias/');?>" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/user/');?>" method="POST" >
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/hidden', array(
@@ -18,10 +18,20 @@
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
-		'title' => 'Название перенаправления',
+		'title' => 'Логин',
 		'html' => ' id="" ',
-		'name' => 'item[title]',
-		'value' => $param['item']['title'],
+		'name' => 'item[login]',
+		'value' => $param['item']['login'],
+		//'path' => 'entity',
+	));
+	?>
+	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/email', array(
+		'title' => 'Email',
+		'html' => ' id="" ',
+		'name' => 'item[email]',
+		'value' => $param['item']['email'],
 		//'path' => 'entity',
 	));
 	?>

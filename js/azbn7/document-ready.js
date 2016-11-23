@@ -86,6 +86,25 @@
 							name = name.replace('[0]', '[' + nid + ']');
 							input.attr('name', name);
 							
+							var list = input.attr('list') || '';
+							
+							if(list != '') {
+								
+								list = list.replace('-0', '-' + nid);
+								input.attr('list', list);
+								
+								var dl = input.next('datalist#input-list-0');
+								var dl_id = dl.attr('id') || '';
+								
+								if(dl_id != '') {
+									
+									dl_id = dl_id.replace('-0', '-' + nid);
+									dl.attr('id', dl_id);
+									
+								}
+								
+							}
+							
 						})
 					;
 					
