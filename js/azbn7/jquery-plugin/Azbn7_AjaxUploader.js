@@ -33,7 +33,7 @@ ajax-загрузки файлов на сервер
 		callback : function(str){alert(str);}
 	};
 	
-	var uploadFile = function(el, file, name, action, callback) {
+	var uploadFile = function(el, file, options) {
 		
 		var reader = new FileReader();
 		
@@ -60,7 +60,7 @@ ajax-загрузки файлов на сервер
 						counter++;
 						el.data(defaults.plugin.name + '-counter', counter);
 						
-						callback(file, this.responseText, counter);
+						options.callback(file, this.responseText, counter);
 						
 					} else {
 						/* ошибка */
@@ -72,13 +72,13 @@ ajax-загрузки файлов на сервер
 				}
 			};
 			
-			xhr.open("POST", action);
+			xhr.open("POST", options.action);
 			var boundary = "xxxxxxxxx";
 			xhr.setRequestHeader("Content-Type", "multipart/form-data, boundary=" + boundary);
 			xhr.setRequestHeader("Cache-Control", "no-cache");
 			
 			var body = "--" + boundary + "\r\n";
-			body += "Content-Disposition: form-data; name='" + name + "'; filename='" + unescape(encodeURIComponent(file.name)) + "'\r\n";
+			body += "Content-Disposition: form-data; name='" + options.name + "'; filename='" + unescape(encodeURIComponent(file.name)) + "'\r\n";
 			body += "Content-Type: application/octet-stream\r\n\r\n";
 			body += reader.result + "\r\n";
 			body += "--" + boundary + "--";
@@ -97,13 +97,13 @@ ajax-загрузки файлов на сервер
 		
 	};
 	
-	var uploadFilesFromInput = function(el, files, name, action, callback) {
+	var uploadFilesFromInput = function(el, files, options) {
 		
 		//el.css(styles.drop);
 		
 		$.each(files, function(i, file) {
 			
-			uploadFile(el, file, name, action, callback);
+			uploadFile(el, file, options);
 			
 		});
 		
@@ -113,7 +113,7 @@ ajax-загрузки файлов на сервер
 	
 	var methods = {
 		
-		drop : function(params) {
+		dropping : function(params) {
 			
 			if (typeof(window.FileReader) == 'undefined') {
 				
@@ -127,13 +127,13 @@ ajax-загрузки файлов на сервер
 				el.data(defaults.plugin.name + '-counter', 0);
 				
 				el
-					.on('dragover', false) 
-					.on('drop', function(event) {
+					.on('dragover.azbn7', false) 
+					.on('drop.azbn7', function(event) {
 						
 						for (var i = 0, f; f = event.originalEvent.dataTransfer.files[i]; i++) {
 							
 							var file = event.originalEvent.dataTransfer.files[i];
-							uploadFile(el, file, options.name, options.action, options.callback);
+							uploadFile(el, file, options);
 							
 						}
 						
@@ -228,7 +228,7 @@ ajax-загрузки файлов на сервер
 						.appendTo($(document.body))
 						.bind('change.' + defaults.plugin.name, function(){
 							
-							uploadFilesFromInput(el, this.files, options.name, options.action, options.callback);
+							uploadFilesFromInput(el, this.files, options);
 							
 							uploadfile.unbind('change.' + defaults.plugin.name);
 							uploadfile.remove();

@@ -229,6 +229,22 @@
 				
 			})();
 			
+			(function(){
+				
+				$(document.body).Azbn7_AjaxUploader('dropping', {
+					name : 'uploading_file',
+					action : '/admin/upload/file/',
+					callback : function(file, response, uploaded) {
+						
+						var json = JSON.parse(response);
+						
+						console.log(json);
+						
+					},
+				});
+				
+			})();
+			
 		}
 		
 	});
