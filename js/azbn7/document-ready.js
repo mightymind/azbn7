@@ -275,7 +275,7 @@
 				
 				// imperavi redactor
 				
-				$('.imperavi-redactor').redactor();
+				//$('.imperavi-redactor').redactor();
 				
 			})();
 			
