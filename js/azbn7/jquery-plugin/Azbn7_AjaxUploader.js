@@ -25,8 +25,7 @@ ajax-загрузки файлов на сервер
 			mod_date : '24/11/2016 00:15'
 		},
 		strings : {
-			//press_me:'<center>Перетащите файлы на меня или нажмите для их выбора</center>',
-			error_no_filereader : '<center>Не поддерживается браузером</center>',
+			error_no_filereader : 'Не поддерживается браузером',
 		},
 		action : '/',
 		name : 'filename',

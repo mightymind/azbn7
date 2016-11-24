@@ -231,6 +231,7 @@
 			
 			(function(){
 				
+				/*
 				$(document.body).Azbn7_AjaxUploader('dropping', {
 					name : 'uploading_file',
 					action : '/admin/upload/file/',
@@ -239,6 +240,23 @@
 						var json = JSON.parse(response);
 						
 						console.log(json);
+						
+					},
+				});
+				*/
+				
+				$(document.body).Azbn7_ImageMinimizer('dropping', {
+					name : 'uploading_file',
+					action : '/admin/upload/file/',
+					callback : function(data) {
+						
+						console.log(data.file.name);
+						
+						$(document.body).append(
+							$('<img/>', {
+								src : data.dataURL,
+							})
+						);
 						
 					},
 				});
