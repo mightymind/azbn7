@@ -46,6 +46,14 @@
 	));
 	?>
 	
-	<button type="submit" class="btn btn-primary">Обновить</button>
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/submit', array(
+		'title' => 'Обновить',
+		'html' => '',
+		//'name' => 'item[value]',
+		//'value' => '',
+		//'path' => 'entity',
+	));
+	?>
 	
 </form>

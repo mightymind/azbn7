@@ -56,6 +56,14 @@
 	));
 	?>
 	
-	<button type="submit" class="btn btn-primary">Создать</button>
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/submit', array(
+		'title' => 'Создать',
+		'html' => '',
+		//'name' => 'item[value]',
+		//'value' => '',
+		//'path' => 'entity',
+	));
+	?>
 	
 </form>

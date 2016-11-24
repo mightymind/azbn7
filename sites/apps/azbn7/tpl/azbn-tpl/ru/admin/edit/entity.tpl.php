@@ -2,16 +2,16 @@
 // Административный шаблон
 ?>
 
-<h2 class="mt-2 mb-1" ><?=$param['type']['title'];?>. Создание записи</h2>
+<h2 class="mt-2 mb-1" ><?=$param['type']['title'];?>. Редактирование записи</h2>
 
-<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/entity/');?>" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/entity/');?>" method="POST" >
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/hidden', array(
 		//'title' => 'Идентификатор параметра',
 		'html' => ' id="" ',
-		'name' => 'type[id]',
-		'value' => $param['type']['id'],
+		'name' => 'entity[id]',
+		'value' => $param['entity']['id'],
 		//'path' => 'entity',
 	));
 	?>
@@ -21,7 +21,7 @@
 		'title' => 'Отображать на сайте',
 		'html' => ' id="" ',
 		'name' => 'entity[visible]',
-		'value' => '1',
+		'value' => $param['entity']['visible'],
 		//'path' => 'entity',
 	));
 	?>
@@ -31,7 +31,7 @@
 		'title' => 'Родительская запись',
 		'html' => ' id="" ',
 		'name' => 'entity[parent]',
-		'value' => '0',
+		'value' => $param['entity']['parent'],
 		//'path' => 'entity',
 	));
 	?>
@@ -41,7 +41,7 @@
 		'title' => 'Позиция элемента в общем списке',
 		'html' => ' id="" ',
 		'name' => 'entity[pos]',
-		'value' => $this->Azbn7->config['mysql'][0]['max_value']['js_int'],
+		'value' => $param['entity']['pos'],
 		//'path' => 'entity',
 	));
 	?>
@@ -51,11 +51,10 @@
 		'title' => 'Адрес URL на сайте (без начального и конечного /)',
 		'html' => ' id="" ',
 		'name' => 'entity[url]',
-		'value' => $this->Azbn7->randstr(16),
+		'value' => $param['entity']['url'],
 		//'path' => 'entity',
 	));
 	?>
-	
 	
 	<?
 	//var_dump($param['type']);
@@ -65,7 +64,7 @@
 				'title' => $v['title'],
 				'html' => ' id="" ',
 				'name' => 'item[' . $k . ']',
-				'value' => '',
+				'value' => $param['item'][$k],
 				'path' => 'entity',
 			));
 		}
@@ -74,7 +73,7 @@
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/submit', array(
-		'title' => 'Создать',
+		'title' => 'Обновить',
 		'html' => '',
 		//'name' => 'item[value]',
 		//'value' => '',

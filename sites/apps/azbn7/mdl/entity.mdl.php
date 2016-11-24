@@ -225,12 +225,12 @@ class Entity
 				
 				$entity['type'] = $this->Azbn7->mdl('DB')->one('entity_type', "id = '{$entity['entity']['type']}'");
 				if(isset($entity['type']['id'])) {
-					$entity['type']['param'] = json_decode($entity['type']['param']);
+					$entity['type']['param'] = json_decode($entity['type']['param'], true);
 				}
 				
 				$entity['item'] = $this->Azbn7->mdl('DB')->one($this->getTable($entity['type']['uid']), "entity = '{$entity['entity']['id']}'");
 				if(isset($entity['item']['id'])) {
-					$entity['item']['param'] = json_decode($entity['type']['item']);
+					$entity['item']['param'] = json_decode($entity['item']['param'], true);
 				}
 				
 				$this->cache[$id] = $entity;
@@ -242,7 +242,57 @@ class Entity
 			
 		}
 		
+		if($this->Azbn7->mdl('Site')->is('user')) {
+			
+		} elseif($entity['entity']['visible']) {
+			
+		} else {
+			$entity = array();
+		}
+		
 		return $entity;
+	}
+	
+	public function updateEntity($id = 0, $e = array('entity' => array(), 'item' => array(),))
+	{
+		
+		$entity = $this->Azbn7->mdl('DB')->one('entity', "id = '$id'");
+		
+		if($entity['id']) {
+			
+			$this->Azbn7->mdl('DB')->update('entity', $e['entity'], "id = '$id'");
+			
+			$type = $this->Azbn7->mdl('DB')->one('entity_type', "id = '{$entity['type']}'");
+			
+			if($type['id']) {
+				
+				$this->Azbn7->mdl('DB')->update($this->getTable($type['uid']), $e['item'], "entity = '$id'");
+				
+			}
+			
+		}
+		
+	}
+	
+	public function deleteEntity($id = 0)
+	{
+		
+		$entity = $this->Azbn7->mdl('DB')->one('entity', "id = '$id'");
+		
+		if($entity['id']) {
+			
+			$this->Azbn7->mdl('DB')->delete('entity', "id = '$id'");
+			
+			$type = $this->Azbn7->mdl('DB')->one('type', "id = '{$entity['type']}'");
+			
+			if($type['id']) {
+				
+				$this->Azbn7->mdl('DB')->delete($this->getTable($type['uid']), "entity = '$id'");
+				
+			}
+			
+		}
+		
 	}
 	
 }

@@ -61,6 +61,15 @@
 						
 					})();
 					
+					(function(){
+						
+						var select = block.find('select[name="entity[visible]"]');
+						var val = parseInt(select.attr('data-select-value')) || 0;
+						
+						select.val(val);
+						
+					})();
+					
 				}
 				
 			})();
