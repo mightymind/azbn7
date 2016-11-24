@@ -271,6 +271,14 @@
 				
 			})();
 			
+			(function(){
+				
+				// imperavi redactor
+				
+				$('.imperavi-redactor').redactor();
+				
+			})();
+			
 		}
 		
 	});
