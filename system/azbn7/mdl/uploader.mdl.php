@@ -173,4 +173,60 @@ $_FILES['userfile']['error']
 		
 	}
 	
+	public function from_dataurl($param = array())
+	{
+		
+		$path = $this->path;
+		
+		if($param['path']) {
+			$path = $path . $param['path'] . '/';
+		}
+		
+		$path = $path . date('Y') . '/' . date('m') . '/' . date('d') . '/';
+		
+		$this->makePath($path);
+		
+		if($param['name']) {
+			
+		} else {
+			$param['name'] = 'uploading_file';
+		}
+		
+		$res_arr = array(
+			'uploaded' => 0,
+			'basename' => $this->Azbn7->created_at . '_' . $this->Azbn7->hash($this->Azbn7->randstr(16, true), $this->event_prefix, $param['name']),
+			'extension' => 'png',
+			'title' => 'Uploaded image ' . date('d.m.Y H:i'),
+			//'size' => $_FILES[$param['name']]['size'],
+		);
+		
+		$res_arr['suffix'] = '.' . $res_arr['extension'];
+		if($this->mime_type[$res_arr['extension']]) {
+			$res_arr['mime_type'] = $this->mime_type[$res_arr['extension']];
+		} else {
+			$res_arr['mime_type'] = 'application/octet-stream';
+		}
+		$res_arr['fullname'] = $path . $res_arr['basename'] . $res_arr['suffix'];
+		
+		$pic = explode(',',$_POST[$param['name']]);
+		$pic = str_replace(' ', '+', $pic[1]);
+		$pic = base64_decode($pic);
+		
+		$file = fopen($res_arr['fullname'], 'w');
+		fwrite($file, $pic);
+		fclose($file);
+		
+		$res_arr['uploaded'] = 1;
+		
+		$this->uploaded++;
+		
+		$this->Azbn7->event(array(
+			'action' => $this->event_prefix . '.save',
+			'title' => $res_arr['fullname'],
+		));
+		
+		return $res_arr;
+		
+	}
+	
 }

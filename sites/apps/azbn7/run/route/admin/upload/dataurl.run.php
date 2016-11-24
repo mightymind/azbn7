@@ -30,7 +30,7 @@ if($this->Azbn7->is_mdl('Uploader')) {
 	));
 }
 
-$uploaded = $this->Azbn7->mdl('Uploader')->save(array(
+$uploaded = $this->Azbn7->mdl('Uploader')->from_dataurl(array(
 	//'path' => 'dev',
 	'name' => 'uploading_file',
 ));
