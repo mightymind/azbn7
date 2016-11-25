@@ -38,7 +38,10 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 	
 	if($item['entity']['id']) {
 		
-		$this->Azbn7->go2('/admin/all/entity/?type=' . $type_id);
+		$this->Azbn7->mdl('Session')->notify('user', array(
+			'type' => 'success',
+			'title' => 'Запись добавлена',
+		));
 		
 		$this->Azbn7->go2('/admin/edit/entity/' . $item['entity']['id'] . '/');
 		

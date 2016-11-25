@@ -4,10 +4,12 @@ class Session
 	public $event_prefix = 'app.mdl.session';
 	public $cache = array();
 	
+	/*
 	public function is($type = 'user')
 	{
 		return $this->Azbn7->as_int(isset($_SESSION[$type]['id']) ? $_SESSION[$type]['id'] : 0);
 	}
+	*/
 	
 	public function login($type = 'user', $login = '', $pass = '')
 	{
@@ -59,6 +61,22 @@ class Session
 	public function getPassHash($pass = '', $type = '', $login = '')
 	{
 		return $this->Azbn7->hash($pass, $type, $login);
+	}
+	
+	public function notify($type = 'user', $notify = array())
+	{
+		$_SESSION['tmp']['notify'][$type][] = $notify;
+	}
+	
+	public function getNotifies($type = 'user', $clear = true)
+	{
+		$n = $_SESSION['tmp']['notify'][$type];
+		
+		if($clear) {
+			unset($_SESSION['tmp']['notify'][$type]);
+		}
+		
+		return $n;
 	}
 	
 }

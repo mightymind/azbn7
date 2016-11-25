@@ -5,15 +5,27 @@
 
 $text = mb_strtolower($this->Azbn7->mdl('Req')->_post('text'), $this->Azbn7->config['charset']);
 
+$type = $this->Azbn7->mdl('Req')->_post('type');
+
 if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
 	
 	// $this->Azbn7->mdl('Entity')->getTable($t['uid'])
 	// $this->Azbn7->mdl('DB')->t
 	
-	if($this->Azbn7->mdl('Session')->is('user')) {
+	if($this->Azbn7->mdl('Site')->is('user')) {
 		$visible_str = "'0','1'";
 	} else {
 		$visible_str = "'1'";
+	}
+	
+	$type_str = '';
+	
+	if($type) {
+		
+		$type_str = "`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.type = '$type' AND ";
+		
+	} else {
+		
 	}
 	
 	$search_items_sql = $this->Azbn7->mdl('DB')->q("
@@ -32,6 +44,7 @@ if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
 			AND
 			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible IN ($visible_str)
 			AND
+			$type_str
 			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.type = `" . $this->Azbn7->mdl('DB')->t['entity_type'] . "`.id
 			AND
 			(

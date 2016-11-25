@@ -145,3 +145,7 @@
 		
 		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 " >
 		
+		<?
+		$this->Azbn7->mdl('Viewer')->tpl('_/admin/notifies', array());
+		?>
+		

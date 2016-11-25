@@ -246,6 +246,8 @@
 				var search_l = block.find('.searched-entities-list');
 				var select_l = block.find('.selected-entities-list');
 				
+				var type = 0;
+				
 				var __genListItem = function(item) {
 					
 					var a = $('<li/>', {
@@ -310,6 +312,8 @@
 						}
 					*/
 					
+					type = params.type;
+					
 					if(params.single) {
 						select_l.attr('data-single', 1);
 					} else {
@@ -327,6 +331,7 @@
 						Azbn7.api({
 							method : 'entity/search_by_id',
 							text : ids,
+							type : type,
 						}, function(resp){
 							
 							if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
@@ -406,6 +411,7 @@
 							Azbn7.api({
 								method : 'entity/search',
 								text : val,
+								type : type,
 							}, function(resp){
 								
 								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
@@ -464,6 +470,7 @@
 				
 				var block = $(container_class + ' .entity-select-block');
 				var single = parseInt(block.attr('data-single') || 0);
+				var type = parseInt(block.attr('data-type') || 0);
 				
 				var select_l = block.find('.entity-select-list');
 				
@@ -506,7 +513,7 @@
 				var __genListItem = function(item) {
 					
 					var a = $('<div/>', {
-						class : 'col-sm-6 col-md-4 ',
+						class : (single) ? 'col-xs-12' : 'col-sm-6 col-lg-4',
 					})
 					;
 					
@@ -553,6 +560,7 @@
 						Azbn7.api({
 							method : 'entity/search_by_id',
 							text : '0,' + params.result.join(','),
+							type : type,
 						}, function(resp){
 							
 							if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
@@ -590,6 +598,7 @@
 						.trigger('azbn7.init', [{
 							single : single,
 							selected : __v,
+							type : type,
 							callback : {
 								ok : function(result){
 									

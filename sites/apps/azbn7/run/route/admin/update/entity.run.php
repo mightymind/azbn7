@@ -34,6 +34,11 @@ if(count($_POST['item']) && count($_POST['entity'])) {
 	
 	$this->Azbn7->mdl('Entity')->updateEntity($entity['id'], $item);
 	
+	$this->Azbn7->mdl('Session')->notify('user', array(
+		'type' => 'success',
+		'title' => 'Запись обновлена',
+	));
+	
 	$this->Azbn7->go2('/admin/edit/entity/' . $entity['id'] . '/');
 	
 }

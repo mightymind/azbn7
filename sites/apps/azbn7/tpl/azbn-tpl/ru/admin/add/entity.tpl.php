@@ -4,6 +4,8 @@
 
 <h2 class="mt-2 mb-1" ><?=$param['type']['title'];?>. Создание записи</h2>
 
+<hr />
+
 <form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/entity/');?>" method="POST" >
 	
 	<?
@@ -17,7 +19,7 @@
 	?>
 	
 	<div class="row" >
-		<div class="col-sm-5" >
+		<div class="col-sm-6" >
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/visible', array(
 				'title' => 'Отображать на сайте',
@@ -27,6 +29,8 @@
 				//'path' => 'entity',
 			));
 			?>
+			
+			<hr />
 			
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
@@ -38,14 +42,15 @@
 			));
 			?>
 		</div>
-		<div class="col-sm-7" >
+		<div class="col-sm-6" >
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/entity/parent', array(
 				'title' => 'Родительская запись',
 				'html' => ' id="" ',
 				'name' => 'entity[parent]',
 				'value' => '0',
-				'single' => 0,
+				'type' => '0',
+				//'single' => 1,
 				//'path' => 'entity',
 			));
 			?>
