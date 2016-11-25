@@ -323,29 +323,25 @@
 						if(params.selected.length == 1) {
 							ids = '0,' + ids;
 						}
+						
+						Azbn7.api({
+							method : 'entity/search_by_id',
+							text : ids,
+						}, function(resp){
 							
-							Azbn7.api({
-								method : 'entity/search_by_id',
-								text : ids,
-							}, function(resp){
+							if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
 								
-								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+								for(var i in resp.response.entities) {
 									
-									for(var i in resp.response.entities) {
-										
-										if(1) {
-											
-											var item = resp.response.entities[i];
-											
-											(__genListItem(item)).appendTo(select_l);
-											
-										}
-										
-									}
+									var item = resp.response.entities[i];
+									
+									(__genListItem(item)).appendTo(select_l);
 									
 								}
 								
-							});
+							}
+							
+						});
 					
 					}
 					
@@ -466,56 +462,134 @@
 			
 			(function(){
 				
-				var block = $(container_class + ' .entity-select-single-block');
+				var block = $(container_class + ' .entity-select-block');
+				var single = parseInt(block.attr('data-single') || 0);
+				
+				var select_l = block.find('.entity-select-list');
+				
+				var __getVal = function() {
+					
+					var __v;
+					
+					if(single) {
+						
+						__v = parseInt(block.find('.entity-select-value').val() || 0);
+						
+					} else {
+						
+						__v = JSON.parse(block.find('.entity-select-value').val());
+						
+					}
+					
+					return __v;
+					
+				};
+				
+				var __setVal = function(v) {
+					
+					var __v;
+					
+					if(single) {
+						
+						__v = parseInt(v[0] || 0);
+						
+					} else {
+						
+						__v = JSON.stringify(v);
+						
+					}
+					
+					block.find('.entity-select-value').val(__v);
+					
+				};
+				
+				var __genListItem = function(item) {
+					
+					var a = $('<div/>', {
+						class : 'col-sm-6 col-md-4 ',
+					})
+					;
+					
+					var c = $('<div/>', {
+						class : 'card ',
+					})
+						.attr('data-entity-id', item.entity.id)
+						.appendTo(a)
+					;
+					
+					$('<div/>', {
+						class : 'card-header',
+						html : item.entity.entity_type,
+					})
+						.appendTo(c)
+					;
+					
+					var b = $('<div/>', {
+						class : 'card-block ',
+					})
+						.appendTo(c)
+					;
+					
+					$('<h4/>', {
+						class : 'card-title entity-select-edit-title',
+						html : item.item.title,
+					})
+						.appendTo(b)
+					;
+					
+					return a;
+				};
 				
 				block.on('azbn7.reinit', function(event, params){
 					
 					if(params.result && params.result.length) {
 						
-						for(var i in params.result) {
+						select_l
+							.empty()
+						;
+						
+						__setVal(params.result);
+						
+						Azbn7.api({
+							method : 'entity/search_by_id',
+							text : '0,' + params.result.join(','),
+						}, function(resp){
 							
-							var v = params.result[i];
-							
-							block.attr('data-entity-id', v);
-							block.find('.entity-select-single-value').val(v);
-							
-							Azbn7.api({
-								method : 'entity/search_by_id',
-								text : v + ',0',
-								trash : Azbn7.randstr(),
-							}, function(resp){
+							if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
 								
-								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+								for(var i in resp.response.entities) {
 									
-									for(var i in resp.response.entities) {
-										
-										var item = resp.response.entities[i];
-										
-										block.find('.entity-select-single-edit-title').html(item.item.title);
-										block.find('.entity-select-single-edit-type').html(item.entity.entity_type);
-										
-									}
+									var item = resp.response.entities[i];
+									
+									(__genListItem(item))
+										.appendTo(select_l);
 									
 								}
 								
-							});
+							}
 							
-						}
+						});
 						
 					}
 					
 				});
 				
-				block.find('.entity-select-single-edit-btn').on('click.azbn7', function(event){
+				block.find('.entity-select-edit-btn').on('click.azbn7', function(event){
 					event.preventDefault();
 					
-					var entity_id = block.attr('data-entity-id') || 0;
+					var __v;
+					
+					if(!single) {
+						__v = __getVal();
+					} else {
+						__v = [__getVal()];
+					}
 					
 					$('.azbn7-select-entity')
 						.modal()
 						.trigger('azbn7.init', [{
-							single : 1,
-							selected :[entity_id],
+							single : single,
+							selected : __v,
 							callback : {
 								ok : function(result){
 									
@@ -524,10 +598,21 @@
 								},
 							}
 						}])
+					;
 					
 				});
 				
-				block.on('azbn7.reinit', [{result : [block.attr('data-entity-id') || 0]}]);
+				
+				if(single) {
+					
+					block.trigger('azbn7.reinit', [{result : [__getVal()]}]);
+					
+				} else {
+					
+					block.trigger('azbn7.reinit', [{result : __getVal()}]);
+					
+				}
+				
 				
 			})();
 			

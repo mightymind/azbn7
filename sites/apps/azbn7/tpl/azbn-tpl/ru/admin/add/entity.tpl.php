@@ -27,6 +27,16 @@
 				//'path' => 'entity',
 			));
 			?>
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+				'title' => 'Адрес URL на сайте (без начального и конечного /)',
+				'html' => ' id="" ',
+				'name' => 'entity[url]',
+				'value' => $this->Azbn7->randstr(32),
+				//'path' => 'entity',
+			));
+			?>
 		</div>
 		<div class="col-sm-7" >
 			<?
@@ -35,6 +45,7 @@
 				'html' => ' id="" ',
 				'name' => 'entity[parent]',
 				'value' => '0',
+				'single' => 0,
 				//'path' => 'entity',
 			));
 			?>
@@ -47,16 +58,6 @@
 		'html' => ' id="" ',
 		'name' => 'entity[pos]',
 		'value' => $this->Azbn7->config['mysql'][0]['max_value']['js_int'],
-		//'path' => 'entity',
-	));
-	?>
-	
-	<?
-	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
-		'title' => 'Адрес URL на сайте (без начального и конечного /)',
-		'html' => ' id="" ',
-		'name' => 'entity[url]',
-		'value' => $this->Azbn7->randstr(16),
 		//'path' => 'entity',
 	));
 	?>
