@@ -16,6 +16,73 @@
 
 </div><!-- /container-fluid azbn7-container -->
 
+
+
+<div class="modal fade azbn7-select-entity" tabindex="-1" role="document" aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Выберите записи</h4>
+			</div>
+			<div class="modal-body">
+				
+				<div class="row" >
+					
+					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8" >
+						
+						<form class=" " action="<?=$this->Azbn7->mdl('Site')->url('/admin/search/');?>" >
+							<div class="form-group">
+								<input type="search" name="text" class="form-control azbn7-search-input" autocomplete="off" data-result="search-entity-result" placeholder="Быстрый поиск записей..." />
+							</div>
+							
+							<div class="list-group searched-entities-list" data-result="search-entity-result" >
+								<!--
+								<a href="#" class="list-group-item list-group-item-action ">
+									<h5 class="list-group-item-heading">Название сущности</h5>
+									<p class="list-group-item-text">Описание найденной сущности</p>
+								</a>
+								-->
+							</div>
+						</form>
+						
+					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4" >
+						
+						<div class=" " >
+							<div class="form-group " >
+								<label>Выбранные записи</label>
+							</div>
+							
+							<div class="list-group selected-entities-list">
+								<a href="#" class="list-group-item disabled">Cras justo odio</a>
+								<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+								<a href="#" class="list-group-item">Morbi leo risus</a>
+								<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+								<a href="#" class="list-group-item">Vestibulum at eros</a>
+							</div>
+						</div>
+						
+					</div>
+					
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-warning" data-dismiss="modal">Отмена</button>
+				<button type="button" class="btn btn-success azbn7-select-entity-ok">OK</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
 <div class="modal fade" id="modal-entity-search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">

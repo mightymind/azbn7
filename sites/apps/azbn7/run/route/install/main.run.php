@@ -165,11 +165,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'page',
 		'title' => 'Страница',
 		'field' => array(
+			/*
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
 				'title' => 'Заголовок',
 			),
+			*/
 			'preview' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'textarea',
@@ -188,11 +190,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'category',
 		'title' => 'Категория',
 		'field' => array(
+			/*
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
 				'title' => 'Заголовок',
 			),
+			*/
 			'preview' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'textarea',
@@ -211,11 +215,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'upload',
 		'title' => 'Загруженный файл',
 		'field' => array(
+			/*
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
 				'title' => 'Заголовок',
 			),
+			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'upload',
@@ -229,11 +235,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'img',
 		'title' => 'Изображение',
 		'field' => array(
+			/*
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
 				'title' => 'Заголовок',
 			),
+			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'upload',
@@ -247,11 +255,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'audio',
 		'title' => 'Аудио',
 		'field' => array(
+			/*
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
 				'title' => 'Заголовок',
 			),
+			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'upload',
@@ -265,11 +275,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'video',
 		'title' => 'Видео',
 		'field' => array(
+			/*
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
 				'title' => 'Заголовок',
 			),
+			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'upload',
@@ -283,11 +295,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'file',
 		'title' => 'Файл любого формата',
 		'field' => array(
+			/*
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
 				'title' => 'Заголовок',
 			),
+			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'upload',
@@ -297,15 +311,17 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	));
 	
 	$t['youtube'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'parent' => $t['video'],
+		'parent' => 0,//$t['video'],
 		'uid' => 'youtube',
 		'title' => 'Видео YouTube',
 		'field' => array(
+			/*
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
 				'title' => 'Заголовок',
 			),
+			*/
 			'yt_uid' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
@@ -320,11 +336,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'link',
 		'title' => 'Ссылка',
 		'field' => array(
+			/*
 			'title' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
 				'title' => 'Заголовок',
 			),
+			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'input',

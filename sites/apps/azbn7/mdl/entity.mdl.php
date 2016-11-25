@@ -54,6 +54,7 @@ class Entity
 					->exec("CREATE TABLE IF NOT EXISTS `" . $this->getTable($e['uid']) . "` (
 							`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 							`entity` BIGINT DEFAULT '0',
+							`title` VARCHAR(256) DEFAULT '',
 							{$field_str} ,
 							`param` MEDIUMBLOB DEFAULT '',
 							FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE

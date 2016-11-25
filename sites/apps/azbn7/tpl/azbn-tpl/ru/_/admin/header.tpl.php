@@ -67,6 +67,8 @@
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Контент</a>
 				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#_" data-toggle="modal" data-target=".azbn7-select-entity" >Модалька</a>
+					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity-add" >Добавить</a>
 					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity-search" >Поиск</a>
 					<div class="dropdown-divider"></div>

@@ -238,6 +238,250 @@
 				
 			})();
 			
+			
+			(function(){
+				
+				var block = $('.' + a7admin_class + ' .azbn7-select-entity');
+				
+				var search_l = block.find('.searched-entities-list');
+				var select_l = block.find('.selected-entities-list');
+				
+				var __genListItem = function(item) {
+					
+					var a = $('<li/>', {
+						class : 'list-group-item list-group-item-action ',
+					})
+						.attr('data-entity-id', item.entity.id)
+					;
+					
+					$('<a/>', {
+						href : '#add',
+						class : 'tag tag-default tag-success float-xs-right select-entity-add',
+						html : 'Add',
+					})
+						.appendTo(a);
+					
+					$('<a/>', {
+						href : '#delete',
+						class : 'tag tag-default tag-danger float-xs-right select-entity-delete',
+						html : 'Del',
+					})
+						.appendTo(a);
+					
+					$('<h5/>', {
+						class : 'list-group-item-heading',
+						html : item.item.title,
+					})
+						.appendTo(a);
+					
+					$('<p/>', {
+						class : 'list-group-item-text',
+						html : item.entity.entity_type,
+					})
+						.appendTo(a);
+					
+					
+					return a;
+				};
+				
+				block.on('show.bs.modal', function(event, params){
+					
+					search_l
+						.empty()
+					;
+					select_l
+						.empty()
+					;
+					block
+						.find('form')
+						.trigger('reset')
+					;
+					block
+						.trigger('azbn7.init', [{
+							single : 0,
+							selected :[1],
+							callback : {
+								ok : function(result){
+									alert(result);
+								},
+							}
+						}])
+					;
+					
+				});
+				
+				block.on('azbn7.init', function(event, params){
+					
+					/*
+					params = {
+						single : 0,
+						selected :[],
+						callback : {
+							ok : function(result){},
+						}
+					*/
+					
+					if(params.single) {
+						select_l.attr('data-single', 1);
+					} else {
+						select_l.attr('data-single', 0);
+					}
+					
+					if(params.selected.length) {
+						
+						var ids = params.selected.join(',');
+						
+						if(params.selected.length == 1) {
+							ids = '0,' + ids;
+						}
+							
+							Azbn7.api({
+								method : 'entity/search_by_id',
+								text : ids,
+							}, function(resp){
+								
+								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+									
+									for(var i in resp.response.entities) {
+										
+										if(1) {
+											
+											var item = resp.response.entities[i];
+											
+											(__genListItem(item)).appendTo(select_l);
+											
+										}
+										
+									}
+									
+								}
+								
+							});
+					
+					}
+					
+					block.find('.azbn7-select-entity-ok').one('click.azbn7', function(event){
+						
+						var items = select_l.find('.list-group-item');
+						var ids = new Array();
+						
+						items.each(function(index){
+							ids.push($(this).attr('data-entity-id') || 0);
+						});
+						
+						params.callback.ok(ids);
+						
+						block.modal('hide');
+						
+					});
+					
+				});
+				
+				block.on('azbn7.entity.add', function(event, item){
+					
+					if(parseInt(select_l.attr('data-single'))) {
+						
+						select_l.empty();
+						
+					}
+					
+					var entity_id = parseInt(item.attr('data-entity-id'));
+					select_l.find('[data-entity-id="' + entity_id + '"]')
+						.empty()
+						.remove()
+					;
+					
+					item
+						.clone()
+						.appendTo(select_l)
+					;
+					
+				});
+				
+				block.on('azbn7.entity.delete', function(event, item){
+					
+					item
+						.empty()
+						.remove()
+					;
+					
+				});
+				
+				block.find('.azbn7-search-input[data-result]')
+					.on('keyup.azbn7', function(event){
+						event.preventDefault();
+						
+						var input = $(this);
+						var result_id = input.attr('data-result');
+						var result = $('.list-group[data-result="' + result_id + '"]');
+						var val = input.val();
+						
+						if(val.length > 2) {
+							
+							Azbn7.api({
+								method : 'entity/search',
+								text : val,
+							}, function(resp){
+								
+								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+									
+									result.empty();
+									for(var i in resp.response.entities) {
+										
+										if(i < 8) {
+											
+											var item = resp.response.entities[i];
+											
+											(__genListItem(item)).appendTo(result);
+											
+										}
+										
+									}
+									
+								} else {
+									
+									result.empty();
+									
+								}
+								
+							});
+							
+						} else if(val.length == 0) {
+							
+							search_l.empty();
+							
+						}
+						
+					});
+				
+				block
+					.on('click.azbn7', '.list-group .select-entity-add', {}, function(){
+						event.preventDefault();
+						
+						var btn = $(this);
+						
+						block.trigger('azbn7.entity.add', [btn.closest('.list-group-item')])
+					});
+				
+				block
+					.on('click.azbn7', '.list-group .select-entity-delete', {}, function(){
+						event.preventDefault();
+						
+						var btn = $(this);
+						
+						block.trigger('azbn7.entity.delete', [btn.closest('.list-group-item')])
+					});
+				
+			})();
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			(function(){
 				
 				/*

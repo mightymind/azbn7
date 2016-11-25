@@ -56,6 +56,17 @@
 	));
 	?>
 	
+	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+		'title' => 'Заголовок',
+		'html' => ' id="" ',
+		'name' => 'item[title]',
+		'value' => $param['item']['title'],
+		//'path' => 'entity',
+	));
+	?>
+	
 	<?
 	//var_dump($param['type']);
 	if(count($param['type']['param']['field'])) {

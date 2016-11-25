@@ -20,3 +20,10 @@ body {
 .azbn7-admin .item-pos-range {
 	padding:0;
 }
+
+.azbn7-admin .azbn7-select-entity .searched-entities-list .select-entity-delete {
+	display:none;
+}
+.azbn7-admin .azbn7-select-entity .selected-entities-list .select-entity-add {
+	display:none;
+}
