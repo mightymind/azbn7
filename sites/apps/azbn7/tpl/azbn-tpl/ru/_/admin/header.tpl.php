@@ -48,7 +48,33 @@
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_AjaxUploader.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_ImageMinimizer.js');?>" ></script>
 
+
+
 <!--<script src="<?=$this->Azbn7->mdl('Site')->url('/js/imperavi/redactor.js');?>" ></script>-->
+
+
+
+<!-- CLEditor -->
+<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.css');?>" />
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.min.js');?>"></script>
+<script>
+$(function(){
+	
+	$('.azbn7-cleditor').cleditor({
+		docType : '<!DOCTYPE html>',
+	});
+	
+});
+</script>
+<!-- /CLEditor -->
+
+
+
+<!-- CKEditor -->
+<script src="//cdn.ckeditor.com/4.4.2/full/ckeditor.js"></script>
+<!-- /CKEditor -->
+
+
 
 </head>
 <body class=" <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >

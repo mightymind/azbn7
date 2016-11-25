@@ -1,8 +1,14 @@
 <?
 // виджет
-?>
 
-<div class="form-group" <?=$param['html'];?> >
-	<label><?=$param['title'];?></label>
-	<textarea class="form-control imperavi-redactor " name="<?=$param['name'];?>" rows="5" ><?=$param['value'];?></textarea>
-</div>
+if($_SESSION['user']['param']['wysiwyg'] != '') {
+	
+	$editor = $_SESSION['user']['param']['wysiwyg'];
+	
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/wysiwyg/' . $editor, $param);
+	
+} else {
+	
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/textarea', $param);
+	
+}

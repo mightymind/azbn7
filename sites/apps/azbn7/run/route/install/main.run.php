@@ -446,7 +446,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
 			'lang' => 'ru',
-			'wysiwyg' => 'textarea',
+			'wysiwyg' => 'ckeditor',
 		)),
 	));
 	

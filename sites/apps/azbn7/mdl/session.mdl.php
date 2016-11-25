@@ -38,7 +38,7 @@ class Session
 			$this->logout($type);
 		}
 		
-		return $this->is($type);
+		return $this->Azbn7->mdl('Site')->is($type);
 	}
 	
 	public function logout($type = 'user')
