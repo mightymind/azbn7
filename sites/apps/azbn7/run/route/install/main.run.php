@@ -399,7 +399,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'type' => 'page',
 		'entity' => array(
 			'visible' => 1,
-			'parent' => 0,
+			'parent' =>  $e[0],
 			'pos' => $default['max_bigint'],
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => 'помощь',

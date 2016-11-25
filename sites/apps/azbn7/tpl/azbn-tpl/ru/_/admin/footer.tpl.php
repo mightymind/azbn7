@@ -72,8 +72,8 @@
 				
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-warning" data-dismiss="modal">Отмена</button>
-				<button type="button" class="btn btn-success azbn7-select-entity-ok">OK</button>
+				<button type="button" class="btn btn-warning" data-dismiss="modal" >Отмена</button>
+				<button type="button" class="btn btn-success azbn7-select-entity-ok" data-dismiss="modal" >OK</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
