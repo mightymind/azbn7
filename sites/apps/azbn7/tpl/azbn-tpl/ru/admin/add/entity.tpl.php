@@ -16,25 +16,30 @@
 	));
 	?>
 	
-	<?
-	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/visible', array(
-		'title' => 'Отображать на сайте',
-		'html' => ' id="" ',
-		'name' => 'entity[visible]',
-		'value' => '1',
-		//'path' => 'entity',
-	));
-	?>
-	
-	<?
-	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/entity/parent', array(
-		'title' => 'Родительская запись',
-		'html' => ' id="" ',
-		'name' => 'entity[parent]',
-		'value' => '0',
-		//'path' => 'entity',
-	));
-	?>
+	<div class="row" >
+		<div class="col-sm-5" >
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/visible', array(
+				'title' => 'Отображать на сайте',
+				'html' => ' id="" ',
+				'name' => 'entity[visible]',
+				'value' => '1',
+				//'path' => 'entity',
+			));
+			?>
+		</div>
+		<div class="col-sm-7" >
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/entity/parent', array(
+				'title' => 'Родительская запись',
+				'html' => ' id="" ',
+				'name' => 'entity[parent]',
+				'value' => '0',
+				//'path' => 'entity',
+			));
+			?>
+		</div>
+	</div>
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/pos', array(

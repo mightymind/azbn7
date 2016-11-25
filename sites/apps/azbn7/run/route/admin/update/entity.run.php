@@ -13,13 +13,14 @@ if(count($_POST['item']) && count($_POST['entity'])) {
 	$item = array(
 		'entity' => array(
 			'visible' => $this->Azbn7->as_int($_POST['entity']['visible']),
-			'parent' => $this->Azbn7->as_int($_POST['entity']['parent']),
-			'pos' => $this->Azbn7->as_int($_POST['entity']['pos']),
+			'parent' => $this->Azbn7->c_s($_POST['entity']['parent']),
+			'pos' => $this->Azbn7->c_s($_POST['entity']['pos']),
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => $this->Azbn7->c_s($_POST['entity']['url']),
 			'param' => $this->Azbn7->arr2json(array()),
 		),
 		'item' => array(
+			'title' => $this->Azbn7->c_s($_POST['item']['title']),
 			'param' => $this->Azbn7->arr2json(array()),
 		),
 	);
@@ -33,9 +34,6 @@ if(count($_POST['item']) && count($_POST['entity'])) {
 	
 	$this->Azbn7->mdl('Entity')->updateEntity($entity['id'], $item);
 	
-	//$this->Azbn7->go2('/admin/all/entity/?type=' . $type['id']);
-	
-	var_dump($item);
-	die();
+	$this->Azbn7->go2('/admin/edit/entity/' . $entity['id'] . '/');
 	
 }

@@ -399,7 +399,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'type' => 'page',
 		'entity' => array(
 			'visible' => 1,
-			'parent' =>  $e[0],
+			'parent' => 0,
 			'pos' => $default['max_bigint'],
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => 'помощь',
@@ -434,6 +434,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
+			'lang' => 'ru',
 			'wysiwyg' => 'textarea',
 		)),
 	));
@@ -444,6 +445,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
+			'lang' => 'ru',
 			'wysiwyg' => 'textarea',
 		)),
 	));

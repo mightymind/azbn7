@@ -189,6 +189,28 @@ class Entity
 		
 	}
 	
+	public function url($id = 0)
+	{
+		$entity = array();
+		$res = '';
+		
+		if(isset($this->cache[$id]) && is_array($this->cache[$id])) {
+			
+			$entity = &$this->cache[$id];
+			
+		} else {
+			
+			$entity['entity'] = $this->Azbn7->mdl('DB')->one('entity', "id = '$id'");
+			
+		}
+		
+		if($entity['entity']['id']) {
+			$res = '/' . $entity['entity']['url'] . '/';
+		}
+		
+		return $res;
+	}
+	
 	public function item($id = 0, $url = '')
 	{
 		$entity = array(

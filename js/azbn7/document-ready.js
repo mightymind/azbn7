@@ -466,7 +466,7 @@
 			
 			(function(){
 				
-				var block = $(container_class + ' .entity-select-block');
+				var block = $(container_class + ' .entity-select-single-block');
 				
 				block.on('azbn7.reinit', function(event, params){
 					
@@ -477,7 +477,7 @@
 							var v = params.result[i];
 							
 							block.attr('data-entity-id', v);
-							block.find('.entity-select-value').val(v);
+							block.find('.entity-select-single-value').val(v);
 							
 							Azbn7.api({
 								method : 'entity/search_by_id',
@@ -491,8 +491,8 @@
 										
 										var item = resp.response.entities[i];
 										
-										block.find('.entity-select-edit-title').html(item.item.title);
-										block.find('.entity-select-edit-type').html(item.entity.entity_type);
+										block.find('.entity-select-single-edit-title').html(item.item.title);
+										block.find('.entity-select-single-edit-type').html(item.entity.entity_type);
 										
 									}
 									
@@ -506,7 +506,7 @@
 					
 				});
 				
-				block.find('.entity-select-edit-btn').on('click.azbn7', function(event){
+				block.find('.entity-select-single-edit-btn').on('click.azbn7', function(event){
 					event.preventDefault();
 					
 					var entity_id = block.attr('data-entity-id') || 0;
