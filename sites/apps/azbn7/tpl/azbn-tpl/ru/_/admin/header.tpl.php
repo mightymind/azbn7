@@ -71,7 +71,7 @@ $(function(){
 
 
 <!-- CKEditor -->
-<script src="//cdn.ckeditor.com/4.4.2/full/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.6.0/full/ckeditor.js"></script>
 <!-- /CKEditor -->
 
 
