@@ -76,6 +76,36 @@ $(function(){
 
 
 
+<!-- TinyMCE -->
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>
+$(function(){
+	
+	tinymce.init({
+		selector:'.azbn7-tinymce',
+		height : '500px',
+		theme : 'modern',
+		plugins: [
+			'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+			'searchreplace wordcount visualblocks visualchars code fullscreen',
+			'insertdatetime media nonbreaking save table contextmenu directionality',
+			'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc',
+		],
+		toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+		toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+		image_advtab: true,
+		content_css: [
+			//'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+			//'//www.tinymce.com/css/codepen.min.css'
+		],
+	});
+	
+});
+</script>
+<!-- /TinyMCE -->
+
+
+
 </head>
 <body class=" <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
 

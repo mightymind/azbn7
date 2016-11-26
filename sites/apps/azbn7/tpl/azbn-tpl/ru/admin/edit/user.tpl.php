@@ -47,6 +47,36 @@
 	?>
 	
 	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+		'title' => 'Тема оформления',
+		'html' => ' id="" ',
+		'name' => 'item[param][theme]',
+		'value' => $param['item']['param']['theme'],
+		//'path' => 'entity',
+	));
+	?>
+	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+		'title' => 'Язык',
+		'html' => ' id="" ',
+		'name' => 'item[param][lang]',
+		'value' => $param['item']['param']['lang'],
+		//'path' => 'entity',
+	));
+	?>
+	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+		'title' => 'Редактор по-умолчанию',
+		'html' => ' id="" ',
+		'name' => 'item[param][wysiwyg]',
+		'value' => $param['item']['param']['wysiwyg'],
+		//'path' => 'entity',
+	));
+	?>
+	
+	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/submit', array(
 		'title' => 'Обновить',
 		'html' => '',
