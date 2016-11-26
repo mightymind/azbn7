@@ -48,3 +48,25 @@ html {
 .azbn7-admin .azbn7-select-entity .selected-entities-list .select-entity-add {
 	display:none;
 }
+
+
+.azbn7-admin .list-entity-type {
+	list-style-type:none;
+	margin:2rem 0;
+}
+.azbn7-admin .list-entity-type li {
+	list-style-type:none;
+	padding:1.5rem 0rem 1.5rem 1.5rem;
+}
+.azbn7-admin .list-entity-type > li {
+	border-left:1px rgba(0,0,0,0.06) solid;
+}
+.azbn7-admin .list-entity-type li:hover {
+	background-color:rgba(0,0,0,0.03);
+}
+.azbn7-admin .list-entity-type ul {
+	margin-top:1rem;
+}
+.azbn7-admin .list-entity-type .entity-type__list-item {
+	margin-right:1.5rem;
+}

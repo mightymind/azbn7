@@ -16,8 +16,8 @@
 $entity_type = $this->Azbn7->mdl('DB')->read('entity_type');
 $entity_type_h = $this->Azbn7->mdl('Site')->buildHierarchy($entity_type);
 
-$this->Azbn7->mdl('Viewer')->tpl('_/hierarchy/list', array(
-	'html' => 'id="" ',
+$this->Azbn7->mdl('Viewer')->tpl('_/hierarchy/list_entity_type', array(
+	'html' => 'class="list-entity-type " id="" ',
 	'hierarchy' => $entity_type_h,
 	'start_index' => 0,
 	'hide_zero' => 1,
