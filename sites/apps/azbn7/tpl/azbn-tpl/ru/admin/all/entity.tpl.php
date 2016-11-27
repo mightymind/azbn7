@@ -20,10 +20,11 @@ if(count($param['items'])) {
 	<table class="table table-bordered table-striped table-hover ">
 		<thead>
 			<tr>
-				<th>ID</th>
+				<th class="at-center" >ID</th>
 				<th>Название</th>
-				<th>Дата созд./изм.</th>
-				<th>Функции</th>
+				<th class="at-center" >Дата создания</th>
+				<th class="at-center" >Дата изменения</th>
+				<th class="at-center" >Функции</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -36,14 +37,15 @@ if(count($param['items'])) {
 		?>
 			
 			<tr>
-				<th scope="row"><?=$v['id'];?></th>
+				<th class="at-center" scope="row"><?=$v['id'];?></th>
 				<td>
 					<?=$item['title'];?>
 					<br />
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?>" target="_blank" ><?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?></a>
 				</td>
-				<td><?=date('d.m.Y H:i', $v['created_at']);?> / <?=date('d.m.Y H:i', $v['updated_at']);?></td>
-				<td class="item-edit-functions" >
+				<td class="at-center" ><?=date('d.m.Y H:i', $v['created_at']);?></td>
+				<td class="at-center" ><?=date('d.m.Y H:i', $v['updated_at']);?></td>
+				<td class="at-center item-edit-functions" >
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?>" target="_blank" ><i class="fa fa-eye" aria-hidden="true" title="Открыть" ></i></a>
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $v['id'] . '/');?>" ><i class="fa fa-pencil-square-o" aria-hidden="true" title="Редактировать" ></i></a>
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/delete/entity/' . $v['id'] . '/');?>" class="delete-confirm " ><i class="fa fa-times" aria-hidden="true" title="Удалить" ></i></a>

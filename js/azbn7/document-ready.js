@@ -635,6 +635,201 @@
 			
 			
 			
+			(function(){
+				
+				var block = $(container_class + ' .entity-autocomplete');
+				
+				if(block.length) {
+					
+					var value = block.find('.edit-value');
+					var input = block.find('.edit-input');
+					var checked = block.find('.checked-list');
+					var variant = block.find('.variant-list');
+					
+					var is_single = parseInt(block.attr('data-single') || 1);
+					var type = parseInt(block.attr('data-type') || 0);
+					
+					var __genListItem = function(item) {
+						
+						var a = $('<a/>', {
+							class : 'list-group-item variant',
+							html : item.item.title,
+						})
+							.attr('href', '#' + item.entity.id)
+							.attr('data-entity', item.entity.id)
+						;
+						
+						return a;
+						
+					};
+					
+					input.on('keyup.azbn7', function(event){
+						event.preventDefault();
+						
+						if(!variant.hasClass('in-action')) {
+							variant.addClass('in-action');
+						}
+						
+						var val = input.text();
+						
+						if(val.length > 2) {
+							
+							Azbn7.api({
+								method : 'entity/search',
+								text : val,
+								type : type,
+							}, function(resp){
+								
+								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+									
+									variant.empty();
+									
+									for(var i in resp.response.entities) {
+										
+										if(i < 8) {
+											
+											var item = resp.response.entities[i];
+											
+											(__genListItem(item)).appendTo(variant);
+											
+										}
+										
+									}
+										
+								} else {
+									
+									variant.empty();
+									
+								}
+								
+							});
+							
+						} else if(val.length == 0) {
+							
+							variant.empty();
+							
+						}
+						
+					});
+					
+					block.on('azbn7.setValue', function(event){
+						
+						var res = [];
+						
+						checked.find('.variant').each(function(){
+							
+							var item = $(this);
+							
+							res.push(parseInt(item.attr('data-entity') || 0));
+							
+						});
+						
+						if(is_single) {
+							
+							if(res.length > 0) {
+								value.text(res[0]);
+							} else {
+								value.text('');
+							}
+							
+						} else {
+							
+							value.text(JSON.stringify(res));
+							
+						}
+						
+						value.val(value.text());
+						
+					});
+					
+					block.on('azbn7.init', function(event){
+						
+						variant.empty();
+						
+						var res = []
+						
+						if(is_single) {
+							res[0] = parseInt(value.val());
+						} else {
+							res = JSON.parse(value.val());
+						}
+						
+						Azbn7.api({
+							method : 'entity/search_by_id',
+							text : '0,' + res.join(','),
+							type : type,
+						}, function(resp){
+							
+							if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+								
+								for(var i in resp.response.entities) {
+									
+									var item = resp.response.entities[i];
+									
+									(__genListItem(item))
+										.appendTo(checked);
+									
+								}
+								
+							}
+							
+						});
+						
+						//console.log(res);
+						
+					});
+					
+					checked.on('click.azbn7', '.variant', {}, function(event){
+						event.preventDefault();
+						
+						var btn = $(this);
+						
+						btn
+							.empty()
+							.remove()
+						;
+						
+						block.trigger('azbn7.setValue');
+						
+					});
+					
+					variant.on('click.azbn7', '.variant', {}, function(event){
+						event.preventDefault();
+						
+						var btn = $(this);
+						
+						if(is_single) {
+							checked.empty();
+						}
+						
+						btn
+							.appendTo(checked)
+							/*
+							.attr('title', 'Нажмите для удаления')
+							.on('mouseover', function(){
+								btn.addClass('on-hover');
+							})
+							.on('mouseout', function(){
+								btn.removeClass('on-hover');
+							})
+							*/
+						;
+						
+						input.text('');
+						block.trigger('azbn7.setValue');
+						
+						if(variant.hasClass('in-action')) {
+							variant.removeClass('in-action');
+						}
+						
+					});
+					
+					block.trigger('azbn7.init');
+					
+				}
+				
+			})();
+			
 			
 			
 			

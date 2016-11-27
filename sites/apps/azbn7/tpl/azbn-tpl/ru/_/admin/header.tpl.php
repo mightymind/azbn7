@@ -72,6 +72,9 @@ $(function(){
 
 <!-- CKEditor -->
 <script src="//cdn.ckeditor.com/4.6.0/full/ckeditor.js"></script>
+<script>
+CKEDITOR.disableAutoInline = true;
+</script>
 <!-- /CKEditor -->
 
 

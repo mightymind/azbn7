@@ -6,7 +6,7 @@
 	
 	<form class=" " action="<?=$this->Azbn7->mdl('Site')->url('/admin/search/');?>" >
 		<div class="form-group">
-			<input type="text" name="text" class="form-control azbn7-search-input" data-result="fast-search-result" data placeholder="Быстрый поиск...">
+			<input type="text" name="text" class="form-control azbn7-search-input" data-result="fast-search-result" data placeholder="Быстрый поиск..." autocomplete="off" />
 		</div>
 		
 		<div class="list-group" data-result="fast-search-result" >
