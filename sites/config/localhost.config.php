@@ -77,4 +77,7 @@ $CONFIG = array(
 							'file' => 'sites/apps/'.$app_uid.'/data/sqlite/default.db',
 						),
 	),
+	'pagination'		=> array(
+						'count' => 50,
+	),
 );
