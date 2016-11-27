@@ -6,7 +6,11 @@ $type_id = $this->Azbn7->as_int($this->Azbn7->mdl('Req')->_get('type'));
 $type = $this->Azbn7->mdl('DB')->one('entity_type', "id = '$type_id'");
 $type['param'] = json_decode($type['param'], true);
 
-$page = $this->Azbn7->as_int($this->Azbn7->mdl('Req')->_get('page'));
+$page = $this->Azbn7->as_int($this->Azbn7->mdl('Req')->_get('page')) - 1;
+
+if($page < 0) {
+	$page = 0;
+}
 
 $start_at = $page * $this->Azbn7->config['pagination']['count'];
 
