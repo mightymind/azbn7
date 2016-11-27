@@ -44,7 +44,7 @@
 		</div>
 		<div class="col-sm-6" >
 			<?
-			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/entity/parent', array(
+			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/entity-select', array(
 				'title' => 'Родительская запись',
 				'html' => ' id="" ',
 				'name' => 'entity[parent]',
