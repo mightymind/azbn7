@@ -12,6 +12,7 @@ if(count($_POST['item']) && count($_POST['entity'])) {
 	
 	$item = array(
 		'entity' => array(
+			'updated_at' => $this->Azbn7->created_at,
 			'visible' => $this->Azbn7->as_int($_POST['entity']['visible']),
 			'parent' => $this->Azbn7->c_s($_POST['entity']['parent']),
 			'pos' => $this->Azbn7->c_s($_POST['entity']['pos']),
