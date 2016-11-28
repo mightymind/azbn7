@@ -395,6 +395,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		))
 	;
 	
+	/*
 	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
 		'entity' => array(
@@ -424,7 +425,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'parent' => $e[0],
 		'child' => $e[1],
 	));
-	
+	*/
 	
 	
 	$this->Azbn7->mdl('DB')->create('user', array(
