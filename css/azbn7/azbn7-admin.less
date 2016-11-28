@@ -1,0 +1,204 @@
+html {
+	font-size:13px;
+}
+
+/* bootstrap patch */
+
+.azbn7-admin {
+	
+	.form-group label {
+		display:block;
+	}
+	
+}
+
+
+
+/* azbn7 styles */
+
+.azbn7-admin {
+	padding-top:51px;
+	
+	.azbn7-hidden {
+		display:none !important;
+		opacity:0 !important;
+		visibility:hidden !important;
+		width:0 !important;
+		height:0 !important;
+		font-size:0rem !important;
+		margin:0 !important;
+		padding:0 !important;
+	}
+	
+	table th.at-center, table td.at-center {
+		text-align:center;
+	}
+	
+	.item-edit-functions {
+		font-size:1.75em;
+		
+		a {
+			margin:0 0.1em;
+		}
+	}
+	
+	.item-pos-range {
+		padding:0;
+	}
+	
+	
+	.azbn7-select-entity .searched-entities-list .select-entity-delete {
+		display:none;
+	}
+	.azbn7-select-entity .selected-entities-list .select-entity-add {
+		display:none;
+	}
+	
+	
+	
+	.list-entity-type {
+		list-style-type:none;
+		margin:2rem 0;
+		
+		li {
+			list-style-type:none;
+			padding:1.5rem 0rem 1.5rem 1.5rem;
+			
+			&:hover {
+				background-color:rgba(0,0,0,0.03);
+			}
+		}
+		
+		& > li {
+			border-left:1px rgba(0,0,0,0.06) solid;
+		}
+		
+		ul {
+			margin-top:1rem;
+		}
+		
+		.entity-type__list-item {
+			margin-right:1.5rem;
+		}
+		
+	}
+	
+	
+	.entity-autocomplete {
+		
+		.edit-block {
+			position:relative;
+			margin-top:0.75rem;
+		}
+		
+		.edit-input {
+			min-height:3rem;
+			line-height:3rem;
+			vertical-align:middle;
+			width:100%;
+			display:inline-block;
+			outline:1px rgba(0,0,0,0.1) solid;
+			padding:0 0.5rem;
+			cursor:pointer;
+			
+			&:after {
+				float:right;
+				content:'\f002';
+				font-family:FontAwesome;
+			}
+			&:before {
+				content:'Нажмите для поиска и выбора';
+			}
+			&:focus {
+				background-color:rgba(0,0,0,0.03);
+				
+				&:before {
+					content:none;
+				}
+				&:after {
+					opacity:0;
+				}
+				
+			}
+			
+		}
+		
+		.checked-list {
+			position:relative;
+			z-index:1;
+			
+			.variant {
+				text-decoration:none;
+				
+				&:hover {
+					text-decoration:none;
+					background-color:rgba(255,0,0,0.03);
+					cursor:pointer;
+					
+					&:before {
+						opacity:0;
+					}
+					&:after {
+						float:right;
+						font-family:FontAwesome;
+						content:'\f00d';
+					}
+					
+				}
+				&:before {
+					content:'\f00c';
+					font-family:FontAwesome;
+					margin-right:1rem;
+				}
+				
+			}
+		}
+		
+		.variant-list {
+			position:absolute;
+			transition:all 0.7s ease;
+			top:100%;
+			opacity:0;
+			height:0;
+			width:100%;
+			z-index:0;
+			
+			&.in-action {
+				opacity:1;
+				height:auto;
+				z-index:2;
+			}
+			
+			.variant {
+				
+				&:hover {
+					text-decoration:none;
+					background-color:rgba(0,0,0,0.03);
+					
+					&:after {
+						float:right;
+						font-family:FontAwesome;
+						content:'\f067';
+					}
+					
+				}
+				
+				&:before {
+					content:'\f067';
+					font-family:FontAwesome;
+					margin-right:1rem;
+					opacity:0;
+				}
+				
+			}
+			
+		}
+		
+		.variant {
+			display:flex;
+			align-items:center;
+		}
+		
+	}
+	
+}
