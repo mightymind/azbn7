@@ -655,6 +655,7 @@
 							class : 'list-group-item variant',
 							html : item.item.title,
 						})
+							.attr('draggable', true)
 							.attr('href', '#' + item.entity.id)
 							.attr('data-entity', item.entity.id)
 						;
@@ -823,6 +824,60 @@
 						}
 						
 					});
+					
+					checked.on('mousedown.azbn7', '.variant', {}, function(event){
+						event.preventDefault();
+						
+						var oe = event.originalEvent;
+						var item = $(this);
+						
+						if (oe.which != 1) { //клик правой кнопкой мыши
+							return;
+						} else {
+							checked.attr('data-azbn7-mousedown', 1);
+							checked.data('azbn7-mousedown', item);
+						}
+						
+					});
+					
+					checked.on('mouseup.azbn7', '.variant', {}, function(event){
+						event.preventDefault();
+						
+						var oe = event.originalEvent;
+						var item = $(this);
+						
+						if (oe.which != 1) { //клик правой кнопкой мыши
+							return;
+						} else {
+							
+							if(parseInt(checked.attr('data-azbn7-mousedown'))) {
+								
+								checked.attr('data-azbn7-mousedown', 0);
+								
+								var __mu_i = checked.index(item);
+								var __md_i = checked.index(checked.data('azbn7-mousedown'));
+								
+								if(0) {
+									
+								} else {
+									
+								}
+								
+							}
+							
+							
+							
+							var md = checked.data('azbn7-mousedown');
+							var _md = md.prev('.variant');
+							
+							md.insertAfter(item);
+							item.insertAfter(_md);
+							
+						}
+						
+					});
+					
+					
 					
 					block.trigger('azbn7.init');
 					

@@ -7,11 +7,11 @@
 
 ?>
 
-<div class="form-group entity-autocomplete" <?=$param['html'];?> data-single="<?=$param['single'];?>" data-type="<?=$this->Azbn7->as_int($param['type']);?>" >
+<div class="form-group entity-autocomplete" <?=$param['html'];?> data-single="0" data-type="<?=$this->Azbn7->as_int($param['type']);?>" >
 	
 	<label><?=$param['title'];?></label>
 	
-	<textarea class="azbn7-hidden edit-value " name="<?=$param['name'];?>" ><?=$param['value'];?></textarea>
+	<textarea class="azbn7-hidden edit-value " name="<?=$param['name'];?>" >[1,2,3]</textarea>
 	
 	
 	
