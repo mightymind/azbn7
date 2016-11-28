@@ -801,6 +801,8 @@
 						
 						if(is_single) {
 							checked.empty();
+						} else {
+							checked.find('.variant[data-entity="' + btn.attr('data-entity') + '"]').remove();
 						}
 						
 						btn
@@ -840,6 +842,51 @@
 						
 					});
 					
+					checked.on('mousemove.azbn7', '.variant', {}, function(event){
+						event.preventDefault();
+						
+						var oe = event.originalEvent;
+						var item = $(this);
+						
+						if (oe.which != 1) { //клик правой кнопкой мыши
+							return;
+						} else {
+							//checked.attr('data-azbn7-mousedown', 1);
+							//checked.data('azbn7-mousedown', item);
+							
+							if(parseInt(checked.attr('data-azbn7-mousedown')) && checked.data('azbn7-mousedown')) {
+								
+								var md = checked.data('azbn7-mousedown');
+								
+								if(parseInt(md.attr('data-entity')) != parseInt(item.attr('data-entity'))) {
+									
+									var __item = item.clone();
+									var __md = md.clone();
+									
+									__item.insertAfter(md);
+									__md.insertAfter(item);
+									
+									md.insertAfter(__md);
+									item.insertAfter(__item);
+									
+									__item.remove();
+									__md.remove();
+									
+									block.trigger('azbn7.setValue');
+									
+								}
+								
+							}
+							
+							
+							
+							
+							
+						}
+						
+					});
+					
+					/*
 					checked.on('mouseup.azbn7', '.variant', {}, function(event){
 						event.preventDefault();
 						
@@ -876,7 +923,7 @@
 						}
 						
 					});
-					
+					*/
 					
 					
 					block.trigger('azbn7.init');
