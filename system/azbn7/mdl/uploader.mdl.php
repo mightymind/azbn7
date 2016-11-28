@@ -125,7 +125,7 @@ $_FILES['userfile']['error']
 			$path = $path . $param['path'] . '/';
 		}
 		
-		$path = $path . date('Y') . '/' . date('m') . '/' . date('d') . '/';
+		$path = $path . date('Y/m/d') . '/';
 		
 		$this->makePath($path);
 		
@@ -137,7 +137,7 @@ $_FILES['userfile']['error']
 		
 		$res_arr = array(
 			'uploaded' => 0,
-			'basename' => $this->Azbn7->created_at . '_' . $this->Azbn7->hash($this->Azbn7->randstr(16, true), $this->event_prefix, $param['name']),
+			'basename' => date('His', $this->Azbn7->created_at) . '_' . $this->Azbn7->hash($this->Azbn7->randstr(16, true), $this->event_prefix, $param['name']),
 			'extension' => end(explode('.', $_FILES[$param['name']]['name'])),
 			'title' => $this->Azbn7->c_s($_FILES[$param['name']]['name']),
 			//'size' => $_FILES[$param['name']]['size'],
@@ -182,7 +182,7 @@ $_FILES['userfile']['error']
 			$path = $path . $param['path'] . '/';
 		}
 		
-		$path = $path . date('Y') . '/' . date('m') . '/' . date('d') . '/';
+		$path = $path . date('Y/m/d') . '/';
 		
 		$this->makePath($path);
 		
@@ -194,7 +194,7 @@ $_FILES['userfile']['error']
 		
 		$res_arr = array(
 			'uploaded' => 0,
-			'basename' => $this->Azbn7->created_at . '_' . $this->Azbn7->hash($this->Azbn7->randstr(16, true), $this->event_prefix, $param['name']),
+			'basename' => date('His', $this->Azbn7->created_at) . '_' . $this->Azbn7->hash($this->Azbn7->randstr(16, true), $this->event_prefix, $param['name']),
 			'extension' => 'png',
 			'title' => 'Uploaded image ' . date('d.m.Y H:i'),
 			//'size' => $_FILES[$param['name']]['size'],
