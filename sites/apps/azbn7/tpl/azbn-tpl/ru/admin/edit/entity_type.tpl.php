@@ -36,7 +36,7 @@
 		foreach($param['item']['param']['field'] as $k => $v) {
 			
 			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
-				'title' => 'Редактор поля ' . $k,
+				'title' => 'Редактор поля ' . $v['title'],
 				'html' => ' id="" ',
 				'name' => 'param[field][' . $k . '][editor]',
 				'value' => $v['editor'],
