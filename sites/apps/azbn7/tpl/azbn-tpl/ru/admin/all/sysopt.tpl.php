@@ -30,11 +30,11 @@ if(count($param['items'])) {
 	<table class="table table-bordered table-striped table-hover ">
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th>Параметр</th>
-				<th>Описание</th>
-				<th>Значение</th>
-				<th>Функции</th>
+				<th class="at-center " >ID</th>
+				<th class=" " >Параметр</th>
+				<th class=" " >Описание</th>
+				<th class="at-center " >Значение</th>
+				<th class="at-center " >Функции</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -45,11 +45,11 @@ if(count($param['items'])) {
 		?>
 		
 			<tr>
-				<th scope="row"><?=$v['id'];?></th>
-				<td><?=$v['uid'];?></td>
-				<td><?=$sysopt_data[$v['uid']];?></td>
-				<td><?=$v['value'];?></td>
-				<td class="item-edit-functions" >
+				<th scope="row" class="at-center " ><?=$v['id'];?></th>
+				<td class=" " ><?=$v['uid'];?></td>
+				<td class=" " ><?=$sysopt_data[$v['uid']];?></td>
+				<td class="at-center " ><?=$v['value'];?></td>
+				<td class="at-center item-edit-functions" >
 					<?
 					if($v['editable']) {
 						?>
