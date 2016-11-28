@@ -16,6 +16,7 @@ if(count($_POST['item'])) {
 	if(count($type['param']['field'])) {
 		foreach($type['param']['field'] as $k => $v) {
 			//if($v['wysiwyg'] == '') {}
+			//unset($item['param']['field'][$k]['type']);
 			$item['param']['field'][$k]['editor'] = $this->Azbn7->c_s($_POST['param']['field'][$k]['editor']);
 		}
 	}
@@ -28,12 +29,14 @@ if(count($_POST['item'])) {
 			if($uid != '' && $uid != '0') {
 				
 				$item['param']['field'][$uid] = array(
-					'title' => $_type['title'],
-					'type' => $_type['type'],
-					'editor' => $_type['editor'],
+					'title' => $this->Azbn7->c_s($_type['title']),
+					//'type' => $this->Azbn7->c_s($_type['type']),
+					'editor' => $this->Azbn7->c_s($_type['editor']),
 				);
 				
-				$this->Azbn7->mdl('DB')->q("ALTER TABLE `" . $this->Azbn7->mdl('Entity')->getTable($type['uid']) . "` ADD COLUMN `" . $uid . "` " . $_type['type']);
+				$this->Azbn7->mdl('DB')->q("ALTER TABLE `" . $this->Azbn7->mdl('Entity')->getTable($type['uid']) . "` ADD `" . $uid . "` " . $_type['type']);
+				
+				//die("ALTER TABLE `" . $this->Azbn7->mdl('Entity')->getTable($type['uid']) . "` ADD COLUMN `" . $uid . "` " . $_type['type']);
 				
 			}
 			

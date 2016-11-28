@@ -149,7 +149,7 @@ class Storage_MySQL
 		
 		$_arr_ = array();
 		foreach($item as $_index => $_value){
-			$_arr_[] = "`$_index`='$_value'";
+			$_arr_[] = "`$_index` = '$_value'";
 		}
 		$insert_string = implode(',', $_arr_);
 		

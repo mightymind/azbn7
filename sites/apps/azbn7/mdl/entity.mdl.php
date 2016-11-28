@@ -21,7 +21,7 @@ class Entity
 			if(count($e['field'])) {
 				foreach($e['field'] as $k => $v) {
 					$field_struct_arr[$k] = array(
-						'type' => $this->Azbn7->c_s($v['type']),
+						//'type' => $this->Azbn7->c_s($v['type']),
 						'editor' => $this->Azbn7->c_s($v['editor']),
 						'title' => $this->Azbn7->c_s($v['title']),
 					);
