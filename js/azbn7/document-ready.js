@@ -102,7 +102,7 @@
 								list = list.replace('-0', '-' + nid);
 								input.attr('list', list);
 								
-								var dl = input.next('datalist#input-list-0');
+								var dl = input.next('datalist');
 								var dl_id = dl.attr('id') || '';
 								
 								if(dl_id != '') {

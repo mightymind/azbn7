@@ -14,10 +14,15 @@ if(count($_POST['item'])) {
 			
 			$uid = $this->Azbn7->c_s($type['uid']);
 			
-			$item['field'][$uid] = array(
-				'type' => $type['type'],
-				'editor' => $type['editor'],
-			);
+			if($uid != '' && $uid != '0') {
+				
+				$item['field'][$uid] = array(
+					'title' => $type['title'],
+					'type' => $type['type'],
+					'editor' => $type['editor'],
+				);
+				
+			}
 			
 		}
 	}

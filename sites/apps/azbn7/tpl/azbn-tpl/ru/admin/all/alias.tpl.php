@@ -22,13 +22,13 @@ if(count($param['items'])) {
 	<table class="table table-bordered table-striped table-hover ">
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th>Порядок</th>
-				<th>Статус подключения</th>
-				<th>Виртуальный адрес</th>
-				<th>Реальный адрес</th>
-				<th>Название</th>
-				<th>Функции</th>
+				<th class="at-center" >ID</th>
+				<th class="at-center" >Порядок</th>
+				<th class="at-center" >Статус подключения</th>
+				<th class="at-center" >Виртуальный адрес</th>
+				<th class="at-center" >Реальный адрес</th>
+				<th class="at-center" >Название</th>
+				<th class="at-center" >Функции</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,13 +39,13 @@ if(count($param['items'])) {
 		?>
 		
 			<tr>
-				<th scope="row"><?=$v['id'];?></th>
-				<td><?=$v['pos'];?></td>
-				<td><?=($v['visible'] == 0 ? 'нет' : 'да');?></td>
-				<td><?=$v['find'];?></td>
-				<td><?=$v['set'];?></td>
-				<td><?=$v['title'];?></td>
-				<td class="item-edit-functions" >
+				<th class="at-center" scope="row"><?=$v['id'];?></th>
+				<td class="at-center" ><?=$v['pos'];?></td>
+				<td class="at-center" ><?=($v['visible'] == 0 ? 'нет' : 'да');?></td>
+				<td class="at-center" ><?=$v['find'];?></td>
+				<td class="at-center" ><?=$v['set'];?></td>
+				<td class="at-center" ><?=$v['title'];?></td>
+				<td class="at-center item-edit-functions" >
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/alias/' . $v['id'] . '/');?>" ><i class="fa fa-pencil-square-o" aria-hidden="true" title="Редактировать" ></i></a>
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/delete/alias/' . $v['id'] . '/');?>" class="delete-confirm " ><i class="fa fa-times" aria-hidden="true" title="Удалить" ></i></a>
 				</td>

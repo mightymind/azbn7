@@ -6,49 +6,52 @@
 //echo $tpl_uid;
 ?>
 
-<h2 class="mt-2 mb-1" >Создание типа данных</h2>
+<h2 class="mt-2 mb-1" >Редактирование типа данных</h2>
 
-<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/create/entity_type/');?>" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/entity_type/');?>" method="POST" >
+	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/hidden', array(
+		//'title' => 'Идентификатор параметра',
+		'html' => ' id="" ',
+		'name' => 'item[id]',
+		'value' => $param['item']['id'],
+		//'path' => 'entity',
+	));
+	?>
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
 		'title' => 'Название (пояснение)',
 		'html' => ' id="" ',
 		'name' => 'item[title]',
-		'value' => '',
+		'value' => $param['item']['title'],
 		//'path' => 'entity',
 	));
 	?>
 	
 	<?
-	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
-		'title' => 'Уникальный ID',
-		'html' => ' id="" ',
-		'name' => 'item[uid]',
-		'value' => $this->Azbn7->randstr(16),
-		//'path' => 'entity',
-	));
-	?>
-	
-	<?
-	$entity_type = $this->Azbn7->mdl('DB')->read('entity_type');
-	$entity_type_h = $this->Azbn7->mdl('Site')->buildHierarchy($entity_type);
-
-	$this->Azbn7->mdl('Viewer')->tpl('_/hierarchy/select', array(
-		'title' => 'Родительский тип',
-		'html' => ' id="" ',
-		'name' => 'item[parent]',
-		'value' => $this->Azbn7->randstr(16),
-		'hierarchy' => $entity_type_h,
-		'start_index' => 0,
-	));
+	//var_dump($param['type']);
+	if(count($param['item']['param']['field'])) {
+		foreach($param['item']['param']['field'] as $k => $v) {
+			
+			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+				'title' => 'Редактор поля ' . $k,
+				'html' => ' id="" ',
+				'name' => 'param[field][' . $k . '][editor]',
+				'value' => $v['editor'],
+				//'path' => 'entity',
+			));
+			
+		}
+	}
 	?>
 	
 	<div class="field-list" >
 		
 		<hr />
 		
-		<label>Поля данных для записей</label>
+		<label>Добавить поля</label>
 		
 		<div class="row field-item mb-2" >
 			
@@ -104,7 +107,7 @@
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/submit', array(
-		'title' => 'Создать',
+		'title' => 'Обновить',
 		'html' => '',
 		//'name' => 'item[value]',
 		//'value' => '',

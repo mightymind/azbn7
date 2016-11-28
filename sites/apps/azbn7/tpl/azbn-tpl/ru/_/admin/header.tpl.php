@@ -158,6 +158,7 @@ $(function(){
 				</div>
 			</li>
 			
+			<!--
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ресурсы</a>
 				<div class="dropdown-menu">
@@ -167,16 +168,6 @@ $(function(){
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="http://azbn.ru/" >Сайт разработчика</a>
 					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/cms/info/');?>" >Информация о CMS</a>
-				</div>
-			</li>
-			
-			
-			<!--
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Типы данных</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity_type/');?>" >Все</a>
-					<a class="dropdown-item" href="#_" data-toggle="modal" data-target="#modal-entity_type-add" >Добавить</a>
 				</div>
 			</li>
 			-->
