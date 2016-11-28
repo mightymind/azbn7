@@ -22,6 +22,19 @@
 		<div class="col-sm-6" >
 			
 			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
+				'title' => 'Адрес URL на сайте (без начального и конечного /)',
+				'html' => ' id="" ',
+				'name' => 'entity[url]',
+				'value' => $param['entity']['url'],
+				//'path' => 'entity',
+			));
+			?>
+			
+		</div>
+		<div class="col-sm-6" >
+			
+			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/visible', array(
 				'title' => 'Отображать на сайте',
 				'html' => ' id="" ',
@@ -32,31 +45,6 @@
 			?>
 			
 			<hr />
-			
-			<?
-			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(
-				'title' => 'Адрес URL на сайте (без начального и конечного /)',
-				'html' => ' id="" ',
-				'name' => 'entity[url]',
-				'value' => $param['entity']['url'],
-				//'path' => 'entity',
-			));
-			?>
-		</div>
-		<div class="col-sm-6" >
-			<?
-			/*
-			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/entity-select', array(
-				'title' => 'Родительская запись',
-				'html' => ' id="" ',
-				'name' => 'entity[parent]',
-				'value' => $param['entity']['parent'],
-				'type' => '0',
-				//'single' => 1,
-				//'path' => 'entity',
-			));
-			*/
-			?>
 			
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/entity-autocomplete', array(
@@ -83,7 +71,7 @@
 	));
 	?>
 	
-	
+	<hr />
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/admin/editor/input', array(

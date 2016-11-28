@@ -7,7 +7,7 @@
 
 ?>
 
-<div class="form-group entity-autocomplete" <?=$param['html'];?> data-single="<?=$param['single'];?>" data-type="<?=$this->Azbn7->as_int($param['type']);?>" >
+<div class="form-group entity-autocomplete alert alert-warning " <?=$param['html'];?> data-single="<?=$param['single'];?>" data-type="<?=$this->Azbn7->as_int($param['type']);?>" >
 	
 	<label><?=$param['title'];?></label>
 	

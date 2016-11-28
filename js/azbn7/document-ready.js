@@ -239,6 +239,7 @@
 			})();
 			
 			
+			/*
 			(function(){
 				
 				var block = $('.' + a7admin_class + ' .azbn7-select-entity');
@@ -304,15 +305,6 @@
 					});
 					
 					block.on('azbn7.init', function(event, params){
-						
-						/*
-						params = {
-							single : 0,
-							selected :[],
-							callback : {
-								ok : function(result){},
-							}
-						*/
 						
 						type = params.type;
 						
@@ -468,8 +460,10 @@
 				}
 				
 			})();
+			*/
 			
 			
+			/*
 			(function(){
 				
 				var block = $(container_class + ' .entity-select-block');
@@ -632,7 +626,7 @@
 				}
 				
 			})();
-			
+			*/
 			
 			
 			(function(){
