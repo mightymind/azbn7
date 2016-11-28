@@ -41,7 +41,7 @@ if(isset($param['entity']['id'])) {
 			
 			$entity_search = $this->Azbn7->mdl('DB')->one('entity_search', "entity = '{$param['entity']['id']}'");
 			
-			if(isset($entity_search['id'])) {
+			if($entity_search['id']) {
 				
 				$this->Azbn7->mdl('DB')->update('entity_search', array(
 					'updated_at' => $this->Azbn7->created_at,

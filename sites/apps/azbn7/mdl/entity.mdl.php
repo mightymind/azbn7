@@ -285,11 +285,15 @@ class Entity
 			
 			$this->Azbn7->mdl('DB')->update('entity', $e['entity'], "id = '$id'");
 			
+			$e['entity']['id'] = $entity['id'];
+			
 			$type = $this->Azbn7->mdl('DB')->one('entity_type', "id = '{$entity['type']}'");
 			
 			if($type['id']) {
 				
 				$this->Azbn7->mdl('DB')->update($this->getTable($type['uid']), $e['item'], "entity = '$id'");
+				
+				$this->Azbn7->run('app', 'search/entity/reindex', $e);
 				
 			}
 			
