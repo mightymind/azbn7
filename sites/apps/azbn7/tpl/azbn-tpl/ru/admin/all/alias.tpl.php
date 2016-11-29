@@ -59,4 +59,6 @@ if(count($param['items'])) {
 	</table>
 	<?
 }
+
+$this->Azbn7->mdl('Viewer')->tpl('_/admin/pagination', $param);
 ?>

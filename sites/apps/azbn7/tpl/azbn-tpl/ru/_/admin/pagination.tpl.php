@@ -49,4 +49,10 @@ if(count($param['items'])) {
 	
 	<?
 	}
+} else {
+?>
+	<div class="alert alert-danger text-xs-center " role="alert">
+		<strong>Извините</strong>, записи, удовлетворяющие данным условиям, не найдены!
+	</div>
+<?
 }

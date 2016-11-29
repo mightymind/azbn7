@@ -13,6 +13,7 @@
 $app_uid = 'azbn7';
 
 $CONFIG = array(
+	//'domain'			=> 'azbn7.localhost'
 	'debug' 			=> 1,
 	'app_uid'				=> $app_uid,
 	'charset'			=> 'UTF-8',
@@ -66,6 +67,7 @@ $CONFIG = array(
 								
 								'entity' => $app_uid . '_entity',
 								'entity_type' => $app_uid . '_entity_type',
+								'entity_seo' => $app_uid . '_entity_seo',
 								'entity_bound' => $app_uid . '_entity_bound',
 								'entity_data' => $app_uid . '_entity_data',
 								'entity_search' => $app_uid . '_entity_search',

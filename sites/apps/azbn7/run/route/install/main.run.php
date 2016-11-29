@@ -67,6 +67,17 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_seo'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`entity` BIGINT DEFAULT '0',
+				`title` VARCHAR(256) DEFAULT '',
+				`description` VARCHAR(256) DEFAULT '',
+				`keywords` VARCHAR(256) DEFAULT '',
+				`param` MEDIUMBLOB DEFAULT '',
+				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['log'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`created_at` BIGINT DEFAULT '0',
@@ -147,11 +158,15 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.updated_at', 'title' => 'Дата и время последнего обновления'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.install_version', 'title' => 'Версия движка Azbn7 при установке'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.default.theme', 'title' => 'Тема сайта по умолчанию'));
+	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.sitemap.types', 'title' => 'Типы сущностей, доступных в sitemap.xml'));
+	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.robots.content', 'title' => 'Содержимое файла robots.txt'));
 	
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.updated_at', 'value' => $this->Azbn7->created_at));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.install_version', 'value' => $this->Azbn7->version['number']));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.default.theme', 'value' => $this->Azbn7->config['theme']));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.sitemap.types', 'value' => '1,2'));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.robots.content', 'value' => "User-agent: *\nDisallow: /\n"));
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_sysopt', array(
@@ -359,6 +374,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	
 	$this->Azbn7->mdl('DB')->create('alias', array('pos' => 0, 'find' => 'установлено', 'set' => 'install/installed', 'title' => 'Страница информации после установки'));
+	$this->Azbn7->mdl('DB')->create('alias', array('pos' => 0, 'find' => 'sitemap.xml', 'set' => '_/sitemap', 'title' => 'Файл sitemap.xml для поисковиков'));
+	$this->Azbn7->mdl('DB')->create('alias', array('pos' => 0, 'find' => 'robots.txt', 'set' => '_/robots', 'title' => 'Файл robots.txt для поисковиков'));
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_aliases', array(

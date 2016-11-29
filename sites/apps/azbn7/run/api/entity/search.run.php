@@ -13,9 +13,9 @@ if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
 	// $this->Azbn7->mdl('DB')->t
 	
 	if($this->Azbn7->mdl('Site')->is('user')) {
-		$visible_str = "'0','1'";
+		$visible_str = "(`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible = '1' OR `" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible = '0')";
 	} else {
-		$visible_str = "'1'";
+		$visible_str = "`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible = '1'";
 	}
 	
 	$type_str = '';
@@ -42,7 +42,7 @@ if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
 		WHERE
 			`" . $this->Azbn7->mdl('DB')->t['entity_search'] . "`.entity = `" . $this->Azbn7->mdl('DB')->t['entity'] . "`.id
 			AND
-			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible IN ($visible_str)
+			$visible_str
 			AND
 			$type_str
 			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.type = `" . $this->Azbn7->mdl('DB')->t['entity_type'] . "`.id
