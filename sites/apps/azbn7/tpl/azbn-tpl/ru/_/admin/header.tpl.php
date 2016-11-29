@@ -13,6 +13,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+<meta name="format-detection" content="telephone=no">
+
 <!--
 <meta name="document-state" content="Dynamic" />
 <meta name="resource-type" content="document" />
@@ -136,6 +138,8 @@ $(function(){
 						}
 					}
 					?>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#multiple-upload" data-toggle="modal" data-target=".azbn7-multiple-upload" >Массовая загрузка файлов</a>
 				</div>
 			</li>
 			

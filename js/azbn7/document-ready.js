@@ -972,11 +972,209 @@
 				
 			})();
 			
+			
+			
+			
 			(function(){
 				
-				// imperavi redactor
+				var form = $(container_class + ' form[method="POST"]');
 				
-				//$('.imperavi-redactor').redactor();
+				form.on('azbn7.single-upload', null, {}, function(event, upload){
+					
+					(function(){
+						
+						form.find('[data-need-upload-param]').each(function(index){
+							
+							var input = $(this);
+							var need_param = input.attr('data-need-upload-param');
+							
+							if(!input.val() || input.val() == '') {
+								input.val(upload[need_param]);
+							}
+							
+						});
+						
+					})();
+					
+				});
+				
+			})();
+			
+			
+			(function(){
+				
+				var block = $(container_class + ' .single-upload-block');
+				var input = block.find('.upload-input');
+				var btn = block.find('.upload-btn');
+				var img = block.find('.upload-img');
+				
+				btn.on('click', function(event){
+					event.preventDefault();
+					
+					$(document.body).Azbn7_AjaxUploader('upload', {
+						name : 'uploading_file',
+						action : '/admin/upload/file/',
+						callback : function(file, response, uploaded) {
+							
+							var json = JSON.parse(response);
+							console.log(json);
+							
+							input.val(json.url);
+							
+							block.closest('form').trigger('azbn7.single-upload', [json]);
+							
+							if(img) {
+								img.attr('src', json.url);
+							}
+							
+						},
+					});
+					
+				})
+				
+			})();
+			
+			(function(){
+				
+				var block = $('.' + a7admin_class + ' .azbn7-multiple-upload');
+				
+				var btn = block.find('.upload-on-click-btn');
+				var area = block.find('.upload-on-drag-area');
+				
+				if(btn.length && area.length) {
+					
+					btn.on('click.azbn7', function(event){
+						event.preventDefault();
+						
+						$(document.body).Azbn7_AjaxUploader('upload', {
+							name : 'uploading_file',
+							action : '/admin/upload/file/',
+							callback : function(file, response, uploaded) {
+								
+								var json = JSON.parse(response);
+								console.log(json);
+								
+								var type = 0;
+								
+								switch(json.mime_type) {
+									
+									// картинки
+									case 'image/tiff' :
+									case 'image/svg+xml' :
+									case 'image/gif' :
+									case 'image/jpeg' :
+									case 'image/png' : {
+										type = 4;
+									}
+									break;
+									
+									// аудио
+									case 'audio/mpeg' : {
+										type = 5;
+									}
+									break;
+									
+									// видео
+									case 'video/mp4' :
+									case 'video/webm' :
+									case 'video/quicktime' : {
+										type = 6;
+									}
+									break;
+									
+									default : {
+										type = 7;
+									}
+									break;
+									
+								}
+								
+								Azbn7.api({
+									method : 'entity/create_upload',
+									type : type,
+									title : json.title,
+									path : json.url,
+								}, function(resp){
+									
+									if(resp && resp.response && resp.response.entity) {
+										
+										area.append('<p>Файл <a href="' + resp.response.entity.item.path + '" target="_blank" >' + resp.response.entity.item.title + '</a> загружен</p>');
+										
+									}
+									
+								});
+								
+							},
+						});
+						
+					});
+					
+				}
+				
+				if(area.length) {
+					
+					area.Azbn7_AjaxUploader('dropping', {
+						name : 'uploading_file',
+						action : '/admin/upload/file/',
+						callback : function(file, response, uploaded) {
+							
+							var json = JSON.parse(response);
+							console.log(json);
+							
+							var type = 0;
+							
+							switch(json.mime_type) {
+								
+								// картинки
+								case 'image/tiff' :
+								case 'image/svg+xml' :
+								case 'image/gif' :
+								case 'image/jpeg' :
+								case 'image/png' : {
+									type = 4;
+								}
+								break;
+								
+								// аудио
+								case 'audio/mpeg' : {
+									type = 5;
+								}
+								break;
+								
+								// видео
+								case 'video/mp4' :
+								case 'video/webm' :
+								case 'video/quicktime' : {
+									type = 6;
+								}
+								break;
+								
+								default : {
+									type = 7;
+								}
+								break;
+								
+							}
+							
+							Azbn7.api({
+								method : 'entity/create_upload',
+								type : type,
+								title : json.title,
+								path : json.url,
+							}, function(resp){
+								
+								if(resp && resp.response && resp.response.entity) {
+									
+									area.append('<p>Файл <a href="' + resp.response.entity.item.path + '" target="_blank" >' + resp.response.entity.item.title + '</a> загружен</p>');
+									
+								}
+								
+							});
+							
+						},
+					});
+					
+				}
 				
 			})();
 			

@@ -81,7 +81,7 @@ class Entity
 					))
 				;
 				
-				return $e['id'];
+				return intval($e['id']);
 				
 			} else {
 				
@@ -134,7 +134,7 @@ class Entity
 					))
 				;
 				
-				return $e['entity']['id'];
+				return intval($e['entity']['id']);
 				
 			} else {
 				
@@ -161,13 +161,13 @@ class Entity
 		
 		if($bound['id']) {
 			
-			$res = $bound['id'];
+			$res = intval($bound['id']);
 			
 		} else {
 			
 			$b['id'] = $this->Azbn7->mdl('DB')->create('entity_bound', $b);
 			
-			$res = $b['id'];
+			$res = intval($b['id']);
 			
 			$this->Azbn7->event(array(
 				'action' => $this->event_prefix . '.create.entity_bound.after',

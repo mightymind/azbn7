@@ -2,8 +2,23 @@
 // виджет
 ?>
 
-<div <?=$param['html'];?> >
+<div class="form-group single-upload-block " <?=$param['html'];?> >
 	<label><?=$param['title'];?></label>
-	<input type="text" name="<?=$param['name'];?>" value="<?=$param['value'];?>" />
-	<a class="btn btn-primary" href="#" >+</a>
+	<div class="input-group " >
+		<input type="text" class="form-control upload-input" name="<?=$param['name'];?>" value="<?=$param['value'];?>" />
+		<span class="input-group-btn">
+			<button class="btn btn-primary upload-btn" type="button" ><i class="fa fa-upload" aria-hidden="true"></i></button>
+		</span>
+	</div>
+	
+	<?
+	if($param['value'] != '') {
+	?>
+	<div class="mt-1 jumbotron" >
+		<img class="img-fluid mx-auto d-block upload-img" src="<?=$param['value'];?>" />
+	</div>
+	<?
+	}
+	?>
+	
 </div>

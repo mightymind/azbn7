@@ -244,7 +244,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
-				'editor' => 'upload',
+				'editor' => 'uploadimg',
 				'title' => 'Путь до файла',
 			),
 		),

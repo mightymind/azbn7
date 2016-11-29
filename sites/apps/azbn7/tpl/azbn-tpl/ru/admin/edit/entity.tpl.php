@@ -79,6 +79,7 @@
 		'html' => ' id="" ',
 		'name' => 'item[title]',
 		'value' => $param['item']['title'],
+		'input_html' => ' data-need-upload-param="title" ',
 		//'path' => 'entity',
 	));
 	?>

@@ -9,6 +9,37 @@
 </div><!-- /container-fluid azbn7-container -->
 
 
+<div class="modal fade azbn7-multiple-upload" tabindex="-1" role="document" aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Выберите файлы для загрузки</h4>
+			</div>
+			<div class="modal-body">
+				
+				<div class="row" >
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+						
+						<p><a class="upload-on-click-btn" href="#upload-on-click" >Выберите</a> файлы для загрузки или перетащите их на поле загрузки ниже</p>
+						
+						<div class="jumbotron upload-on-drag-area" ></div>
+						
+					</div>
+					
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" >Закрыть</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <div class="modal fade azbn7-select-entity" tabindex="-1" role="document" aria-labelledby="myModalLabel" aria-hidden="true" >
 	<div class="modal-dialog modal-lg" role="document">
