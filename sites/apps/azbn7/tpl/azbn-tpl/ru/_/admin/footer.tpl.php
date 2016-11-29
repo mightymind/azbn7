@@ -25,6 +25,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
 						
 						<p><a class="upload-on-click-btn" href="#upload-on-click" >Выберите</a> файлы для загрузки или перетащите их на поле загрузки ниже</p>
+						<p>Загруженные файлы будут проанализированы и добавлены в соответствующие разделы.</p>
 						
 						<div class="jumbotron upload-on-drag-area" ></div>
 						
