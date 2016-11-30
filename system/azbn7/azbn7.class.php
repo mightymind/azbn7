@@ -159,10 +159,15 @@ public $event_prefix = 'system.azbn7';
 		}
 	}
 	
-	public function ch($value = '', $changes = array("'" => '&#039;'))
+	public function as_html($value = '')
 	{
 		//return strtr(stripcslashes($string), $changes);
 		return filter_var($value, FILTER_UNSAFE_RAW, FILTER_FLAG_NO_ENCODE_QUOTES);
+	}
+	
+	public function as_url($value = '')
+	{
+		return filter_var($value, FILTER_SANITIZE_URL);
 	}
 	
 	public function c_s($value = '')

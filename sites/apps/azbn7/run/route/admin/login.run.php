@@ -10,7 +10,7 @@ if(count($_POST)) {
 		
 		sleep(5);
 		
-		$this->Azbn7->go2('/error/401/');
+		$this->Azbn7->go2('/error/403/');
 		
 	}
 	

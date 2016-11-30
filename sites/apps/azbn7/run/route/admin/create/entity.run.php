@@ -12,10 +12,10 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 		'type' => $type['uid'],
 		'entity' => array(
 			'visible' => $this->Azbn7->as_num($_POST['entity']['visible']),
-			'parent' => $this->Azbn7->c_s($_POST['entity']['parent']),
-			'pos' => $this->Azbn7->c_s($_POST['entity']['pos']),
+			'parent' => $this->Azbn7->as_num($_POST['entity']['parent']),
+			'pos' => $this->Azbn7->as_num($_POST['entity']['pos']),
 			//'uid' => $this->Azbn7->randstr(32),
-			'url' => $this->Azbn7->c_s($_POST['entity']['url']),
+			'url' => $this->Azbn7->as_url($_POST['entity']['url']),
 			'param' => $this->Azbn7->arr2json(array()),
 		),
 		'item' => array(
@@ -27,7 +27,7 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 	if(count($type['param']['field'])) {
 		foreach($type['param']['field'] as $k => $v) {
 			//if($v['wysiwyg'] == '') {}
-			$item['item'][$k] = $this->Azbn7->ch($_POST['item'][$k]);
+			$item['item'][$k] = $this->Azbn7->as_html($_POST['item'][$k]);
 		}
 	}
 	

@@ -6,7 +6,7 @@ if(count($_POST['item'])) {
 	
 	$item = array(
 		'login' => $this->Azbn7->c_s($_POST['item']['login']),
-		'email' => $this->Azbn7->c_s($_POST['item']['email']),
+		'email' => $this->Azbn7->c_email($_POST['item']['email']),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => $this->Azbn7->c_s($_POST['item']['param']['theme']),
 			'theme_admin' => $this->Azbn7->c_s($_POST['item']['param']['theme_admin']),
