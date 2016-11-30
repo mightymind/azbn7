@@ -3,7 +3,7 @@
 $this->Azbn7->mdl('Req')
 	->addHeaders(array(
 		'Access-Control-Allow-Origin: *',
-		'Content-type: text/plain; charset=' . $this->Azbn7->config['charset'],
+		'Content-type: application/xml; charset=' . $this->Azbn7->config['charset'],
 	));
 
 if(!isset($this->Azbn7->mdl('Req')->data['headers_sended'])) {
