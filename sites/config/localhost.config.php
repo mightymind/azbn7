@@ -8,6 +8,7 @@
 @set_time_limit(0); // отключение лимита на время работы скрипта
 @ini_set('register_globals', false); // отключение register_globals
 @ini_set('memory_limit', '32M'); // определение лимита для выделения памяти
+@ini_set('default_charset', 'UTF-8');
 @date_default_timezone_set('Europe/Minsk');
 
 $app_uid = 'azbn7';
