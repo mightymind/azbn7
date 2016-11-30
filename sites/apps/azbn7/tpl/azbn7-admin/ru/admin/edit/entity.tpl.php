@@ -2,7 +2,14 @@
 // Административный шаблон
 ?>
 
-<h2 class="mt-2 mb-1" ><?=$param['type']['title'];?>. Редактирование записи</h2>
+<h2 class="mt-2 mb-1" >
+	<?=$param['type']['title'];?>. Редактирование записи
+	
+	<div class="float-xs-right item-base-functions" >
+		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity_seo/' . $v['id'] . '/');?>" title="SEO-настройки и продвижение" ><i class="fa fa-google" aria-hidden="true"></i></a>
+	</div>
+	
+</h2>
 
 <hr />
 
