@@ -9,6 +9,7 @@ if(count($_POST['item'])) {
 		'email' => $this->Azbn7->c_s($_POST['item']['email']),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => $this->Azbn7->c_s($_POST['item']['param']['theme']),
+			'theme_admin' => $this->Azbn7->c_s($_POST['item']['param']['theme_admin']),
 			'lang' => $this->Azbn7->c_s($_POST['item']['param']['lang']),
 			'wysiwyg' => $this->Azbn7->c_s($_POST['item']['param']['wysiwyg']),
 		)),

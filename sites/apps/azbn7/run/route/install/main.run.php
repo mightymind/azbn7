@@ -160,6 +160,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.default.theme', 'title' => 'Тема сайта по умолчанию'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.sitemap.types', 'title' => 'Типы сущностей, доступных в sitemap.xml'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.robots.content', 'title' => 'Содержимое файла robots.txt'));
+	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.counters.content', 'title' => 'Код счетчиков'));
 	
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.updated_at', 'value' => $this->Azbn7->created_at));
@@ -167,6 +168,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.default.theme', 'value' => $this->Azbn7->config['theme']));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.sitemap.types', 'value' => '1,2'));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.robots.content', 'value' => "User-agent: *\nDisallow: /\n"));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.counters.content', 'value' => '<!-- код счетчиков -->'));
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_sysopt', array(
@@ -452,6 +454,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
+			'theme_admin' => 'azbn7-admin/ru',
 			'lang' => 'ru',
 			'wysiwyg' => 'textarea',
 		)),
@@ -463,6 +466,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
+			'theme_admin' => 'azbn7-admin/ru',
 			'lang' => 'ru',
 			'wysiwyg' => 'tinymce',
 		)),

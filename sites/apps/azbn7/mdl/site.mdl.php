@@ -94,6 +94,10 @@ class Site
 		if(isset($theme) && $theme != '') {
 			
 			$this->Azbn7->config['theme'] = $theme;
+		
+		} elseif($this->Azbn7->mdl('Viewer')->is_admin_tpl) {
+			
+			$this->Azbn7->config['theme'] = $_SESSION['user']['param']['theme_admin'];
 			
 		} elseif($this->Azbn7->mdl('Site')->is('user')) {
 			
@@ -121,21 +125,22 @@ class Site
 	
 	public function render($tpl = 'default', $p)
 	{
-		
+		/*
 		if($this->Azbn7->mdl('Viewer')->is_admin_tpl) {
 			$admin_str = '/admin';
 		} else {
 			$admin_str = '';
 		}
+		*/
 		
 		$this->Azbn7->mdl('Viewer')
-			->tpl('_' . $admin_str . '/header', $p);
+			->tpl('_' . '/header', $p);
 		
 		$this->Azbn7->mdl('Viewer')
 			->tpl($tpl, $p);
 		
 		$this->Azbn7->mdl('Viewer')
-			->tpl('_' . $admin_str . '/footer', $p);
+			->tpl('_' . '/footer', $p);
 	}
 	
 	public function buildHierarchy(&$arr = array())
