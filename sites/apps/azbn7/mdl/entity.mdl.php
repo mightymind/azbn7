@@ -29,7 +29,7 @@ class Entity
 			}
 			
 			$e['id'] = $this->Azbn7->mdl('DB')->create('entity_type', array(
-				'parent' => $this->Azbn7->as_int($e['parent']),
+				'parent' => $this->Azbn7->as_num($e['parent']),
 				'uid' => $e['uid'],
 				'title' => $e['title'],
 				'param' => $this->Azbn7->arr2json(array(

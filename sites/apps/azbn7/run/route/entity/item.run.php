@@ -9,12 +9,40 @@ $entity2 = $this->Azbn7->mdl('Entity')->item($entity['entity']['id']);
 var_dump($entity2);
 */
 
-if($param['entity']['type']['id'] == 1) {
+switch(intval($param['entity']['type']['id'])) {
 	
-	$this->Azbn7->mdl('Site')
-		->render('entity/by_type/page', $param)
-	;
+	case 1 : {
+		
+		$this->Azbn7->mdl('Site')
+			->render('entity/by_type/page', $param)
+		;
+		
+	}
+	break;
 	
-} else {
-	echo 'Это не страница!';
+	case 2 : {
+		
+		$this->Azbn7->mdl('Site')
+			->render('entity/by_type/category', $param)
+		;
+		
+	}
+	break;
+	
+	case 3 :
+	case 4 :
+	case 5 :
+	case 6 :
+	case 7 : {
+		
+		$this->Azbn7->go2($param['entity']['item']['path']);
+		
+	}
+	break;
+	
+	default : {
+		echo 'Это не страница!';
+	}
+	break;
+	
 }

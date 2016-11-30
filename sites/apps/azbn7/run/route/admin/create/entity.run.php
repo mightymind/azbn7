@@ -2,7 +2,7 @@
 
 if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 	
-	$type_id = $this->Azbn7->as_int($_POST['type']['id']);
+	$type_id = $this->Azbn7->as_num($_POST['type']['id']);
 	
 	$type = $this->Azbn7->mdl('DB')->one('entity_type', "id = '{$type_id}'");
 	
@@ -11,7 +11,7 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 	$item = array(
 		'type' => $type['uid'],
 		'entity' => array(
-			'visible' => $this->Azbn7->as_int($_POST['entity']['visible']),
+			'visible' => $this->Azbn7->as_num($_POST['entity']['visible']),
 			'parent' => $this->Azbn7->c_s($_POST['entity']['parent']),
 			'pos' => $this->Azbn7->c_s($_POST['entity']['pos']),
 			//'uid' => $this->Azbn7->randstr(32),

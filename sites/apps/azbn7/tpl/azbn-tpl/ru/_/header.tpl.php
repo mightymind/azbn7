@@ -4,12 +4,14 @@
 <html class="no-js" >
 <head>
 
-<title><?=$param['entity']['item']['title'];?></title>
+<?
+$this->Azbn7->mdl('Site')->showSEOHeader($param['entity']);
+?>
 
-<meta name="referrer" content="never">
+<meta name="referrer" content="no-referrer" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 <!--
 <meta name="document-state" content="Dynamic" />
@@ -32,8 +34,6 @@
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr-custom.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
-
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>
 
 </head>
 <body class="fecss full-height is-mainpage touchswipe theme-b0w overflow-hidden <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >

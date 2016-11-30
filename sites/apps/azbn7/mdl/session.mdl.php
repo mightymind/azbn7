@@ -7,7 +7,7 @@ class Session
 	/*
 	public function is($type = 'user')
 	{
-		return $this->Azbn7->as_int(isset($_SESSION[$type]['id']) ? $_SESSION[$type]['id'] : 0);
+		return $this->Azbn7->as_num(isset($_SESSION[$type]['id']) ? $_SESSION[$type]['id'] : 0);
 	}
 	*/
 	

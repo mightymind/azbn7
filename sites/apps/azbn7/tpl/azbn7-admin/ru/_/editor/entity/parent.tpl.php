@@ -3,11 +3,11 @@
 
 //$entity = $this->Azbn7->mdl('Entity')->item($param['value']);
 
-//$this->Azbn7->as_int($param['single']);
+//$this->Azbn7->as_num($param['single']);
 
 ?>
 
-<div class="form-group entity-select-block" <?=$param['html'];?> data-single="1" data-type="<?=$this->Azbn7->as_int($param['type']);?>" >
+<div class="form-group entity-select-block" <?=$param['html'];?> data-single="1" data-type="<?=$this->Azbn7->as_num($param['type']);?>" >
 	
 	<label><?=$param['title'];?> <a href="#edit" class="btn btn-warning btn-sm float-xs-right entity-select-edit-btn" >Изменить</a></label>
 	

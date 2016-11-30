@@ -3,10 +3,11 @@ class Site
 {
 	public $event_prefix = 'app.mdl.site';
 	public $cache = array();
+	public $is_mainpage = false;
 	
 	public function is($type = 'user')
 	{
-		return $this->Azbn7->as_int(isset($_SESSION[$type]['id']) ? $_SESSION[$type]['id'] : 0);
+		return $this->Azbn7->as_num(isset($_SESSION[$type]['id']) ? $_SESSION[$type]['id'] : 0);
 	}
 	
 	public function log($uid = 'default', $p = array())
@@ -141,6 +142,26 @@ class Site
 		
 		$this->Azbn7->mdl('Viewer')
 			->tpl('_' . '/footer', $p);
+	}
+	
+	public function showSEOHeader(&$entity)
+	{
+		
+		$seo = $this->Azbn7->mdl('DB')->one('entity_seo', "entity = '{$entity['entity']['id']}'");
+		
+		if($seo['id']) {
+			
+			echo "<title>{$seo['title']}</title>\n";
+			echo "<meta name=\"description\" content=\"{$seo['description']}\" />";
+			echo "<meta name=\"keywords\" content=\"{$seo['keywords']}\" />";
+			
+		} else {
+			
+			echo "<title>{$entity['item']['title']}</title>\n";
+			echo "<meta name=\"description\" content=\"{$entity['item']['preview']}\" />";
+			
+		}
+		
 	}
 	
 	public function buildHierarchy(&$arr = array())

@@ -8,9 +8,9 @@ if(count($_POST)) {
 		
 	} else {
 		
-		sleep(3);
+		sleep(5);
 		
-		$this->Azbn7->go2('/admin/login/');
+		$this->Azbn7->go2('/error/401/');
 		
 	}
 	

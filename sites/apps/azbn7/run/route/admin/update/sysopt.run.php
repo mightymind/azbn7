@@ -2,7 +2,7 @@
 
 if(count($_POST['item'])) {
 	
-	$item_id = $this->Azbn7->as_int($_POST['item']['id']);
+	$item_id = $this->Azbn7->as_num($_POST['item']['id']);
 	
 	$item = array(
 		'json' => $this->Azbn7->c_s($_POST['item']['json']),

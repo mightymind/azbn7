@@ -41,11 +41,11 @@ class AppRouter
 				
 				// найдена запись в БД
 				
-			} elseif($this->checkCatExists($req)) {
+			} /*elseif($this->checkCatExists($req)) {
 				
 				// найдена категория в БД
 				
-			} else {
+			}*/ else {
 				
 				// страница ошибки
 				
@@ -56,6 +56,8 @@ class AppRouter
 		} else {
 			
 			// главная страница
+			
+			$this->Azbn7->mdl('Site')->is_mainpage = true;
 			
 			$this->Azbn7->run('app', 'route/index', $_req);
 			
@@ -76,7 +78,7 @@ class AppRouter
 			'title' => 'Событие роутера: Страница не найдена',
 		));
 		
-		$this->Azbn7->run('app', 'route/404/index', $req);
+		$this->Azbn7->run('app', 'route/error/404', $req);
 		
 	}
 	

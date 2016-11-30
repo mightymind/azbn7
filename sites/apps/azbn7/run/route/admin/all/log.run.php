@@ -1,7 +1,7 @@
 <?
 // получение списка элементов
 
-$page = $this->Azbn7->as_int($this->Azbn7->mdl('Req')->_get('page')) - 1;
+$page = $this->Azbn7->as_num($this->Azbn7->mdl('Req')->_get('page')) - 1;
 
 if($page < 0) {
 	$page = 0;
@@ -14,7 +14,7 @@ if($query) {
 	
 	$count = $this->Azbn7->mdl('DB')->q('SELECT FOUND_ROWS() as count');
 	$count = $count->fetchAll(PDO::FETCH_ASSOC);
-	$count = $this->Azbn7->as_int($count[0]['count']);
+	$count = $this->Azbn7->as_num($count[0]['count']);
 	
 	$items = $query->fetchAll(PDO::FETCH_ASSOC);
 	

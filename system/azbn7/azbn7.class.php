@@ -17,7 +17,7 @@ public $event_prefix = 'system.azbn7';
 	public function __construct($config = array()) // Конструктор класса
 	{
 		$this->config = $config;
-		$this->created_at = $this->as_int(date('U'));
+		$this->created_at = $this->as_num(date('U'));
 		$this->data = array();
 		
 		$version = explode('.', phpversion());
@@ -138,12 +138,19 @@ public $event_prefix = 'system.azbn7';
 	}
 
 	
-	public function as_int($value)
+	public function as_int($value = 0)
 	{
-		return (isset($value)?intval($value):0);
+		return filter_var($value, FILTER_SANITIZE_NUMBER_INT);
 	}
 	
-	public function is_num($value)
+	public function as_num($value = 0)
+	{
+		//return ($this->is_num($value)?($value):float($value));
+		
+		return filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+	}
+	
+	public function is_num($value = 0)
 	{
 		if (preg_match("#^[0-9]+$#",$value)) {
 			return true;
@@ -152,19 +159,29 @@ public $event_prefix = 'system.azbn7';
 		}
 	}
 	
-	public function ch($string, $changes = array("'" => '&#039;'))
+	public function ch($value = '', $changes = array("'" => '&#039;'))
 	{
-		return strtr(stripcslashes($string), $changes);
+		//return strtr(stripcslashes($string), $changes);
+		return filter_var($value, FILTER_UNSAFE_RAW, FILTER_FLAG_NO_ENCODE_QUOTES);
 	}
 	
-	public function c_s($string)
+	public function c_s($value = '')
 	{
-		return htmlspecialchars(trim($string), ENT_QUOTES, $this->config['charset']);
+		//return htmlspecialchars(trim($string), ENT_QUOTES, $this->config['charset']);
+		
+		//FILTER_SANITIZE_NUMBER_INT
+		//FILTER_SANITIZE_NUMBER_FLOAT
+		//FILTER_SANITIZE_EMAIL
+		//FILTER_SANITIZE_SPECIAL_CHARS
+		//FILTER_SANITIZE_FULL_SPECIAL_CHARS
+		
+		return filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 	}
 
-	public function c_email($email)
+	public function c_email($value = '')
 	{
-		return htmlspecialchars((substr(trim(strtolower($email)), 0, 64)), ENT_QUOTES, $this->config['charset']);
+		//return htmlspecialchars((substr(trim(strtolower($email)), 0, 64)), ENT_QUOTES, $this->config['charset']);
+		return substr(filter_var($value, FILTER_SANITIZE_EMAIL), 0, 64);
 	}
 
 	/*

@@ -2,7 +2,7 @@
 
 if(count($_POST['item'])) {
 	
-	$type_id = $this->Azbn7->as_int($_POST['item']['id']);
+	$type_id = $this->Azbn7->as_num($_POST['item']['id']);
 	
 	$type = $this->Azbn7->mdl('DB')->one('entity_type', "id = '{$type_id}'");
 	
