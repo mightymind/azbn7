@@ -152,13 +152,13 @@ class Site
 		if($seo['id']) {
 			
 			echo "<title>{$seo['title']}</title>\n";
-			echo "<meta name=\"description\" content=\"{$seo['description']}\" />";
-			echo "<meta name=\"keywords\" content=\"{$seo['keywords']}\" />";
+			echo "<meta name=\"description\" content=\"{$seo['description']}\" />\n";
+			echo "<meta name=\"keywords\" content=\"{$seo['keywords']}\" />\n";
 			
 		} else {
 			
 			echo "<title>{$entity['item']['title']}</title>\n";
-			echo "<meta name=\"description\" content=\"{$entity['item']['preview']}\" />";
+			echo "<meta name=\"description\" content=\"{$entity['item']['preview']}\" />\n";
 			
 		}
 		
