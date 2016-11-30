@@ -48,7 +48,7 @@
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
-		'title' => 'Pfvtyznm в строке адреса на (реальный адрес)',
+		'title' => 'Заменить в строке адреса на (реальный адрес)',
 		'html' => ' id="" ',
 		'name' => 'item[set]',
 		'value' => '',

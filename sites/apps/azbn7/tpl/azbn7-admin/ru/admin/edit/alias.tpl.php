@@ -2,9 +2,9 @@
 // Административный шаблон
 ?>
 
-<h2 class="mt-2 mb-1" >Настройки администратора</h2>
+<h2 class="mt-2 mb-1" >Редактирование перенаправления</h2>
 
-<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/user/');?>" method="POST" >
+<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/alias/');?>" method="POST" >
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/hidden', array(
@@ -18,20 +18,10 @@
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
-		'title' => 'Логин',
+		'title' => 'Название перенаправления',
 		'html' => ' id="" ',
-		'name' => 'item[login]',
-		'value' => $param['item']['login'],
-		//'path' => 'entity',
-	));
-	?>
-	
-	<?
-	$this->Azbn7->mdl('Viewer')->tpl('_/editor/email', array(
-		'title' => 'Email',
-		'html' => ' id="" ',
-		'name' => 'item[email]',
-		'value' => $param['item']['email'],
+		'name' => 'item[title]',
+		'value' => $param['item']['title'],
 		//'path' => 'entity',
 	));
 	?>
@@ -68,7 +58,7 @@
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
-		'title' => 'Pfvtyznm в строке адреса на (реальный адрес)',
+		'title' => 'Заменить в строке адреса на (реальный адрес)',
 		'html' => ' id="" ',
 		'name' => 'item[set]',
 		'value' => $param['item']['set'],
