@@ -47,6 +47,17 @@
 	?>
 	
 	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
+		'title' => 'Редактировать через',
+		'html' => ' id="" ',
+		'input_html' => ' list="input-list-editors-0" ',
+		'name' => 'item[editor]',
+		'value' => 'input',
+		//'path' => 'entity',
+	));
+	?>
+	
+	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/textarea', array(
 		'title' => 'Значение параметра',
 		'html' => ' id="" ',

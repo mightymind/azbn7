@@ -48,7 +48,7 @@ if(count($param['items'])) {
 				<th scope="row" class="at-center " ><?=$v['id'];?></th>
 				<td class=" " ><?=$v['uid'];?></td>
 				<td class=" " ><?=$sysopt_data[$v['uid']];?></td>
-				<td class="at-center " ><?=$v['value'];?></td>
+				<td class="at-center " ><?=$this->Azbn7->c_s(mb_substr($v['value'], 0, 42, $this->Azbn7->config['charset']));?></td>
 				<td class="at-center item-edit-functions" >
 					<?
 					if($v['editable']) {

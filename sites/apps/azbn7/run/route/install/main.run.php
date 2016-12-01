@@ -17,6 +17,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`json` ENUM('0', '1') DEFAULT '0',
 				`editable` ENUM('0', '1') DEFAULT '0',
 				`uid` VARCHAR(256) NOT NULL UNIQUE,
+				`editor` VARCHAR(256) DEFAULT 'input',
 				`value` MEDIUMBLOB DEFAULT '',
 				INDEX uid_index (uid(64))
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -162,13 +163,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.robots.content', 'title' => 'Содержимое файла robots.txt'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.counters.content', 'title' => 'Код счетчиков'));
 	
-	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
-	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.updated_at', 'value' => $this->Azbn7->created_at));
-	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'uid' => 'azbn7.install_version', 'value' => $this->Azbn7->version['number']));
-	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.default.theme', 'value' => $this->Azbn7->config['theme']));
-	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.sitemap.types', 'value' => '1,2'));
-	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.robots.content', 'value' => "User-agent: *\nDisallow: /\n"));
-	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'uid' => 'site.counters.content', 'value' => '<!-- код счетчиков -->'));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'editor' => 'input', 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'editor' => 'input', 'uid' => 'azbn7.updated_at', 'value' => $this->Azbn7->created_at));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'editor' => 'input', 'uid' => 'azbn7.install_version', 'value' => $this->Azbn7->version['number']));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'input', 'uid' => 'site.default.theme', 'value' => $this->Azbn7->config['theme']));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'input', 'uid' => 'site.sitemap.types', 'value' => '1,2'));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'textarea', 'uid' => 'site.robots.content', 'value' => "User-agent: *\nDisallow: /\n"));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'textarea', 'uid' => 'site.counters.content', 'value' => '<!-- код счетчиков -->'));
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_sysopt', array(

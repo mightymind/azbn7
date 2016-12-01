@@ -7,6 +7,7 @@ if(count($_POST['item'])) {
 	$item = array(
 		'json' => $this->Azbn7->as_num($_POST['item']['json']),
 		'editable' => $this->Azbn7->as_num($_POST['item']['editable']),
+		'editor' => $this->Azbn7->c_s($_POST['item']['editor']),
 		//'uid' => $this->Azbn7->c_s($_POST['item']['uid']),
 		'value' => $_POST['item']['value'],
 	);
