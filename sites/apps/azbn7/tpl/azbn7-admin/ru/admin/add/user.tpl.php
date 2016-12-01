@@ -70,6 +70,7 @@
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
 		'title' => 'Редактор по-умолчанию',
 		'html' => ' id="" ',
+		'input_html' => ' list="input-list-wysiwyg-0" ',
 		'name' => 'item[param][wysiwyg]',
 		'value' => 'ckeditor',
 		//'path' => 'entity',
