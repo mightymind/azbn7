@@ -187,6 +187,32 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
+<datalist id="input-list-types-0">
+	<option value="BIGINT DEFAULT '0'">
+	<option value="INT DEFAULT '0'">
+	<option value="FLOAT DEFAULT '0'">
+	<option value="BLOB DEFAULT ''">
+	<option value="TEXT DEFAULT ''">
+	<option value="MEDIUMBLOB DEFAULT ''">
+	<option value="MEDIUMTEXT DEFAULT ''">
+	<option value="VARCHAR(256) DEFAULT ''">
+</datalist>
+
+<datalist id="input-list-editors-0">
+	<option value="email">
+	<option value="hidden">
+	<option value="input">
+	<option value="pass">
+	<option value="pos">
+	<option value="textarea">
+	<option value="upload">
+	<option value="uploadimg">
+	<option value="visible">
+	<option value="wysiwyg">
+</datalist>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
 

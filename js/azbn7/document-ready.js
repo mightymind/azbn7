@@ -26,6 +26,9 @@
 		*/
 		if($(document.body).hasClass(a7_class + ' ' + a7admin_class)) {
 			
+			
+			
+			
 			(function(){
 				
 				// загрузка значений при редактировании
@@ -75,6 +78,10 @@
 			})();
 			
 			
+			
+			
+			
+			
 			(function(){
 				
 				// создание нового типа сущностей
@@ -97,6 +104,7 @@
 							
 							var list = input.attr('list') || '';
 							
+							/*
 							if(list != '') {
 								
 								list = list.replace('-0', '-' + nid);
@@ -113,6 +121,7 @@
 								}
 								
 							}
+							*/
 							
 						})
 					;
@@ -133,6 +142,11 @@
 			})();
 			
 			
+			
+			
+			
+			
+			
 			(function(){
 				
 				// запрос при нажатии на кнопку удаления
@@ -150,6 +164,11 @@
 				});
 				
 			})();
+			
+			
+			
+			
+			
 			
 			
 			(function(){
@@ -174,6 +193,10 @@
 				$(container_class + ' .item-pos-range').trigger('change.azbn7');
 				
 			})();
+			
+			
+			
+			
 			
 			
 			(function(){
@@ -237,6 +260,10 @@
 				});
 				
 			})();
+			
+			
+			
+			
 			
 			
 			/*
@@ -665,7 +692,7 @@
 							variant.addClass('in-action');
 						}
 						
-						var val = input.text();
+						var val = input.html().replace(new RegExp('&nbsp;','ig'), ' ');
 						
 						if(val.length > 2) {
 							
@@ -681,7 +708,7 @@
 									
 									for(var i in resp.response.entities) {
 										
-										if(i < 8) {
+										if(i < 20) {
 											
 											var item = resp.response.entities[i];
 											
@@ -775,16 +802,21 @@
 					});
 					
 					checked.on('click.azbn7', '.variant', {}, function(event){
-						event.preventDefault();
 						
-						var btn = $(this);
-						
-						btn
-							.empty()
-							.remove()
-						;
-						
-						block.trigger('azbn7.setValue');
+						if(confirm('Удалить запись из списка?')) {
+							
+							event.preventDefault();
+							
+							var btn = $(this);
+							
+							btn
+								.empty()
+								.remove()
+							;
+							
+							block.trigger('azbn7.setValue');
+							
+						}
 						
 					});
 					
@@ -919,6 +951,208 @@
 					});
 					*/
 					
+					
+					block.trigger('azbn7.init');
+					
+				}
+				
+			})();
+			
+			
+			
+			
+			
+			(function(){
+				
+				var block = $(container_class + ' .gallery-collect');
+				
+				if(block.length) {
+					
+					var value = block.find('.edit-value');
+					var checked = block.find('.image-cont');
+					
+					var is_single = 0;
+					var type = parseInt(block.attr('data-type') || 0);
+					
+					var __genListItem = function(item) {
+						
+						var a = $('<a/>', {
+							class : 'variant',
+							html : '<i class="fa fa-times" aria-hidden="true"></i>',
+						})
+							.attr('draggable', true)
+							.attr('href', '#' + item.entity.id)
+							.attr('data-entity', item.entity.id)
+							.css({
+								'background-image' : 'url(' + item.item.path + ')',
+							})
+						;
+						
+						return a;
+						
+					};
+					
+					block.on('azbn7.setValue', function(event){
+						
+						var res = [];
+						
+						checked.find('.variant').each(function(){
+							
+							var item = $(this);
+							
+							res.push(parseInt(item.attr('data-entity') || 0));
+							
+						});
+						
+						if(is_single) {
+							
+							if(res.length > 0) {
+								value.text(res[0]);
+							} else {
+								value.text('');
+							}
+							
+						} else {
+							
+							value.text(JSON.stringify(res));
+							
+						}
+						
+						value.val(value.text());
+						
+					});
+					
+					block.on('azbn7.init', function(event){
+						
+						var res = []
+						
+						if(is_single) {
+							res[0] = parseInt(value.val());
+						} else {
+							res = JSON.parse(value.val());
+						}
+						
+						Azbn7.api({
+							method : 'entity/search_by_id',
+							text : '0,' + res.join(','),
+							type : type,
+						}, function(resp){
+							
+							if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+								
+								for(var i in resp.response.entities) {
+									
+									var item = resp.response.entities[i];
+									
+									(__genListItem(item))
+										.appendTo(checked);
+									
+								}
+								
+							}
+							
+						});
+						
+						//console.log(res);
+						
+					});
+					
+					checked.on('click.azbn7', '.variant', {}, function(event){
+						
+						if(confirm('Удалить запись из списка?')) {
+							
+							event.preventDefault();
+							
+							var btn = $(this);
+							
+							btn
+								.empty()
+								.remove()
+							;
+							
+							block.trigger('azbn7.setValue');
+							
+						}
+						
+					});
+					
+					checked.on('mousedown.azbn7', '.variant', {}, function(event){
+						event.preventDefault();
+						
+						var oe = event.originalEvent;
+						var item = $(this);
+						
+						if (oe.which != 1) { //клик правой кнопкой мыши
+							return;
+						} else {
+							checked.attr('data-azbn7-mousedown', 1);
+							checked.data('azbn7-mousedown', item);
+							item.addClass('on-drag');
+						}
+						
+					});
+					
+					checked.on('mouseup.azbn7', '.variant', {}, function(event){
+						event.preventDefault();
+						
+						var oe = event.originalEvent;
+						var item = $(this);
+						
+						if (oe.which != 1) { //клик правой кнопкой мыши
+							return;
+						} else {
+							checked.attr('data-azbn7-mousedown', 0);
+							checked.data('azbn7-mousedown', null);
+							item.removeClass('on-drag');
+						}
+						
+					});
+					
+					checked.on('mousemove.azbn7', '.variant', {}, function(event){
+						event.preventDefault();
+						
+						var oe = event.originalEvent;
+						var item = $(this);
+						
+						if (oe.which != 1) { //клик правой кнопкой мыши
+							return;
+						} else {
+							//checked.attr('data-azbn7-mousedown', 1);
+							//checked.data('azbn7-mousedown', item);
+							
+							
+							
+							if(parseInt(checked.attr('data-azbn7-mousedown')) && checked.data('azbn7-mousedown')) {
+								
+								var md = checked.data('azbn7-mousedown');
+								
+								if(parseInt(md.attr('data-entity')) != parseInt(item.attr('data-entity'))) {
+									console.log('111x');
+									var __item = item.clone();
+									var __md = md.clone();
+									
+									__item.insertAfter(md);
+									__md.insertAfter(item);
+									
+									md.insertAfter(__md);
+									item.insertAfter(__item);
+									
+									__item.remove();
+									__md.remove();
+									
+									block.trigger('azbn7.setValue');
+									
+								}
+								
+							}
+							
+							
+							
+							
+							
+						}
+						
+					});
 					
 					block.trigger('azbn7.init');
 					

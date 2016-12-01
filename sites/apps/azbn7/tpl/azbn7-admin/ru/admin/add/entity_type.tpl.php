@@ -62,32 +62,12 @@
 			
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" >
 				<input type="text" class="form-control" list="input-list-types-0" name="item[param][field][0][type]" value="" placeholder="Тип поля (MySQL)" />
-				<datalist id="input-list-types-0">
-					<option value="BIGINT DEFAULT '0'">
-					<option value="INT DEFAULT '0'">
-					<option value="FLOAT DEFAULT '0'">
-					<option value="VARCHAR(256) DEFAULT ''">
-					<option value="TEXT DEFAULT ''">
-					<option value="MEDIUMTEXT DEFAULT ''">
-					<option value="BLOB DEFAULT ''">
-					<option value="MEDIUMBLOB DEFAULT ''">
-				</datalist>
+				
 			</div>
 			
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" >
 				<input type="text" class="form-control" list="input-list-editors-0" name="item[param][field][0][editor]" value="" placeholder="Редактировать через" />
-				<datalist id="input-list-editors-0">
-					<option value="email">
-					<option value="hidden">
-					<option value="input">
-					<option value="pass">
-					<option value="pos">
-					<option value="textarea">
-					<option value="upload">
-					<option value="uploadimg">
-					<option value="visible">
-					<option value="wysiwyg">
-				</datalist>
+				
 			</div>
 			
 		</div>

@@ -52,10 +52,6 @@
 
 
 
-<!--<script src="<?=$this->Azbn7->mdl('Site')->url('/js/imperavi/redactor.js');?>" ></script>-->
-
-
-
 <!-- CLEditor -->
 <link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.css');?>" />
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.min.js');?>"></script>
@@ -73,7 +69,8 @@ $(function(){
 
 
 <!-- CKEditor -->
-<script src="//cdn.ckeditor.com/4.6.0/full/ckeditor.js"></script>
+<!--<script src="//cdn.ckeditor.com/4.6.0/full/ckeditor.js"></script>-->
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/ckeditor/ckeditor.js');?>"></script>
 <script>
 CKEDITOR.disableAutoInline = true;
 </script>
@@ -82,7 +79,8 @@ CKEDITOR.disableAutoInline = true;
 
 
 <!-- TinyMCE -->
-<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>-->
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/tinymce/tinymce.min.js');?>"></script>
 <script>
 $(function(){
 	

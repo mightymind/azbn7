@@ -112,17 +112,21 @@ html {
 			outline:1px rgba(0,0,0,0.1) solid;
 			padding:0 0.5rem;
 			cursor:pointer;
+			color:transparent;
 			
 			&:after {
 				float:right;
 				content:'\f002';
 				font-family:FontAwesome;
+				color:#000000;
 			}
 			&:before {
 				content:'Нажмите для поиска и выбора';
+				color:#000000;
 			}
 			&:focus {
 				background-color:rgba(0,0,0,0.03);
+				color:#000000;
 				
 				&:before {
 					content:none;
@@ -161,6 +165,10 @@ html {
 					content:'\f00c';
 					font-family:FontAwesome;
 					margin-right:1rem;
+				}
+				
+				&.on-drag {
+					cursor:crosshair;
 				}
 				
 			}
@@ -209,6 +217,51 @@ html {
 		.variant {
 			//display:flex;
 			//align-items:center;
+		}
+		
+	}
+	
+	.gallery-collect {
+		
+		.image-cont {
+			background-color:rgba(192,192,192,0.15);
+			padding:12px;
+		}
+		
+		.variant {
+			display:inline-block;
+			overflow:hidden;
+			width:85px;
+			height:85px;
+			margin:10px;
+			background-color:rgba(192,192,192,1);
+			font-size:0px;
+			line-height:85px;
+			font-weight:bold;
+			color:transparent;
+			text-align:center;
+			vertical-align:middle;
+			text-decoration:none;
+			opacity:0.5;
+			background-size:cover;
+			transition:all 0.21s ease;
+			
+			&.on-drag {
+				outline:1px rgba(0,0,0,1) solid;
+				opacity:1;
+				cursor:move;
+			}
+			
+			&:hover {
+				outline:1px rgba(192,192,192,1) solid;
+				opacity:0.9;
+				color:rgba(255,0,0,0.8);
+				font-size:42px;
+			}
+		}
+		
+		.add-variant {
+			
 		}
 		
 	}

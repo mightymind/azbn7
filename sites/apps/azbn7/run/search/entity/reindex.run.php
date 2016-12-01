@@ -10,7 +10,8 @@ if(isset($param['entity']['id'])) {
 	$entity = $this->Azbn7->mdl('Entity')->item($param['entity']['id']);
 	
 	if(is_array($entity['item'])) {
-		if(count($entity['item']) && $entity['entity']['visible']) {
+		if(count($entity['item'])) {
+			//$entity['entity']['visible']
 			
 			$text = '';
 			
