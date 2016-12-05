@@ -244,6 +244,7 @@ html {
 			text-decoration:none;
 			opacity:0.5;
 			background-size:cover;
+			background-position: center center;
 			transition:all 0.21s ease;
 			
 			&.on-drag {
@@ -260,8 +261,28 @@ html {
 			}
 		}
 		
-		.add-variant {
+		.append-variant-item {
+			display:inline-block;
+			overflow:hidden;
+			width:85px;
+			height:85px;
+			margin:10px;
+			font-size:25px;
+			line-height:85px;
+			font-weight:bold;
+			color:rgba(192,192,192,1);
+			text-align:center;
+			vertical-align:middle;
+			text-decoration:none;
+			opacity:1;
+			background-size:cover;
+			background-position: center center;
+			transition:all 0.21s ease;
 			
+			&:hover {
+				outline:1px rgba(192,192,192,1) solid;
+				color:rgba(255,0,0,0.8);
+			}
 		}
 		
 	}

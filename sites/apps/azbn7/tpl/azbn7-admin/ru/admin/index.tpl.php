@@ -10,7 +10,7 @@ $this->Azbn7->mdl('Viewer')->tpl('_/editor/gallery-collect', array(
 	'title' => 'Прикрепленные изображения',
 	'html' => ' id="" ',
 	'name' => 'item[images]',
-	'value' => '[14,15,16,17]',
+	'value' => '[5]',
 	'type' => '4',
 	//'single' => 1,
 	//'path' => 'entity',

@@ -974,6 +974,8 @@
 					var is_single = 0;
 					var type = parseInt(block.attr('data-type') || 0);
 					
+					var append_btn = checked.find('.append-variant-item');
+					
 					var __genListItem = function(item) {
 						
 						var a = $('<a/>', {
@@ -992,9 +994,9 @@
 						
 					};
 					
-					block.on('azbn7.setValue', function(event){
+					block.on('azbn7.setValue', function(event, arr){
 						
-						var res = [];
+						var res = arr || [];
 						
 						checked.find('.variant').each(function(){
 							
@@ -1024,7 +1026,7 @@
 					
 					block.on('azbn7.init', function(event){
 						
-						var res = []
+						var res = [];
 						
 						if(is_single) {
 							res[0] = parseInt(value.val());
@@ -1045,7 +1047,9 @@
 									var item = resp.response.entities[i];
 									
 									(__genListItem(item))
-										.appendTo(checked);
+										//.appendTo(checked)
+										.insertBefore(append_btn)
+										;
 									
 								}
 								
@@ -1151,6 +1155,24 @@
 							
 							
 						}
+						
+					});
+					
+					append_btn.on('click.azbn7', function(event) {
+						event.preventDefault();
+						
+						var str = prompt('Введите список id', '');
+						var arr = [];
+						
+						if(str.length) {
+							
+							arr = str.split(',');
+							
+						}
+						
+						block.trigger('azbn7.setValue', [arr]);
+						
+						block.trigger('azbn7.init');
 						
 					});
 					

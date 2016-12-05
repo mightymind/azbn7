@@ -9,11 +9,9 @@
 
 <div class="form-group gallery-collect " <?=$param['html'];?> data-type="<?=$this->Azbn7->as_num($param['type']);?>" >
 	
-	<label><?=$param['title'];?></label>
-	
-	<div class="" >
-		<a class="btn btn-primary add-variant" href="#1" ><i class="fa fa-upload" aria-hidden="true"></i> Загрузить</a>
-	</div>
+	<label>
+		<?=$param['title'];?>
+	</label>
 	
 	<textarea class="azbn7-hidden edit-value " name="<?=$param['name'];?>" ><?=$param['value'];?></textarea>
 	
@@ -26,6 +24,14 @@
 		<a class="variant" draggable="true" href="#1" data-entity="5" style="background-image:url(https://lh3.googleusercontent.com/-_qRK4aqaT-8/UUpxL_bV-yI/AAAAAAAAAAM/T3h5a2g20Js/s320/Full_HD_yeil_doa_manzaras.jpg);" >5</a>
 		<a class="variant" draggable="true" href="#1" data-entity="6" style="background-image:url(https://lh3.googleusercontent.com/-_qRK4aqaT-8/UUpxL_bV-yI/AAAAAAAAAAM/T3h5a2g20Js/s320/Full_HD_yeil_doa_manzaras.jpg);" >6</a>
 		-->
+		
+		<a class="append-variant-item" href="#1" ><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+		
+	</div>
+	
+	<div >
+		<!--<a class="btn btn-primary add-variant" href="#1" ><i class="fa fa-upload" aria-hidden="true"></i> Загрузить</a>-->
+		<a class="btn btn-primary add-variant" href="#2" ><i class="fa fa-search-plus" aria-hidden="true"></i> Выбрать</a>
 	</div>
 	
 </div>

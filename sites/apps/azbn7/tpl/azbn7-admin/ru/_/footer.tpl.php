@@ -190,12 +190,15 @@
 
 <datalist id="input-list-types-0">
 	<option value="BIGINT DEFAULT '0'">
+	<option value="DATE NOT NULL">
+	<option value="DOUBLE DEFAULT '0'">
 	<option value="INT DEFAULT '0'">
 	<option value="FLOAT DEFAULT '0'">
 	<option value="BLOB DEFAULT ''">
 	<option value="TEXT DEFAULT ''">
 	<option value="MEDIUMBLOB DEFAULT ''">
 	<option value="MEDIUMTEXT DEFAULT ''">
+	<option value="TINYINT DEFAULT '0'">
 	<option value="VARCHAR(256) DEFAULT ''">
 </datalist>
 

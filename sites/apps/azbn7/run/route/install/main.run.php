@@ -311,7 +311,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$t['file'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => $t['upload'],
 		'uid' => 'file',
-		'title' => 'Файл любого формата',
+		'title' => 'Произвольный файл',
 		'field' => array(
 			/*
 			'title' => array(
@@ -328,18 +328,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		),
 	));
 	
+	
+	/*
 	$t['youtube'] = $this->Azbn7->mdl('Entity')->createType(array(
 		'parent' => 0,//$t['video'],
 		'uid' => 'youtube',
 		'title' => 'Видео YouTube',
 		'field' => array(
-			/*
-			'title' => array(
-				'type' => "VARCHAR(256) DEFAULT ''",
-				'editor' => 'input',
-				'title' => 'Заголовок',
-			),
-			*/
 			'yt_uid' => array(
 				'type' => "VARCHAR(256) DEFAULT ''",
 				'editor' => 'input',
@@ -354,13 +349,6 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'uid' => 'link',
 		'title' => 'Ссылка',
 		'field' => array(
-			/*
-			'title' => array(
-				'type' => "VARCHAR(256) DEFAULT ''",
-				'editor' => 'input',
-				'title' => 'Заголовок',
-			),
-			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
 				'editor' => 'input',
@@ -368,6 +356,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			),
 		),
 	));
+	*/
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_entity_types', array(
@@ -469,7 +458,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'theme' => 'azbn-tpl/ru',
 			'theme_admin' => 'azbn7-admin/ru',
 			'lang' => 'ru',
-			'wysiwyg' => 'tinymce',
+			'wysiwyg' => 'ckeditor',
 		)),
 	));
 	
