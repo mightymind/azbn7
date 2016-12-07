@@ -32,7 +32,7 @@ ajax-загрузки файлов на сервер
 		callback : function(str){alert(str);}
 	};
 	
-	var uploadFile = function(el, file, options) {
+	var uploadFile = function(el, file, options, is_last) {
 		
 		var reader = new FileReader();
 		
@@ -45,6 +45,11 @@ ajax-загрузки файлов на сервер
 					/* вычисление процента загрузки */
 					
 					var percent = parseInt((e.loaded * 100) / e.total);
+					
+					//console.log(percent + ' %');
+					if(options.on_percent) {
+						options.on_percent(file, e.total, e.loaded, percent);
+					}
 					
 				}
 			}, false);
@@ -59,7 +64,7 @@ ajax-загрузки файлов на сервер
 						counter++;
 						el.data(defaults.plugin.name + '-counter', counter);
 						
-						options.callback(file, this.responseText, counter);
+						options.callback(file, this.responseText, counter, is_last);
 						
 					} else {
 						/* ошибка */
@@ -102,7 +107,13 @@ ajax-загрузки файлов на сервер
 		
 		$.each(files, function(i, file) {
 			
-			uploadFile(el, file, options);
+			var is_last = false;
+			
+			if(files.length == (i + 1)) {
+				is_last = true;
+			}
+			
+			uploadFile(el, file, options, is_last);
 			
 		});
 		
@@ -131,8 +142,14 @@ ajax-загрузки файлов на сервер
 						
 						for (var i = 0, f; f = event.originalEvent.dataTransfer.files[i]; i++) {
 							
+							var is_last = false;
+							
+							if(event.originalEvent.dataTransfer.files.length == (i + 1)) {
+								is_last = true;
+							}
+							
 							var file = event.originalEvent.dataTransfer.files[i];
-							uploadFile(el, file, options);
+							uploadFile(el, file, options, is_last);
 							
 						}
 						

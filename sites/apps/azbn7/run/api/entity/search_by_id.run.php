@@ -42,9 +42,8 @@ if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
 			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.type = `" . $this->Azbn7->mdl('DB')->t['entity_type'] . "`.id
 			AND
 			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.id IN ($text)
-		ORDER BY
-			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.id
-	");
+	");/*ORDER BY
+			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.id*/
 	
 	$search_items = $search_items_sql->fetchAll(PDO::FETCH_ASSOC);
 	

@@ -261,7 +261,7 @@ html {
 			}
 		}
 		
-		.append-variant-item {
+		.append-variant-item, .upload-variant-item {
 			display:inline-block;
 			overflow:hidden;
 			width:85px;
@@ -285,6 +285,75 @@ html {
 			}
 		}
 		
+		.edit-block {
+			display:none;
+			background-color:rgba(192,192,192,0.25);
+			padding:20px;
+			
+			.edit-input {
+				padding:4px;
+				outline:1px rgba(192,192,192,1) solid;
+			}
+			
+		}
+		
+	}
+	
+	.yandex-maps-editor .yandex-map-container {
+		display:block;
+		width:100%;
+		height:600px;
+		margin:2rem 0;
+	}
+	
+	.admin-action-line {
+		position:fixed;
+		bottom:0;
+		left:0;
+		width:100%;
+		padding:8px 15px;
+		background-color:white;
+		opacity:1;
+		transition:all 0.333s ease;
+		
+		&[data-state="hide"] {
+			//background-color:transparent;
+			bottom:-100px;
+		}
+		
+		&[data-state="blue"], &[data-state="info"] {
+			background-color:rgba(0,0,255,0.8);
+			
+			.text {
+				color:rgba(255,255,255,1);
+			}
+		}
+		
+		&[data-state="green"], &[data-state="success"] {
+			background-color:rgba(0,255,0,0.8);
+		}
+		
+		&[data-state="yellow"], &[data-state="warning"] {
+			background-color:rgba(255,255,0,0.8);
+		}
+		
+		&[data-state="red"], &[data-state="alert"] {
+			background-color:rgba(255,0,0,0.8);
+			
+			.text {
+				color:rgba(255,255,255,1);
+			}
+		}
+		
+		&[data-state="white"], &[data-state="default"] {
+			background-color:rgba(255,255,255,0.8);
+		}
+		
+		.text {
+			display:inline-block;
+			font-size:1.25rem;
+			color:rgba(0,0,0,1);
+		}
 	}
 	
 }

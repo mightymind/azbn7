@@ -41,6 +41,8 @@ function Azbn7Constructor($, cfg) {
 		s2obj : function(id) {var item = this.get(id);if(typeof item !== 'undefined' && item != null) {return JSON.parse(item);} else {return null;}},
 	};
 	
+	ctrl.User = {};
+	
 	ctrl.api = function(params, cb) {
 		
 		params.key = ctrl.config.key;
@@ -123,6 +125,34 @@ function Azbn7Constructor($, cfg) {
 			window.location.reload();
 			
 		}
+		
+	};
+	
+	ctrl.User.msg = function(state, text) {
+		
+		state = state || 'hide';
+		
+		console.warn('.admin-action-line: ' + state + ': ' + text);
+		
+		var block = $('.admin-action-line');
+		
+		block.find('.text').html(text);
+		
+		block.attr('data-state', state);
+		
+		if(block.data('cleartimeout')) {
+			
+			clearTimeout(block.data('cleartimeout'));
+			
+		}
+		
+		block.data('cleartimeout', setTimeout(function(){
+			
+			block.attr('data-state', 'hide');
+			
+			clearTimeout(block.data('cleartimeout'));
+			
+		}, 4444));
 		
 	};
 	

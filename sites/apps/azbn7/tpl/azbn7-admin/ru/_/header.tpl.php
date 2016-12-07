@@ -109,6 +109,12 @@ $(function(){
 
 
 
+<!-- Yandex Maps API -->
+<script src="//api-maps.yandex.ru/2.1/?load=package.controls,package.standard,package.geoObjects,package.editor&lang=ru-RU" type="text/javascript"></script>
+<!-- /Yandex Maps API -->
+
+
+
 </head>
 <body class=" <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
 

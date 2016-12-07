@@ -5,6 +5,10 @@
 		</div>
 		
 	</div>
+	
+	<div class="admin-action-line" data-state="hide" >
+		<div class="text" >Как здорово, что все мы здесь сегодня собрались!</div>
+	</div>
 
 </div><!-- /container-fluid azbn7-container -->
 

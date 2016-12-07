@@ -969,18 +969,32 @@
 				if(block.length) {
 					
 					var value = block.find('.edit-value');
+					var input = block.find('.edit-input');
+					
 					var checked = block.find('.image-cont');
+					var variant = block.find('.variant-cont');
 					
 					var is_single = 0;
 					var type = parseInt(block.attr('data-type') || 0);
 					
 					var append_btn = checked.find('.append-variant-item');
+					var upload_btn = checked.find('.upload-variant-item');
 					
-					var __genListItem = function(item) {
+					var edit = block.find('.edit-block');
+					
+					var __genListItem = function(item, in_search) {
+						
+						var html = '';
+						
+						if(in_search) {
+							html = '<i class="fa fa-plus" aria-hidden="true"></i>';
+						} else {
+							html = '<i class="fa fa-times" aria-hidden="true"></i>';
+						}
 						
 						var a = $('<a/>', {
 							class : 'variant',
-							html : '<i class="fa fa-times" aria-hidden="true"></i>',
+							html : html,
 						})
 							.attr('draggable', true)
 							.attr('href', '#' + item.entity.id)
@@ -993,6 +1007,55 @@
 						return a;
 						
 					};
+					
+					input.on('keyup.azbn7', function(event){
+						event.preventDefault();
+						
+						if(!variant.hasClass('in-action')) {
+							variant.addClass('in-action');
+						}
+						
+						var val = input.html().replace(new RegExp('&nbsp;','ig'), ' ');
+						
+						if(val.length > 2) {
+							
+							Azbn7.api({
+								method : 'entity/search',
+								text : val,
+								type : type,
+							}, function(resp){
+								
+								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+									
+									variant.empty();
+									
+									for(var i in resp.response.entities) {
+										
+										if(i < 20) {
+											
+											var item = resp.response.entities[i];
+											
+											(__genListItem(item, true)).appendTo(variant);
+											
+										}
+										
+									}
+										
+								} else {
+									
+									variant.empty();
+									
+								}
+								
+							});
+							
+						} else if(val.length == 0) {
+							
+							variant.empty();
+							
+						}
+						
+					});
 					
 					block.on('azbn7.setValue', function(event, arr){
 						
@@ -1041,6 +1104,11 @@
 						}, function(resp){
 							
 							if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+								
+								checked.find('.variant')
+									.empty()
+									.remove()
+								;
 								
 								for(var i in resp.response.entities) {
 									
@@ -1131,7 +1199,7 @@
 								var md = checked.data('azbn7-mousedown');
 								
 								if(parseInt(md.attr('data-entity')) != parseInt(item.attr('data-entity'))) {
-									console.log('111x');
+									//console.log('111x');
 									var __item = item.clone();
 									var __md = md.clone();
 									
@@ -1150,29 +1218,130 @@
 								
 							}
 							
-							
-							
-							
-							
 						}
+						
+					});
+					
+					variant.on('click.azbn7', '.variant', {}, function(event){
+						event.preventDefault();
+						
+						var btn = $(this);
+						
+						if(is_single) {
+							checked.empty();
+						} else {
+							checked.find('.variant[data-entity="' + btn.attr('data-entity') + '"]').remove();
+						}
+						
+						btn
+							.insertBefore(append_btn);
+							//.appendTo(checked)
+							
+						;
+						
+						//input.text('');
+						block.trigger('azbn7.setValue');
+						
+						//if(variant.hasClass('in-action')) {
+						//	variant.removeClass('in-action');
+						//}
 						
 					});
 					
 					append_btn.on('click.azbn7', function(event) {
 						event.preventDefault();
 						
-						var str = prompt('Введите список id', '');
+						edit.slideToggle('fast');
+						edit.find('.edit-input').trigger('focus');
+						
+					});
+					//append_btn.trigger('click.azbn7');
+					
+					
+					upload_btn.on('click.azbn7', function(event) {
+						event.preventDefault();
+						
 						var arr = [];
 						
-						if(str.length) {
-							
-							arr = str.split(',');
-							
-						}
-						
-						block.trigger('azbn7.setValue', [arr]);
-						
-						block.trigger('azbn7.init');
+						$(document.body).Azbn7_AjaxUploader('upload', {
+							name : 'uploading_file',
+							action : '/admin/upload/file/',
+							on_percent : function(file, total, loaded, percent) {
+								//Azbn7.User.msg('info', 'Загрузка ' + file.name + ': ' + percent + '%');
+							},
+							callback : function(file, response, uploaded, is_last) {
+								
+								var json = JSON.parse(response);
+								console.log(json);
+								
+								var type = 0;
+								
+								switch(json.mime_type) {
+									
+									// картинки
+									case 'image/tiff' :
+									case 'image/svg+xml' :
+									case 'image/gif' :
+									case 'image/jpeg' :
+									case 'image/png' : {
+										type = 4;
+									}
+									break;
+									
+									// аудио
+									case 'audio/mpeg' : {
+										type = 5;
+									}
+									break;
+									
+									// видео
+									case 'video/mp4' :
+									case 'video/webm' :
+									case 'video/quicktime' : {
+										type = 6;
+									}
+									break;
+									
+									default : {
+										type = 7;
+									}
+									break;
+									
+								}
+								
+								Azbn7.api({
+									method : 'entity/create_upload',
+									type : type,
+									title : json.title,
+									path : json.url,
+								}, function(resp){
+									
+									if(resp && resp.response && resp.response.entity && type == 4) {
+										
+										//area.append('<p>Файл <a href="' + resp.response.entity.item.path + '" target="_blank" >' + resp.response.entity.item.title + '</a> загружен</p>');
+										
+										/*
+										(__genListItem(resp.response.entity))
+											//.appendTo(checked)
+											.insertBefore(append_btn)
+										;
+										*/
+										arr.push(resp.response.entity.entity.id);
+										
+										if(is_last) {
+											//alert('last');
+											block.trigger('azbn7.setValue', [arr]);
+											block.trigger('azbn7.init');
+										}
+										
+										
+										
+									}
+									
+								});
+								
+							},
+						});
 						
 					});
 					
@@ -1192,7 +1361,10 @@
 				$(document.body).Azbn7_AjaxUploader('dropping', {
 					name : 'uploading_file',
 					action : '/admin/upload/file/',
-					callback : function(file, response, uploaded) {
+					on_percent : function(file, total, loaded, percent) {
+						//Azbn7.User.msg('info', 'Загрузка ' + file.name + ': ' + percent + '%');
+					},
+					callback : function(file, response, uploaded, is_last) {
 						
 						var json = JSON.parse(response);
 						
@@ -1270,7 +1442,11 @@
 					$(document.body).Azbn7_AjaxUploader('upload', {
 						name : 'uploading_file',
 						action : '/admin/upload/file/',
-						callback : function(file, response, uploaded) {
+						on_percent : function(file, total, loaded, percent) {
+							//console.log(file.name + ': ' + percent);
+							//Azbn7.User.msg('info', 'Загрузка ' + file.name + ': ' + percent + '%');
+						},
+						callback : function(file, response, uploaded, is_last) {
 							
 							var json = JSON.parse(response);
 							console.log(json);
@@ -1305,7 +1481,10 @@
 						$(document.body).Azbn7_AjaxUploader('upload', {
 							name : 'uploading_file',
 							action : '/admin/upload/file/',
-							callback : function(file, response, uploaded) {
+							on_percent : function(file, total, loaded, percent) {
+								//Azbn7.User.msg('info', 'Загрузка ' + file.name + ': ' + percent + '%');
+							},
+							callback : function(file, response, uploaded, is_last) {
 								
 								var json = JSON.parse(response);
 								console.log(json);
@@ -1372,7 +1551,10 @@
 					area.Azbn7_AjaxUploader('dropping', {
 						name : 'uploading_file',
 						action : '/admin/upload/file/',
-						callback : function(file, response, uploaded) {
+						on_percent : function(file, total, loaded, percent) {
+							//Azbn7.User.msg('info', 'Загрузка ' + file.name + ': ' + percent + '%');
+						},
+						callback : function(file, response, uploaded, is_last) {
 							
 							var json = JSON.parse(response);
 							console.log(json);
