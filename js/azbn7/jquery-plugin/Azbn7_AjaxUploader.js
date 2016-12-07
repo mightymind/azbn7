@@ -44,7 +44,7 @@ ajax-загрузки файлов на сервер
 				if (e.lengthComputable) {
 					/* вычисление процента загрузки */
 					
-					var percent = parseInt((e.loaded * 100) / e.total);
+					var percent = Math.round((e.loaded * 100) / e.total);
 					
 					//console.log(percent + ' %');
 					if(options.on_percent) {

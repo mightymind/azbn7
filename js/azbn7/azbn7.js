@@ -150,7 +150,7 @@ function Azbn7Constructor($, cfg) {
 			
 			block.attr('data-state', 'hide');
 			
-			clearTimeout(block.data('cleartimeout'));
+			//clearTimeout(block.data('cleartimeout'));
 			
 		}, 4444));
 		

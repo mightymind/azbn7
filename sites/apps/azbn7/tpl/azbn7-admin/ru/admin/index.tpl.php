@@ -6,6 +6,7 @@
 <!--<h2 class="mt-2 mb-1" >CMS Azbn7. Управление сайтом</h2>-->
 
 <?
+/*
 $this->Azbn7->mdl('Viewer')->tpl('_/editor/gallery-collect', array(
 	'title' => 'Прикрепленные изображения',
 	'html' => ' id="" ',
@@ -15,6 +16,7 @@ $this->Azbn7->mdl('Viewer')->tpl('_/editor/gallery-collect', array(
 	//'single' => 1,
 	//'path' => 'entity',
 ));
+*/
 ?>
 
 <?
