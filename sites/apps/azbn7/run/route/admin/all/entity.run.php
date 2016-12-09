@@ -14,12 +14,69 @@ if($page < 0) {
 
 $start_at = $page * $this->Azbn7->config['pagination']['count'];
 
+$entity_user_str = '';
+$entity_created_at_str = '';
+$entity_updated_at_str = '';
+
+if(count($_GET['flt'])) {
+	
+	if($_GET['flt']['user'] != '' && $this->Azbn7->as_num($_GET['flt']['user']) != 0) {
+		$entity_user_str = "
+			AND
+			user = '" . $this->Azbn7->c_s($_GET['flt']['user']) . "'
+		";
+	}
+	
+	if($_GET['flt']['created_at']['start'] != '') {
+		$entity_created_at_str = "
+			AND
+			created_at > '" . (strtotime($_GET['flt']['created_at']['start'] . ' 00:00:00') - 1) . "'
+		";
+	}
+	
+	if($_GET['flt']['created_at']['stop'] != '') {
+		$entity_created_at_str = $entity_created_at_str . "
+			AND
+			created_at < '" . (strtotime($_GET['flt']['created_at']['stop'] . ' 00:00:00') - 0) . "'
+		";
+	}
+	
+	if($_GET['flt']['updated_at']['start'] != '') {
+		$entity_updated_at_str = "
+			AND
+			updated_at > '" . (strtotime($_GET['flt']['updated_at']['start'] . ' 00:00:00') - 1) . "'
+		";
+	}
+	
+	if($_GET['flt']['updated_at']['stop'] != '') {
+		$entity_updated_at_str = $entity_updated_at_str . "
+			AND
+			updated_at < '" . (strtotime($_GET['flt']['updated_at']['stop'] . ' 00:00:00') - 0) . "'
+		";
+	}
+	
+}
+
 /*
 Mysql> SELECT SQL_CALC_FOUND_ROWS * FROM table WHERE column > 1 LIMIT 0, 50;
 Mysql> SELECT FOUND_ROWS();
 */
 
-$query = $this->Azbn7->mdl('DB')->q("SELECT SQL_CALC_FOUND_ROWS * FROM `" . $this->Azbn7->mdl('DB')->t['entity'] . "` WHERE type = '{$type_id}' ORDER BY updated_at DESC LIMIT " . $start_at . ", " . $this->Azbn7->config['pagination']['count']);
+$query = $this->Azbn7->mdl('DB')->q("
+	SELECT
+		SQL_CALC_FOUND_ROWS *
+	FROM
+		`" . $this->Azbn7->mdl('DB')->t['entity'] . "`
+	WHERE
+		type = '{$type_id}'
+		$entity_user_str
+		$entity_created_at_str
+		$entity_updated_at_str
+	ORDER BY
+		updated_at DESC
+	LIMIT
+		" . $start_at . ", " . $this->Azbn7->config['pagination']['count']);
+
 if($query) {
 	
 	$count = $this->Azbn7->mdl('DB')->q('SELECT FOUND_ROWS() as count');

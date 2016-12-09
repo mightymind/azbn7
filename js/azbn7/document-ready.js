@@ -7,6 +7,8 @@
 	
 	var container_class = '.azbn7-container';
 	
+	
+	
 	$(function(){
 		
 		/*
@@ -26,6 +28,30 @@
 		*/
 		if($(document.body).hasClass(a7_class + ' ' + a7admin_class)) {
 			
+			
+			
+			(function(){
+				
+				$.datepicker.regional['ru'] = {
+					closeText : 'Закрыть',
+					prevText : '&#x3c;Пред',
+					nextText : 'След&#x3e;',
+					currentText : 'Сегодня',
+					monthNames : ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+					monthNamesShort : ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+					dayNames : ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+					dayNamesShort : ['вс','пн','вт','ср','чт','пт','сб'],
+					dayNamesMin : ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+					//dateFormat : 'dd.mm.yy',
+					firstDay : 1,
+					inline : true,
+					isRTL : false,
+				};
+				$.datepicker.setDefaults($.datepicker.regional['ru']);
+				
+				$('.datepicker').datepicker();
+				
+			})();
 			
 			
 			
@@ -78,6 +104,23 @@
 			})();
 			
 			
+			
+			
+			(function(){
+				
+				$(document.body).on('click.azbn7', container_class + ' .azbn-flt-block-btn', {}, function(event){
+					event.preventDefault();
+					
+					var btn = $(this);
+					var trg = btn.attr('data-flt-block') || '';
+					
+					$(container_class + ' ' + trg).slideToggle('fast');
+					
+				});
+				
+				//$(container_class + ' .azbn-flt-block-btn').trigger('click.azbn7');
+				
+			})();
 			
 			
 			

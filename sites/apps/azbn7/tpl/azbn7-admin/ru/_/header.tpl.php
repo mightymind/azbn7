@@ -50,6 +50,10 @@
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_AjaxUploader.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_ImageMinimizer.js');?>" ></script>
 
+<!-- jQuery UI 1.12.1 -->
+<link href="<?=$this->Azbn7->mdl('Site')->url('/css/jquery-ui-1.12.1/jquery-ui.min.css');?>" rel="stylesheet">
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery-ui-1.12.1/jquery-ui.min.js');?>" ></script>
+<!-- /jQuery UI 1.12.1 -->
 
 
 <!-- CLEditor -->

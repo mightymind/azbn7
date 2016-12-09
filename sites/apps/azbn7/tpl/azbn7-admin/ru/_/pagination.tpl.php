@@ -9,6 +9,31 @@ if($param['type']['id']) {
 	$type_str = '&type=' . $param['type']['id'];
 }
 
+$flt_str = '';
+if(count($_GET['flt'])) {
+	
+	if($_GET['flt']['user'] != '') {
+		$flt_str = $flt_str . '&flt[user]=' . $this->Azbn7->c_s($_GET['flt']['user']);
+	}
+	
+	if($_GET['flt']['created_at']['start'] != '') {
+		$flt_str = $flt_str . '&flt[created_at][start]=' . $this->Azbn7->c_s($_GET['flt']['created_at']['start']);
+	}
+	
+	if($_GET['flt']['created_at']['stop'] != '') {
+		$flt_str = $flt_str . '&flt[created_at][stop]=' . $this->Azbn7->c_s($_GET['flt']['created_at']['stop']);
+	}
+	
+	if($_GET['flt']['updated_at']['start'] != '') {
+		$flt_str = $flt_str . '&flt[updated_at][start]=' . $this->Azbn7->c_s($_GET['flt']['updated_at']['start']);
+	}
+	
+	if($_GET['flt']['updated_at']['stop'] != '') {
+		$flt_str = $flt_str . '&flt[updated_at][stop]=' . $this->Azbn7->c_s($_GET['flt']['updated_at']['stop']);
+	}
+	
+}
+
 if(count($param['items'])) {
 	if($param['count'] > count($param['items'])) {
 	?>
@@ -20,7 +45,7 @@ if(count($param['items'])) {
 			$max_page = ceil($param['count'] / $this->Azbn7->config['pagination']['count']);
 			for($i = 1; $i <= $max_page; $i++) {
 			?>
-			<li class="page-item <?if($page_num == $i){echo 'active';}?> "><a class="page-link" href="?page=<?=$i;?><?=$type_str;?>"><?=$i;?></a></li>
+			<li class="page-item <?if($page_num == $i){echo 'active';}?> "><a class="page-link" href="?page=<?=$i;?><?=$flt_str;?><?=$type_str;?>"><?=$i;?></a></li>
 			<?
 			}
 			?>
