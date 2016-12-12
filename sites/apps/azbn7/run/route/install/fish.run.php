@@ -13,6 +13,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$e = array(1);
 	$b = array();
 	
+	$_SESSION['user']['id'] = 1;
+	
 	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
 		'entity' => array(
@@ -67,10 +69,38 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		),
 	));
 	
+	/*
+	for($i = 0; $i < 1000000; $i++) {
+		
+		$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
+			'type' => 'page',
+			'entity' => array(
+				'visible' => 1,
+				'parent' => 1,
+				'pos' => $i,
+				//'uid' => $this->Azbn7->randstr(32),
+				'url' => $this->Azbn7->randstr(32),
+				'param' => $this->Azbn7->arr2json(array()),
+			),
+			'item' => array(
+				'title' => 'Страница ' . $this->Azbn7->randstr(32),
+				'preview' => $this->Azbn7->randstr(16) . ' ' . $this->Azbn7->randstr(16) . ' ' . $this->Azbn7->randstr(16) . ' ' . $this->Azbn7->randstr(16),
+				'content' => '',
+				'param' => $this->Azbn7->arr2json(array()),
+			),
+		));
+		
+		//sleep(0.256);
+		
+	}
+	*/
+	
 	$this->Azbn7->event(array(
 		'action' => 'app.run.route.install.fish.after',
 		'title' => 'Наполнение "рыбой"',
 	));
+	
+	unset($_SESSION['user']);
 	
 	$this->Azbn7->go2('/установлено/');
 	

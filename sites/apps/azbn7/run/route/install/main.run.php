@@ -376,8 +376,42 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	;
 	
 	
+	$this->Azbn7->mdl('DB')->create('user', array(
+		'created_at' => $this->Azbn7->created_at,
+		'login' => 'system',
+		'email' => 'i@azbn.ru',
+		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
+		'param' => $this->Azbn7->arr2json(array(
+			'theme' => 'azbn-tpl/ru',
+			'theme_admin' => 'azbn7-admin/ru',
+			'lang' => 'ru',
+			'wysiwyg' => 'textarea',
+		)),
+	));
+	$this->Azbn7->mdl('DB')->create('user', array(
+		'created_at' => $this->Azbn7->created_at,
+		'login' => 'admin',
+		'email' => 'i@azbn.ru',
+		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
+		'param' => $this->Azbn7->arr2json(array(
+			'theme' => 'azbn-tpl/ru',
+			'theme_admin' => 'azbn7-admin/ru',
+			'lang' => 'ru',
+			'wysiwyg' => 'ckeditor',
+		)),
+	));
+	
+	$this->Azbn7->mdl('Site')
+		->log('site.create_users', array(
+			
+		))
+	;
+	
+	
 	$e = array();
 	$b = array();
+	
+	$_SESSION['user']['id'] = 1;
 	
 	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
@@ -436,38 +470,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	));
 	*/
 	
-	
-	$this->Azbn7->mdl('DB')->create('user', array(
-		'created_at' => $this->Azbn7->created_at,
-		'login' => 'system',
-		'email' => 'i@azbn.ru',
-		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
-		'param' => $this->Azbn7->arr2json(array(
-			'theme' => 'azbn-tpl/ru',
-			'theme_admin' => 'azbn7-admin/ru',
-			'lang' => 'ru',
-			'wysiwyg' => 'textarea',
-		)),
-	));
-	$this->Azbn7->mdl('DB')->create('user', array(
-		'created_at' => $this->Azbn7->created_at,
-		'login' => 'admin',
-		'email' => 'i@azbn.ru',
-		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
-		'param' => $this->Azbn7->arr2json(array(
-			'theme' => 'azbn-tpl/ru',
-			'theme_admin' => 'azbn7-admin/ru',
-			'lang' => 'ru',
-			'wysiwyg' => 'ckeditor',
-		)),
-	));
-	
-	$this->Azbn7->mdl('Site')
-		->log('site.create_users', array(
-			
-		))
-	;
-	
+	unset($_SESSION['user']);
 	
 	
 	$this->Azbn7->event(array(

@@ -1,5 +1,15 @@
 <?
 // Административный шаблон
+
+$user_arr = array();
+
+$users = $this->Azbn7->mdl('DB')->read('user');
+if(count($users)) {
+	foreach($users as $u) {
+		$user_arr[$u['id']] = $u;
+	}
+}
+
 ?>
 
 <h2 class="mt-2 mb-1" >
@@ -99,8 +109,10 @@ if(count($param['items'])) {
 		<thead>
 			<tr>
 				<th class="at-center" >ID</th>
+				<th class="at-center" >Поз.</th>
 				<th class="at-center" >Отобр.</th>
 				<th>Название</th>
+				<th class="at-center" >Автор</th>
 				<th class="at-center" >Дата создания</th>
 				<th class="at-center" >Дата изменения</th>
 				<th class="at-center" >Функции</th>
@@ -117,12 +129,14 @@ if(count($param['items'])) {
 			
 			<tr>
 				<th class="at-center" scope="row"><?=$v['id'];?></th>
+				<th class="at-center" scope="row"><?=$v['pos'];?></th>
 				<td class="at-center" ><?=($v['visible'] ? '<i class="fa fa-check" aria-hidden="true" title="Отображается" ></i>' : '');?></td>
 				<td>
 					<?=$item['title'];?>
 					<br />
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?>" target="_blank" ><?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?></a>
 				</td>
+				<td class="at-center" ><?=$user_arr[$v['user']]['login'];?></td>
 				<td class="at-center" ><?=date('d.m.Y H:i', $v['created_at']);?></td>
 				<td class="at-center" ><?=date('d.m.Y H:i', $v['updated_at']);?></td>
 				<td class="at-center item-edit-functions" >
