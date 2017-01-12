@@ -53,7 +53,7 @@ $CONFIG = array(
 								'log' => $app_uid . '_log',
 								'user' => $app_uid . '_user',
 								'profile' => $app_uid . '_profile',
-								
+								'right' => $app_uid . '_right',
 								
 								//'cache' => $app_uid . '_cache',
 								//'log' => $app_uid . '_log',

@@ -77,6 +77,12 @@
 	?>
 	
 	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/editor/rights', array(
+		'item' => $param['item'],
+	));
+	?>
+	
+	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/submit', array(
 		'title' => 'Обновить',
 		'html' => '',

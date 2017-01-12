@@ -41,6 +41,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['right'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`uid` VARCHAR(256) NOT NULL UNIQUE,
+				`title` VARCHAR(256) DEFAULT ''
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_type'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -99,6 +106,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`login` VARCHAR(64) NOT NULL UNIQUE,
 				`pass` VARCHAR(64) DEFAULT '',
 				`email` VARCHAR(256) DEFAULT '',
+				`right` MEDIUMBLOB DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT ''
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
@@ -109,6 +117,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`login` VARCHAR(64) NOT NULL UNIQUE,
 				`pass` VARCHAR(64) DEFAULT '',
 				`email` VARCHAR(256) DEFAULT '',
+				`right` MEDIUMBLOB DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT ''
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
@@ -173,6 +182,16 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_sysopt', array(
+			
+		))
+	;
+	
+	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.admin.login', 'title' => 'Возможность входа в админку'));
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.admin.right.update', 'title' => 'Редактирование прав администраторов'));
+	
+	$this->Azbn7->mdl('Site')
+		->log('site.create_right', array(
 			
 		))
 	;
@@ -381,6 +400,10 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'login' => 'system',
 		'email' => 'i@azbn.ru',
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
+		'right' => $this->Azbn7->arr2json(array(
+			//'site.admin.login' => 1,
+			//'site.admin.right.update' => 1,
+		)),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
 			'theme_admin' => 'azbn7-admin/ru',
@@ -393,6 +416,10 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'login' => 'admin',
 		'email' => 'i@azbn.ru',
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
+		'right' => $this->Azbn7->arr2json(array(
+			'site.admin.login' => 1,
+			'site.admin.right.update' => 1,
+		)),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
 			'theme_admin' => 'azbn7-admin/ru',

@@ -19,6 +19,7 @@ class Session
 		
 		if($item['id']) {
 			
+			$item['right'] = json_decode($item['right'], true);
 			$item['param'] = json_decode($item['param'], true);
 			
 			$_SESSION[$type] = $item;
@@ -35,7 +36,9 @@ class Session
 			;
 			
 		} else {
+			
 			$this->logout($type);
+			
 		}
 		
 		return $this->Azbn7->mdl('Site')->is($type);
@@ -77,6 +80,11 @@ class Session
 		}
 		
 		return $n;
+	}
+	
+	public function hasRight($type = 'user', $right = '')
+	{
+		return $this->Azbn7->as_int($_SESSION[$type]['right'][$right]);
 	}
 	
 }

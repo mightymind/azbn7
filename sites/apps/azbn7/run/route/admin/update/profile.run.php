@@ -4,9 +4,20 @@ if(count($_POST['item'])) {
 	
 	$item_id = $this->Azbn7->as_num($_POST['item']['id']);
 	
+	$rights = array();
+	if(count($_POST['item']['right'])) {
+		foreach($_POST['item']['right'] as $uid => $value) {
+			$value = $this->Azbn7->as_int($value);
+			if($value) {
+				$rights[$uid] = $value;
+			}
+		}
+	}
+	
 	$item = array(
 		'login' => $this->Azbn7->c_s($_POST['item']['login']),
 		'email' => $this->Azbn7->c_email($_POST['item']['email']),
+		'right' => $this->Azbn7->arr2json($rights),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => $this->Azbn7->c_s($_POST['item']['param']['theme']),
 			'lang' => $this->Azbn7->c_s($_POST['item']['param']['lang']),

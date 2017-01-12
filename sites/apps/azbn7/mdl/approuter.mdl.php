@@ -190,7 +190,7 @@ class AppRouter
 			$this->Azbn7->mdl('Viewer')->addBodyClass('azbn7-admin');
 			$this->Azbn7->mdl('Viewer')->is_admin_tpl = true;
 			
-			if($this->Azbn7->mdl('Site')->is('user')) {
+			if($this->Azbn7->mdl('Site')->is('user') && $this->Azbn7->mdl('Session')->hasRight('user', 'site.admin.login')) {
 				
 			} else {
 				if($req[1] == 'login') {
