@@ -7,7 +7,7 @@
 
 ?>
 
-<div class="form-group gallery-collect " <?=$param['html'];?> data-type="<?=$this->Azbn7->as_num($param['type']);?>" >
+<div class="form-group alert alert-warning gallery-collect " <?=$param['html'];?> data-type="<?=$this->Azbn7->as_num($param['type']);?>" >
 	
 	<label>
 		<?=$param['title'];?>

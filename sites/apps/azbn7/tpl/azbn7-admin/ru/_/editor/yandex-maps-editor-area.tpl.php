@@ -27,7 +27,7 @@
 		});
 		
 		// Создаем многоугольник без вершин.
-		myPolygon = new ymaps.Polygon([], {}, {
+		myPolygon = new ymaps.Polygon(<?=($param['value'] == '' ? '[]' : $param['value']);?>, {}, {
 			// Курсор в режиме добавления новых вершин.
 			editorDrawingCursor : 'crosshair',
 			// Максимально допустимое количество вершин.

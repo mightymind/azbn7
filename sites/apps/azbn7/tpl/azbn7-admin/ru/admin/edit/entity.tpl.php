@@ -6,7 +6,7 @@
 	<?=$param['type']['title'];?>. Редактирование записи
 	
 	<div class="float-xs-right item-base-functions" >
-		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity_seo/' . $v['id'] . '/');?>" title="SEO-настройки и продвижение" ><i class="fa fa-google" aria-hidden="true"></i></a>
+		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity_seo/' . $param['entity']['id'] . '/');?>" title="SEO-настройки и продвижение" ><i class="fa fa-google" aria-hidden="true"></i></a>
 	</div>
 	
 </h2>
@@ -27,6 +27,19 @@
 	
 	<div class="row" >
 		<div class="col-sm-6" >
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
+				'title' => 'Заголовок',
+				'html' => ' id="" ',
+				'name' => 'item[title]',
+				'value' => $param['item']['title'],
+				'input_html' => ' data-need-upload-param="title" ',
+				//'path' => 'entity',
+			));
+			?>
+			
+			<hr />
 			
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
@@ -54,7 +67,19 @@
 			<hr />
 			
 			<?
-			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity-autocomplete', array(
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/pos', array(
+				'title' => 'Позиция элемента в общем списке',
+				'html' => ' id="" ',
+				'name' => 'entity[pos]',
+				'value' => $param['entity']['pos'],
+				//'path' => 'entity',
+			));
+			?>
+			
+			<hr />
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity-autocomplete-single', array(
 				'title' => 'Родительская запись',
 				'html' => ' id="" ',
 				'name' => 'entity[parent]',
@@ -67,29 +92,6 @@
 			
 		</div>
 	</div>
-	
-	<?
-	$this->Azbn7->mdl('Viewer')->tpl('_/editor/pos', array(
-		'title' => 'Позиция элемента в общем списке',
-		'html' => ' id="" ',
-		'name' => 'entity[pos]',
-		'value' => $param['entity']['pos'],
-		//'path' => 'entity',
-	));
-	?>
-	
-	<hr />
-	
-	<?
-	$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
-		'title' => 'Заголовок',
-		'html' => ' id="" ',
-		'name' => 'item[title]',
-		'value' => $param['item']['title'],
-		'input_html' => ' data-need-upload-param="title" ',
-		//'path' => 'entity',
-	));
-	?>
 	
 	<?
 	//var_dump($param['type']);

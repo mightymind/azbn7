@@ -2,7 +2,7 @@
 // Административный шаблон
 ?>
 
-<h2 class="mt-2 mb-1" >SEO-настройки записи <?=$param['entity']['item']['title'];?></h2>
+<h2 class="mt-2 mb-1" ><a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $param['entity']['entity']['id'] . '/');?>" title="Вернуться к редактированию записи" >&larr;</a> SEO-настройки записи <?=$param['entity']['item']['title'];?></h2>
 
 <form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/entity_seo/');?>" method="POST" >
 	

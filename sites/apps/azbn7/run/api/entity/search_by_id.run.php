@@ -5,6 +5,20 @@
 
 $text = mb_strtolower($this->Azbn7->mdl('Req')->_post('text'), $this->Azbn7->config['charset']);
 
+/*
+$text = explode(',', $text);
+if(count($text)) {
+	foreach($text as $k => $v) {
+		if($this->Azbn7->as_int($v) != 0) {
+			$text[$k] = "'$v'";
+		} else {
+			unset($text[$k]);
+		}
+	}
+}
+$text = implode(',', $text);
+*/
+
 $type = $this->Azbn7->mdl('Req')->_post('type');
 
 if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
@@ -42,9 +56,11 @@ if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
 			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.type = `" . $this->Azbn7->mdl('DB')->t['entity_type'] . "`.id
 			AND
 			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.id IN ($text)
+		ORDER BY
+			FIELD(`azbn7_entity`.id, $text)
 	");/*ORDER BY
 			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.id*/
-	
+	//die($text);
 	$search_items = $search_items_sql->fetchAll(PDO::FETCH_ASSOC);
 	
 	$items = array();

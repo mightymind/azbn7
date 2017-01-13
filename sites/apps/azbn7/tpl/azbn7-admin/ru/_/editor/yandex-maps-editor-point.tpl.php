@@ -45,7 +45,7 @@
 			searchControlProvider : 'yandex#search',
 		});
 		
-		myPoint = genPoint([52.967187, 36.069613], {title : 'Название', preview : 'Описание',});
+		myPoint = genPoint([<?=($param['value'] == '' ? '' : $param['value']);?>], {title : 'Название', preview : 'Описание',});
 		
 		myMap.events.add('click', function(e) {
 			if (!myMap.balloon.isOpen()) {

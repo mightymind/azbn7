@@ -218,22 +218,48 @@
 				
 				// изменение input type=range
 				
-				$(document.body).on('change.azbn7', container_class + ' .item-pos-range', {}, function(event){
-					event.preventDefault();
-					
-					var input = $(this);
-					var val = input.val();
-					
-					input
-						.attr('title', val)
-						.attr('value', val)
-					;
-					
-					input.closest('.form-group').find('.item-pos-view').html(val);
-					
-				});
+				var blocks = $(container_class + ' .item-pos-block');
 				
-				$(container_class + ' .item-pos-range').trigger('change.azbn7');
+				if(blocks.length > 0) {
+					
+					blocks.each(function(__index){
+						
+						var block = $(this);
+						var range = block.find('.item-pos-range');
+						var input = block.find('.item-pos-view');
+						
+						range.on('change.azbn7', function(event){
+							event.preventDefault();
+							
+							var val = range.val();
+							
+							range
+								.attr('title', val)
+								.attr('value', val)
+							;
+							
+							input.val(val);
+							
+						});
+						
+						input.on('change.azbn7 keyup.azbn7 blur.azbn7', function(event){
+							event.preventDefault();
+							
+							var val = input.val();
+							
+							range
+								.attr('title', val)
+								.attr('value', val)
+								.val(val)
+							;
+							
+						});
+						
+						input.trigger('blur.azbn7');
+						
+					});
+					
+				}
 				
 			})();
 			
@@ -305,398 +331,6 @@
 			})();
 			
 			
-			
-			
-			
-			
-			/*
-			(function(){
-				
-				var block = $('.' + a7admin_class + ' .azbn7-select-entity');
-				
-				if(block.length) {
-				
-					var search_l = block.find('.searched-entities-list');
-					var select_l = block.find('.selected-entities-list');
-					
-					var type = 0;
-					
-					var __genListItem = function(item) {
-						
-						var a = $('<li/>', {
-							class : 'list-group-item list-group-item-action ',
-						})
-							.attr('data-entity-id', item.entity.id)
-						;
-						
-						$('<a/>', {
-							href : '#add',
-							class : 'tag tag-default tag-success float-xs-right select-entity-add',
-							html : 'Add',
-						})
-							.appendTo(a);
-						
-						$('<a/>', {
-							href : '#delete',
-							class : 'tag tag-default tag-danger float-xs-right select-entity-delete',
-							html : 'Del',
-						})
-							.appendTo(a);
-						
-						$('<h5/>', {
-							class : 'list-group-item-heading',
-							html : item.item.title,
-						})
-							.appendTo(a);
-						
-						$('<p/>', {
-							class : 'list-group-item-text',
-							html : item.entity.entity_type,
-						})
-							.appendTo(a);
-						
-						
-						return a;
-					};
-					
-					block.on('show.bs.modal', function(event, params){
-						
-						search_l
-							.empty()
-						;
-						select_l
-							.empty()
-						;
-						block
-							.find('form')
-							.trigger('reset')
-						;
-						
-					});
-					
-					block.on('azbn7.init', function(event, params){
-						
-						type = params.type;
-						
-						if(params.single) {
-							select_l.attr('data-single', 1);
-						} else {
-							select_l.attr('data-single', 0);
-						}
-						
-						if(params.selected.length) {
-							
-							var ids = params.selected.join(',');
-							
-							if(params.selected.length == 1) {
-								ids = '0,' + ids;
-							}
-							
-							Azbn7.api({
-								method : 'entity/search_by_id',
-								text : ids,
-								type : type,
-							}, function(resp){
-								
-								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
-									
-									for(var i in resp.response.entities) {
-										
-										var item = resp.response.entities[i];
-										
-										(__genListItem(item)).appendTo(select_l);
-										
-									}
-									
-								}
-								
-							});
-						
-						}
-						
-						block.find('.azbn7-select-entity-ok').one('click.azbn7', function(event){
-							
-							var items = select_l.find('.list-group-item');
-							var ids = new Array();
-							
-							items.each(function(index){
-								ids.push($(this).attr('data-entity-id') || 0);
-							});
-							
-							params.callback.ok(ids);
-							
-							block.modal('hide');
-							
-						});
-						
-					});
-					
-					block.on('azbn7.entity.add', function(event, item){
-						
-						if(parseInt(select_l.attr('data-single'))) {
-							
-							select_l.empty();
-							
-						}
-						
-						var entity_id = parseInt(item.attr('data-entity-id'));
-						select_l.find('[data-entity-id="' + entity_id + '"]')
-							.empty()
-							.remove()
-						;
-						
-						item
-							.clone()
-							.appendTo(select_l)
-						;
-						
-					});
-					
-					block.on('azbn7.entity.delete', function(event, item){
-						
-						item
-							.empty()
-							.remove()
-						;
-						
-					});
-					
-					block.find('.azbn7-search-input[data-result]')
-						.on('keyup.azbn7', function(event){
-							event.preventDefault();
-							
-							var input = $(this);
-							var result_id = input.attr('data-result');
-							var result = $('.list-group[data-result="' + result_id + '"]');
-							var val = input.val();
-							
-							if(val.length > 2) {
-								
-								Azbn7.api({
-									method : 'entity/search',
-									text : val,
-									type : type,
-								}, function(resp){
-									
-									if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
-										
-										result.empty();
-										for(var i in resp.response.entities) {
-											
-											if(i < 8) {
-												
-												var item = resp.response.entities[i];
-												
-												(__genListItem(item)).appendTo(result);
-												
-											}
-											
-										}
-										
-									} else {
-										
-										result.empty();
-										
-									}
-									
-								});
-								
-							} else if(val.length == 0) {
-								
-								search_l.empty();
-								
-							}
-							
-						});
-					
-					block
-						.on('click.azbn7', '.list-group .select-entity-add', {}, function(){
-							event.preventDefault();
-							
-							var btn = $(this);
-							
-							block.trigger('azbn7.entity.add', [btn.closest('.list-group-item')])
-						});
-					
-					block
-						.on('click.azbn7', '.list-group .select-entity-delete', {}, function(){
-							event.preventDefault();
-							
-							var btn = $(this);
-							
-							block.trigger('azbn7.entity.delete', [btn.closest('.list-group-item')])
-						});
-				
-				}
-				
-			})();
-			*/
-			
-			
-			/*
-			(function(){
-				
-				var block = $(container_class + ' .entity-select-block');
-				
-				if(block.length) {
-					
-					var single = parseInt(block.attr('data-single') || 0);
-					var type = parseInt(block.attr('data-type') || 0);
-					
-					var select_l = block.find('.entity-select-list');
-					
-					var __getVal = function() {
-						
-						var __v;
-						
-						if(single) {
-							
-							__v = parseInt(block.find('.entity-select-value').val() || 0);
-							
-						} else {
-							
-							__v = JSON.parse(block.find('.entity-select-value').val());
-							
-						}
-						
-						return __v;
-						
-					};
-					
-					var __setVal = function(v) {
-						
-						var __v;
-						
-						if(single) {
-							
-							__v = parseInt(v[0] || 0);
-							
-						} else {
-							
-							__v = JSON.stringify(v);
-							
-						}
-						
-						block.find('.entity-select-value').val(__v);
-						
-					};
-					
-					var __genListItem = function(item) {
-						
-						var a = $('<div/>', {
-							class : (single) ? 'col-xs-12' : 'col-sm-6 col-lg-4',
-						})
-						;
-						
-						var c = $('<div/>', {
-							class : 'card ',
-						})
-							.attr('data-entity-id', item.entity.id)
-							.appendTo(a)
-						;
-						
-						$('<div/>', {
-							class : 'card-header',
-							html : item.entity.entity_type,
-						})
-							.appendTo(c)
-						;
-						
-						var b = $('<div/>', {
-							class : 'card-block ',
-						})
-							.appendTo(c)
-						;
-						
-						$('<h4/>', {
-							class : 'card-title entity-select-edit-title',
-							html : item.item.title,
-						})
-							.appendTo(b)
-						;
-						
-						return a;
-					};
-					
-					block.on('azbn7.reinit', function(event, params){
-						
-						if(params.result && params.result.length) {
-							
-							select_l
-								.empty()
-							;
-							
-							__setVal(params.result);
-							
-							Azbn7.api({
-								method : 'entity/search_by_id',
-								text : '0,' + params.result.join(','),
-								type : type,
-							}, function(resp){
-								
-								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
-									
-									for(var i in resp.response.entities) {
-										
-										var item = resp.response.entities[i];
-										
-										(__genListItem(item))
-											.appendTo(select_l);
-										
-									}
-									
-								}
-								
-							});
-							
-						}
-						
-					});
-					
-					block.find('.entity-select-edit-btn').on('click.azbn7', function(event){
-						event.preventDefault();
-						
-						var __v;
-						
-						if(!single) {
-							__v = __getVal();
-						} else {
-							__v = [__getVal()];
-						}
-						
-						$('.azbn7-select-entity')
-							.modal()
-							.trigger('azbn7.init', [{
-								single : single,
-								selected : __v,
-								type : type,
-								callback : {
-									ok : function(result){
-										
-										block.trigger('azbn7.reinit', [{result : result}]);
-										
-									},
-								}
-							}])
-						;
-						
-					});
-					
-					
-					if(single) {
-						
-						block.trigger('azbn7.reinit', [{result : [__getVal()]}]);
-						
-					} else {
-						
-						block.trigger('azbn7.reinit', [{result : __getVal()}]);
-						
-					}
-				
-				}
-				
-			})();
-			*/
 			
 			(function(){
 				
@@ -840,7 +474,7 @@
 								if(res.length > 0) {
 									value.text(res[0]);
 								} else {
-									value.text('');
+									value.text('[]');
 								}
 								
 							} else {
@@ -857,17 +491,24 @@
 							
 							variant.empty();
 							
-							var res = []
+							var res = [];
+							var ___val = value.val();
+							
+							if(___val == '' || ___val == ' ' || ___val == null || typeof ___val == 'undefined') {
+								___val = '[]';
+							}
+							
+							//console.log('' + value.val());
 							
 							if(is_single) {
-								res[0] = parseInt(value.val());
+								res = [parseInt(___val)];
 							} else {
-								res = JSON.parse(value.val());
+								res = JSON.parse(___val);
 							}
 							
 							Azbn7.api({
 								method : 'entity/search_by_id',
-								text : '0,' + res.join(','),
+								text : '0,' + res.join(),
 								type : type,
 							}, function(resp){
 								
