@@ -1,7 +1,7 @@
 <?
 // виджет
 ?>
-123
+
 <div class="form-group single-upload-block " <?=$param['html'];?> >
 	<label><?=$param['title'];?></label>
 	<div class="input-group " >
@@ -12,7 +12,7 @@
 	</div>
 	
 	<div class="" >
-		<audio src="<?=$param['value'];?>" controls preload="metadata" >
+		<audio class="upload-viewer" src="<?=$param['value'];?>" controls preload="metadata" >
 			
 		</audio>
 	</div>

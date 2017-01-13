@@ -227,6 +227,92 @@
 </datalist>
 
 
+
+
+
+<?
+switch($_SESSION['user']['param']['wysiwyg']) {
+	
+	case 'cleditor' : {
+		?>
+		
+		<!-- CLEditor -->
+		<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.css');?>" />
+		<script src="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.min.js');?>"></script>
+		<script>
+		$(function(){
+			
+			$('.azbn7-cleditor').cleditor({
+				docType : '<!DOCTYPE html>',
+			});
+			
+		});
+		</script>
+		<!-- /CLEditor -->
+		
+		<?
+	}
+	break;
+	
+	case 'ckeditor' : {
+		?>
+		
+		<!-- CKEditor -->
+		<!--<script src="//cdn.ckeditor.com/4.6.0/full/ckeditor.js"></script>-->
+		<script src="<?=$this->Azbn7->mdl('Site')->url('/js/ckeditor/ckeditor.js');?>"></script>
+		<script>
+		CKEDITOR.disableAutoInline = true;
+		</script>
+		<!-- /CKEditor -->
+		
+		<?
+	}
+	break;
+	
+	case 'tinymce' : {
+		?>
+		
+		<!-- TinyMCE -->
+		<!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>-->
+		<script src="<?=$this->Azbn7->mdl('Site')->url('/js/tinymce/tinymce.min.js');?>"></script>
+		<script>
+		$(function(){
+			
+			tinymce.init({
+				selector:'.azbn7-tinymce',
+				height : '500px',
+				theme : 'modern',
+				plugins: [
+					'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+					'searchreplace wordcount visualblocks visualchars code fullscreen',
+					'insertdatetime media nonbreaking save table contextmenu directionality',
+					'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc',
+				],
+				toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+				toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+				image_advtab: true,
+				content_css: [
+					//'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+					//'//www.tinymce.com/css/codepen.min.css'
+				],
+			});
+			
+		});
+		</script>
+		<!-- /TinyMCE -->
+		
+		<?
+	}
+	break;
+	
+	default : {
+		
+	}
+	break;
+	
+}
+?>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
 

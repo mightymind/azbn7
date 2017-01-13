@@ -55,69 +55,9 @@
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery-ui-1.12.1/jquery-ui.min.js');?>" ></script>
 <!-- /jQuery UI 1.12.1 -->
 
-
-<!-- CLEditor -->
-<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.css');?>" />
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.min.js');?>"></script>
-<script>
-$(function(){
-	
-	$('.azbn7-cleditor').cleditor({
-		docType : '<!DOCTYPE html>',
-	});
-	
-});
-</script>
-<!-- /CLEditor -->
-
-
-
-<!-- CKEditor -->
-<!--<script src="//cdn.ckeditor.com/4.6.0/full/ckeditor.js"></script>-->
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/ckeditor/ckeditor.js');?>"></script>
-<script>
-CKEDITOR.disableAutoInline = true;
-</script>
-<!-- /CKEditor -->
-
-
-
-<!-- TinyMCE -->
-<!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>-->
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/tinymce/tinymce.min.js');?>"></script>
-<script>
-$(function(){
-	
-	tinymce.init({
-		selector:'.azbn7-tinymce',
-		height : '500px',
-		theme : 'modern',
-		plugins: [
-			'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-			'searchreplace wordcount visualblocks visualchars code fullscreen',
-			'insertdatetime media nonbreaking save table contextmenu directionality',
-			'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc',
-		],
-		toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-		toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
-		image_advtab: true,
-		content_css: [
-			//'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-			//'//www.tinymce.com/css/codepen.min.css'
-		],
-	});
-	
-});
-</script>
-<!-- /TinyMCE -->
-
-
-
 <!-- Yandex Maps API -->
 <script src="//api-maps.yandex.ru/2.1/?load=package.controls,package.standard,package.geoObjects,package.editor&lang=ru-RU" type="text/javascript"></script>
 <!-- /Yandex Maps API -->
-
-
 
 </head>
 <body class=" <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >

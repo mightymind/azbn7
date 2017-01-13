@@ -698,6 +698,48 @@
 			})();
 			*/
 			
+			(function(){
+				
+				var blocks = $(container_class + ' .azbn-rights-list');
+				
+				if(blocks.length) {
+					
+					blocks.each(function(__index){
+						
+						var block = $(this);
+						
+						block.find('.check-btn').on('click.azbn7', function(event){
+							event.preventDefault();
+							
+							var btn = $(this);
+							var for_all = parseInt(btn.attr('data-check-all'));
+							
+							if(for_all) {
+								
+								block
+									.find('.right-item-cb')
+										.prop('checked', 'checked')
+										
+								;
+								
+							} else {
+								
+								block
+									.find('.right-item-cb')
+										.prop('checked', null)
+										
+								;
+								
+							}
+							
+						});
+						
+					});
+					
+				}
+			
+			})();
+			
 			
 			(function(){
 				
@@ -1008,6 +1050,54 @@
 			})();
 			
 			
+			
+			
+			(function(){
+				
+				var blocks = $(container_class + ' .single-upload-block');
+				
+				if(blocks.length) {
+					
+					blocks.each(function(__index){
+						
+						var block = $(this);
+						
+						var input = block.find('.upload-input');
+						var btn = block.find('.upload-btn');
+						var viewer = block.find('.upload-viewer');
+						
+						block.on('azbn7.init', function(event){
+							
+							var val = input.val();
+							
+							if(val != '') {
+								
+								viewer.removeClass('azbn7-hidden');
+								
+								viewer.attr('src', val);
+								
+							} else {
+								
+								viewer.addClass('azbn7-hidden');
+								
+							}
+							
+						});
+						
+						input.on('keyup.azbn7 blur.azbn7 change.azbn7', function(event){
+							event.preventDefault();
+							
+							block.trigger('azbn7.init');
+							
+						})
+						
+						block.trigger('azbn7.init');
+						
+					});
+					
+				}
+				
+			})();
 			
 			
 			
@@ -1512,6 +1602,7 @@
 								input.val(json.url);
 								
 								block.closest('form').trigger('azbn7.single-upload', [json]);
+								input.trigger('blur.azbn7');
 								
 								if(img) {
 									img.attr('src', json.url);

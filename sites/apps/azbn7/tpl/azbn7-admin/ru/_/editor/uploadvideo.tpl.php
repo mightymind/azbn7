@@ -12,8 +12,8 @@
 	</div>
 	
 	<div class="" >
-		<video controls width="600" height="400" preload="metadata" >
-			<source src="<?=$param['value'];?>" >
+		<video class="upload-viewer" src="<?=$param['value'];?>" controls width="600" height="400" preload="metadata" >
+			
 		</video>
 	</div>
 </div>
