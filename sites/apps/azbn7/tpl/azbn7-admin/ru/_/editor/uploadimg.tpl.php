@@ -11,14 +11,7 @@
 		</span>
 	</div>
 	
-	<?
-	if($param['value'] != '') {
-	?>
-	<div class="mt-1 jumbotron" >
-		<img class="img-fluid mx-auto d-block upload-img" src="<?=$param['value'];?>" />
+	<div class="" >
+		<img class="upload-viewer" src="<?=$param['value'];?>" />
 	</div>
-	<?
-	}
-	?>
-	
 </div>
