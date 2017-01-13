@@ -56,12 +56,12 @@ if(count($users)) {
 						<div class="row " >
 							<div class="col-xs-12 col-sm-6" >
 								<label >Дата создания между</label>
-								<input type="text" class="form-control datepicker " name="flt[created_at][start]" value="<?=$this->Azbn7->c_s($_GET['flt']['created_at']['start']);?>" />
+								<input type="text" class="form-control datepicker " name="flt[created_at][start]" value="<?=$this->Azbn7->c_s($_GET['flt']['created_at']['start']);?>" placeholder="Начало" />
 							</div>
 							
 							<div class="col-xs-12 col-sm-6" >
 								<label >&nbsp;</label>
-								<input type="text" class="form-control datepicker " name="flt[created_at][stop]" value="<?=$this->Azbn7->c_s($_GET['flt']['created_at']['stop']);?>" />
+								<input type="text" class="form-control datepicker " name="flt[created_at][stop]" value="<?=$this->Azbn7->c_s($_GET['flt']['created_at']['stop']);?>" placeholder="Окончание" />
 							</div>
 						</div>
 						
@@ -74,12 +74,12 @@ if(count($users)) {
 						<div class="row " >
 							<div class="col-xs-12 col-sm-6" >
 								<label >Дата изменения между</label>
-								<input type="text" class="form-control datepicker " name="flt[updated_at][start]" value="<?=$this->Azbn7->c_s($_GET['flt']['updated_at']['start']);?>" />
+								<input type="text" class="form-control datepicker " name="flt[updated_at][start]" value="<?=$this->Azbn7->c_s($_GET['flt']['updated_at']['start']);?>" placeholder="Начало" />
 							</div>
 							
 							<div class="col-xs-12 col-sm-6" >
 								<label >&nbsp;</label>
-								<input type="text" class="form-control datepicker " name="flt[updated_at][stop]" value="<?=$this->Azbn7->c_s($_GET['flt']['updated_at']['stop']);?>" />
+								<input type="text" class="form-control datepicker " name="flt[updated_at][stop]" value="<?=$this->Azbn7->c_s($_GET['flt']['updated_at']['stop']);?>" placeholder="Окончание" />
 							</div>
 						</div>
 						

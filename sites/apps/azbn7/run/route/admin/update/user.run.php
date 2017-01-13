@@ -32,6 +32,10 @@ if(count($_POST['item'])) {
 	
 	$this->Azbn7->mdl('DB')->update('user', $item, "id = '$item_id'");
 	
+	if($this->Azbn7->mdl('Site')->is('user') == $item_id) {
+		$this->Azbn7->mdl('Session')->reloadRights('user');
+	}
+	
 	$this->Azbn7->go2('/admin/edit/user/' . $item_id . '/');
 	
 }

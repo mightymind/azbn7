@@ -81,6 +81,8 @@ class Entity
 					))
 				;
 				
+				$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.type.' . $e['uid'] . '.access', 'title' => 'Доступ к записям типа ' . $e['title']));
+				
 				return intval($e['id']);
 				
 			} else {

@@ -47,6 +47,7 @@
 	?>
 	
 	<?
+	/*
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
 		'title' => 'Редактировать через',
 		'html' => ' id="" ',
@@ -55,7 +56,19 @@
 		'value' => 'input',
 		//'path' => 'entity',
 	));
+	*/
 	?>
+	
+	<div class="form-group " >
+		<label>Редактировать через</label>
+		<?
+		$this->Azbn7->mdl('Viewer')->tpl('_/editor/select_editor', array(
+			'name' => 'item[editor]',
+			'value' => 'input',
+			//'path' => 'entity',
+		));
+		?>
+	</div>
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/textarea', array(

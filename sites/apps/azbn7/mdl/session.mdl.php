@@ -87,4 +87,16 @@ class Session
 		return $this->Azbn7->as_int($_SESSION[$type]['right'][$right]);
 	}
 	
+	public function reloadRights($type = 'user')
+	{
+		$item = $this->Azbn7->mdl('DB')->one($type, "id = '" . $_SESSION[$type]['id'] . "'");
+		
+		if($item['id']) {
+			
+			$_SESSION[$type]['right'] = json_decode($item['right'], true);
+			
+		}
+		
+	}
+	
 }

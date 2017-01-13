@@ -69,6 +69,7 @@
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/rights', array(
 		'item' => array('right' => array()),
+		'type' => 'profile',
 	));
 	?>
 	

@@ -701,301 +701,307 @@
 			
 			(function(){
 				
-				var block = $(container_class + ' .entity-autocomplete');
+				var blocks = $(container_class + ' .entity-autocomplete');
 				
-				if(block.length) {
+				if(blocks.length) {
 					
-					var value = block.find('.edit-value');
-					var input = block.find('.edit-input');
-					var checked = block.find('.checked-list');
-					var variant = block.find('.variant-list');
-					
-					var is_single = parseInt(block.attr('data-single') || 1);
-					var type = parseInt(block.attr('data-type') || 0);
-					
-					var __genListItem = function(item) {
+					blocks.each(function(__index){
 						
-						var a = $('<a/>', {
-							class : 'list-group-item variant',
-							html : item.item.title,
-						})
-							.attr('draggable', true)
-							.attr('href', '#' + item.entity.id)
-							.attr('data-entity', item.entity.id)
-						;
+						var block = $(this);
 						
-						return a;
+						var value = block.find('.edit-value');
+						var input = block.find('.edit-input');
+						var checked = block.find('.checked-list');
+						var variant = block.find('.variant-list');
 						
-					};
-					
-					input.on('keyup.azbn7', function(event){
-						event.preventDefault();
+						var is_single = parseInt(block.attr('data-single') || 1);
+						var type = parseInt(block.attr('data-type') || 0);
 						
-						if(!variant.hasClass('in-action')) {
-							variant.addClass('in-action');
-						}
+						var __genListItem = function(item) {
+							
+							var a = $('<a/>', {
+								class : 'list-group-item variant',
+								html : item.item.title,
+							})
+								.attr('draggable', true)
+								.attr('href', '#' + item.entity.id)
+								.attr('data-entity', item.entity.id)
+							;
+							
+							return a;
+							
+						};
 						
-						var val = input.html().replace(new RegExp('&nbsp;','ig'), ' ');
+						input.on('keyup.azbn7', function(event){
+							event.preventDefault();
+							
+							if(!variant.hasClass('in-action')) {
+								variant.addClass('in-action');
+							}
+							
+							var val = input.html().replace(new RegExp('&nbsp;','ig'), ' ');
+							
+							if(val.length > 2) {
+								
+								Azbn7.api({
+									method : 'entity/search',
+									text : val,
+									type : type,
+								}, function(resp){
+									
+									if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+										
+										variant.empty();
+										
+										for(var i in resp.response.entities) {
+											
+											if(i < 20) {
+												
+												var item = resp.response.entities[i];
+												
+												(__genListItem(item)).appendTo(variant);
+												
+											}
+											
+										}
+											
+									} else {
+										
+										variant.empty();
+										
+									}
+									
+								});
+								
+							} else if(val.length == 0) {
+								
+								variant.empty();
+								
+							}
+							
+						});
 						
-						if(val.length > 2) {
+						block.on('azbn7.setValue', function(event){
+							
+							var res = [];
+							
+							checked.find('.variant').each(function(){
+								
+								var item = $(this);
+								
+								res.push(parseInt(item.attr('data-entity') || 0));
+								
+							});
+							
+							if(is_single) {
+								
+								if(res.length > 0) {
+									value.text(res[0]);
+								} else {
+									value.text('');
+								}
+								
+							} else {
+								
+								value.text(JSON.stringify(res));
+								
+							}
+							
+							value.val(value.text());
+							
+						});
+						
+						block.on('azbn7.init', function(event){
+							
+							variant.empty();
+							
+							var res = []
+							
+							if(is_single) {
+								res[0] = parseInt(value.val());
+							} else {
+								res = JSON.parse(value.val());
+							}
 							
 							Azbn7.api({
-								method : 'entity/search',
-								text : val,
+								method : 'entity/search_by_id',
+								text : '0,' + res.join(','),
 								type : type,
 							}, function(resp){
 								
 								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
 									
-									variant.empty();
-									
 									for(var i in resp.response.entities) {
 										
-										if(i < 20) {
-											
-											var item = resp.response.entities[i];
-											
-											(__genListItem(item)).appendTo(variant);
-											
-										}
+										var item = resp.response.entities[i];
+										
+										(__genListItem(item))
+											.appendTo(checked);
 										
 									}
-										
-								} else {
-									
-									variant.empty();
 									
 								}
 								
 							});
 							
-						} else if(val.length == 0) {
-							
-							variant.empty();
-							
-						}
-						
-					});
-					
-					block.on('azbn7.setValue', function(event){
-						
-						var res = [];
-						
-						checked.find('.variant').each(function(){
-							
-							var item = $(this);
-							
-							res.push(parseInt(item.attr('data-entity') || 0));
+							//console.log(res);
 							
 						});
 						
-						if(is_single) {
+						checked.on('click.azbn7', '.variant', {}, function(event){
 							
-							if(res.length > 0) {
-								value.text(res[0]);
-							} else {
-								value.text('');
-							}
-							
-						} else {
-							
-							value.text(JSON.stringify(res));
-							
-						}
-						
-						value.val(value.text());
-						
-					});
-					
-					block.on('azbn7.init', function(event){
-						
-						variant.empty();
-						
-						var res = []
-						
-						if(is_single) {
-							res[0] = parseInt(value.val());
-						} else {
-							res = JSON.parse(value.val());
-						}
-						
-						Azbn7.api({
-							method : 'entity/search_by_id',
-							text : '0,' + res.join(','),
-							type : type,
-						}, function(resp){
-							
-							if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+							if(confirm('Удалить запись из списка?')) {
 								
-								for(var i in resp.response.entities) {
-									
-									var item = resp.response.entities[i];
-									
-									(__genListItem(item))
-										.appendTo(checked);
-									
-								}
+								event.preventDefault();
+								
+								var btn = $(this);
+								
+								btn
+									.empty()
+									.remove()
+								;
+								
+								block.trigger('azbn7.setValue');
 								
 							}
 							
 						});
 						
-						//console.log(res);
-						
-					});
-					
-					checked.on('click.azbn7', '.variant', {}, function(event){
-						
-						if(confirm('Удалить запись из списка?')) {
-							
+						variant.on('click.azbn7', '.variant', {}, function(event){
 							event.preventDefault();
 							
 							var btn = $(this);
 							
+							if(is_single) {
+								checked.empty();
+							} else {
+								checked.find('.variant[data-entity="' + btn.attr('data-entity') + '"]').remove();
+							}
+							
 							btn
-								.empty()
-								.remove()
+								.appendTo(checked)
+								/*
+								.attr('title', 'Нажмите для удаления')
+								.on('mouseover', function(){
+									btn.addClass('on-hover');
+								})
+								.on('mouseout', function(){
+									btn.removeClass('on-hover');
+								})
+								*/
 							;
 							
+							input.text('');
 							block.trigger('azbn7.setValue');
 							
-						}
-						
-					});
-					
-					variant.on('click.azbn7', '.variant', {}, function(event){
-						event.preventDefault();
-						
-						var btn = $(this);
-						
-						if(is_single) {
-							checked.empty();
-						} else {
-							checked.find('.variant[data-entity="' + btn.attr('data-entity') + '"]').remove();
-						}
-						
-						btn
-							.appendTo(checked)
-							/*
-							.attr('title', 'Нажмите для удаления')
-							.on('mouseover', function(){
-								btn.addClass('on-hover');
-							})
-							.on('mouseout', function(){
-								btn.removeClass('on-hover');
-							})
-							*/
-						;
-						
-						input.text('');
-						block.trigger('azbn7.setValue');
-						
-						if(variant.hasClass('in-action')) {
-							variant.removeClass('in-action');
-						}
-						
-					});
-					
-					checked.on('mousedown.azbn7', '.variant', {}, function(event){
-						event.preventDefault();
-						
-						var oe = event.originalEvent;
-						var item = $(this);
-						
-						if (oe.which != 1) { //клик правой кнопкой мыши
-							return;
-						} else {
-							checked.attr('data-azbn7-mousedown', 1);
-							checked.data('azbn7-mousedown', item);
-						}
-						
-					});
-					
-					checked.on('mousemove.azbn7', '.variant', {}, function(event){
-						event.preventDefault();
-						
-						var oe = event.originalEvent;
-						var item = $(this);
-						
-						if (oe.which != 1) { //клик правой кнопкой мыши
-							return;
-						} else {
-							//checked.attr('data-azbn7-mousedown', 1);
-							//checked.data('azbn7-mousedown', item);
+							if(variant.hasClass('in-action')) {
+								variant.removeClass('in-action');
+							}
 							
-							if(parseInt(checked.attr('data-azbn7-mousedown')) && checked.data('azbn7-mousedown')) {
+						});
+						
+						checked.on('mousedown.azbn7', '.variant', {}, function(event){
+							event.preventDefault();
+							
+							var oe = event.originalEvent;
+							var item = $(this);
+							
+							if (oe.which != 1) { //клик правой кнопкой мыши
+								return;
+							} else {
+								checked.attr('data-azbn7-mousedown', 1);
+								checked.data('azbn7-mousedown', item);
+							}
+							
+						});
+						
+						checked.on('mousemove.azbn7', '.variant', {}, function(event){
+							event.preventDefault();
+							
+							var oe = event.originalEvent;
+							var item = $(this);
+							
+							if (oe.which != 1) { //клик правой кнопкой мыши
+								return;
+							} else {
+								//checked.attr('data-azbn7-mousedown', 1);
+								//checked.data('azbn7-mousedown', item);
+								
+								if(parseInt(checked.attr('data-azbn7-mousedown')) && checked.data('azbn7-mousedown')) {
+									
+									var md = checked.data('azbn7-mousedown');
+									
+									if(parseInt(md.attr('data-entity')) != parseInt(item.attr('data-entity'))) {
+										
+										var __item = item.clone();
+										var __md = md.clone();
+										
+										__item.insertAfter(md);
+										__md.insertAfter(item);
+										
+										md.insertAfter(__md);
+										item.insertAfter(__item);
+										
+										__item.remove();
+										__md.remove();
+										
+										block.trigger('azbn7.setValue');
+										
+									}
+									
+								}
+								
+								
+								
+								
+								
+							}
+							
+						});
+						
+						/*
+						checked.on('mouseup.azbn7', '.variant', {}, function(event){
+							event.preventDefault();
+							
+							var oe = event.originalEvent;
+							var item = $(this);
+							
+							if (oe.which != 1) { //клик правой кнопкой мыши
+								return;
+							} else {
+								
+								if(parseInt(checked.attr('data-azbn7-mousedown'))) {
+									
+									checked.attr('data-azbn7-mousedown', 0);
+									
+									var __mu_i = checked.index(item);
+									var __md_i = checked.index(checked.data('azbn7-mousedown'));
+									
+									if(0) {
+										
+									} else {
+										
+									}
+									
+								}
+								
+								
 								
 								var md = checked.data('azbn7-mousedown');
+								var _md = md.prev('.variant');
 								
-								if(parseInt(md.attr('data-entity')) != parseInt(item.attr('data-entity'))) {
-									
-									var __item = item.clone();
-									var __md = md.clone();
-									
-									__item.insertAfter(md);
-									__md.insertAfter(item);
-									
-									md.insertAfter(__md);
-									item.insertAfter(__item);
-									
-									__item.remove();
-									__md.remove();
-									
-									block.trigger('azbn7.setValue');
-									
-								}
+								md.insertAfter(item);
+								item.insertAfter(_md);
 								
 							}
 							
-							
-							
-							
-							
-						}
+						});
+						*/
+						
+						
+						block.trigger('azbn7.init');
 						
 					});
-					
-					/*
-					checked.on('mouseup.azbn7', '.variant', {}, function(event){
-						event.preventDefault();
-						
-						var oe = event.originalEvent;
-						var item = $(this);
-						
-						if (oe.which != 1) { //клик правой кнопкой мыши
-							return;
-						} else {
-							
-							if(parseInt(checked.attr('data-azbn7-mousedown'))) {
-								
-								checked.attr('data-azbn7-mousedown', 0);
-								
-								var __mu_i = checked.index(item);
-								var __md_i = checked.index(checked.data('azbn7-mousedown'));
-								
-								if(0) {
-									
-								} else {
-									
-								}
-								
-							}
-							
-							
-							
-							var md = checked.data('azbn7-mousedown');
-							var _md = md.prev('.variant');
-							
-							md.insertAfter(item);
-							item.insertAfter(_md);
-							
-						}
-						
-					});
-					*/
-					
-					
-					block.trigger('azbn7.init');
 					
 				}
 				
@@ -1007,388 +1013,394 @@
 			
 			(function(){
 				
-				var block = $(container_class + ' .gallery-collect');
+				var blocks = $(container_class + ' .gallery-collect');
 				
-				if(block.length) {
+				if(blocks.length) {
 					
-					var value = block.find('.edit-value');
-					var input = block.find('.edit-input');
-					
-					var checked = block.find('.image-cont');
-					var variant = block.find('.variant-cont');
-					
-					var is_single = 0;
-					var type = parseInt(block.attr('data-type') || 0);
-					
-					var append_btn = checked.find('.append-variant-item');
-					var upload_btn = checked.find('.upload-variant-item');
-					
-					var edit = block.find('.edit-block');
-					
-					var __genListItem = function(item, in_search) {
+					blocks.each(function(__index){
 						
-						var html = '';
+						var block = $(this);
 						
-						if(in_search) {
-							html = '<i class="fa fa-plus" aria-hidden="true"></i>';
-						} else {
-							html = '<i class="fa fa-times" aria-hidden="true"></i>';
-						}
+						var value = block.find('.edit-value');
+						var input = block.find('.edit-input');
 						
-						var a = $('<a/>', {
-							class : 'variant',
-							html : html,
-						})
-							.attr('draggable', true)
-							.attr('href', '#' + item.entity.id)
-							.attr('data-entity', item.entity.id)
-							.css({
-								'background-image' : 'url(' + item.item.path + ')',
-							})
-						;
+						var checked = block.find('.image-cont');
+						var variant = block.find('.variant-cont');
 						
-						return a;
+						var is_single = 0;
+						var type = parseInt(block.attr('data-type') || 0);
 						
-					};
-					
-					input.on('keyup.azbn7', function(event){
-						event.preventDefault();
+						var append_btn = checked.find('.append-variant-item');
+						var upload_btn = checked.find('.upload-variant-item');
 						
-						if(!variant.hasClass('in-action')) {
-							variant.addClass('in-action');
-						}
+						var edit = block.find('.edit-block');
 						
-						var val = input.html().replace(new RegExp('&nbsp;','ig'), ' ');
-						
-						if(val.length > 2) {
+						var __genListItem = function(item, in_search) {
 							
-							Azbn7.api({
-								method : 'entity/search',
-								text : val,
-								type : type,
-							}, function(resp){
-								
-								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
-									
-									variant.empty();
-									
-									for(var i in resp.response.entities) {
-										
-										if(i < 20) {
-											
-											var item = resp.response.entities[i];
-											
-											(__genListItem(item, true)).appendTo(variant);
-											
-										}
-										
-									}
-										
-								} else {
-									
-									variant.empty();
-									
-								}
-								
-							});
+							var html = '';
 							
-						} else if(val.length == 0) {
-							
-							variant.empty();
-							
-						}
-						
-					});
-					
-					block.on('azbn7.setValue', function(event, arr){
-						
-						var res = arr || [];
-						
-						checked.find('.variant').each(function(){
-							
-							var item = $(this);
-							
-							res.push(parseInt(item.attr('data-entity') || 0));
-							
-						});
-						
-						if(is_single) {
-							
-							if(res.length > 0) {
-								value.text(res[0]);
+							if(in_search) {
+								html = '<i class="fa fa-plus" aria-hidden="true"></i>';
 							} else {
-								value.text('');
+								html = '<i class="fa fa-times" aria-hidden="true"></i>';
 							}
 							
-						} else {
-							
-							value.text(JSON.stringify(res));
-							
-						}
-						
-						value.val(value.text());
-						
-					});
-					
-					block.on('azbn7.init', function(event){
-						
-						var res = [];
-						
-						if(is_single) {
-							res[0] = parseInt(value.val());
-						} else {
-							res = JSON.parse(value.val());
-						}
-						
-						Azbn7.api({
-							method : 'entity/search_by_id',
-							text : '0,' + res.join(','),
-							type : type,
-						}, function(resp){
-							
-							if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
-								
-								checked.find('.variant')
-									.empty()
-									.remove()
-								;
-								
-								for(var i in resp.response.entities) {
-									
-									var item = resp.response.entities[i];
-									
-									(__genListItem(item))
-										//.appendTo(checked)
-										.insertBefore(append_btn)
-										;
-									
-								}
-								
-							}
-							
-						});
-						
-						//console.log(res);
-						
-					});
-					
-					checked.on('click.azbn7', '.variant', {}, function(event){
-						
-						if(confirm('Удалить запись из списка?')) {
-							
-							event.preventDefault();
-							
-							var btn = $(this);
-							
-							btn
-								.empty()
-								.remove()
+							var a = $('<a/>', {
+								class : 'variant',
+								html : html,
+							})
+								.attr('draggable', true)
+								.attr('href', '#' + item.entity.id)
+								.attr('data-entity', item.entity.id)
+								.css({
+									'background-image' : 'url(' + item.item.path + ')',
+								})
 							;
 							
-							block.trigger('azbn7.setValue');
+							return a;
 							
-						}
+						};
 						
-					});
-					
-					checked.on('mousedown.azbn7', '.variant', {}, function(event){
-						event.preventDefault();
-						
-						var oe = event.originalEvent;
-						var item = $(this);
-						
-						if (oe.which != 1) { //клик правой кнопкой мыши
-							return;
-						} else {
-							checked.attr('data-azbn7-mousedown', 1);
-							checked.data('azbn7-mousedown', item);
-							item.addClass('on-drag');
-						}
-						
-					});
-					
-					checked.on('mouseup.azbn7', '.variant', {}, function(event){
-						event.preventDefault();
-						
-						var oe = event.originalEvent;
-						var item = $(this);
-						
-						if (oe.which != 1) { //клик правой кнопкой мыши
-							return;
-						} else {
-							checked.attr('data-azbn7-mousedown', 0);
-							checked.data('azbn7-mousedown', null);
-							item.removeClass('on-drag');
-						}
-						
-					});
-					
-					checked.on('mousemove.azbn7', '.variant', {}, function(event){
-						event.preventDefault();
-						
-						var oe = event.originalEvent;
-						var item = $(this);
-						
-						if (oe.which != 1) { //клик правой кнопкой мыши
-							return;
-						} else {
-							//checked.attr('data-azbn7-mousedown', 1);
-							//checked.data('azbn7-mousedown', item);
+						input.on('keyup.azbn7', function(event){
+							event.preventDefault();
 							
-							
-							
-							if(parseInt(checked.attr('data-azbn7-mousedown')) && checked.data('azbn7-mousedown')) {
-								
-								var md = checked.data('azbn7-mousedown');
-								
-								if(parseInt(md.attr('data-entity')) != parseInt(item.attr('data-entity'))) {
-									//console.log('111x');
-									var __item = item.clone();
-									var __md = md.clone();
-									
-									__item.insertAfter(md);
-									__md.insertAfter(item);
-									
-									md.insertAfter(__md);
-									item.insertAfter(__item);
-									
-									__item.remove();
-									__md.remove();
-									
-									block.trigger('azbn7.setValue');
-									
-								}
-								
+							if(!variant.hasClass('in-action')) {
+								variant.addClass('in-action');
 							}
 							
-						}
-						
-					});
-					
-					variant.on('click.azbn7', '.variant', {}, function(event){
-						event.preventDefault();
-						
-						var btn = $(this);
-						
-						if(is_single) {
-							checked.empty();
-						} else {
-							checked.find('.variant[data-entity="' + btn.attr('data-entity') + '"]').remove();
-						}
-						
-						btn
-							.insertBefore(append_btn);
-							//.appendTo(checked)
+							var val = input.html().replace(new RegExp('&nbsp;','ig'), ' ');
 							
-						;
-						
-						//input.text('');
-						block.trigger('azbn7.setValue');
-						
-						//if(variant.hasClass('in-action')) {
-						//	variant.removeClass('in-action');
-						//}
-						
-					});
-					
-					append_btn.on('click.azbn7', function(event) {
-						event.preventDefault();
-						
-						edit.slideToggle('fast');
-						edit.find('.edit-input').trigger('focus');
-						
-					});
-					//append_btn.trigger('click.azbn7');
-					
-					
-					upload_btn.on('click.azbn7', function(event) {
-						event.preventDefault();
-						
-						var arr = [];
-						
-						$(document.body).Azbn7_AjaxUploader('upload', {
-							name : 'uploading_file',
-							action : '/admin/upload/file/',
-							on_percent : function(file, total, loaded, percent) {
-								//Azbn7.User.msg('info', 'Загрузка ' + file.name + ': ' + percent + '%');
-							},
-							callback : function(file, response, uploaded, is_last) {
-								
-								var json = JSON.parse(response);
-								console.log(json);
-								
-								var type = 0;
-								
-								switch(json.mime_type) {
-									
-									// картинки
-									case 'image/tiff' :
-									case 'image/svg+xml' :
-									case 'image/gif' :
-									case 'image/jpeg' :
-									case 'image/png' : {
-										type = 4;
-									}
-									break;
-									
-									// аудио
-									case 'audio/mpeg' : {
-										type = 5;
-									}
-									break;
-									
-									// видео
-									case 'video/mp4' :
-									case 'video/webm' :
-									case 'video/quicktime' : {
-										type = 6;
-									}
-									break;
-									
-									default : {
-										type = 7;
-									}
-									break;
-									
-								}
+							if(val.length > 2) {
 								
 								Azbn7.api({
-									method : 'entity/create_upload',
+									method : 'entity/search',
+									text : val,
 									type : type,
-									title : json.title,
-									path : json.url,
 								}, function(resp){
 									
-									if(resp && resp.response && resp.response.entity && type == 4) {
+									if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
 										
-										//area.append('<p>Файл <a href="' + resp.response.entity.item.path + '" target="_blank" >' + resp.response.entity.item.title + '</a> загружен</p>');
+										variant.empty();
 										
-										/*
-										(__genListItem(resp.response.entity))
-											//.appendTo(checked)
-											.insertBefore(append_btn)
-										;
-										*/
-										arr.push(resp.response.entity.entity.id);
-										
-										if(is_last) {
-											//alert('last');
-											block.trigger('azbn7.setValue', [arr]);
-											block.trigger('azbn7.init');
+										for(var i in resp.response.entities) {
+											
+											if(i < 20) {
+												
+												var item = resp.response.entities[i];
+												
+												(__genListItem(item, true)).appendTo(variant);
+												
+											}
+											
 										}
+											
+									} else {
 										
-										
+										variant.empty();
 										
 									}
 									
 								});
 								
-							},
+							} else if(val.length == 0) {
+								
+								variant.empty();
+								
+							}
+							
 						});
 						
+						block.on('azbn7.setValue', function(event, arr){
+							
+							var res = arr || [];
+							
+							checked.find('.variant').each(function(){
+								
+								var item = $(this);
+								
+								res.push(parseInt(item.attr('data-entity') || 0));
+								
+							});
+							
+							if(is_single) {
+								
+								if(res.length > 0) {
+									value.text(res[0]);
+								} else {
+									value.text('');
+								}
+								
+							} else {
+								
+								value.text(JSON.stringify(res));
+								
+							}
+							
+							value.val(value.text());
+							
+						});
+						
+						block.on('azbn7.init', function(event){
+							
+							var res = [];
+							
+							if(is_single) {
+								res[0] = parseInt(value.val());
+							} else {
+								res = JSON.parse(value.val());
+							}
+							
+							Azbn7.api({
+								method : 'entity/search_by_id',
+								text : '0,' + res.join(','),
+								type : type,
+							}, function(resp){
+								
+								if(resp && resp.response && resp.response.entities && resp.response.entities.length) {
+									
+									checked.find('.variant')
+										.empty()
+										.remove()
+									;
+									
+									for(var i in resp.response.entities) {
+										
+										var item = resp.response.entities[i];
+										
+										(__genListItem(item))
+											//.appendTo(checked)
+											.insertBefore(append_btn)
+											;
+										
+									}
+									
+								}
+								
+							});
+							
+							//console.log(res);
+							
+						});
+						
+						checked.on('click.azbn7', '.variant', {}, function(event){
+							
+							if(confirm('Удалить запись из списка?')) {
+								
+								event.preventDefault();
+								
+								var btn = $(this);
+								
+								btn
+									.empty()
+									.remove()
+								;
+								
+								block.trigger('azbn7.setValue');
+								
+							}
+							
+						});
+						
+						checked.on('mousedown.azbn7', '.variant', {}, function(event){
+							event.preventDefault();
+							
+							var oe = event.originalEvent;
+							var item = $(this);
+							
+							if (oe.which != 1) { //клик правой кнопкой мыши
+								return;
+							} else {
+								checked.attr('data-azbn7-mousedown', 1);
+								checked.data('azbn7-mousedown', item);
+								item.addClass('on-drag');
+							}
+							
+						});
+						
+						checked.on('mouseup.azbn7', '.variant', {}, function(event){
+							event.preventDefault();
+							
+							var oe = event.originalEvent;
+							var item = $(this);
+							
+							if (oe.which != 1) { //клик правой кнопкой мыши
+								return;
+							} else {
+								checked.attr('data-azbn7-mousedown', 0);
+								checked.data('azbn7-mousedown', null);
+								item.removeClass('on-drag');
+							}
+							
+						});
+						
+						checked.on('mousemove.azbn7', '.variant', {}, function(event){
+							event.preventDefault();
+							
+							var oe = event.originalEvent;
+							var item = $(this);
+							
+							if (oe.which != 1) { //клик правой кнопкой мыши
+								return;
+							} else {
+								//checked.attr('data-azbn7-mousedown', 1);
+								//checked.data('azbn7-mousedown', item);
+								
+								
+								
+								if(parseInt(checked.attr('data-azbn7-mousedown')) && checked.data('azbn7-mousedown')) {
+									
+									var md = checked.data('azbn7-mousedown');
+									
+									if(parseInt(md.attr('data-entity')) != parseInt(item.attr('data-entity'))) {
+										//console.log('111x');
+										var __item = item.clone();
+										var __md = md.clone();
+										
+										__item.insertAfter(md);
+										__md.insertAfter(item);
+										
+										md.insertAfter(__md);
+										item.insertAfter(__item);
+										
+										__item.remove();
+										__md.remove();
+										
+										block.trigger('azbn7.setValue');
+										
+									}
+									
+								}
+								
+							}
+							
+						});
+						
+						variant.on('click.azbn7', '.variant', {}, function(event){
+							event.preventDefault();
+							
+							var btn = $(this);
+							
+							if(is_single) {
+								checked.empty();
+							} else {
+								checked.find('.variant[data-entity="' + btn.attr('data-entity') + '"]').remove();
+							}
+							
+							btn
+								.insertBefore(append_btn);
+								//.appendTo(checked)
+								
+							;
+							
+							//input.text('');
+							block.trigger('azbn7.setValue');
+							
+							//if(variant.hasClass('in-action')) {
+							//	variant.removeClass('in-action');
+							//}
+							
+						});
+						
+						append_btn.on('click.azbn7', function(event) {
+							event.preventDefault();
+							
+							edit.slideToggle('fast');
+							edit.find('.edit-input').trigger('focus');
+							
+						});
+						//append_btn.trigger('click.azbn7');
+						
+						
+						upload_btn.on('click.azbn7', function(event) {
+							event.preventDefault();
+							
+							var arr = [];
+							
+							$(document.body).Azbn7_AjaxUploader('upload', {
+								name : 'uploading_file',
+								action : '/admin/upload/file/',
+								on_percent : function(file, total, loaded, percent) {
+									//Azbn7.User.msg('info', 'Загрузка ' + file.name + ': ' + percent + '%');
+								},
+								callback : function(file, response, uploaded, is_last) {
+									
+									var json = JSON.parse(response);
+									console.log(json);
+									
+									var type = 0;
+									
+									switch(json.mime_type) {
+										
+										// картинки
+										case 'image/tiff' :
+										case 'image/svg+xml' :
+										case 'image/gif' :
+										case 'image/jpeg' :
+										case 'image/png' : {
+											type = 4;
+										}
+										break;
+										
+										// аудио
+										case 'audio/mpeg' : {
+											type = 5;
+										}
+										break;
+										
+										// видео
+										case 'video/mp4' :
+										case 'video/webm' :
+										case 'video/quicktime' : {
+											type = 6;
+										}
+										break;
+										
+										default : {
+											type = 7;
+										}
+										break;
+										
+									}
+									
+									Azbn7.api({
+										method : 'entity/create_upload',
+										type : type,
+										title : json.title,
+										path : json.url,
+									}, function(resp){
+										
+										if(resp && resp.response && resp.response.entity && type == 4) {
+											
+											//area.append('<p>Файл <a href="' + resp.response.entity.item.path + '" target="_blank" >' + resp.response.entity.item.title + '</a> загружен</p>');
+											
+											/*
+											(__genListItem(resp.response.entity))
+												//.appendTo(checked)
+												.insertBefore(append_btn)
+											;
+											*/
+											arr.push(resp.response.entity.entity.id);
+											
+											if(is_last) {
+												//alert('last');
+												block.trigger('azbn7.setValue', [arr]);
+												block.trigger('azbn7.init');
+											}
+											
+											
+											
+										}
+										
+									});
+									
+								},
+							});
+							
+						});
+						
+						block.trigger('azbn7.init');
+						
 					});
-					
-					block.trigger('azbn7.init');
 					
 				}
 				
@@ -1474,38 +1486,43 @@
 			
 			(function(){
 				
-				var block = $(container_class + ' .single-upload-block');
-				var input = block.find('.upload-input');
-				var btn = block.find('.upload-btn');
-				var img = block.find('.upload-img');
-				
-				btn.on('click', function(event){
-					event.preventDefault();
+				$(container_class + ' .single-upload-block').each(function(__index){
 					
-					$(document.body).Azbn7_AjaxUploader('upload', {
-						name : 'uploading_file',
-						action : '/admin/upload/file/',
-						on_percent : function(file, total, loaded, percent) {
-							//console.log(file.name + ': ' + percent);
-							//Azbn7.User.msg('info', 'Загрузка ' + file.name + ': ' + percent + '%');
-						},
-						callback : function(file, response, uploaded, is_last) {
-							
-							var json = JSON.parse(response);
-							console.log(json);
-							
-							input.val(json.url);
-							
-							block.closest('form').trigger('azbn7.single-upload', [json]);
-							
-							if(img) {
-								img.attr('src', json.url);
-							}
-							
-						},
+					var block = $(this);
+					
+					var input = block.find('.upload-input');
+					var btn = block.find('.upload-btn');
+					var img = block.find('.upload-img');
+					
+					btn.on('click', function(event){
+						event.preventDefault();
+						
+						$(document.body).Azbn7_AjaxUploader('upload', {
+							name : 'uploading_file',
+							action : '/admin/upload/file/',
+							on_percent : function(file, total, loaded, percent) {
+								//console.log(file.name + ': ' + percent);
+								//Azbn7.User.msg('info', 'Загрузка ' + file.name + ': ' + percent + '%');
+							},
+							callback : function(file, response, uploaded, is_last) {
+								
+								var json = JSON.parse(response);
+								console.log(json);
+								
+								input.val(json.url);
+								
+								block.closest('form').trigger('azbn7.single-upload', [json]);
+								
+								if(img) {
+									img.attr('src', json.url);
+								}
+								
+							},
+						});
+						
 					});
 					
-				})
+				});
 				
 			})();
 			

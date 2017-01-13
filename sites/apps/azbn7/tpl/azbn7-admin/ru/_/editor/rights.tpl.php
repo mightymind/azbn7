@@ -6,7 +6,13 @@ $rights = $this->Azbn7->mdl('DB')->read('right', '1 ORDER BY uid');
 if(count($rights)) {
 ?>
 
-<div class=" <? if($this->Azbn7->mdl('Session')->hasRight('user', 'site.admin.right.update')) {} else { echo 'azbn7-hidden'; } ?> " >
+<div class=" <? if($this->Azbn7->mdl('Session')->hasRight('user', 'site.' . $param['type'] . '.item.right.access')) {} else { echo 'azbn7-hidden'; } ?> " >
+
+	<div class="" >
+		<a href="#checkall" >Отменить все</a>
+		/
+		<a href="#uncheckall" >Снять отметки</a>
+	</div>
 
 <?
 	foreach($rights as $row) {

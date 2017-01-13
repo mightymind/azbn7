@@ -140,35 +140,104 @@ $(function(){
 					$types = $this->Azbn7->mdl('DB')->read('entity_type');
 					if(count($types)) {
 						foreach($types as $t) {
+							
+							if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.type.' . $t['uid'] . '.access')) {
 							?>
 							<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity/?type=' . $t['id']);?>" ><?=$t['title'];?></a>
 							<?
+							}
+							
 						}
 					}
 					?>
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.upload')) {
+					?>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#multiple-upload" data-toggle="modal" data-target=".azbn7-multiple-upload" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> Массовая загрузка файлов</a>
+					<?
+					}
+					?>
+					
 				</div>
 			</li>
 			
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users" aria-hidden="true"></i> Пользователи</a>
 				<div class="dropdown-menu">
+					
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.user.all.access')) {
+					?>
 					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/user/');?>" ><i class="fa fa-user-secret" aria-hidden="true"></i> Админы</a>
+					<?
+					}
+					?>
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.profile.all.access')) {
+					?>
 					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/profile/');?>" ><i class="fa fa-user-o" aria-hidden="true"></i> Профили пользователей</a>
+					<?
+					}
+					?>
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.log.all.access')) {
+					?>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/log/');?>" ><i class="fa fa-history" aria-hidden="true"></i> Логи</a>
+					<?
+					}
+					?>
+					
 				</div>
 			</li>
 			
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs" aria-hidden="true"></i> Параметры</a>
 				<div class="dropdown-menu">
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.right.all.access')) {
+					?>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/right/');?>" ><i class="fa fa-universal-access" aria-hidden="true"></i> Права пользователей</a>
+					<?
+					}
+					?>
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.alias.all.access')) {
+					?>
 					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/alias/');?>" ><i class="fa fa-random" aria-hidden="true"></i> Перенаправления</a>
+					<?
+					}
+					?>
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity_type.all.access')) {
+					?>
 					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity_type/');?>" ><i class="fa fa-folder-open" aria-hidden="true"></i> Типы данных</a>
+					<?
+					}
+					?>
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.sysopt.all.access')) {
+					?>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/sysopt/');?>" ><i class="fa fa-cogs" aria-hidden="true"></i> Настройки CMS</a>
+					<?
+					}
+					?>
+					
 				</div>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " href="<?=$this->Azbn7->mdl('Site')->url('/admin/logout/');?>" >Выйти</a>
 			</li>
 			
 			<!--

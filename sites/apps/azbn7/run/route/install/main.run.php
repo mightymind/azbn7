@@ -171,6 +171,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.sitemap.types', 'title' => 'Типы сущностей, доступных в sitemap.xml'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.robots.content', 'title' => 'Содержимое файла robots.txt'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.counters.content', 'title' => 'Код счетчиков'));
+	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'site.admin.editors', 'title' => 'Редакторы контента'));
 	
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'editor' => 'input', 'uid' => 'azbn7.created_at', 'value' => $this->Azbn7->created_at));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 0, 'editor' => 'input', 'uid' => 'azbn7.updated_at', 'value' => $this->Azbn7->created_at));
@@ -179,6 +180,27 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'input', 'uid' => 'site.sitemap.types', 'value' => '1,2'));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'textarea', 'uid' => 'site.robots.content', 'value' => "User-agent: *\nDisallow: /\n"));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'textarea', 'uid' => 'site.counters.content', 'value' => '<!-- код счетчиков -->'));
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 1, 'editable' => 1, 'editor' => 'textarea', 'uid' => 'site.admin.editors', 'value' => $this->Azbn7->arr2json(array(
+													'input' => 'Текстовое поле ввода',
+													'textarea' => 'Многострочное поле',
+													'pos' => 'Позиция',
+													'email' => 'Email',
+													'hidden' => 'Скрытое поле',
+													'pass' => 'Пароль',
+													'visible' => 'Выбор отображения',
+													'wysiwyg' => 'Визуальный редактор',
+													'gallery-collect' => 'Контейнер изображений',
+													'entity-autocomplete' => 'Поиск и выбор записей',
+													'upload' => 'Загрузка файлов',
+													'uploadimg' => 'Загрузка изображений',
+													'uploadvideo' => 'Загрузка видео',
+													'uploadaudio' => 'Загрузка аудио',
+													'sysopt/json' => 'Флаг JSON',
+													'sysopt/editable' => 'Флаг возможности редактирования',
+													'yandex-maps-editor-area' => 'Редактор области на Яндекс.Карте',
+													'yandex-maps-editor-point' => 'Редактор метки на Яндекс.Карте',
+												))
+											));
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_sysopt', array(
@@ -187,8 +209,25 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	;
 	
 	
-	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.admin.login', 'title' => 'Возможность входа в админку'));
-	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.admin.right.update', 'title' => 'Редактирование прав администраторов'));
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.admin.login', 'title' => 'Доступ к админке'));
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.upload', 'title' => 'Загрузка файлов на сервер'));
+	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.user.all.access', 'title' => 'Доступ к списку администраторов'));
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.user.item.right.access', 'title' => 'Доступ к правам администраторов'));
+	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.profile.all.access', 'title' => 'Доступ к списку профилей'));
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.profile.item.right.access', 'title' => 'Доступ к правам профилей'));
+	
+	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.right.all.access', 'title' => 'Доступ к списку прав'));
+	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.sysopt.all.access', 'title' => 'Доступ к настройкам сайта'));
+	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity_type.all.access', 'title' => 'Доступ к типам данных'));
+	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.alias.all.access', 'title' => 'Доступ к перенаправлениям'));
+	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.log.all.access', 'title' => 'Доступ к логам'));
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_right', array(
@@ -301,7 +340,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
-				'editor' => 'upload',
+				'editor' => 'uploadaudio',
 				'title' => 'Путь до файла',
 			),
 		),
@@ -321,7 +360,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			*/
 			'path' => array(
 				'type' => "TEXT DEFAULT ''",
-				'editor' => 'upload',
+				'editor' => 'uploadvideo',
 				'title' => 'Путь до файла',
 			),
 		),
@@ -401,8 +440,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'email' => 'i@azbn.ru',
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
 		'right' => $this->Azbn7->arr2json(array(
-			//'site.admin.login' => 1,
-			//'site.admin.right.update' => 1,
+			
 		)),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',
@@ -418,7 +456,9 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
 		'right' => $this->Azbn7->arr2json(array(
 			'site.admin.login' => 1,
-			'site.admin.right.update' => 1,
+			'site.upload' => 1,
+			'site.user.all.access' => 1,
+			'site.user.item.right.access' => 1,
 		)),
 		'param' => $this->Azbn7->arr2json(array(
 			'theme' => 'azbn-tpl/ru',

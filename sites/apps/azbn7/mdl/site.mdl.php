@@ -76,7 +76,7 @@ class Site
 		if($opt['id']) {
 			
 			if($opt['json']) {
-				$opt['value'] = json_decode($opt['value']);
+				$opt['value'] = json_decode($opt['value'], true);
 			}
 			
 			return $opt['value'];

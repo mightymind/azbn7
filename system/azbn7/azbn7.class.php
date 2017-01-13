@@ -7,8 +7,8 @@ public $data = array();
 public $__events = array();
 public $__modules = array();
 public $version = array(
-	'number' => 0.0302,
-	'update_at' => '201611100827',
+	'number' => 0.0501,
+	'update_at' => '201701131108',
 	'secret' => 'NemoMeImpuneLacessit',
 	'php' => 0.0,
 );
@@ -272,7 +272,7 @@ public $event_prefix = 'system.azbn7';
 			}
 		$str='';
 		for($i=0;$i<$len;$i++) {
-			$str.=$tpl[rand(0,strlen($tpl)-1)];
+			$str.=$tpl[rand(0, strlen($tpl)-1)];
 			}
 		return $str;
 	}

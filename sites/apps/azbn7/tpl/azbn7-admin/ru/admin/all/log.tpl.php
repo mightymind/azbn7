@@ -28,6 +28,7 @@ if(count($param['items'])) {
 				<th class="at-center" >Дата</th>
 				<th class="" >Действие / Запись</th>
 				<th class="at-center" >Пользователь / профиль</th>
+				<th class="at-center" >Функции</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -42,10 +43,22 @@ if(count($param['items'])) {
 				<td class="at-center" ><?=date('d.m.Y H:i', $v['created_at']);?></td>
 				<td class=" " >
 					<?=$v['uid'];?>
-					<br />
-					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $v['entity'] . '/');?>" ><i class="fa fa-pencil-square-o" aria-hidden="true" title="Редактировать запись" ></i></a>
+					<?
+					if($v['entity'] > 0) {
+						echo '/ ' . $v['entity'];
+					}
+					?>
 				</td>
 				<td class="at-center" ><?=$v['user'];?> / <?=$v['profile'];?></td>
+				<td class="at-center" >
+					<?
+					if($v['entity'] > 0) {
+					?>
+					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $v['entity'] . '/');?>" ><i class="fa fa-pencil-square-o" aria-hidden="true" title="Редактировать запись" ></i></a>
+					<?
+					}
+					?>
+				</td>
 			</tr>
 		
 		<?

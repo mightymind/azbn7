@@ -35,6 +35,7 @@
 	if(count($param['item']['param']['field'])) {
 		foreach($param['item']['param']['field'] as $k => $v) {
 			
+			/*
 			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
 				'title' => 'Редактор поля ' . $v['title'],
 				'html' => ' id="" ',
@@ -42,6 +43,19 @@
 				'value' => $v['editor'],
 				//'path' => 'entity',
 			));
+			*/
+			?>
+			<div class="form-group " >
+				<label>Редактор поля <?=$v['title'];?></label>
+				<?
+				$this->Azbn7->mdl('Viewer')->tpl('_/editor/select_editor', array(
+					'name' => 'param[field][' . $k . '][editor]',
+					'value' => $v['editor'],
+					//'path' => 'entity',
+				));
+				?>
+			</div>
+			<?
 			
 		}
 	}
@@ -69,7 +83,15 @@
 			</div>
 			
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" >
-				<input type="text" class="form-control" list="input-list-editors-0" name="item[param][field][0][editor]" value="" placeholder="Редактировать через" />
+				<!--<input type="text" class="form-control" list="input-list-editors-0" name="item[param][field][0][editor]" value="" placeholder="Редактировать через" />-->
+				
+				<?
+				$this->Azbn7->mdl('Viewer')->tpl('_/editor/select_editor', array(
+					'name' => 'item[param][field][0][editor]',
+					'value' => '',
+					//'path' => 'entity',
+				));
+				?>
 				
 			</div>
 			
