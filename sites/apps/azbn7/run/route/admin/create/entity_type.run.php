@@ -3,6 +3,7 @@
 if(count($_POST['item'])) {
 	
 	$item = array(
+		'fill' => $this->Azbn7->as_num($_POST['item']['fill']),
 		'parent' => $this->Azbn7->as_num($_POST['item']['parent']),
 		'uid' => $this->Azbn7->c_s($_POST['item']['uid']),
 		'title' => $this->Azbn7->c_s($_POST['item']['title']),

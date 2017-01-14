@@ -48,11 +48,11 @@
 		<div class="col-sm-6" >
 			
 			<?
-			$this->Azbn7->mdl('Viewer')->tpl('_/editor/visible', array(
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity/visible', array(
 				'title' => 'Отображать на сайте',
 				'html' => ' id="" ',
 				'name' => 'entity[visible]',
-				'value' => '1',
+				'value' => '10',
 				//'path' => 'entity',
 			));
 			?>

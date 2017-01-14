@@ -77,7 +77,7 @@
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text-o" aria-hidden="true"></i> Контент</a>
 				<div class="dropdown-menu">
 					<?
-					$types = $this->Azbn7->mdl('DB')->read('entity_type');
+					$types = $this->Azbn7->mdl('DB')->read('entity_type', "fill = '1'");
 					if(count($types)) {
 						foreach($types as $t) {
 							
@@ -137,7 +137,7 @@
 			</li>
 			
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs" aria-hidden="true"></i> Параметры</a>
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sliders" aria-hidden="true"></i> Параметры</a>
 				<div class="dropdown-menu">
 					
 					<?

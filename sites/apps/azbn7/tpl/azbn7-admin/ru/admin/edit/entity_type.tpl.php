@@ -31,6 +31,16 @@
 	?>
 	
 	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity_type/fill', array(
+		'title' => 'Добавление записей данного типа',
+		'html' => ' id="" ',
+		'name' => 'item[fill]',
+		'value' => $param['item']['fill'],
+		//'path' => 'entity',
+	));
+	?>
+	
+	<?
 	//var_dump($param['type']);
 	if(count($param['item']['param']['field'])) {
 		foreach($param['item']['param']['field'] as $k => $v) {

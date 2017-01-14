@@ -18,7 +18,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
 		'entity' => array(
-			'visible' => 1,
+			'visible' => 10,
 			'parent' => 0,
 			'pos' => 6546516,
 			//'uid' => $this->Azbn7->randstr(32),
@@ -36,7 +36,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
 		'entity' => array(
-			'visible' => 1,
+			'visible' => 10,
 			'parent' => 0,
 			'pos' => 1325416,
 			//'uid' => $this->Azbn7->randstr(32),
@@ -54,7 +54,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
 		'entity' => array(
-			'visible' => 1,
+			'visible' => 10,
 			'parent' => 0,
 			'pos' => 4535687,
 			//'uid' => $this->Azbn7->randstr(32),
@@ -75,7 +75,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 			'type' => 'page',
 			'entity' => array(
-				'visible' => 1,
+				'visible' => 10,
 				'parent' => 1,
 				'pos' => $i,
 				//'uid' => $this->Azbn7->randstr(32),

@@ -6,7 +6,23 @@
 	<?=$param['type']['title'];?>. Редактирование записи
 	
 	<div class="float-xs-right item-base-functions" >
+		
+		<?
+		if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.type.' . $param['type']['uid'] . '.access') && $param['type']['fill']) {
+		?>
+		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity/?type=' . $param['type']['id']);?>" title="Все записи данного типа" ><i class="fa fa-list-ul" aria-hidden="true"></i></a>
+		<?
+		}
+		?>
+		
+		<?
+		if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity_seo.access')) {
+		?>
 		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity_seo/' . $param['entity']['id'] . '/');?>" title="SEO-настройки и продвижение" ><i class="fa fa-google" aria-hidden="true"></i></a>
+		<?
+		}
+		?>
+		
 	</div>
 	
 </h2>
@@ -55,7 +71,7 @@
 		<div class="col-sm-6" >
 			
 			<?
-			$this->Azbn7->mdl('Viewer')->tpl('_/editor/visible', array(
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity/visible', array(
 				'title' => 'Отображать на сайте',
 				'html' => ' id="" ',
 				'name' => 'entity[visible]',

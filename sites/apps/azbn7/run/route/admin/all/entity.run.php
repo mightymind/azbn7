@@ -15,6 +15,7 @@ if($page < 0) {
 $start_at = $page * $this->Azbn7->config['pagination']['count'];
 
 $entity_user_str = '';
+$entity_visible_str = '';
 $entity_created_at_str = '';
 $entity_updated_at_str = '';
 
@@ -23,7 +24,14 @@ if(count($_GET['flt'])) {
 	if($_GET['flt']['user'] != '' && $this->Azbn7->as_num($_GET['flt']['user']) != 0) {
 		$entity_user_str = "
 			AND
-			user = '" . $this->Azbn7->c_s($_GET['flt']['user']) . "'
+			user = '" . $this->Azbn7->as_num($_GET['flt']['user']) . "'
+		";
+	}
+	
+	if(isset($_GET['flt']['visible']) && $_GET['flt']['visible'] != '') {
+		$entity_visible_str = "
+			AND
+			visible = '" . $this->Azbn7->as_num($_GET['flt']['visible']) . "'
 		";
 	}
 	
@@ -70,6 +78,7 @@ $query = $this->Azbn7->mdl('DB')->q("
 	WHERE
 		type = '{$type_id}'
 		$entity_user_str
+		$entity_visible_str
 		$entity_created_at_str
 		$entity_updated_at_str
 	ORDER BY

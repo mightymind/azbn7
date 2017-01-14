@@ -29,6 +29,7 @@ class Entity
 			}
 			
 			$e['id'] = $this->Azbn7->mdl('DB')->create('entity_type', array(
+				'fill' => (isset($e['fill']) ? $e['fill'] : 1),
 				'parent' => $this->Azbn7->as_num($e['parent']),
 				'uid' => $e['uid'],
 				'title' => $e['title'],
@@ -113,30 +114,38 @@ class Entity
 		$e['entity']['user'] = $this->Azbn7->mdl('Site')->is('user');
 		$e['entity']['profile'] = $this->Azbn7->mdl('Site')->is('profile');
 		
-		$e['entity']['id'] = $this->Azbn7->mdl('DB')->create('entity', $e['entity']);
-		
-		if($e['entity']['id']) {
+		if($type['fill']) {
 			
-			$e['item']['entity'] = &$e['entity']['id'];
+			$e['entity']['id'] = $this->Azbn7->mdl('DB')->create('entity', $e['entity']);
 			
-			$e['item']['id'] = $this->Azbn7->mdl('DB')->create($this->getTable($type['uid']), $e['item']);
-			
-			if($e['item']['id']) {
+			if($e['entity']['id']) {
 				
-				$this->Azbn7->run('app', 'search/entity/reindex', $e);
+				$e['item']['entity'] = &$e['entity']['id'];
 				
-				$this->Azbn7->event(array(
-					'action' => $this->event_prefix . '.create.entity.after',
-					'title' => 'Сущности: создание записи',
-				));
+				$e['item']['id'] = $this->Azbn7->mdl('DB')->create($this->getTable($type['uid']), $e['item']);
 				
-				$this->Azbn7->mdl('Site')
-					->log('site.entity.create.entity', array(
-						'entity' => $e['entity']['id'],
-					))
-				;
-				
-				return intval($e['entity']['id']);
+				if($e['item']['id']) {
+					
+					$this->Azbn7->run('app', 'search/entity/reindex', $e);
+					
+					$this->Azbn7->event(array(
+						'action' => $this->event_prefix . '.create.entity.after',
+						'title' => 'Сущности: создание записи',
+					));
+					
+					$this->Azbn7->mdl('Site')
+						->log('site.entity.create.entity', array(
+							'entity' => $e['entity']['id'],
+						))
+					;
+					
+					return intval($e['entity']['id']);
+					
+				} else {
+					
+					return 0;
+					
+				}
 				
 			} else {
 				
@@ -269,7 +278,9 @@ class Entity
 		
 		if($this->Azbn7->mdl('Site')->is('user')) {
 			
-		} elseif($entity['entity']['visible']) {
+		} elseif($this->Azbn7->mdl('Site')->is('profile') && $entity['entity']['visible'] > 0) {
+			
+		} elseif($entity['entity']['visible'] == 10) {
 			
 		} else {
 			$entity = array();

@@ -99,6 +99,15 @@
 						
 					})();
 					
+					(function(){
+						
+						var select = block.find('select[name="item[fill]"]');
+						var val = parseInt(select.attr('data-select-value')) || 0;
+						
+						select.val(val);
+						
+					})();
+					
 				}
 				
 			})();
@@ -1253,6 +1262,74 @@
 						});
 						
 					});
+					
+				});
+				
+			})();
+			
+			(function(){
+				
+				$(document.body).on('change.azbn7', '.azbn-entity-all-mass-select', {}, function(event){
+					event.preventDefault();
+					
+					var sel = $(this);
+					var val = sel.val();
+					var items = [];
+					
+					$('input.azbn-entity-all-mass-cb').each(function(__index){
+						
+						var el = $(this);
+						
+						if(el.prop('checked')) {
+							
+							items.push(el.val())
+							
+						}
+						
+					});
+					
+					if(items.length) {
+						
+						var items_str = items.join();
+						
+						switch(val) {
+							
+							case 'delete' : {
+								
+							}
+							break;
+							
+							case 'visible=0' : {
+								
+								console.log(items_str);
+								
+							}
+							break;
+							
+							case 'visible=5' : {
+								
+								console.log(items_str);
+								
+							}
+							break;
+							
+							case 'visible=10' : {
+								
+								console.log(items_str);
+								
+							}
+							break;
+							
+							default : {
+								
+							}
+							break;
+							
+						}
+						
+					}
+					
+					sel.val('');
 					
 				});
 				

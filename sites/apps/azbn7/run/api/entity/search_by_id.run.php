@@ -27,9 +27,9 @@ if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
 	// $this->Azbn7->mdl('DB')->t
 	
 	if($this->Azbn7->mdl('Site')->is('user')) {
-		$visible_str = "'0','1'";
+		$visible_str = "'5','10'";
 	} else {
-		$visible_str = "'1'";
+		$visible_str = "'10'";
 	}
 	
 	$type_str = '';

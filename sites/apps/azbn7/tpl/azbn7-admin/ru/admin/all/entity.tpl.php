@@ -17,7 +17,14 @@ if(count($users)) {
 	
 	<div class="float-xs-right item-base-functions" >
 		<a class="azbn-flt-block-btn" href="#" title="Фильтр записей" data-flt-block=".azbn-flt-block" ><i class="fa fa-filter" aria-hidden="true"></i></a>
+		
+		<?
+		if($param['type']['fill']) {
+		?>
 		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/entity/?type=' . $param['type']['id']);?>" title="Создать запись" ><i class="fa fa-plus-circle" aria-hidden="true" ></i></a>
+		<?
+		}
+		?>
 	</div>
 	
 </h2>
@@ -31,26 +38,7 @@ if(count($users)) {
 			
 			<div class="row " >
 				
-				<div class="col-xs-2" >
-					<div class="form-group">
-						<label >Автор записи</label>
-						<select class="form-control " name="flt[user]" >
-							<option value="0" >Любой</option>
-							<?
-							$users = $this->Azbn7->mdl('DB')->read('user');
-							if(count($users)) {
-								foreach($users as $u) {
-							?>
-							<option value="<?=$u['id'];?>" <? if($this->Azbn7->c_s($_GET['flt']['user']) == $u['id']) { echo 'selected';} ?> ><?=$u['login'];?></option>
-							<?
-								}
-							}
-							?>
-						</select>
-					</div>
-				</div>
-				
-				<div class="col-xs-4" >
+				<div class="col-md-6" >
 					<div class="form-group">
 						
 						<div class="row " >
@@ -68,7 +56,7 @@ if(count($users)) {
 					</div>
 				</div>
 				
-				<div class="col-xs-4" >
+				<div class="col-md-6" >
 					<div class="form-group">
 						
 						<div class="row " >
@@ -86,7 +74,38 @@ if(count($users)) {
 					</div>
 				</div>
 				
-				<div class="col-xs-2" >
+				<div class="col-md-6" >
+					<div class="form-group">
+						<label >Автор записи</label>
+						<select class="form-control " name="flt[user]" >
+							<option value="0" >Любой</option>
+							<?
+							$users = $this->Azbn7->mdl('DB')->read('user');
+							if(count($users)) {
+								foreach($users as $u) {
+							?>
+							<option value="<?=$u['id'];?>" <? if($this->Azbn7->as_num($_GET['flt']['user']) == $u['id']) { echo 'selected';} ?> ><?=$u['login'];?></option>
+							<?
+								}
+							}
+							?>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-md-3" >
+					<div class="form-group">
+						<label >Отображение</label>
+						<select class="form-control " name="flt[visible]" >
+							<option value="" <? if($_GET['flt']['visible'] == '') { echo 'selected';} ?> >Любой статус</option>
+							<option value="0" <? if($this->Azbn7->as_num($_GET['flt']['visible']) == 0) { echo 'selected';} ?> >Не отображается</option>
+							<option value="5" <? if($this->Azbn7->as_num($_GET['flt']['visible']) == 5) { echo 'selected';} ?> >Частично</option>
+							<option value="10" <? if($this->Azbn7->as_num($_GET['flt']['visible']) == 10) { echo 'selected';} ?> >Полностью</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-md-3" >
 					<div class="form-group">
 						<label >&nbsp;</label>
 						<input type="submit" class="btn btn-block btn-info" value="Отфильтровать" />
@@ -108,13 +127,13 @@ if(count($param['items'])) {
 	<table class="table table-bordered table-striped table-hover ">
 		<thead>
 			<tr>
+				<th class="" ></th>
 				<th class="at-center" >ID</th>
 				<th class="at-center" >Поз.</th>
 				<th class="at-center" >Отобр.</th>
 				<th>Название</th>
 				<th class="at-center" >Автор</th>
-				<th class="at-center" >Дата создания</th>
-				<th class="at-center" >Дата изменения</th>
+				<th class="at-center" >Дата изм. / созд.</th>
 				<th class="at-center" >Функции</th>
 			</tr>
 		</thead>
@@ -128,21 +147,77 @@ if(count($param['items'])) {
 		?>
 			
 			<tr>
+				<th class="at-center" scope="row">
+					<input type="checkbox" class="azbn-entity-all-mass-cb" value="<?=$v['id'];?>" />
+				</th>
 				<th class="at-center" scope="row"><?=$v['id'];?></th>
 				<th class="at-center" scope="row"><?=$v['pos'];?></th>
-				<td class="at-center" ><?=($v['visible'] ? '<i class="fa fa-check" aria-hidden="true" title="Отображается" ></i>' : '');?></td>
+				<td class="at-center" >
+					<?
+					switch($v['visible']) {
+						
+						case 0:{
+							
+						}
+						break;
+						
+						case 5:{
+							echo '<i class="fa fa-eye-slash" aria-hidden="true" title="Частично отображается" ></i>';
+						}
+						break;
+						
+						case 10:{
+							echo '<i class="fa fa-eye" aria-hidden="true" title="Отображается на сайте" ></i>';
+						}
+						break;
+						
+						default:{
+							
+						}
+						break;
+						
+					}
+					?>
+				</td>
 				<td>
 					<?=$item['title'];?>
 					<br />
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?>" target="_blank" ><?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?></a>
 				</td>
 				<td class="at-center" ><?=$user_arr[$v['user']]['login'];?></td>
-				<td class="at-center" ><?=date('d.m.Y H:i', $v['created_at']);?></td>
-				<td class="at-center" ><?=date('d.m.Y H:i', $v['updated_at']);?></td>
+				<td class="at-center" >
+					<strong><?=date('d.m.Y H:i', $v['updated_at']);?></strong>
+					<br />
+					<?=date('d.m.Y H:i', $v['created_at']);?>
+				</td>
 				<td class="at-center item-edit-functions" >
+					
+					<a href="<?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?>" target="_blank" title="Открыть на сайте" ><i class="fa fa-link" aria-hidden="true"></i></a>
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity_seo.access')) {
+					?>
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity_seo/' . $v['id'] . '/');?>" title="SEO-настройки и продвижение" ><i class="fa fa-google" aria-hidden="true"></i></a>
+					<?
+					}
+					?>
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.not_author.update') || $this->Azbn7->mdl('Site')->is('user') == $v['user']) {
+					?>
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $v['id'] . '/');?>" title="Редактировать" ><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+					<?
+					}
+					?>
+					
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.not_author.delete') || $this->Azbn7->mdl('Site')->is('user') == $v['user']) {
+					?>
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/delete/entity/' . $v['id'] . '/');?>" class="delete-confirm " title="Удалить" ><i class="fa fa-times" aria-hidden="true" ></i></a>
+					<?
+					}
+					?>
+					
 				</td>
 			</tr>
 			
@@ -151,6 +226,21 @@ if(count($param['items'])) {
 	?>
 		</tbody>
 	</table>
+	
+	<hr />
+	
+	<div class="row">
+		<div class="col-sm-3" >
+			<select class="form-control azbn-entity-all-mass-select" >
+				<option value="" >С отмеченными...</option>
+				<option value="delete" >Удалить</option>
+				<option value="visible=0" >Скрыть от всех</option>
+				<option value="visible=5" >Частично скрыть</option>
+				<option value="visible=10" >Отобразить</option>
+			</select>
+		</div>
+	</div>
+	
 	<?
 	
 }

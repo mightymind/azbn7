@@ -10,6 +10,7 @@ if(count($_POST['item'])) {
 	
 	$item = array(
 		'title' => $this->Azbn7->c_s($_POST['item']['title']),
+		'fill' => $this->Azbn7->as_num($_POST['item']['fill']),
 		'param' => $type['param'],
 	);
 	

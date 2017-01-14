@@ -34,7 +34,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['alias'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`pos` BIGINT DEFAULT '{$default['max_bigint']}',
-				`visible` ENUM('0', '1') DEFAULT '1',
+				`visible` ENUM('0', '10') DEFAULT '10',
 				`find` VARCHAR(256) DEFAULT '',
 				`set` VARCHAR(256) DEFAULT '',
 				`title` VARCHAR(256) DEFAULT ''
@@ -51,6 +51,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_type'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`fill` ENUM('0', '1') DEFAULT '1',
 				`parent` BIGINT DEFAULT '0',
 				`uid` VARCHAR(256) NOT NULL UNIQUE,
 				`title` VARCHAR(256) DEFAULT '',
@@ -60,7 +61,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`visible` ENUM('0', '1') DEFAULT '1',
+				`visible` ENUM('0', '5', '10') DEFAULT '10',
 				`type` BIGINT DEFAULT '0',
 				`user` BIGINT DEFAULT '0',
 				`profile` BIGINT DEFAULT '0',
@@ -221,14 +222,14 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.right.all.access', 'title' => 'Доступ к списку прав'));
-	
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.sysopt.all.access', 'title' => 'Доступ к настройкам сайта'));
-	
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity_type.all.access', 'title' => 'Доступ к типам данных'));
-	
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.alias.all.access', 'title' => 'Доступ к перенаправлениям'));
-	
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.log.all.access', 'title' => 'Доступ к логам'));
+	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.not_author.update', 'title' => 'Редактирование чужих записей'));
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.not_author.delete', 'title' => 'Удаление чужих записей'));
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity_seo.access', 'title' => 'Изменение SEO-настроек записей'));
 	
 	$this->Azbn7->mdl('Site')
 		->log('site.create_right', array(
@@ -238,6 +239,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	
 	$t['page'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'fill' => 1,
 		'parent' => 0,
 		'uid' => 'page',
 		'title' => 'Страница',
@@ -263,6 +265,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	));
 	
 	$t['category'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'fill' => 1,
 		'parent' => 0,
 		'uid' => 'category',
 		'title' => 'Категория',
@@ -288,6 +291,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	));
 	
 	$t['upload'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'fill' => 0,
 		'parent' => 0,
 		'uid' => 'upload',
 		'title' => 'Загруженный файл',
@@ -308,6 +312,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	));
 	
 	$t['img'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'fill' => 1,
 		'parent' => $t['upload'],
 		'uid' => 'img',
 		'title' => 'Изображение',
@@ -328,6 +333,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	));
 	
 	$t['audio'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'fill' => 1,
 		'parent' => $t['upload'],
 		'uid' => 'audio',
 		'title' => 'Аудио',
@@ -348,6 +354,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	));
 	
 	$t['video'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'fill' => 1,
 		'parent' => $t['upload'],
 		'uid' => 'video',
 		'title' => 'Видео',
@@ -368,6 +375,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	));
 	
 	$t['file'] = $this->Azbn7->mdl('Entity')->createType(array(
+		'fill' => 1,
 		'parent' => $t['upload'],
 		'uid' => 'file',
 		'title' => 'Произвольный файл',
@@ -484,7 +492,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
 		'entity' => array(
-			'visible' => 1,
+			'visible' => 10,
 			'parent' => 0,
 			'pos' => 0,
 			//'uid' => $this->Azbn7->randstr(32),
@@ -510,7 +518,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
 		'type' => 'page',
 		'entity' => array(
-			'visible' => 1,
+			'visible' => 10,
 			'parent' => 0,
 			'pos' => $default['max_bigint'],
 			//'uid' => $this->Azbn7->randstr(32),

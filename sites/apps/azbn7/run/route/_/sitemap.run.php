@@ -15,9 +15,9 @@ if(!isset($this->Azbn7->mdl('Req')->data['headers_sended'])) {
 $types = $this->Azbn7->mdl('Site')->sysopt_get('site.sitemap.types');
 
 if($types) {
-	$items = $this->Azbn7->mdl('DB')->read('entity', "visible = '1' AND type IN ($types) ORDER BY id DESC");
+	$items = $this->Azbn7->mdl('DB')->read('entity', "visible = '10' AND type IN ($types) ORDER BY id DESC");
 } else {
-	$items = $this->Azbn7->mdl('DB')->read('entity', "visible = '1' AND type = '1' ORDER BY id DESC");
+	$items = $this->Azbn7->mdl('DB')->read('entity', "visible = '10' AND type = '1' ORDER BY id DESC");
 }
 
 $this->Azbn7->mdl('Viewer')

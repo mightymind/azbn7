@@ -13,9 +13,9 @@ if($param['search']['text'] != '' && mb_strlen($param['search']['text'], $this->
 	echo 'поиск ' . $param['search']['text'];
 	
 	if($this->Azbn7->mdl('Site')->is('user')) {
-		$visible_str = "(`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible = '1' OR `" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible = '0')";
+		$visible_str = "(`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible = '10' OR `" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible = '5')";
 	} else {
-		$visible_str = "`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible = '1'";
+		$visible_str = "`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.visible = '10'";
 	}
 	
 	$type_str = '';

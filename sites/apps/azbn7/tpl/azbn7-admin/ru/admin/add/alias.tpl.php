@@ -31,7 +31,7 @@
 		'title' => 'Использовать в работе',
 		'html' => ' id="" ',
 		'name' => 'item[visible]',
-		'value' => '1',
+		'value' => '10',
 		//'path' => 'entity',
 	));
 	?>

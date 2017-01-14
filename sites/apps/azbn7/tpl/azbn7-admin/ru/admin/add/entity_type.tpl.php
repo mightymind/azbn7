@@ -31,6 +31,16 @@
 	?>
 	
 	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity_type/fill', array(
+		'title' => 'Добавление записей данного типа',
+		'html' => ' id="" ',
+		'name' => 'item[fill]',
+		'value' => '1',
+		//'path' => 'entity',
+	));
+	?>
+	
+	<?
 	$entity_type = $this->Azbn7->mdl('DB')->read('entity_type');
 	$entity_type_h = $this->Azbn7->mdl('Site')->buildHierarchy($entity_type);
 
