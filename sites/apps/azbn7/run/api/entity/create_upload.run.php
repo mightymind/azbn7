@@ -19,7 +19,7 @@ if($path != '' && $this->Azbn7->mdl('Site')->is('user')) {
 			'parent' => 0,
 			'pos' => $this->Azbn7->config['mysql'][0]['max_value']['js_int'],
 			//'uid' => $this->Azbn7->randstr(32),
-			'url' => $this->Azbn7->randstr(32),
+			'url' => $type['uid'] . '/' . $this->Azbn7->randstr(32),
 			//'param' => $this->Azbn7->arr2json(array()),
 		),
 		'item' => array(
