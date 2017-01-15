@@ -128,10 +128,16 @@ if(count($users)) {
 if(count($param['items'])) {
 	?>
 	
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/mass-select', $param);
+	?>
+	
+	<hr />
+	
 	<table class="table table-bordered table-striped table-hover ">
 		<thead>
 			<tr>
-				<th class="" ></th>
+				<th class="at-center" ><input type="checkbox" class="azbn-entity-all-cbs-cb" value="" /></th>
 				<th class="at-center" >ID</th>
 				<th class="at-center" >Поз.</th>
 				<th class="at-center" >Отобр.</th>
@@ -248,28 +254,9 @@ if(count($param['items'])) {
 	
 	<hr />
 	
-	<div class="row">
-		<div class="col-sm-3" >
-			<select class="form-control azbn-entity-all-mass-select" >
-				
-				<option value="" >С отмеченными...</option>
-				<option value="delete" >Удалить</option>
-				<option value="visible=0" >Скрыть от всех</option>
-				<option value="visible=5" >Частично скрыть</option>
-				<option value="visible=10" >Отобразить</option>
-				
-				<?
-				if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.lock')) {
-				?>
-				<option value="lock" >Заблокировать от изменений</option>
-				<option value="unlock" >Разблокировать записи</option>
-				<?
-				}
-				?>
-				
-			</select>
-		</div>
-	</div>
+	<?
+	$this->Azbn7->mdl('Viewer')->tpl('_/mass-select', $param);
+	?>
 	
 	<?
 	

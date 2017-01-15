@@ -30,6 +30,14 @@
 		?>
 		
 		<?
+		if($param['type']['fill']) {
+		?>
+		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/entity/?type=' . $param['type']['id']);?>" title="Создать другую запись" ><i class="fa fa-plus-circle" aria-hidden="true" ></i></a>
+		<?
+		}
+		?>
+		
+		<?
 		if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity_seo.access')) {
 		?>
 		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity_seo/' . $param['entity']['id'] . '/');?>" title="SEO-настройки и продвижение" ><i class="fa fa-google" aria-hidden="true"></i></a>

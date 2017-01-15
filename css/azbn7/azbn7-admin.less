@@ -398,4 +398,23 @@ html {
 		}
 	}
 	
+	.drag-handle {
+		.onhover-opacity {
+			opacity:0;
+		}
+		
+		&:hover {
+			.onhover-opacity {
+				opacity:1;
+			}
+		}
+	}
+	
+	.azbn-entity-all-mass-cb {
+		& + .drag-handle {
+			display:inline-block;
+			margin-left:1em;
+		}
+	}
+	
 }

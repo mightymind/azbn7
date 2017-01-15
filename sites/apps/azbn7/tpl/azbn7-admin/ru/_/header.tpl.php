@@ -216,21 +216,13 @@
 	
 	<div class="row">
 		
-		<?
-		/*
-		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 " >
+		<div class="col-12 col-xl-2 mt-2" >
 			
 			<?
-			$this->Azbn7->mdl('Viewer')->tpl('_/sidebar/default', $param);
+			$this->Azbn7->mdl('Viewer')->tpl('_/notifies', array());
 			?>
 			
 		</div>
-		*/
-		?>
 		
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " >
-		
-		<?
-		$this->Azbn7->mdl('Viewer')->tpl('_/notifies', array());
-		?>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-10" >
 		

@@ -1308,6 +1308,15 @@
 					
 				});
 				
+				$(document.body).on('change.azbn7', '.azbn-entity-all-cbs-cb', {}, function(event){
+					//event.preventDefault();
+					
+					var cb = $(this);
+					
+					$('input.azbn-entity-all-mass-cb').prop('checked', cb.prop('checked'));
+					
+				});
+				
 			})();
 			
 			
