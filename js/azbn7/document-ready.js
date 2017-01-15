@@ -1288,44 +1288,19 @@
 						
 					});
 					
-					if(items.length) {
+					if(confirm('Совершить групповое действие над выбранными элементами?') && items.length && val != '') {
 						
 						var items_str = items.join();
 						
-						switch(val) {
+						Azbn7.api({
+							method : 'entity/mass_action',
+							ids : items_str,
+							action : val,
+						}, function(resp){
 							
-							case 'delete' : {
-								
-							}
-							break;
+							window.location.reload(true);
 							
-							case 'visible=0' : {
-								
-								console.log(items_str);
-								
-							}
-							break;
-							
-							case 'visible=5' : {
-								
-								console.log(items_str);
-								
-							}
-							break;
-							
-							case 'visible=10' : {
-								
-								console.log(items_str);
-								
-							}
-							break;
-							
-							default : {
-								
-							}
-							break;
-							
-						}
+						});
 						
 					}
 					

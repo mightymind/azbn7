@@ -294,7 +294,7 @@ class Entity
 		
 		$entity = $this->Azbn7->mdl('DB')->one('entity', "id = '$id'");
 		
-		if($entity['id']) {
+		if($entity['id'] && $entity['locked_by'] == 0) {
 			
 			$this->Azbn7->mdl('DB')->update('entity', $e['entity'], "id = '$id'");
 			

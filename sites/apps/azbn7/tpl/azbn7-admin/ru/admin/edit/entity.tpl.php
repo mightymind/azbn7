@@ -8,6 +8,20 @@
 	<div class="float-xs-right item-base-functions" >
 		
 		<?
+		/*
+		if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.lock')) {
+			if($param['entity']['locked_by']) {
+				
+			} else {
+			?>
+			<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/lock/entity/' . $param['entity']['id'] . '/?action=lock');?>" title="Заблокировать запись от изменений" ><i class="fa fa-lock" aria-hidden="true"></i></a>
+			<?
+			}
+		}
+		*/
+		?>
+		
+		<?
 		if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.type.' . $param['type']['uid'] . '.access') && $param['type']['fill']) {
 		?>
 		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity/?type=' . $param['type']['id']);?>" title="Все записи данного типа" ><i class="fa fa-list-ul" aria-hidden="true"></i></a>

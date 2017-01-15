@@ -62,6 +62,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`visible` ENUM('0', '5', '10') DEFAULT '10',
+				`locked_by` BIGINT DEFAULT '0',
 				`type` BIGINT DEFAULT '0',
 				`user` BIGINT DEFAULT '0',
 				`profile` BIGINT DEFAULT '0',
@@ -227,6 +228,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.alias.all.access', 'title' => 'Доступ к перенаправлениям'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.log.all.access', 'title' => 'Доступ к логам'));
 	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.lock', 'title' => 'Блокирование записей от изменений'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.not_author.update', 'title' => 'Редактирование чужих записей'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.not_author.delete', 'title' => 'Удаление чужих записей'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity_seo.access', 'title' => 'Изменение SEO-настроек записей'));

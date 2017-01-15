@@ -16,6 +16,9 @@ if(count($users)) {
 	<?=$param['type']['title'];?>. Записи
 	
 	<div class="float-xs-right item-base-functions" >
+		
+		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/tree/entity/?type=' . $param['type']['id']);?>" title="В виде дерева" ><i class="fa fa-sitemap" aria-hidden="true"></i></a>
+		
 		<a class="azbn-flt-block-btn" href="#" title="Фильтр записей" data-flt-block=".azbn-flt-block" ><i class="fa fa-filter" aria-hidden="true"></i></a>
 		
 		<?
@@ -25,6 +28,7 @@ if(count($users)) {
 		<?
 		}
 		?>
+		
 	</div>
 	
 </h2>
@@ -195,26 +199,41 @@ if(count($param['items'])) {
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?>" target="_blank" title="Открыть на сайте" ><i class="fa fa-link" aria-hidden="true"></i></a>
 					
 					<?
-					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity_seo.access')) {
-					?>
-					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity_seo/' . $v['id'] . '/');?>" title="SEO-настройки и продвижение" ><i class="fa fa-google" aria-hidden="true"></i></a>
-					<?
-					}
-					?>
-					
-					<?
-					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.not_author.update') || $this->Azbn7->mdl('Site')->is('user') == $v['user']) {
-					?>
-					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $v['id'] . '/');?>" title="Редактировать" ><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
-					<?
-					}
-					?>
-					
-					<?
-					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.not_author.delete') || $this->Azbn7->mdl('Site')->is('user') == $v['user']) {
-					?>
-					<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/delete/entity/' . $v['id'] . '/');?>" class="delete-confirm " title="Удалить" ><i class="fa fa-times" aria-hidden="true" ></i></a>
-					<?
+					//if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.lock')) {
+					if($v['locked_by'] > 0) {
+						
+						if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.lock')) {
+						?>
+						<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/lock/entity/' . $v['id'] . '/?action=unlock');?>" title="Разблокировать запись" ><i class="fa fa-unlock-alt" aria-hidden="true"></i></a>
+						<?
+						}
+						
+					} else {
+						
+						if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.lock')) {
+						?>
+						<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/lock/entity/' . $v['id'] . '/?action=lock');?>" title="Заблокировать запись от изменений" ><i class="fa fa-lock" aria-hidden="true"></i></a>
+						<?
+						}
+						
+						if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity_seo.access')) {
+						?>
+						<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity_seo/' . $v['id'] . '/');?>" title="SEO-настройки и продвижение" ><i class="fa fa-google" aria-hidden="true"></i></a>
+						<?
+						}
+						
+						if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.not_author.update') || $this->Azbn7->mdl('Site')->is('user') == $v['user']) {
+						?>
+						<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $v['id'] . '/');?>" title="Редактировать" ><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+						<?
+						}
+						
+						if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.not_author.delete') || $this->Azbn7->mdl('Site')->is('user') == $v['user']) {
+						?>
+						<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/delete/entity/' . $v['id'] . '/');?>" class="delete-confirm " title="Удалить" ><i class="fa fa-times" aria-hidden="true" ></i></a>
+						<?
+						}
+						
 					}
 					?>
 					
@@ -232,11 +251,22 @@ if(count($param['items'])) {
 	<div class="row">
 		<div class="col-sm-3" >
 			<select class="form-control azbn-entity-all-mass-select" >
+				
 				<option value="" >С отмеченными...</option>
 				<option value="delete" >Удалить</option>
 				<option value="visible=0" >Скрыть от всех</option>
 				<option value="visible=5" >Частично скрыть</option>
 				<option value="visible=10" >Отобразить</option>
+				
+				<?
+				if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.lock')) {
+				?>
+				<option value="lock" >Заблокировать от изменений</option>
+				<option value="unlock" >Разблокировать записи</option>
+				<?
+				}
+				?>
+				
 			</select>
 		</div>
 	</div>
