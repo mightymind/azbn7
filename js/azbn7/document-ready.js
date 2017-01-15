@@ -1310,6 +1310,103 @@
 				
 			})();
 			
+			
+			(function(){
+				
+				var blocks = $(container_class + ' .hierarchy-draggable');
+				
+				if(blocks.length) {
+					
+					blocks.each(function(__index){
+						
+						var block = $(this);
+						var li = block.children();
+						
+						var __uniq = block.attr('data-uniq') || '';
+						
+						/*
+						var li.each(function(____index){
+							
+						});
+						
+						block.data('item-positions', '');
+						*/
+						
+						
+						
+						block
+							.sortable({
+								//revert : false,
+							})
+						;
+						
+						li
+							.draggable({
+								axis : 'y',
+								revert : false,
+								containment : 'parent',
+								handle : '.drag-handle',
+								connectToSortable : 'ul[data-uniq="' + __uniq + '"]',
+								start : function(event, ui){
+									
+									var __pos_arr = [];
+									
+									block.children().each(function(____index){
+										__pos_arr[____index] = $(this).attr('data-entity-pos') || 0
+									});
+									
+									block.data('children-pos', __pos_arr);
+									//console.log(block.children().index(ui.helper));
+									
+								},
+								drag : function(event, ui){
+									
+								},
+								stop : function(event, ui){
+									
+									//alert(block.children().index(ui.helper));
+									
+									var __entities = {};
+									var __pos_arr = block.data('children-pos');
+									
+									block.children().each(function(____index){
+										
+										var e_id = $(this).attr('data-entity-id') || 0;
+										
+										__entities[e_id] = __pos_arr[____index];
+										
+										$(this).attr('data-entity-pos', __pos_arr[____index]);
+										
+									});
+									
+									Azbn7.api({
+										method : 'entity/set_positions',
+										entities : __entities,
+									}, function(resp){
+										
+										console.log('saved positions');
+										
+									});
+									
+									//var pos = block.children().index(ui.helper);
+									//console.log(block.data('children-pos').eq(pos).text());
+									
+								},
+							})
+						;
+						
+						block
+							.disableSelection();
+						li
+							.disableSelection();
+						
+					});
+					
+				}
+				
+			})();
+			
+			
 			(function(){
 				
 				var block = $('.' + a7admin_class + ' .azbn7-multiple-upload');

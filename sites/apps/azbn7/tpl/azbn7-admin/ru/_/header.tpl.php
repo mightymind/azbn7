@@ -52,7 +52,8 @@
 
 <!-- jQuery UI 1.12.1 -->
 <link href="<?=$this->Azbn7->mdl('Site')->url('/css/jquery-ui-1.12.1/jquery-ui.min.css');?>" rel="stylesheet">
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery-ui-1.12.1/jquery-ui.min.js');?>" ></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+<!--<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery-ui-1.12.1/jquery-ui.min.js');?>" ></script>-->
 <!-- /jQuery UI 1.12.1 -->
 
 <!-- Yandex Maps API -->

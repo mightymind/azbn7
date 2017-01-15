@@ -14,7 +14,7 @@ $query = $this->Azbn7->mdl('DB')->q("
 	WHERE
 		type = '{$type_id}'
 	ORDER BY
-		id
+		pos, id
 	");
 
 if($query) {

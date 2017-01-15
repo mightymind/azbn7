@@ -19,41 +19,31 @@ $func = function(&$catalog, $item_id, $tab = '') use (&$func) {//$tab = "&nbsp; 
 	$entity = $this->Azbn7->mdl('Entity')->item($catalog['items'][$item_id]['id']);
 	
 	?>
-	<li value="<?=$catalog['items'][$item_id]['id'];?>" data-uid="<?=$catalog['items'][$item_id]['uid'];?>" >
-		<div class="float-xs-right entity-type__list-item" >
-			<?
-			if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.not_author.update') || $this->Azbn7->mdl('Site')->is('user') == $entity['entity']['user']) {
-			?>
-			<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $entity['entity']['id'] . '/');?>" title="Редактировать" ><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
-			<?
-			}
-			?>
-		</div>
-		<?=$entity['item']['title'];?>
-	<?
-	if(count($catalog['tree'][$item_id])) {
-		?>
-		<ul >
+	<li data-entity-id="<?=$entity['entity']['id'];?>" data-entity-pos="<?=$entity['entity']['pos'];?>" >
+		
+		<span class="drag-handle" ><i class="fa fa-arrows" aria-hidden="true"></i> <?=$entity['item']['title'];?></span>
+		
+		<ul class="hierarchy-draggable " data-uniq="<?=$this->Azbn7->randstr(16);?>" >
 		<?
-		foreach($catalog['tree'][$item_id] as $k => $v) {
-			?>
-			<?
-			$func($catalog, $k, '');//$tab.'- '
-			?>
-			<?
+		if(count($catalog['tree'][$item_id])) {
+			foreach($catalog['tree'][$item_id] as $k => $v) {
+				?>
+				<?
+				$func($catalog, $k, '');//$tab.'- '
+				?>
+				<?
+			}
 		}
 		?>
 		</ul>
-		<?
-	}
-	?>
+		
 	</li>
 	<?
 };
 
 if(count($param['hierarchy']) && count($param['hierarchy']['items'])) {
 	?>
-	<ul <?=$param['html'];?> >
+	<ul class="list-entity-type hierarchy-draggable" data-uniq="<?=$this->Azbn7->randstr(16);?>" >
 	<?
 	if(count($param['hierarchy']['tree'][$param['start_index']])) {
 		foreach($param['hierarchy']['tree'][$param['start_index']] as $k => $v) {
