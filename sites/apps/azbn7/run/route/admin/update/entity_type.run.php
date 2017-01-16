@@ -6,7 +6,7 @@ if(count($_POST['item'])) {
 	
 	$type = $this->Azbn7->mdl('DB')->one('entity_type', "id = '{$type_id}'");
 	
-	$type['param'] = json_decode($type['param'], true);
+	$type['param'] = $this->Azbn7->parseJSON($type['param']);
 	
 	$item = array(
 		'title' => $this->Azbn7->c_s($_POST['item']['title']),
@@ -46,7 +46,7 @@ if(count($_POST['item'])) {
 	
 	//$this->Azbn7->mdl('Entity')->updateEntity($entity['id'], $item);
 	
-	$item['param'] = $this->Azbn7->arr2json($item['param']);
+	$item['param'] = $this->Azbn7->getJSON($item['param']);
 	
 	$this->Azbn7->mdl('DB')->update('entity_type', $item, "id = '{$type_id}'");
 	

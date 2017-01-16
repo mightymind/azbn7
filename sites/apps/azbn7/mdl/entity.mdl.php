@@ -33,7 +33,7 @@ class Entity
 				'parent' => $this->Azbn7->as_num($e['parent']),
 				'uid' => $e['uid'],
 				'title' => $e['title'],
-				'param' => $this->Azbn7->arr2json(array(
+				'param' => $this->Azbn7->getJSON(array(
 					'field' => $field_struct_arr,
 				)),
 			), true);
@@ -271,16 +271,16 @@ class Entity
 				
 				$id = $entity['entity']['id'];
 				
-				$entity['entity']['param'] = json_decode($entity['entity']['param']);
+				$entity['entity']['param'] = $this->Azbn7->parseJSON($entity['entity']['param']);
 				
 				$entity['type'] = $this->Azbn7->mdl('DB')->one('entity_type', "id = '{$entity['entity']['type']}'");
 				if(isset($entity['type']['id'])) {
-					$entity['type']['param'] = json_decode($entity['type']['param'], true);
+					$entity['type']['param'] = $this->Azbn7->parseJSON($entity['type']['param']);
 				}
 				
 				$entity['item'] = $this->Azbn7->mdl('DB')->one($this->getTable($entity['type']['uid']), "entity = '{$entity['entity']['id']}'");
 				if(isset($entity['item']['id'])) {
-					$entity['item']['param'] = json_decode($entity['item']['param'], true);
+					$entity['item']['param'] = $this->Azbn7->parseJSON($entity['item']['param']);
 				}
 				
 				$this->cache[$id] = $entity;

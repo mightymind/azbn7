@@ -44,4 +44,4 @@ $resp = array(
 
 $this->Azbn7->run('app', 'api/' . $this->Azbn7->mdl('Req')->_post('method'), $resp);
 
-echo $this->Azbn7->arr2json($resp);
+echo $this->Azbn7->getJSON($resp);

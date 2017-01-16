@@ -8,7 +8,7 @@ if(count($_POST['item']) && count($_POST['entity'])) {
 	
 	$type = $this->Azbn7->mdl('DB')->one('entity_type', "id = '{$entity['type']}'");
 	
-	$type['param'] = json_decode($type['param'], true);
+	$type['param'] = $this->Azbn7->parseJSON($type['param']);
 	
 	$item = array(
 		'entity' => array(
@@ -18,11 +18,11 @@ if(count($_POST['item']) && count($_POST['entity'])) {
 			'pos' => $this->Azbn7->as_num($_POST['entity']['pos']),
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => $this->Azbn7->as_url($_POST['entity']['url']),
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 		'item' => array(
 			'title' => $this->Azbn7->c_s($_POST['item']['title']),
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 	);
 	
@@ -39,7 +39,7 @@ if(count($_POST['item']) && count($_POST['entity'])) {
 	
 	$this->Azbn7->mdl('DB')->delete('entity_bound', "child = '{$entity['id']}'");
 	
-	$bound_arr = json_decode($this->Azbn7->c_s($_POST['bound']), true);
+	$bound_arr = $this->Azbn7->parseJSON($this->Azbn7->c_s($_POST['bound']));
 	
 	if(count($bound_arr)) {
 		foreach($bound_arr as $b) {

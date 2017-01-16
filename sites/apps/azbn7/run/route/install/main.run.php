@@ -182,7 +182,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'input', 'uid' => 'site.sitemap.types', 'value' => '1,2'));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'textarea', 'uid' => 'site.robots.content', 'value' => "User-agent: *\nDisallow: /\n"));
 	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 0, 'editable' => 1, 'editor' => 'textarea', 'uid' => 'site.counters.content', 'value' => '<!-- код счетчиков -->'));
-	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 1, 'editable' => 1, 'editor' => 'textarea', 'uid' => 'site.admin.editors', 'value' => $this->Azbn7->arr2json(array(
+	$this->Azbn7->mdl('DB')->create('sysopt', array('json' => 1, 'editable' => 1, 'editor' => 'textarea', 'uid' => 'site.admin.editors', 'value' => $this->Azbn7->getJSON(array(
 													'input' => 'Текстовое поле ввода',
 													'textarea' => 'Многострочное поле',
 													'pos' => 'Позиция',
@@ -450,10 +450,10 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'login' => 'system',
 		'email' => 'i@azbn.ru',
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
-		'right' => $this->Azbn7->arr2json(array(
+		'right' => $this->Azbn7->getJSON(array(
 			
 		)),
-		'param' => $this->Azbn7->arr2json(array(
+		'param' => $this->Azbn7->getJSON(array(
 			'theme' => 'azbn-tpl/ru',
 			'theme_admin' => 'azbn7-admin/ru',
 			'lang' => 'ru',
@@ -465,13 +465,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'login' => 'admin',
 		'email' => 'i@azbn.ru',
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
-		'right' => $this->Azbn7->arr2json(array(
+		'right' => $this->Azbn7->getJSON(array(
 			'site.admin.login' => 1,
 			'site.upload' => 1,
 			'site.user.all.access' => 1,
 			'site.user.item.right.access' => 1,
 		)),
-		'param' => $this->Azbn7->arr2json(array(
+		'param' => $this->Azbn7->getJSON(array(
 			'theme' => 'azbn-tpl/ru',
 			'theme_admin' => 'azbn7-admin/ru',
 			'lang' => 'ru',
@@ -499,13 +499,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'pos' => 0,
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => 'mainpage',
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 		'item' => array(
 			'title' => 'Главная страница',
 			'preview' => 'Краткое описание',
 			'content' => 'Полный текст',
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 	));
 	
@@ -525,13 +525,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'pos' => $default['max_bigint'],
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => 'помощь',
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 		'item' => array(
 			'title' => 'Страница помощи',
 			'preview' => 'Что делать после установки',
 			'content' => '<p>Полный текст страницы помощи</p>',
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 	));
 	

@@ -41,4 +41,4 @@ if($uploaded['uploaded']) {
 	
 }
 
-echo $this->Azbn7->arr2json($uploaded);
+echo $this->Azbn7->getJSON($uploaded);

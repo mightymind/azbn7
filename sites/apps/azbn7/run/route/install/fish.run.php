@@ -23,13 +23,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'pos' => 6546516,
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => 'contact',
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 		'item' => array(
 			'title' => 'Контакты',
 			'preview' => 'Страница контактов организации',
 			'content' => file_get_contents('tmp/fish/contact.html'),
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 	));
 	
@@ -41,13 +41,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'pos' => 1325416,
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => 'service',
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 		'item' => array(
 			'title' => 'Услуги',
 			'preview' => 'Страница про услуги организации',
 			'content' => file_get_contents('tmp/fish/service.html'),
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 	));
 	
@@ -59,13 +59,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			'pos' => 4535687,
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => 'about',
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 		'item' => array(
 			'title' => 'О нас',
 			'preview' => 'О нас',
 			'content' => file_get_contents('tmp/fish/about.html'),
-			'param' => $this->Azbn7->arr2json(array()),
+			'param' => $this->Azbn7->getJSON(array()),
 		),
 	));
 	
@@ -80,13 +80,13 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				'pos' => $i,
 				//'uid' => $this->Azbn7->randstr(32),
 				'url' => $this->Azbn7->randstr(32),
-				'param' => $this->Azbn7->arr2json(array()),
+				'param' => $this->Azbn7->getJSON(array()),
 			),
 			'item' => array(
 				'title' => 'Страница ' . $this->Azbn7->randstr(32),
 				'preview' => $this->Azbn7->randstr(16) . ' ' . $this->Azbn7->randstr(16) . ' ' . $this->Azbn7->randstr(16) . ' ' . $this->Azbn7->randstr(16),
 				'content' => '',
-				'param' => $this->Azbn7->arr2json(array()),
+				'param' => $this->Azbn7->getJSON(array()),
 			),
 		));
 		

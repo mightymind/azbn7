@@ -2,8 +2,8 @@
 
 $item = $this->Azbn7->mdl('DB')->one('profile', "id = '{$param[3]}'");
 
-$item['right'] = json_decode($item['right'], true);
-$item['param'] = json_decode($item['param'], true);
+$item['right'] = $this->Azbn7->parseJSON($item['right']);
+$item['param'] = $this->Azbn7->parseJSON($item['param']);
 
 $this->Azbn7->mdl('Site')
 	->render('admin/edit/profile', array(

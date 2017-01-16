@@ -28,7 +28,7 @@ if(count($_POST['item'])) {
 		}
 	}
 	
-	//$item['param'] => $this->Azbn7->arr2json($item['param']);
+	//$item['param'] => $this->Azbn7->getJSON($item['param']);
 	
 	/*
 	'field' => array(

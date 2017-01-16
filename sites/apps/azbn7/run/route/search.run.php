@@ -71,8 +71,8 @@ if($param['search']['text'] != '' && mb_strlen($param['search']['text'], $this->
 				'item' => $this->Azbn7->mdl('DB')->one($this->Azbn7->mdl('Entity')->getTable($item['entity_type']), "entity = '{$item['entity']}'"),
 			);
 			
-			$_item['entity']['param'] = json_decode($_item['entity']['param'], true);
-			$_item['item']['param'] = json_decode($_item['item']['param'], true);
+			$_item['entity']['param'] = $this->Azbn7->parseJSON($_item['entity']['param']);
+			$_item['item']['param'] = $this->Azbn7->parseJSON($_item['item']['param']);
 			
 			$param['search']['items'][] = $_item;
 			

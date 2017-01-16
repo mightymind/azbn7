@@ -149,7 +149,7 @@
 				'title' => 'Относится к следующим записям',
 				'html' => ' id="" ',
 				'name' => 'bound',
-				'value' => $this->Azbn7->arr2json($bound_arr),
+				'value' => $this->Azbn7->getJSON($bound_arr),
 				'type' => '0',
 				'single' => 0,
 				//'path' => 'entity',

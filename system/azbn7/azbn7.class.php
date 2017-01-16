@@ -295,21 +295,31 @@ public $event_prefix = 'system.azbn7';
 		return $str;
 	}
 	
-	public function arr2json_prepareUTF($matches){
+	public function getJSON_prepareUTF($matches){
 		return json_decode('"'.$matches[1].'"');
 	}
 	
-	public function arr2json($_a = array())
+	public function getJSON($_a = array()) // arr2json
 	{
 		$a = &$_a;
 		
 		if($this->version['php'] > 5.3) {
 			return json_encode($a, JSON_UNESCAPED_UNICODE);
 		} else {
-			return stripslashes(preg_replace_callback('/((\\\u[01-9a-fA-F]{4})+)/', array(&$this, 'arr2json_prepareUTF'),
+			return stripslashes(preg_replace_callback('/((\\\u[01-9a-fA-F]{4})+)/', array(&$this, 'getJSON_prepareUTF'),
 				json_encode($a)
 			));
 		}
+	}
+	
+	public function parseJSON($j) // json2arr
+	{
+		return json_decode($j, true);
+	}
+	
+	public function wget($url = '', $p = array())
+	{
+		return file_get_contents($url);
 	}
 	
 }

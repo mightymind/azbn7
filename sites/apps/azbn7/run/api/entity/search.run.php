@@ -74,8 +74,8 @@ if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
 			
 			$_item['entity']['link'] = $this->Azbn7->mdl('Site')->url('/' . $_item['entity']['url'] . '/');
 			
-			$_item['entity']['param'] = json_decode($_item['entity']['param'], true);
-			$_item['item']['param'] = json_decode($_item['item']['param'], true);
+			$_item['entity']['param'] = $this->Azbn7->parseJSON($_item['entity']['param']);
+			$_item['item']['param'] = $this->Azbn7->parseJSON($_item['item']['param']);
 			
 			$items[] = $_item;
 			

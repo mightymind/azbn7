@@ -19,8 +19,8 @@ class Session
 		
 		if($item['id']) {
 			
-			$item['right'] = json_decode($item['right'], true);
-			$item['param'] = json_decode($item['param'], true);
+			$item['right'] = $this->Azbn7->parseJSON($item['right']);
+			$item['param'] = $this->Azbn7->parseJSON($item['param']);
 			
 			$_SESSION[$type] = $item;
 			
@@ -93,7 +93,7 @@ class Session
 		
 		if($item['id']) {
 			
-			$_SESSION[$type]['right'] = json_decode($item['right'], true);
+			$_SESSION[$type]['right'] = $this->Azbn7->parseJSON($item['right']);
 			
 		}
 		

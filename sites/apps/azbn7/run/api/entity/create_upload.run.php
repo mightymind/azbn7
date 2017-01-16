@@ -20,12 +20,12 @@ if($path != '' && $this->Azbn7->mdl('Site')->is('user')) {
 			'pos' => $this->Azbn7->config['mysql'][0]['max_value']['js_int'],
 			//'uid' => $this->Azbn7->randstr(32),
 			'url' => $type['uid'] . '/' . $this->Azbn7->randstr(32),
-			//'param' => $this->Azbn7->arr2json(array()),
+			//'param' => $this->Azbn7->getJSON(array()),
 		),
 		'item' => array(
 			'title' => $title,
 			'path' => $path,
-			//'param' => $this->Azbn7->arr2json(array()),
+			//'param' => $this->Azbn7->getJSON(array()),
 		),
 	);
 	

@@ -20,7 +20,7 @@ class Site
 			'profile' => $this->is('profile'),
 			'entity' => $entity,
 			'uid' => $uid,
-			'param' => $this->Azbn7->arr2json($p),
+			'param' => $this->Azbn7->getJSON($p),
 		);
 		
 		return $this->Azbn7->mdl('DB')->create('log', $item);
@@ -41,7 +41,7 @@ class Site
 			
 			$json = 1;
 			
-			$value = $this->Azbn7->arr2json($value);
+			$value = $this->Azbn7->getJSON($value);
 			
 		} else {
 			
@@ -76,7 +76,7 @@ class Site
 		if($opt['id']) {
 			
 			if($opt['json']) {
-				$opt['value'] = json_decode($opt['value'], true);
+				$opt['value'] = $this->Azbn7->parseJSON($opt['value']);
 			}
 			
 			return $opt['value'];
