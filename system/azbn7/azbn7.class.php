@@ -7,8 +7,8 @@ public $data = array();
 public $__events = array();
 public $__modules = array();
 public $version = array(
-	'number' => 0.0501,
-	'update_at' => '201701131108',
+	'number' => 0.1002,
+	'update_at' => '201701161426',
 	'secret' => 'NemoMeImpuneLacessit',
 	'php' => 0.0,
 );
