@@ -85,6 +85,20 @@
 			));
 			?>
 			
+			<div class="spacer" data-space="20" ></div>
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity-autocomplete', array(
+				'title' => 'Относится к следующим записям',
+				'html' => ' id="" ',
+				'name' => 'bound',
+				'value' => '[]',
+				'type' => '0',
+				'single' => 0,
+				//'path' => 'entity',
+			));
+			?>
+			
 		</div>
 	</div>
 	

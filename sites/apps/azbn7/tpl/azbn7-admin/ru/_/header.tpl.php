@@ -70,7 +70,7 @@
 	
 	<div id="navbarResponsive" class="collapse navbar-toggleable-sm " >
 		
-		<ul class="nav navbar-nav float-xs-left nav-inline">
+		<ul class="nav navbar-nav float-sm-left nav-inline">
 			
 			<li class="nav-item "><div class="divider"></div></li>
 			
@@ -177,10 +177,6 @@
 				</div>
 			</li>
 			
-			<li class="nav-item">
-				<a class="nav-link " href="<?=$this->Azbn7->mdl('Site')->url('/admin/logout/');?>" >Выйти</a>
-			</li>
-			
 			<!--
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ресурсы</a>
@@ -200,6 +196,34 @@
 				<a class="nav-link " href="<?=$this->Azbn7->mdl('Site')->url('/admin/logout/');?>" >Выйти</a>
 			</li>
 			-->
+			
+		</ul>
+		
+		<ul class="nav navbar-nav float-sm-right nav-inline">
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus" aria-hidden="true"></i> Создать</a>
+				<div class="dropdown-menu">
+					<?
+					$types = $this->Azbn7->mdl('DB')->read('entity_type', "fill = '1'");
+					if(count($types)) {
+						foreach($types as $t) {
+							
+							if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.type.' . $t['uid'] . '.access')) {
+							?>
+							<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/entity/?type=' . $t['id']);?>" ><?=$t['title'];?></a>
+							<?
+							}
+							
+						}
+					}
+					?>
+				</div>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link " href="<?=$this->Azbn7->mdl('Site')->url('/admin/logout/');?>" ><i class="fa fa-user-times" aria-hidden="true"></i> Выйти</a>
+			</li>
 			
 		</ul>
 		

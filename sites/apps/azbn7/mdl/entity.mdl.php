@@ -200,6 +200,22 @@ class Entity
 		
 	}
 	
+	public function getBounds($parent = null, $child = null)
+	{
+		$parent_str = '1';
+		$child_str = '1';
+		
+		if($parent) {
+			$parent_str = "parent = '$parent'";
+		}
+		
+		if($child) {
+			$child_str = "child = '$child'";
+		}
+		
+		return $this->Azbn7->mdl('DB')->read('entity_bound', "$parent_str AND $child_str");
+	}
+	
 	public function url($id = 0)
 	{
 		$entity = array();

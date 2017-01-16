@@ -45,6 +45,8 @@
 		}
 		?>
 		
+		<a href="<?=$this->Azbn7->mdl('Site')->url('/' . $param['entity']['url'] . '/');?>" target="_blank" title="Открыть запись на сайте" ><i class="fa fa-link" aria-hidden="true"></i></a>
+		
 	</div>
 	
 </h2>
@@ -126,6 +128,30 @@
 				'value' => $param['entity']['parent'],
 				'type' => '0',
 				'single' => 1,
+				//'path' => 'entity',
+			));
+			?>
+			
+			<div class="spacer" data-space="20" ></div>
+			
+			<?
+			$bounds = $this->Azbn7->mdl('Entity')->getBounds(null, $param['entity']['id']);
+			
+			$bound_arr = array();
+			
+			if(count($bounds)) {
+				foreach($bounds as $b) {
+					$bound_arr[] = $b['parent'];
+				}
+			}
+			
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity-autocomplete', array(
+				'title' => 'Относится к следующим записям',
+				'html' => ' id="" ',
+				'name' => 'bound',
+				'value' => $this->Azbn7->arr2json($bound_arr),
+				'type' => '0',
+				'single' => 0,
 				//'path' => 'entity',
 			));
 			?>

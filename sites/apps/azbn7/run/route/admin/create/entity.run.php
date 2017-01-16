@@ -26,17 +26,26 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 	
 	if(count($type['param']['field'])) {
 		foreach($type['param']['field'] as $k => $v) {
-			//if($v['wysiwyg'] == '') {}
 			$item['item'][$k] = $this->Azbn7->as_html($_POST['item'][$k]);
 		}
 	}
 	
 	$item['entity']['id'] = $this->Azbn7->mdl('Entity')->createEntity($item);
 	
-	//var_dump($item['item']);
-	//die();
-	
 	if($item['entity']['id']) {
+		
+		$this->Azbn7->mdl('DB')->delete('entity_bound', "child = '{$item['entity']['id']}'");
+		
+		$bound_arr = json_decode($this->Azbn7->c_s($_POST['bound']), true);
+		
+		if(count($bound_arr)) {
+			foreach($bound_arr as $b) {
+				$this->Azbn7->mdl('Entity')->createBound(array(
+					'parent' => $b,
+					'child' => $item['entity']['id'],
+				));
+			}
+		}
 		
 		$this->Azbn7->mdl('Session')->notify('user', array(
 			'type' => 'success',

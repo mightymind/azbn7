@@ -35,6 +35,23 @@ if(count($_POST['item']) && count($_POST['entity'])) {
 	
 	$this->Azbn7->mdl('Entity')->updateEntity($entity['id'], $item);
 	
+	
+	
+	$this->Azbn7->mdl('DB')->delete('entity_bound', "child = '{$entity['id']}'");
+	
+	$bound_arr = json_decode($this->Azbn7->c_s($_POST['bound']), true);
+	
+	if(count($bound_arr)) {
+		foreach($bound_arr as $b) {
+			$this->Azbn7->mdl('Entity')->createBound(array(
+				'parent' => $b,
+				'child' => $entity['id'],
+			));
+		}
+	}
+	
+	
+	
 	$this->Azbn7->mdl('Session')->notify('user', array(
 		'type' => 'success',
 		'title' => 'Запись обновлена',
