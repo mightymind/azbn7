@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 html {
-	font-size:13px;
+	font-size:12px;
 }
 
 /* bootstrap patch */
@@ -14,7 +14,8 @@ html {
 	}
 	
 	.form-control {
-		padding:.33rem;
+		//padding:.33rem;
+		padding-left:.42rem
 	}
 	
 }
@@ -35,6 +36,24 @@ html {
 		font-size:0rem !important;
 		margin:0 !important;
 		padding:0 !important;
+	}
+	
+	.spacer {
+		display:block;
+		padding:0;
+		margin:0;
+		width:100%;
+		height:0;
+		
+		&[data-space="10"] {
+			height:10px;
+		}
+		&[data-space="20"] {
+			height:20px;
+		}
+		&[data-space="30"] {
+			height:30px;
+		}
 	}
 	
 	table th.at-center, table td.at-center {
@@ -197,7 +216,7 @@ html {
 				
 				&:hover {
 					text-decoration:none;
-					background-color:rgba(0,0,0,0.03);
+					background-color:rgba(255,255,255,0.9);
 					
 					&:after {
 						float:right;

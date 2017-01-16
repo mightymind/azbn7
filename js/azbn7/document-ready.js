@@ -882,12 +882,34 @@
 						
 						block.on('azbn7.init', function(event){
 							
+							/*
 							var res = [];
+							var ___val = value.val();
+							
+							if(___val == '' || ___val == ' ' || ___val == null || typeof ___val == 'undefined') {
+								___val = '[]';
+							}
+							
+							//console.log('' + value.val());
 							
 							if(is_single) {
-								res[0] = parseInt(value.val());
+								res = [parseInt(___val)];
 							} else {
-								res = JSON.parse(value.val());
+								res = JSON.parse(___val);
+							}
+							*/
+							
+							var res = [];
+							var ___val = value.val();
+							
+							if(___val == '' || ___val == ' ' || ___val == null || typeof ___val == 'undefined') {
+								___val = '[]';
+							}
+							
+							if(is_single) {
+								res = [parseInt(___val)];
+							} else {
+								res = JSON.parse(___val);
 							}
 							
 							Azbn7.api({

@@ -64,7 +64,7 @@
 	?>
 	
 	<div class="row" >
-		<div class="col-sm-6" >
+		<div class="col-sm-7" >
 			
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
@@ -77,7 +77,7 @@
 			));
 			?>
 			
-			<hr />
+			<div class="spacer" data-space="20" ></div>
 			
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
@@ -89,8 +89,10 @@
 			));
 			?>
 			
+			<div class="spacer" data-space="20" ></div>
+			
 		</div>
-		<div class="col-sm-6" >
+		<div class="col-sm-5" >
 			
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity/visible', array(
@@ -102,7 +104,7 @@
 			));
 			?>
 			
-			<hr />
+			<div class="spacer" data-space="20" ></div>
 			
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/editor/pos', array(
@@ -114,7 +116,7 @@
 			));
 			?>
 			
-			<hr />
+			<div class="spacer" data-space="20" ></div>
 			
 			<?
 			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity-autocomplete-single', array(
