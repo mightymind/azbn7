@@ -128,33 +128,98 @@ function Azbn7Constructor($, cfg) {
 		
 	};
 	
-	ctrl.User.msg = function(state, text) {
+	ctrl.User.notify = function(state, text) {
 		
 		state = state || 'hide';
 		
-		console.warn('.admin-action-line: ' + state + ': ' + text);
+		var __uid = 'killme_timeout';
 		
-		var block = $('.admin-action-line');
+		var block = $('.azbn7-user-msg-cont');
 		
-		block.find('.text').html(text);
-		
-		block.attr('data-state', state);
-		
-		if(block.data('cleartimeout')) {
+		(function(){
 			
-			clearTimeout(block.data('cleartimeout'));
+			var msg = $('<div/>', {
+				class : 'azbn7-notify-item alert alert-' + state,
+				html : text
+			});
 			
-		}
-		
-		block.data('cleartimeout', setTimeout(function(){
+			msg.data(__uid, setTimeout(function(){
+				
+				clearTimeout(block.data(__uid));
+				
+				msg
+					.empty()
+					.remove()
+				;
+				
+			}, 10000));
 			
-			block.attr('data-state', 'hide');
+			msg.prependTo(block);
 			
-			//clearTimeout(block.data('cleartimeout'));
-			
-		}, 4444));
+		})();
 		
 	};
+	
+	/*
+	ctrl.User.msg = function(state, text) {
+		
+		
+		//state = state || 'hide';
+		
+		//console.warn('.admin-action-line: ' + state + ': ' + text);
+		
+		//var block = $('.admin-action-line');
+		
+		//block.find('.text').html(text);
+		
+		//block.attr('data-state', state);
+		
+		//if(block.data('cleartimeout')) {
+		//	
+		//	clearTimeout(block.data('cleartimeout'));
+		//	
+		//}
+		
+		//block.data('cleartimeout', setTimeout(function(){
+		//	
+		//	block.attr('data-state', 'hide');
+		//	
+		//	//clearTimeout(block.data('cleartimeout'));
+		//	
+		//}, 4444));
+		
+		
+		state = state || 'hide';
+		
+		var __uid = 'killme_timeout';
+		
+		var block = $('.azbn7-user-msg-cont');
+		
+		(function(){
+			
+			var msg = $('<div/>', {
+				class : 'azbn7-notify-item alert alert-' + state,
+				html : text
+			});
+			
+			msg.data(__uid, setTimeout(function(){
+				
+				clearTimeout(block.data(__uid));
+				
+				msg
+					.empty()
+					.remove()
+				;
+				
+			}, 10000));
+			
+			msg.prependTo(block);
+			
+		})();
+		
+	};
+	
+	*/
 	
 	return ctrl;
 	

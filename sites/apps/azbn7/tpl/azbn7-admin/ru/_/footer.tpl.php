@@ -319,6 +319,10 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/azbn7.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/document-ready.js');?>" ></script>
 
+<?
+$this->Azbn7->mdl('Viewer')->tpl('_/notifies_as-js', array());
+?>
+
 <!--
 административный шаблон
 -->

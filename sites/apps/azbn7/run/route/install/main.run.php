@@ -467,7 +467,6 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
 		'right' => $this->Azbn7->getJSON(array(
 			'site.admin.login' => 1,
-			'site.upload' => 1,
 			'site.user.all.access' => 1,
 			'site.user.item.right.access' => 1,
 		)),

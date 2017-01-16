@@ -300,7 +300,7 @@
 					if(val.length > 2) {
 						
 						Azbn7.api({
-							method : 'entity/search',
+							method : 'admin/entity/search',
 							text : val,
 						}, function(resp){
 							
@@ -429,7 +429,7 @@
 							if(val.length > 2) {
 								
 								Azbn7.api({
-									method : 'entity/search',
+									method : 'admin/entity/search',
 									text : val,
 									type : type,
 								}, function(resp){
@@ -516,7 +516,7 @@
 							}
 							
 							Azbn7.api({
-								method : 'entity/search_by_id',
+								method : 'admin/entity/search_by_id',
 								text : '0,' + res.join(),
 								type : type,
 							}, function(resp){
@@ -813,7 +813,7 @@
 							if(val.length > 2) {
 								
 								Azbn7.api({
-									method : 'entity/search',
+									method : 'admin/entity/search',
 									text : val,
 									type : type,
 								}, function(resp){
@@ -913,7 +913,7 @@
 							}
 							
 							Azbn7.api({
-								method : 'entity/search_by_id',
+								method : 'admin/entity/search_by_id',
 								text : '0,' + res.join(','),
 								type : type,
 							}, function(resp){
@@ -1125,7 +1125,7 @@
 									}
 									
 									Azbn7.api({
-										method : 'entity/create_upload',
+										method : 'admin/entity/create_upload',
 										type : type,
 										title : json.title,
 										path : json.url,
@@ -1315,7 +1315,7 @@
 						var items_str = items.join();
 						
 						Azbn7.api({
-							method : 'entity/mass_action',
+							method : 'admin/entity/mass_action',
 							ids : items_str,
 							action : val,
 						}, function(resp){
@@ -1411,7 +1411,7 @@
 									});
 									
 									Azbn7.api({
-										method : 'entity/set_positions',
+										method : 'admin/entity/set_positions',
 										entities : __entities,
 									}, function(resp){
 										
@@ -1497,7 +1497,7 @@
 								}
 								
 								Azbn7.api({
-									method : 'entity/create_upload',
+									method : 'admin/entity/create_upload',
 									type : type,
 									title : json.title,
 									path : json.url,
@@ -1567,7 +1567,7 @@
 							}
 							
 							Azbn7.api({
-								method : 'entity/create_upload',
+								method : 'admin/entity/create_upload',
 								type : type,
 								title : json.title,
 								path : json.url,

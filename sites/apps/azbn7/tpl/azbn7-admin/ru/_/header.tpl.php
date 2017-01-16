@@ -240,10 +240,10 @@
 	
 	<div class="row">
 		
-		<div class="col-12 col-xl-2 mt-2" >
+		<div class="col-12 col-xl-2 mt-2 azbn7-user-msg-cont" >
 			
 			<?
-			$this->Azbn7->mdl('Viewer')->tpl('_/notifies', array());
+			//$this->Azbn7->mdl('Viewer')->tpl('_/notifies', array());
 			?>
 			
 		</div>
