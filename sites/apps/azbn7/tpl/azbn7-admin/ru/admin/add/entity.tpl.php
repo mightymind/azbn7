@@ -91,7 +91,21 @@
 			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity-autocomplete', array(
 				'title' => 'Относится к следующим записям',
 				'html' => ' id="" ',
-				'name' => 'bound',
+				'name' => 'bound_as-child',
+				'value' => '[]',
+				'type' => '0',
+				'single' => 0,
+				//'path' => 'entity',
+			));
+			?>
+			
+			<div class="spacer" data-space="20" ></div>
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity-autocomplete', array(
+				'title' => 'Относятся к этой записи',
+				'html' => ' id="" ',
+				'name' => 'bound_as-parent',
 				'value' => '[]',
 				'type' => '0',
 				'single' => 0,

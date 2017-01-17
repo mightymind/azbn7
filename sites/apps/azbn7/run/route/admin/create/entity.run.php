@@ -36,7 +36,7 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 		
 		$this->Azbn7->mdl('DB')->delete('entity_bound', "child = '{$item['entity']['id']}'");
 		
-		$bound_arr = $this->Azbn7->parseJSON($this->Azbn7->c_s($_POST['bound']));
+		$bound_arr = $this->Azbn7->parseJSON($this->Azbn7->c_s($_POST['bound_as-child']));
 		
 		if(count($bound_arr)) {
 			foreach($bound_arr as $b) {
@@ -46,6 +46,21 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 				));
 			}
 		}
+		
+		
+		$this->Azbn7->mdl('DB')->delete('entity_bound', "parent = '{$item['entity']['id']}'");
+		
+		$bound_arr = $this->Azbn7->parseJSON($this->Azbn7->c_s($_POST['bound_as-parent']));
+		
+		if(count($bound_arr)) {
+			foreach($bound_arr as $b) {
+				$this->Azbn7->mdl('Entity')->createBound(array(
+					'parent' => $item['entity']['id'],
+					'child' => $b,
+				));
+			}
+		}
+		
 		
 		$this->Azbn7->mdl('Session')->notify('user', array(
 			'type' => 'success',

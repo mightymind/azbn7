@@ -132,9 +132,12 @@
 			));
 			?>
 			
+			
+			
 			<div class="spacer" data-space="20" ></div>
 			
 			<?
+			
 			$bounds = $this->Azbn7->mdl('Entity')->getBounds(null, $param['entity']['id']);
 			
 			$bound_arr = array();
@@ -148,7 +151,32 @@
 			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity-autocomplete', array(
 				'title' => 'Относится к следующим записям',
 				'html' => ' id="" ',
-				'name' => 'bound',
+				'name' => 'bound_as-child',
+				'value' => $this->Azbn7->getJSON($bound_arr),
+				'type' => '0',
+				'single' => 0,
+				//'path' => 'entity',
+			));
+			?>
+			
+			<div class="spacer" data-space="20" ></div>
+			
+			<?
+			
+			$bounds = $this->Azbn7->mdl('Entity')->getBounds($param['entity']['id'], null);
+			
+			$bound_arr = array();
+			
+			if(count($bounds)) {
+				foreach($bounds as $b) {
+					$bound_arr[] = $b['child'];
+				}
+			}
+			
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/entity-autocomplete', array(
+				'title' => 'Относятся к этой записи',
+				'html' => ' id="" ',
+				'name' => 'bound_as-parent',
 				'value' => $this->Azbn7->getJSON($bound_arr),
 				'type' => '0',
 				'single' => 0,
