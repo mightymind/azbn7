@@ -200,6 +200,25 @@ class Entity
 		
 	}
 	
+	public function getItems($_type = 0, $where = '1')
+	{
+		$items = array();
+		
+		$type = $this->Azbn7->mdl('DB')->one('entity_type', "id = '{$_type}' OR uid = '{$_type}'");
+		
+		if($type['id']) {
+			
+			$items = $this->Azbn7->mdl('DB')->join(
+				"`" . $this->Azbn7->mdl('DB')->t['entity'] . "`, `" . $this->getTable($type['uid']) . "`",
+				"`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.type = '{$type['id']}' AND `" . $this->Azbn7->mdl('DB')->t['entity'] . "`.id = `" . $this->getTable($type['uid']) . "`.entity AND $where",
+				"`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.*, `" . $this->getTable($type['uid']) . "`.*"
+			);
+			
+		}
+		
+		return $items;
+	}
+	
 	public function getBounds($parent = null, $child = null)
 	{
 		$parent_str = '1';
