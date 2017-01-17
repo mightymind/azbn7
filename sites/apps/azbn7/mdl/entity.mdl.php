@@ -200,7 +200,7 @@ class Entity
 		
 	}
 	
-	public function getItems($_type = 0, $where = '1')
+	public function getItems($_type = 0, $where_entities = '1', $where_items = '1')
 	{
 		$items = array();
 		
@@ -208,11 +208,17 @@ class Entity
 		
 		if($type['id']) {
 			
-			$items = $this->Azbn7->mdl('DB')->join(
-				"`" . $this->Azbn7->mdl('DB')->t['entity'] . "`, `" . $this->getTable($type['uid']) . "`",
-				"`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.type = '{$type['id']}' AND `" . $this->Azbn7->mdl('DB')->t['entity'] . "`.id = `" . $this->getTable($type['uid']) . "`.entity AND $where",
-				"`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.*, `" . $this->getTable($type['uid']) . "`.*"
-			);
+			$entities = $this->Azbn7->mdl('DB')->read('entity', "type = '{$type['id']}' AND $where_entities");
+			
+			if(count($entities)) {
+				
+				foreach($entities as $e) {
+					
+					$items[] = $this->item($e['id']);
+					
+				}
+				
+			}
 			
 		}
 		
