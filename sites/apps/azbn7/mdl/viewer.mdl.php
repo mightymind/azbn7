@@ -41,7 +41,7 @@ class Viewer
 	
 	public function bodyClass($class = '')
 	{
-		return $this->body_class . $class;
+		return $this->body_class . ' ' . $class;
 	}
 	
 }

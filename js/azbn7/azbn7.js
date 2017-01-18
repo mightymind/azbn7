@@ -160,6 +160,14 @@ function Azbn7Constructor($, cfg) {
 		
 	};
 	
+	ctrl.echo = function(text, prefix) {
+		
+		prefix = prefix || 'Azbn7 Default';
+		
+		console.log(prefix + ': ' + text);
+		
+	}
+	
 	/*
 	ctrl.User.msg = function(state, text) {
 		

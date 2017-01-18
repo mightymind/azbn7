@@ -36,6 +36,6 @@ $this->Azbn7->mdl('Site')->showSEOHeader($param['entity']);
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
 
 </head>
-<body class="fecss full-height is-mainpage touchswipe theme-b0w overflow-hidden <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
+<body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
 
 <div class="azbn7-container" >
