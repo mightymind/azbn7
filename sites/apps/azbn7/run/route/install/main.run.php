@@ -228,6 +228,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.alias.all.access', 'title' => 'Доступ к перенаправлениям'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.log.all.access', 'title' => 'Доступ к логам'));
 	
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.copy', 'title' => 'Копирование записей'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.lock', 'title' => 'Блокирование записей от изменений'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.not_author.update', 'title' => 'Редактирование чужих записей'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity.not_author.delete', 'title' => 'Удаление чужих записей'));

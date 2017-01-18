@@ -234,6 +234,12 @@ if(count($param['items'])) {
 						<?
 						}
 						
+						if($param['type']['fill'] && $this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.copy')) {
+						?>
+						<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/copy/entity/' . $v['id'] . '/');?>" title="Скопировать запись" ><i class="fa fa-files-o" aria-hidden="true"></i></a>
+						<?
+						}
+						
 						if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.not_author.delete') || $this->Azbn7->mdl('Site')->is('user') == $v['user']) {
 						?>
 						<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/delete/entity/' . $v['id'] . '/');?>" class="delete-confirm " title="Удалить" ><i class="fa fa-times" aria-hidden="true" ></i></a>
