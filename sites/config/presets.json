@@ -1,0 +1,159 @@
+{
+	"presets" : {
+		"default" :{
+			"users" : [
+				{
+					"login" :			"system",
+					"email" :			"i@azbn.ru",
+					"pass" :			"system",
+					"right" :			{
+							
+					},
+					"param" :			{
+							"theme" : 								"azbn-tpl/ru",
+							"theme_admin" : 						"azbn7-admin/ru",
+							"lang" : 								"ru",
+							"wysiwyg" : 							"textarea"
+					}
+				},
+				{
+					"login" :			"admin",
+					"email" :			"i@azbn.ru",
+					"pass" :			"admin",
+					"right" :			{
+							"site.admin.login" : 					"1",
+							"site.user.all.access" : 				"1",
+							"site.user.item.right.access" : 		"1"
+					},
+					"param" :			{
+							"theme" : 								"azbn-tpl/ru",
+							"theme_admin" : 						"azbn7-admin/ru",
+							"lang" : 								"ru",
+							"wysiwyg" : 							"ckeditor"
+					}
+				}
+			],
+			"types" : [
+				{
+					"fill" :			"1",
+					"parent" :			"0",
+					"uid" :				"page",
+					"title" :			"Страницы",
+					"field" : 			{
+						"preview" :	{
+							"type" :			"TEXT DEFAULT ''",
+							"editor" :			"textarea",
+							"title" :			"Краткое описание"
+						},
+						"content" :	{
+							"type" :			"MEDIUMTEXT DEFAULT ''",
+							"editor" :			"wysiwyg",
+							"title" :			"Основное содержание"
+						}
+					}
+				},
+				{
+					"fill" :			"1",
+					"parent" :			"0",
+					"uid" :				"category",
+					"title" :			"Категории",
+					"field" : 			{
+						"preview" :	{
+							"type" :			"TEXT DEFAULT ''",
+							"editor" :			"textarea",
+							"title" :			"Краткое описание"
+						},
+						"content" :	{
+							"type" :			"MEDIUMTEXT DEFAULT ''",
+							"editor" :			"wysiwyg",
+							"title" :			"Основное содержание"
+						}
+					}
+				},
+				{
+					"fill" :			"0",
+					"parent" :			"0",
+					"uid" :				"upload",
+					"title" :			"Загруженный файл",
+					"field" : 			{
+						"path" :	{
+							"type" :			"TEXT DEFAULT ''",
+							"editor" :			"upload",
+							"title" :			"Путь до файла"
+						}
+					}
+				},
+				{
+					"fill" :			"1",
+					"parent" :			"3",
+					"uid" :				"img",
+					"title" :			"Изображение",
+					"field" : 			{
+						"path" :	{
+							"type" :			"TEXT DEFAULT ''",
+							"editor" :			"uploadimg",
+							"title" :			"Путь до файла"
+						}
+					}
+				},
+				{
+					"fill" :			"1",
+					"parent" :			"3",
+					"uid" :				"audio",
+					"title" :			"Аудио",
+					"field" : 			{
+						"path" :	{
+							"type" :			"TEXT DEFAULT ''",
+							"editor" :			"uploadaudio",
+							"title" :			"Путь до файла"
+						}
+					}
+				},
+				{
+					"fill" :			"1",
+					"parent" :			"3",
+					"uid" :				"video",
+					"title" :			"Видео",
+					"field" : 			{
+						"path" :	{
+							"type" :			"TEXT DEFAULT ''",
+							"editor" :			"uploadvideo",
+							"title" :			"Путь до файла"
+						}
+					}
+				},
+				{
+					"fill" :			"1",
+					"parent" :			"3",
+					"uid" :				"file",
+					"title" :			"Произвольный файл",
+					"field" : 			{
+						"path" :	{
+							"type" :			"TEXT DEFAULT ''",
+							"editor" :			"upload",
+							"title" :			"Путь до файла"
+						}
+					}
+				}
+			],
+			"entities" : [
+				{
+					"type" :			"page",
+					"entity" : {
+						"visible" : "10",
+						"parent" : "0",
+						"pos" : "0",
+						"url" : "mainpage",
+						"param" : "{}"
+					},
+					"item" : {
+						"title" : "Главная страница",
+						"preview" : "Краткое описание",
+						"content" : "<p>Полный текст</p>",
+						"param" : "{}"
+					}
+				}
+			]
+		}
+	}
+}
