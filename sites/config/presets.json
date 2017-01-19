@@ -1,6 +1,26 @@
 {
 	"presets" : {
-		"default" :{
+		"default" : {
+			"aliases" : [
+				{
+					"pos" :				"0",
+					"find" :			"установлено",
+					"set" :				"install/installed",
+					"title" :			"Страница информации после установки"
+				},
+				{
+					"pos" :				"0",
+					"find" :			"sitemap.xml",
+					"set" :				"_/sitemap",
+					"title" :			"Файл sitemap.xml для поисковиков"
+				},
+				{
+					"pos" :				"0",
+					"find" :			"robots.txt",
+					"set" :				"_/robots",
+					"title" :			"Файл robots.txt для поисковиков"
+				}
+			],
 			"users" : [
 				{
 					"login" :			"system",
@@ -149,8 +169,30 @@
 					"item" : {
 						"title" : "Главная страница",
 						"preview" : "Краткое описание",
-						"content" : "<p>Полный текст</p>",
+						"content" : "./tmp/fish/index.html",
 						"param" : "{}"
+					}
+				}
+			]
+		},
+		"feedback" : {
+			"types" : [
+				{
+					"fill" :			"1",
+					"parent" :			"0",
+					"uid" :				"review",
+					"title" :			"Отзывы",
+					"field" : 			{
+						"name" :	{
+							"type" :			"VARCHAR(256) DEFAULT ''",
+							"editor" :			"input",
+							"title" :			"Имя автора отзыва"
+						},
+						"content" :	{
+							"type" :			"MEDIUMTEXT DEFAULT ''",
+							"editor" :			"wysiwyg",
+							"title" :			"Текст отзыва"
+						}
 					}
 				}
 			]

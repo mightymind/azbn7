@@ -240,204 +240,6 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		))
 	;
 	
-	/*
-	$t['page'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'fill' => 1,
-		'parent' => 0,
-		'uid' => 'page',
-		'title' => 'Страница',
-		'field' => array(
-			'preview' => array(
-				'type' => "TEXT DEFAULT ''",
-				'editor' => 'textarea',
-				'title' => 'Краткое описание',
-			),
-			'content' => array(
-				'type' => "MEDIUMTEXT DEFAULT ''",
-				'editor' => 'wysiwyg',
-				'title' => 'Основное содержание',
-			),
-		),
-	));
-	
-	$t['category'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'fill' => 1,
-		'parent' => 0,
-		'uid' => 'category',
-		'title' => 'Категория',
-		'field' => array(
-			'preview' => array(
-				'type' => "TEXT DEFAULT ''",
-				'editor' => 'textarea',
-				'title' => 'Краткое описание',
-			),
-			'content' => array(
-				'type' => "MEDIUMTEXT DEFAULT ''",
-				'editor' => 'wysiwyg',
-				'title' => 'Основное содержание',
-			),
-		),
-	));
-	
-	$t['upload'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'fill' => 0,
-		'parent' => 0,
-		'uid' => 'upload',
-		'title' => 'Загруженный файл',
-		'field' => array(
-			'path' => array(
-				'type' => "TEXT DEFAULT ''",
-				'editor' => 'upload',
-				'title' => 'Путь до файла',
-			),
-		),
-	));
-	
-	$t['img'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'fill' => 1,
-		'parent' => $t['upload'],
-		'uid' => 'img',
-		'title' => 'Изображение',
-		'field' => array(
-			'path' => array(
-				'type' => "TEXT DEFAULT ''",
-				'editor' => 'uploadimg',
-				'title' => 'Путь до файла',
-			),
-		),
-	));
-	
-	$t['audio'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'fill' => 1,
-		'parent' => $t['upload'],
-		'uid' => 'audio',
-		'title' => 'Аудио',
-		'field' => array(
-			'path' => array(
-				'type' => "TEXT DEFAULT ''",
-				'editor' => 'uploadaudio',
-				'title' => 'Путь до файла',
-			),
-		),
-	));
-	
-	$t['video'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'fill' => 1,
-		'parent' => $t['upload'],
-		'uid' => 'video',
-		'title' => 'Видео',
-		'field' => array(
-			'path' => array(
-				'type' => "TEXT DEFAULT ''",
-				'editor' => 'uploadvideo',
-				'title' => 'Путь до файла',
-			),
-		),
-	));
-	
-	$t['file'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'fill' => 1,
-		'parent' => $t['upload'],
-		'uid' => 'file',
-		'title' => 'Произвольный файл',
-		'field' => array(
-			'path' => array(
-				'type' => "TEXT DEFAULT ''",
-				'editor' => 'upload',
-				'title' => 'Путь до файла',
-			),
-		),
-	));
-	*/
-	
-	/*
-	$t['youtube'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'parent' => 0,//$t['video'],
-		'uid' => 'youtube',
-		'title' => 'Видео YouTube',
-		'field' => array(
-			'yt_uid' => array(
-				'type' => "VARCHAR(256) DEFAULT ''",
-				'editor' => 'input',
-				'title' => 'UID ролика на YouTube',
-			),
-		),
-		
-	));
-	
-	$t['link'] = $this->Azbn7->mdl('Entity')->createType(array(
-		'parent' => 0,
-		'uid' => 'link',
-		'title' => 'Ссылка',
-		'field' => array(
-			'path' => array(
-				'type' => "TEXT DEFAULT ''",
-				'editor' => 'input',
-				'title' => 'Адрес',
-			),
-		),
-	));
-	*/
-	
-	/*
-	$this->Azbn7->mdl('Site')
-		->log('site.create_entity_types', array(
-			
-		))
-	;
-	*/
-	
-	$this->Azbn7->mdl('DB')->create('alias', array('pos' => 0, 'find' => 'установлено', 'set' => 'install/installed', 'title' => 'Страница информации после установки'));
-	$this->Azbn7->mdl('DB')->create('alias', array('pos' => 0, 'find' => 'sitemap.xml', 'set' => '_/sitemap', 'title' => 'Файл sitemap.xml для поисковиков'));
-	$this->Azbn7->mdl('DB')->create('alias', array('pos' => 0, 'find' => 'robots.txt', 'set' => '_/robots', 'title' => 'Файл robots.txt для поисковиков'));
-	
-	$this->Azbn7->mdl('Site')
-		->log('site.create_aliases', array(
-			
-		))
-	;
-	
-	/*
-	$this->Azbn7->mdl('DB')->create('user', array(
-		'created_at' => $this->Azbn7->created_at,
-		'login' => 'system',
-		'email' => 'i@azbn.ru',
-		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(16), 'user', 'system'),
-		'right' => $this->Azbn7->getJSON(array(
-			
-		)),
-		'param' => $this->Azbn7->getJSON(array(
-			'theme' => 'azbn-tpl/ru',
-			'theme_admin' => 'azbn7-admin/ru',
-			'lang' => 'ru',
-			'wysiwyg' => 'textarea',
-		)),
-	));
-	$this->Azbn7->mdl('DB')->create('user', array(
-		'created_at' => $this->Azbn7->created_at,
-		'login' => 'admin',
-		'email' => 'i@azbn.ru',
-		'pass' => $this->Azbn7->mdl('Session')->getPassHash('admin', 'user', 'admin'),
-		'right' => $this->Azbn7->getJSON(array(
-			'site.admin.login' => 1,
-			'site.user.all.access' => 1,
-			'site.user.item.right.access' => 1,
-		)),
-		'param' => $this->Azbn7->getJSON(array(
-			'theme' => 'azbn-tpl/ru',
-			'theme_admin' => 'azbn7-admin/ru',
-			'lang' => 'ru',
-			'wysiwyg' => 'ckeditor',
-		)),
-	));
-	
-	$this->Azbn7->mdl('Site')
-		->log('site.create_users', array(
-			
-		))
-	;
-	*/
-	
 	$e = array();
 	$b = array();
 	
@@ -445,13 +247,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	$presets = file_get_contents('./sites/config/presets.json');
 	
-	//die($presets);
-	
 	if($presets != '') {
 		$_presets = $this->Azbn7->parseJSON($presets);
-		
-		//var_dump($presets);
-		//die();
 		
 		if(count($_presets)) {
 			
@@ -459,12 +256,22 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			$presets = $_presets['presets'];
 			
 			if(count($presets)) {
-				if(isset($presets['default'])) {
+				//if(isset($presets['default'])) {
+				foreach($presets as $p) {
 					
 					
+					//$p = $presets['default'];
 					
-					$p = $presets['default'];
 					
+					if(count($p['aliases'])) {
+						
+						foreach($p['aliases'] as $__alias) {
+							
+							$this->Azbn7->mdl('DB')->create('alias', $__alias);
+							
+						}
+						
+					}
 					
 					
 					if(count($p['users'])) {
@@ -502,6 +309,12 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 						
 						foreach($p['entities'] as $__entity) {
 							
+							if(file_exists($__entity['item']['content'])) {
+								
+								$__entity['item']['content'] = file_get_contents($__entity['item']['content']);
+								
+							}
+							
 							$this->Azbn7->mdl('Entity')->createEntity($__entity);
 							
 						}
@@ -517,66 +330,6 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		}
 		
 	}
-	
-	/*
-	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
-		'type' => 'page',
-		'entity' => array(
-			'visible' => 10,
-			'parent' => 0,
-			'pos' => 0,
-			//'uid' => $this->Azbn7->randstr(32),
-			'url' => 'mainpage',
-			'param' => $this->Azbn7->getJSON(array()),
-		),
-		'item' => array(
-			'title' => 'Главная страница',
-			'preview' => 'Краткое описание',
-			'content' => 'Полный текст',
-			'param' => $this->Azbn7->getJSON(array()),
-		),
-	));
-	
-	
-	$this->Azbn7->mdl('Site')
-		->log('site.create_entity', array(
-			'entity' => $e[0],
-			'title' => 'Создание главной страницы',
-		))
-	;
-	*/
-	
-	/*
-	$e[] = $this->Azbn7->mdl('Entity')->createEntity(array(
-		'type' => 'page',
-		'entity' => array(
-			'visible' => 10,
-			'parent' => 0,
-			'pos' => $default['max_bigint'],
-			//'uid' => $this->Azbn7->randstr(32),
-			'url' => 'помощь',
-			'param' => $this->Azbn7->getJSON(array()),
-		),
-		'item' => array(
-			'title' => 'Страница помощи',
-			'preview' => 'Что делать после установки',
-			'content' => '<p>Полный текст страницы помощи</p>',
-			'param' => $this->Azbn7->getJSON(array()),
-		),
-	));
-	
-	$this->Azbn7->mdl('Site')
-		->log('site.create_entity', array(
-			'entity' => $e[1],
-			'title' => 'Создание страницы помощи',
-		))
-	;
-	
-	$b[] = $this->Azbn7->mdl('Entity')->createBound(array(
-		'parent' => $e[0],
-		'child' => $e[1],
-	));
-	*/
 	
 	unset($_SESSION['user']);
 	
