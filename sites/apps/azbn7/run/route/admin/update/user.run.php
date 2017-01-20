@@ -30,6 +30,10 @@ if(count($_POST['item'])) {
 		$item['pass'] = $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->c_s($_POST['item']['pass']), 'user', $item['login']);
 	}
 	
+	if(isset($_POST['item']['key']) && $_POST['item']['key'] != '') {
+		$item['key'] = $this->Azbn7->c_s($_POST['item']['key']);
+	}
+	
 	$this->Azbn7->mdl('DB')->update('user', $item, "id = '$item_id'");
 	
 	if($this->Azbn7->mdl('Site')->is('user') == $item_id) {

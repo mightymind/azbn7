@@ -107,6 +107,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`created_at` BIGINT DEFAULT '0',
 				`login` VARCHAR(64) NOT NULL UNIQUE,
 				`pass` VARCHAR(64) DEFAULT '',
+				`key` VARCHAR(64) DEFAULT '',
 				`email` VARCHAR(256) DEFAULT '',
 				`right` MEDIUMBLOB DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT ''
@@ -118,6 +119,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`created_at` BIGINT DEFAULT '0',
 				`login` VARCHAR(64) NOT NULL UNIQUE,
 				`pass` VARCHAR(64) DEFAULT '',
+				`key` VARCHAR(64) DEFAULT '',
 				`email` VARCHAR(256) DEFAULT '',
 				`right` MEDIUMBLOB DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT ''
@@ -283,6 +285,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 								'login' => $__user['login'],
 								'email' => $__user['email'],
 								'pass' => $this->Azbn7->mdl('Session')->getPassHash($__user['pass'], 'user', $__user['login']),
+								'key' => mb_strtoupper($this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(32), 'api', $__user['login']), $this->Azbn7->config['charset']),
 								'right' => $this->Azbn7->getJSON($__user['right']),
 								'param' => $this->Azbn7->getJSON($__user['param']),
 							));

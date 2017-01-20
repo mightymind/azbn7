@@ -50,6 +50,16 @@
 			));
 			?>
 			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
+				'title' => 'Ключ доступа к API',
+				'html' => ' id="" ',
+				'name' => 'item[key]',
+				'value' => $param['item']['key'],
+				//'path' => 'entity',
+			));
+			?>
+			
 		</div>
 		
 		<div class="col-md-4" >

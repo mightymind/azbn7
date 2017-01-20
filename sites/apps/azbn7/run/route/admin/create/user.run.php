@@ -17,6 +17,8 @@ if(count($_POST['item'])) {
 		'login' => $this->Azbn7->c_s($_POST['item']['login']),
 		'email' => $this->Azbn7->c_email($_POST['item']['email']),
 		'pass' => $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->c_s($_POST['item']['pass']), 'user', $this->Azbn7->c_s($_POST['item']['login'])),
+		'key' => $this->Azbn7->c_s($_POST['item']['key']),
+			//'key' => mb_strtoupper($this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(32), 'api', $__user['login']), $this->Azbn7->config['charset']),
 		'right' => $this->Azbn7->getJSON($rights),
 		'param' => $this->Azbn7->getJSON(array(
 			'theme' => $this->Azbn7->c_s($_POST['item']['param']['theme']),

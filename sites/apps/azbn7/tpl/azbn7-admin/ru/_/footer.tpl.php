@@ -317,6 +317,34 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/azbn7.js');?>" ></script>
+<?
+if($this->Azbn7->mdl('Site')->is('user')) {
+?>
+<script>
+window.Azbn7 = new Azbn7Constructor(jQuery, {
+	atype : 'user',
+	key : '<?=$_SESSION['user']['key'];?>',
+});
+
+window.Azbn7.me('user', function(type, entity){
+	
+	console.log('I am ' + type + ' with ID ' + entity.id);
+	
+	if(entity && (entity.id > 0)) {
+		window.Azbn7.buildUserPanel(entity);
+	}
+	
+});
+
+window.Azbn7.me('profile', function(type, entity){
+	console.log('I am ' + type + ' with ID ' + entity.id);
+});
+
+</script>
+<?
+}
+?>
+
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/document-ready.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/admin/document-ready.js');?>" ></script>
 

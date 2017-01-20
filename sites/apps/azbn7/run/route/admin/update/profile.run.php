@@ -29,6 +29,10 @@ if(count($_POST['item'])) {
 		$item['pass'] = $this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->c_s($_POST['item']['pass']), 'profile', $item['login']);
 	}
 	
+	if(isset($_POST['item']['key']) && $_POST['item']['key'] != '') {
+		$item['key'] = $this->Azbn7->c_s($_POST['item']['key']);
+	}
+	
 	$this->Azbn7->mdl('DB')->update('profile', $item, "id = '$item_id'");
 	
 	$this->Azbn7->go2('/admin/edit/profile/' . $item_id . '/');

@@ -16,6 +16,7 @@ function Azbn7Constructor($, cfg) {
 	ctrl.config = $.extend({}, {
 			prefix : 'azbn7.',
 			url : '/api/',
+			atype : 'user',
 			key : 'public',
 			method : 'version',
 		}, cfg);
@@ -232,19 +233,3 @@ function Azbn7Constructor($, cfg) {
 	return ctrl;
 	
 };
-
-window.Azbn7 = new Azbn7Constructor(jQuery, {});
-
-window.Azbn7.me('user', function(type, entity){
-	
-	console.log('I am ' + type + ' with ID ' + entity.id);
-	
-	if(entity && (entity.id > 0)) {
-		window.Azbn7.buildUserPanel(entity);
-	}
-	
-});
-
-window.Azbn7.me('profile', function(type, entity){
-	console.log('I am ' + type + ' with ID ' + entity.id);
-});

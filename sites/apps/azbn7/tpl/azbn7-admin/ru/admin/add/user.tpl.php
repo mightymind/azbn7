@@ -40,6 +40,16 @@
 			));
 			?>
 			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
+				'title' => 'Ключ доступа к API',
+				'html' => ' id="" ',
+				'name' => 'item[key]',
+				'value' => mb_strtoupper($this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(32), 'api', $this->Azbn7->randstr(16)), $this->Azbn7->config['charset']),
+				//'path' => 'entity',
+			));
+			?>
+			
 		</div>
 		
 		<div class="col-md-4" >
