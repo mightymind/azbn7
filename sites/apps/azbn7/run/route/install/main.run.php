@@ -285,7 +285,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 								'login' => $__user['login'],
 								'email' => $__user['email'],
 								'pass' => $this->Azbn7->mdl('Session')->getPassHash($__user['pass'], 'user', $__user['login']),
-								'key' => mb_strtoupper($this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(32), 'api', $__user['login']), $this->Azbn7->config['charset']),
+								'key' => $this->Azbn7->created_at . mb_strtoupper($this->Azbn7->mdl('Session')->getPassHash($this->Azbn7->randstr(32), 'api', $__user['login']), $this->Azbn7->config['charset']),
 								'right' => $this->Azbn7->getJSON($__user['right']),
 								'param' => $this->Azbn7->getJSON($__user['param']),
 							));

@@ -16,7 +16,7 @@ function Azbn7Constructor($, cfg) {
 	ctrl.config = $.extend({}, {
 			prefix : 'azbn7.',
 			url : '/api/',
-			atype : 'user',
+			access_as : 'user',
 			key : 'public',
 			method : 'version',
 		}, cfg);

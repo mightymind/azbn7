@@ -10,11 +10,14 @@ $request = array(
 */
 
 $key = $this->Azbn7->mdl('Req')->_post('key');
-$atype = isset($_POST['atype']) ? $this->Azbn7->mdl('Req')->_post('atype') : 'user';
+$access_as = isset($_POST['access_as']) ? $this->Azbn7->mdl('Req')->_post('access_as') : 'user';
 
-$access = $this->Azbn7->mdl('DB')->one($atype, "`key` = '$key'");
+$access = $this->Azbn7->mdl('DB')->one($access_as, "`key` = '$key'");
 
 if($access['id']) {
+	
+	//$access['right'] = $this->Azbn7->parseJSON($access['right']);
+	//$access['param'] = $this->Azbn7->parseJSON($access['param']);
 	
 	$this->Azbn7->mdl('Req')
 		->addHeaders(array(
@@ -34,6 +37,10 @@ if($access['id']) {
 			'created_at' => $this->Azbn7->created_at,
 			'created_at_str'=>date('Y/m/d H:i:s', $this->Azbn7->created_at),
 			'platform'=>'Azbn7',
+			'access' => array(
+				'access_as' => $access_as,
+				'id' => $access['id'],
+			),
 			'msg' => array(
 				'type' => 'info',
 				'text' => 'info message',

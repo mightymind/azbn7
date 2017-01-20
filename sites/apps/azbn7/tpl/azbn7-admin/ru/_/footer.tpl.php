@@ -322,7 +322,7 @@ if($this->Azbn7->mdl('Site')->is('user')) {
 ?>
 <script>
 window.Azbn7 = new Azbn7Constructor(jQuery, {
-	atype : 'user',
+	access_as : 'user',
 	key : '<?=$_SESSION['user']['key'];?>',
 });
 
