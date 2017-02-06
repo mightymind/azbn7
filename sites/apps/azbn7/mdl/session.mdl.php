@@ -1,4 +1,7 @@
-<?
+<?php
+
+namespace app;
+
 class Session
 {
 	public $event_prefix = 'app.mdl.session';

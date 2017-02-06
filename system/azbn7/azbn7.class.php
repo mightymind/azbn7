@@ -81,6 +81,9 @@ namespace azbn7 {
 				'param' => array()
 			)
 			*/
+			
+			$class_name = '\\' . $arr['dir'] . '\\' . str_replace('/', '\\', $arr['mdl']);
+			
 			if(isset($this->__modules[$arr['uid']])) {
 				unset($this->__modules[$arr['uid']]);
 				unset($this->data['mdl'][$arr['uid']]);
@@ -89,9 +92,19 @@ namespace azbn7 {
 			$file = $this->config['path'][$arr['dir']] . '/mdl/' . strtolower($arr['mdl']) . '.mdl.php';
 			
 			if(file_exists($file)) {
+				
 				require($file);
 				
-				$this->__modules[$arr['uid']] = new $arr['mdl']($arr['param']);
+				//echo $class_name . '<br />';
+				
+				$this->__modules[$arr['uid']] = new $class_name($arr['param']);//$arr['mdl']
+				
+				/*
+				if($this->__modules[$arr['uid']]) {
+					echo $class_name . '<br />';
+				}
+				*/
+				
 				$this->data['mdl'][$arr['uid']] = array();
 				
 				$this->__modules[$arr['uid']]->Azbn7 = &$this;
@@ -101,6 +114,7 @@ namespace azbn7 {
 					'action' => 'system.azbn7.load.after',
 					'title' => $arr['mdl'] . ' was loaded as '. $arr['uid'],
 				));
+				
 			}
 			
 			return $this;

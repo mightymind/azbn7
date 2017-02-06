@@ -1,4 +1,7 @@
-<?
+<?php
+
+namespace app;
+
 class Entity
 {
 	public $event_prefix = 'app.mdl.entity';

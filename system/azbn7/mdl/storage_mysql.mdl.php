@@ -1,6 +1,6 @@
 <?php
 
-//namespace azbn7;
+namespace azbn7;
 
 class Storage_MySQL
 {
@@ -16,8 +16,8 @@ class Storage_MySQL
 			$this->t = $db['t'];
 			$this->prefix = $db['prefix'];
 			
-			$this->connection = new PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['db'], $db['user'], $db['pass'], $db['connect_settings']);
-			//$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$this->connection = new \PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['db'], $db['user'], $db['pass'], $db['connect_settings']);
+			//$this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 			$this->q('SET NAMES '.$db['charset']);
 			
 			$this->Azbn7->event(array(
@@ -25,7 +25,7 @@ class Storage_MySQL
 				'title' => 'azbn7.storage_mysql.connected',
 			));
 			
-		} catch(PDOException $e) {
+		} catch(\PDOException $e) {
 			
 			$this->Azbn7->event(array(
 				'action' => $this->event_prefix . '.connect.exception',
@@ -107,11 +107,11 @@ class Storage_MySQL
 		
 		$query = $this->q('SELECT ' . $fields . ' FROM `' . $table . '` WHERE ' . $where);
 		
-		//$query->setFetchMode(PDO::FETCH_ASSOC);
+		//$query->setFetchMode(\PDO::FETCH_ASSOC);
 		//while($row = $query->fetch()){$row};
 		
 		if($query) {
-			return $query->fetchAll(PDO::FETCH_ASSOC);
+			return $query->fetchAll(\PDO::FETCH_ASSOC);
 		} else {
 			return array();
 		}
@@ -124,7 +124,7 @@ class Storage_MySQL
 		$query = $this->q('SELECT ' . $fields . ' FROM ' . $tables . ' WHERE ' . $where);
 		
 		if($query) {
-			return $query->fetchAll(PDO::FETCH_ASSOC);
+			return $query->fetchAll(\PDO::FETCH_ASSOC);
 		} else {
 			return array();
 		}

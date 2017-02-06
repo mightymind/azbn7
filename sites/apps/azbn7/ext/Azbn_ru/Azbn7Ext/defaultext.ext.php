@@ -1,11 +1,11 @@
-<?php
+<?
 
-namespace azbn7\Ext;
+namespace app\Ext\Azbn_ru\Azbn7Ext;
 
 class DefaultExt
 {
 	public $data = array();
-	public $event_prefix = 'system.azbn7.ext.defaultext';
+	public $event_prefix = 'app.ext.azbn_ru.azbn7ext.defaultext';
 	
 	function __construct()
 	{

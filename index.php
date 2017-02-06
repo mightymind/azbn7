@@ -75,7 +75,7 @@ $Azbn7
 ;
 
 
-/*
+
 $Azbn7
 	->mdl('Ext')
 		->load(array(
@@ -85,7 +85,7 @@ $Azbn7
 		))
 		->load(array(
 			'dir' => 'app',
-			'ext' => 'azbn.ru/Azbn7Ext/Azbn_ru__Azbn7Ext__DefaultExt',
+			'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
 			'param' => array()
 		))
 ;
@@ -102,7 +102,7 @@ $Azbn7
 				),
 				array(
 					'dir' => 'app',
-					'ext' => 'azbn.ru/Azbn7Ext/Azbn_ru__Azbn7Ext__DefaultExt',
+					'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
 					'method' => 'test2',
 				),
 			))
@@ -112,7 +112,7 @@ $Azbn7
 	->mdl('Ext')
 		->event('test')
 ;
-*/
+
 
 
 $Azbn7

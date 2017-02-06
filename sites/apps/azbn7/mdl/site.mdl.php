@@ -1,4 +1,7 @@
-<?
+<?php
+
+namespace app;
+
 class Site
 {
 	public $event_prefix = 'app.mdl.site';

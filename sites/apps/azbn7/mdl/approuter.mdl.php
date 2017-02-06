@@ -1,4 +1,7 @@
-<?
+<?php
+
+namespace app;
+
 class AppRouter
 {
 	public $event_prefix = 'app.mdl.approuter';

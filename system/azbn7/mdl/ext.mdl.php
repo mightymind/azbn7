@@ -1,6 +1,6 @@
 <?php
 
-//namespace azbn7;
+namespace azbn7;
 
 class Ext
 {
@@ -21,6 +21,8 @@ class Ext
 		)
 		*/
 		
+		$class_name = '\\' . $arr['dir'] . '\\' . 'Ext' . '\\' . str_replace('/', '\\', $arr['ext']);
+		
 		$arr['uid'] = $arr['dir'] . $this->ext__ns_delimiter  . $arr['ext'];
 		
 		if(isset($this->__exts[$arr['uid']])) {
@@ -32,7 +34,7 @@ class Ext
 		if(file_exists($file)) {
 			require($file);
 			
-			$this->__exts[$arr['uid']] = new $arr['ext']($arr['param']);
+			$this->__exts[$arr['uid']] = new $class_name($arr['param']);//$arr['ext']
 			
 			$this->__exts[$arr['uid']]->Azbn7 = &$this->Azbn7;
 			

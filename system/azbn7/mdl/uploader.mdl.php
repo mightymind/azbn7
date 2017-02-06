@@ -1,6 +1,6 @@
 <?php
 
-//namespace azbn7;
+namespace azbn7;
 
 class Uploader
 {

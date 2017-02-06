@@ -1,4 +1,7 @@
-<?
+<?php
+
+namespace app;
+
 class Viewer
 {
 	public $event_prefix = 'app.mdl.viewer';
