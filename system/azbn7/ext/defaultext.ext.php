@@ -1,4 +1,7 @@
-<?
+<?php
+
+//use Azbn7;
+
 class DefaultExt
 {
 	public $data = array();
@@ -11,12 +14,12 @@ class DefaultExt
 	
 	public function test1($uid)
 	{
-		echo '<br />ext event: ' . $uid . ': ' . $this->event_prefix;
+		echo '<br />ext event (' . __NAMESPACE__ . '): ' . $uid . ': ' . $this->event_prefix;
 	}
 	
 	public function test2($uid)
 	{
-		echo '<br />ext event: ' . $uid . ': ' . $this->event_prefix;
+		echo '<br />ext event (' . __NAMESPACE__ . '): ' . $uid . ': ' . $this->event_prefix;
 	}
 	
 }

@@ -11,7 +11,8 @@ require_once('sites/config/localhost.config.php');
 
 // запуск главного класса фреймворка
 require_once($CONFIG['path']['azbn7'].'/azbn7.class.php');
-$Azbn7 = new Azbn7($CONFIG);
+
+$Azbn7 = new \azbn7\Azbn7($CONFIG);
 unset($CONFIG);
 
 session_start();
@@ -74,7 +75,7 @@ $Azbn7
 ;
 
 
-
+/*
 $Azbn7
 	->mdl('Ext')
 		->load(array(
@@ -84,7 +85,7 @@ $Azbn7
 		))
 		->load(array(
 			'dir' => 'app',
-			'ext' => 'Azbn_ru__Azbn7Ext__DefaultExt',
+			'ext' => 'azbn.ru/Azbn7Ext/Azbn_ru__Azbn7Ext__DefaultExt',
 			'param' => array()
 		))
 ;
@@ -101,7 +102,7 @@ $Azbn7
 				),
 				array(
 					'dir' => 'app',
-					'ext' => 'Azbn_ru__Azbn7Ext__DefaultExt',
+					'ext' => 'azbn.ru/Azbn7Ext/Azbn_ru__Azbn7Ext__DefaultExt',
 					'method' => 'test2',
 				),
 			))
@@ -111,7 +112,7 @@ $Azbn7
 	->mdl('Ext')
 		->event('test')
 ;
-
+*/
 
 
 $Azbn7

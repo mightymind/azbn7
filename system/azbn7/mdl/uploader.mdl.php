@@ -1,4 +1,7 @@
-<?
+<?php
+
+//namespace azbn7;
+
 class Uploader
 {
 	public $path = '';

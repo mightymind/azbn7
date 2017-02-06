@@ -1,4 +1,7 @@
-<?
+<?php
+
+//namespace azbn7;
+
 class Ext
 {
 	public $data = array();

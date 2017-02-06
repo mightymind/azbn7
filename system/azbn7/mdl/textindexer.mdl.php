@@ -1,4 +1,7 @@
-<?
+<?php
+
+//namespace azbn7;
+
 class TextIndexer
 {
 	public $morphy = null;

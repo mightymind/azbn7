@@ -1,4 +1,7 @@
-<?
+<?php
+
+//namespace azbn7;
+
 class Req
 {
 	public $req_arr = array();

@@ -1,4 +1,7 @@
-<?
+<?php
+
+//namespace azbn7;
+
 class Storage_SQLite
 {
 	public $connection = null;
