@@ -37,6 +37,12 @@ $Azbn7
 	))
 	->load(array(
 		'dir' => 'azbn7',
+		'mdl' => 'Ext',
+		'uid' => 'Ext',
+		'param' => array()
+	))
+	->load(array(
+		'dir' => 'azbn7',
 		'mdl' => 'Req',
 		'uid' => 'Req',
 		'param' => array()
@@ -66,6 +72,47 @@ $Azbn7
 		'param' => array()
 	))
 ;
+
+
+
+$Azbn7
+	->mdl('Ext')
+		->load(array(
+			'dir' => 'azbn7',
+			'ext' => 'DefaultExt',
+			'param' => array()
+		))
+		->load(array(
+			'dir' => 'app',
+			'ext' => 'Azbn_ru__Azbn7Ext__DefaultExt',
+			'param' => array()
+		))
+;
+
+$Azbn7
+	->mdl('Ext')
+		->addListeners(
+			array('test'),
+			array(
+				array(
+					'dir' => 'azbn7',
+					'ext' => 'DefaultExt',
+					'method' => 'test1',
+				),
+				array(
+					'dir' => 'app',
+					'ext' => 'Azbn_ru__Azbn7Ext__DefaultExt',
+					'method' => 'test2',
+				),
+			))
+;
+
+$Azbn7
+	->mdl('Ext')
+		->event('test')
+;
+
+
 
 $Azbn7
 	->mdl('DB')

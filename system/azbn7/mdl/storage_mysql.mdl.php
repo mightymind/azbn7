@@ -23,10 +23,12 @@ class Storage_MySQL
 			));
 			
 		} catch(PDOException $e) {
+			
 			$this->Azbn7->event(array(
 				'action' => $this->event_prefix . '.connect.exception',
 				'title' => $e->getMessage(),
 			));
+			
 		}
 		
 		return $this;
