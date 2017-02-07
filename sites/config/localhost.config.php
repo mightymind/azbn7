@@ -16,7 +16,7 @@ $app_uid = 'azbn7';
 $CONFIG = array(
 	//'domain'			=> 'azbn7.localhost'
 	'debug' 			=> 1,
-	'app_uid'				=> $app_uid,
+	'app_uid'			=> $app_uid,
 	'charset'			=> 'UTF-8',
 	'theme'				=> 'azbn-tpl/ru',
 	'path'				=> array(
@@ -83,4 +83,20 @@ $CONFIG = array(
 	'pagination'		=> array(
 						'count' => 50,
 	),
+);
+
+$EXT__ON_LOAD = array(
+	
+	array(
+		'dir' => 'azbn7',
+		'ext' => 'DefaultExt',
+		'param' => array()
+	),
+	
+	array(
+		'dir' => 'app',
+		'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
+		'param' => array()
+	),
+	
 );

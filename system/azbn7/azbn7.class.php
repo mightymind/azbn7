@@ -37,6 +37,13 @@ namespace azbn7 {
 			
 		}
 		
+		public function echo_dev($str = '', $src = '')
+		{
+			if($this->config['debug']) {
+				echo "\n" . '<!-- ---------- ' . ($src != '' ? $src : $this->event_prefix) . ': ' . $str . ' ---------- -->' . "\n";
+			}
+		}
+		
 		public function event($arr)
 		{
 			/*

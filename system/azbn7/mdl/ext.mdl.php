@@ -38,6 +38,10 @@ class Ext
 			
 			$this->__exts[$arr['uid']]->Azbn7 = &$this->Azbn7;
 			
+			if(method_exists($this->__exts[$arr['uid']], 'connectToListeners')) {
+				$this->__exts[$arr['uid']]->connectToListeners();
+			}
+			
 			$this->event(array(
 				'action' => $this->event_prefix . '.load.after',
 				'title' => $arr['ext'] . ' was loaded as '. $arr['uid'],
@@ -69,9 +73,11 @@ class Ext
 				
 			}
 		}
+		
+		return $this;
 	}
 	
-	public function event($uid)
+	public function event($uid, &$p = array())
 	{
 		
 		if($this->__listeners[$uid]) {
@@ -81,8 +87,22 @@ class Ext
 					$ext = $e['ext'];
 					$f = $e['method'];
 					$o = &$this->ext($ns . $this->ext__ns_delimiter . $ext);
-					$o->$f($uid);
+					$o->$f($uid, $p);
 				}
+			}
+		}
+		
+	}
+	
+	public function loadExts($arr = array())
+	{
+		
+		if(count($arr)) {
+			foreach($arr as $e) {
+				$this->Azbn7
+					->mdl('Ext')
+						->load($e)
+				;
 			}
 		}
 		

@@ -78,41 +78,16 @@ $Azbn7
 
 $Azbn7
 	->mdl('Ext')
-		->load(array(
-			'dir' => 'azbn7',
-			'ext' => 'DefaultExt',
-			'param' => array()
-		))
-		->load(array(
-			'dir' => 'app',
-			'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
-			'param' => array()
-		))
+		->loadExts($EXT__ON_LOAD)
 ;
 
+
+/* ---------- ext__event ---------- */
 $Azbn7
 	->mdl('Ext')
-		->addListeners(
-			array('test'),
-			array(
-				array(
-					'dir' => 'azbn7',
-					'ext' => 'DefaultExt',
-					'method' => 'test1',
-				),
-				array(
-					'dir' => 'app',
-					'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
-					'method' => 'test2',
-				),
-			))
+		->event($Azbn7->mdl('DB')->event_prefix . '.connect.before')
 ;
-
-$Azbn7
-	->mdl('Ext')
-		->event('test')
-;
-
+/* --------- /ext__event ---------- */
 
 
 $Azbn7
@@ -120,10 +95,28 @@ $Azbn7
 		->connect($Azbn7->config['mysql'][0])
 ;
 
+/* ---------- ext__event ---------- */
+$Azbn7
+	->mdl('Ext')
+		->event($Azbn7->mdl('DB')->event_prefix . '.connect.after')
+;
+/* --------- /ext__event ---------- */
+
+
+
 $Azbn7
 	->mdl('Req')
 		->parseURL()
 ;
+
+
+/* ---------- ext__event ---------- */
+$Azbn7
+	->mdl('Ext')
+		->event($Azbn7->mdl('Req')->event_prefix . '.parseURL.after')
+;
+/* --------- /ext__event ---------- */
+
 
 $Azbn7
 	->load(array(
@@ -136,73 +129,17 @@ $Azbn7
 		->route($Azbn7->data['mdl']['Req']['req_url'])
 ;
 
-/*
+
+/* ---------- ext__event ---------- */
 $Azbn7
-	->mdl('Tester')
-		->test('World')
+	->mdl('Ext')
+		->event($Azbn7->mdl('Req')->event_prefix . '.request.after')
 ;
-
-$param = array('123');
-
-$Azbn7
-	->run('azbn7', 'tester', $param)
-;
-*/
-
-/*
-$Azbn7
-	->load(array(
-		'dir' => 'app',
-		'mdl' => 'Viewer',
-		'uid' => 'Viewer',
-		'param' => array()
-	))
-;
-$Azbn7
-	->mdl('Viewer')
-		->tpl('default', array())
-;
-*/
-
-
-
-
-
+/* --------- /ext__event ---------- */
 
 
 
 /*
-echo "\n";
-
-echo $Azbn7
-	->mdl('DB')
-		->delete('test')
-;
-
-echo "\n";
-
-echo $Azbn7
-	->mdl('DB')
-		->create('test', array(
-			'created_at' => $Azbn7->created_at,
-			'title' => 'запуск скрипта в момент ' . $Azbn7->created_at,
-		));
-
-echo "\n";
-
-echo $Azbn7
-	->mdl('DB')
-		->update('test', array('title' => '123445677657567'), '1')
-;
-
-echo "\n";
-
-var_dump($Azbn7->mdl('DB')->read('test'));
-
-echo "\n";
-
-var_dump($Azbn7->mdl('DB')->one('test', 'id > 0'));
-
 echo "\n";
 
 $created_at = 0;
