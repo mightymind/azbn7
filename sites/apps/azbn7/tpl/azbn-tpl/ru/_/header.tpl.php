@@ -35,6 +35,15 @@ $this->Azbn7->mdl('Site')->showSEOHeader($param['entity']);
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr-custom.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
 
+<?
+/* ---------- ext__event ---------- */
+$this->Azbn7
+	->mdl('Ext')
+		->event($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.head.after')
+;
+/* --------- /ext__event ---------- */
+?>
+
 </head>
 <body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
 

@@ -52,7 +52,38 @@ class DefaultExt
 						),
 					))
 				
+				->addListeners(
+					array($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.head.after'),
+					array(
+						array(
+							'dir' => 'app',
+							'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
+							'method' => 'viewer__header_head_after',
+						),
+					))
+				
+				->addListeners(
+					array($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.footer.body.after'),
+					array(
+						array(
+							'dir' => 'app',
+							'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
+							'method' => 'viewer__footer_body_after',
+						),
+					))
+				
 		;
+		
+	}
+	
+	public function installExt()
+	{
+		
+		$this->data['created_at'] = $this->Azbn7->created_at;
+		
+		
+		
+		$this->saveData();
 		
 	}
 	
@@ -95,11 +126,9 @@ class DefaultExt
 			
 		} else {
 			
-			$this->data['created_at'] = $this->Azbn7->created_at;
+			$this->installExt();
 			
 		}
-		
-		$this->saveData();
 		
 	}
 	
@@ -112,6 +141,16 @@ class DefaultExt
 		
 		$this->saveData();
 		
+	}
+	
+	public function viewer__header_head_after($uid, &$p = array())
+	{
+		echo '<!-- header -->';
+	}
+	
+	public function viewer__footer_body_after($uid, &$p = array())
+	{
+		echo '<!-- footer -->';
 	}
 	
 }

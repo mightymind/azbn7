@@ -53,6 +53,22 @@
 					}
 				}
 			],
+			"profiles" : [
+				{
+					"login" :			"anonymous",
+					"email" :			"anonymous@anonymous.com",
+					"pass" :			"anonymous",
+					"right" :			{
+							
+					},
+					"param" :			{
+							"theme" : 								"azbn-tpl/ru",
+							"theme_admin" : 						"azbn7-admin/ru",
+							"lang" : 								"ru",
+							"wysiwyg" : 							"ckeditor"
+					}
+				}
+			],
 			"types" : [
 				{
 					"fill" :			"1",

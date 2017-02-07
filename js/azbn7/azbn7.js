@@ -47,6 +47,7 @@ function Azbn7Constructor($, cfg) {
 	ctrl.api = function(params, cb) {
 		
 		params.key = ctrl.config.key;
+		params.access_as = ctrl.config.access_as;
 		
 		if(params.method) {
 			

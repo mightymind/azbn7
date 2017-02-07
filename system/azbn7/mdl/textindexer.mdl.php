@@ -13,11 +13,11 @@ class TextIndexer
 		} else {
 			
 			require_once($this->Azbn7->config['path']['phpmorphy'] . '/src/common.php');
-			$this->morphy = new phpMorphy($this->Azbn7->config['path']['phpmorphy'] . '/dicts/' . $this->Azbn7->config['charset'] . '/', 'ru_RU', array(
+			$this->morphy = new \phpMorphy($this->Azbn7->config['path']['phpmorphy'] . '/dicts/' . $this->Azbn7->config['charset'] . '/', 'ru_RU', array(
 				// PHPMORPHY_STORAGE_FILE - использовать файл
 				// PHPMORPHY_STORAGE_SHM - загружать словать в общую память(нужно расширение shmop)
 				// PHPMORPHY_STORAGE_MEM - загружать словать в общую память при каждой инициализации phpmorphy
-				'storage' => PHPMORPHY_STORAGE_FILE,
+				'storage' => \PHPMORPHY_STORAGE_FILE,
 				'predict_by_suffix' => true,
 				'predict_by_db' => true,
 				'graminfo_as_text' => true,

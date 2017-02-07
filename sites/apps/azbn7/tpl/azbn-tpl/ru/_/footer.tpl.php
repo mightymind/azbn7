@@ -26,12 +26,33 @@ window.Azbn7 = new Azbn7Constructor(jQuery, {
 });
 </script>
 <?
+} else {
+$access = $this->Azbn7->mdl('DB')->one('profile', "`login` = 'anonymous'");
+?>
+<script>
+window.Azbn7 = new Azbn7Constructor(jQuery, {
+	access_as : 'profile',
+	key : '<?=$access['key'];?>',
+});
+</script>
+<?
 }
 ?>
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/document-ready.js');?>" ></script>
 
 <link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7.css');?>" />
+
+
+<?
+/* ---------- ext__event ---------- */
+$this->Azbn7
+	->mdl('Ext')
+		->event($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.footer.body.after')
+;
+/* --------- /ext__event ---------- */
+?>
+
 
 <?=$this->Azbn7->mdl('Site')->sysopt_get('site.counters.content');?>
 

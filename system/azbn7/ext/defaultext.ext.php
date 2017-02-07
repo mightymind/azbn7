@@ -67,6 +67,17 @@ class DefaultExt
 		
 	}
 	
+	public function installExt()
+	{
+		
+		$this->data['created_at'] = $this->Azbn7->created_at;
+		
+		
+		
+		$this->saveData();
+		
+	}
+	
 	public function loadData()
 	{
 		
@@ -106,11 +117,9 @@ class DefaultExt
 			
 		} else {
 			
-			$this->data['created_at'] = $this->Azbn7->created_at;
+			$this->installExt();
 			
 		}
-		
-		$this->saveData();
 		
 	}
 	
