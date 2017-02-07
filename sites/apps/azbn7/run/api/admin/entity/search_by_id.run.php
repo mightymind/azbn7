@@ -61,7 +61,7 @@ if($text != '' && mb_strlen($text, $this->Azbn7->config['charset']) > 2) {
 	");/*ORDER BY
 			`" . $this->Azbn7->mdl('DB')->t['entity'] . "`.id*/
 	//die($text);
-	$search_items = $search_items_sql->fetchAll(PDO::FETCH_ASSOC);
+	$search_items = $search_items_sql->fetchAll(\PDO::FETCH_ASSOC);
 	
 	$items = array();
 	

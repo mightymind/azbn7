@@ -76,18 +76,27 @@ class Session
 	
 	public function getNotifies($type = 'user', $clear = true)
 	{
-		$n = $_SESSION['tmp']['notify'][$type];
-		
-		if($clear) {
-			unset($_SESSION['tmp']['notify'][$type]);
+		if(isset($_SESSION['tmp'])) {
+			$n = $_SESSION['tmp']['notify'][$type];
+			
+			if($clear) {
+				unset($_SESSION['tmp']['notify'][$type]);
+			}
+			
+			return $n;
+		} else {
+			return null;
 		}
-		
-		return $n;
 	}
 	
 	public function hasRight($type = 'user', $right = '')
 	{
-		return $this->Azbn7->as_int($_SESSION[$type]['right'][$right]);
+		if(isset($_SESSION[$type]['right'][$right])) {
+			$__res = $_SESSION[$type]['right'][$right];
+		} else {
+			$__res = 0;
+		}
+		return $this->Azbn7->as_int($__res);
 	}
 	
 	public function reloadRights($type = 'user')

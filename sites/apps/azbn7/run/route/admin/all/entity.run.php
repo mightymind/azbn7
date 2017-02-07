@@ -89,10 +89,10 @@ $query = $this->Azbn7->mdl('DB')->q("
 if($query) {
 	
 	$count = $this->Azbn7->mdl('DB')->q('SELECT FOUND_ROWS() as count');
-	$count = $count->fetchAll(PDO::FETCH_ASSOC);
+	$count = $count->fetchAll(\PDO::FETCH_ASSOC);
 	$count = $this->Azbn7->as_num($count[0]['count']);
 	
-	$items = $query->fetchAll(PDO::FETCH_ASSOC);
+	$items = $query->fetchAll(\PDO::FETCH_ASSOC);
 	
 } else {
 	

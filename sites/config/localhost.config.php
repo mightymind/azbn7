@@ -44,7 +44,7 @@ $CONFIG = array(
 								'js_int' => PHP_INT_MAX,//'9007199254740992',
 							),
 							'connect_settings' => array(
-								PDO::ATTR_PERSISTENT => true,
+								\PDO::ATTR_PERSISTENT => true,
 							),
 							't' => array(
 								'sysopt' => $app_uid . '_sysopt',
@@ -89,7 +89,7 @@ $EXT__ON_LOAD = array(
 	
 	array(
 		'dir' => 'azbn7',
-		'ext' => 'DefaultExt',
+		'ext' => 'DebugExt',
 		'param' => array()
 	),
 	

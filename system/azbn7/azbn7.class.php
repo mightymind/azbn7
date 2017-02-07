@@ -7,7 +7,9 @@ namespace azbn7 {
 		// Переменные класса
 		public $config = array();
 		public $data = array();
+		public $timing = array();
 		public $__events = array();
+		public $__errors = array();
 		public $__modules = array();
 		public $version = array(
 			'number' => 0.1103,
@@ -16,12 +18,15 @@ namespace azbn7 {
 			'php' => 0.0,
 		);
 		public $event_prefix = 'system.azbn7';
+		public $php_process_session = '';
 		
 		public function __construct($config = array()) // Конструктор класса
 		{
 			$this->config = $config;
 			$this->created_at = $this->as_num(date('U'));
 			$this->data = array();
+			$this->timing['start'] = $this->getMicroTime();
+			$this->php_process_session = md5("\n" . date('U') . rand(0, 10000));
 			
 			$version = explode('.', phpversion());
 			$this->version['php'] = $version[0] + round($version[1] / 10, 1);
@@ -54,7 +59,12 @@ namespace azbn7 {
 			$arr['created_at'] = $this->getMicroTime();
 			$arr['memory'] = memory_get_usage();
 			
+			if($arr['action'] == 'error') {
+				$this->__errors[] = $arr;
+			}
+			
 			$this->__events[] = $arr;
+			
 			return $this;
 		}
 		
@@ -72,8 +82,8 @@ namespace azbn7 {
 		
 		public function onException($e)
 		{
-			$fp = fopen($this->config['path']['cache'].'/'.$this->config['app_uid'].'/exceptions.log', 'a');
-			fwrite($fp, $this->date.' exc#'.$e->getCode().' '.$e->getFile().':'.$e->getLine().' '.$e->getMessage().' '.$e->getTraceAsString()."\n");
+			$fp = fopen($this->config['path']['cache'] . '/exceptions.log', 'a');
+			fwrite($fp, $this->getMicroTime() . ' exc#'.$e->getCode() . ' ' . $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() . ' ' . $e->getTraceAsString() . "\n");
 			fclose($fp);
 			return $this;
 		}

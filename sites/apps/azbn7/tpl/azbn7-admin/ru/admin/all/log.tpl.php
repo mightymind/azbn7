@@ -30,7 +30,7 @@
 							if(count($users)) {
 								foreach($users as $u) {
 							?>
-							<option value="<?=$u['id'];?>" <? if($this->Azbn7->c_s($_GET['flt']['user']) == $u['id']) { echo 'selected';} ?> ><?=$u['login'];?></option>
+							<option value="<?=$u['id'];?>" <? if(isset($_GET['flt']['user'])) {if($this->Azbn7->c_s($_GET['flt']['user']) == $u['id']) { echo 'selected';}} ?> ><?=$u['login'];?></option>
 							<?
 								}
 							}
@@ -49,7 +49,7 @@
 							if(count($users)) {
 								foreach($users as $u) {
 							?>
-							<option value="<?=$u['id'];?>" <? if($this->Azbn7->c_s($_GET['flt']['profile']) == $u['id']) { echo 'selected';} ?> ><?=$u['login'];?></option>
+							<option value="<?=$u['id'];?>" <? if(isset($_GET['flt']['profile'])) {if($this->Azbn7->c_s($_GET['flt']['profile']) == $u['id']) { echo 'selected';}} ?> ><?=$u['login'];?></option>
 							<?
 								}
 							}
@@ -64,12 +64,12 @@
 						<div class="row " >
 							<div class="col-xs-12 col-sm-6" >
 								<label >Дата записи между</label>
-								<input type="text" class="form-control datepicker " name="flt[created_at][start]" value="<?=$this->Azbn7->c_s($_GET['flt']['created_at']['start']);?>" placeholder="Начало" />
+								<input type="text" class="form-control datepicker " name="flt[created_at][start]" value="<?=isset($_GET['flt']['created_at']['start']) ? $this->Azbn7->c_s($_GET['flt']['created_at']['start']) : '';?>" placeholder="Начало" />
 							</div>
 							
 							<div class="col-xs-12 col-sm-6" >
 								<label >&nbsp;</label>
-								<input type="text" class="form-control datepicker " name="flt[created_at][stop]" value="<?=$this->Azbn7->c_s($_GET['flt']['created_at']['stop']);?>" placeholder="Окончание" />
+								<input type="text" class="form-control datepicker " name="flt[created_at][stop]" value="<?=isset($_GET['flt']['created_at']['stop']) ? $this->Azbn7->c_s($_GET['flt']['created_at']['stop']) : '';?>" placeholder="Окончание" />
 							</div>
 						</div>
 						

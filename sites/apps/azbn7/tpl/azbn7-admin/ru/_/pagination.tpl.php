@@ -5,33 +5,35 @@
 $page_num = $param['page'] + 1;
 
 $type_str = '';
-if($param['type']['id']) {
+if(isset($param['type']['id'])) {
 	$type_str = '&type=' . $param['type']['id'];
 }
 
 $flt_str = '';
-if(count($_GET['flt'])) {
-	
-	if($_GET['flt']['user'] != '') {
-		$flt_str = $flt_str . '&flt[user]=' . $this->Azbn7->c_s($_GET['flt']['user']);
+if(isset($_GET['flt'])) {
+	if(count($_GET['flt'])) {
+		
+		if($_GET['flt']['user'] != '') {
+			$flt_str = $flt_str . '&flt[user]=' . $this->Azbn7->c_s($_GET['flt']['user']);
+		}
+		
+		if($_GET['flt']['created_at']['start'] != '') {
+			$flt_str = $flt_str . '&flt[created_at][start]=' . $this->Azbn7->c_s($_GET['flt']['created_at']['start']);
+		}
+		
+		if($_GET['flt']['created_at']['stop'] != '') {
+			$flt_str = $flt_str . '&flt[created_at][stop]=' . $this->Azbn7->c_s($_GET['flt']['created_at']['stop']);
+		}
+		
+		if($_GET['flt']['updated_at']['start'] != '') {
+			$flt_str = $flt_str . '&flt[updated_at][start]=' . $this->Azbn7->c_s($_GET['flt']['updated_at']['start']);
+		}
+		
+		if($_GET['flt']['updated_at']['stop'] != '') {
+			$flt_str = $flt_str . '&flt[updated_at][stop]=' . $this->Azbn7->c_s($_GET['flt']['updated_at']['stop']);
+		}
+		
 	}
-	
-	if($_GET['flt']['created_at']['start'] != '') {
-		$flt_str = $flt_str . '&flt[created_at][start]=' . $this->Azbn7->c_s($_GET['flt']['created_at']['start']);
-	}
-	
-	if($_GET['flt']['created_at']['stop'] != '') {
-		$flt_str = $flt_str . '&flt[created_at][stop]=' . $this->Azbn7->c_s($_GET['flt']['created_at']['stop']);
-	}
-	
-	if($_GET['flt']['updated_at']['start'] != '') {
-		$flt_str = $flt_str . '&flt[updated_at][start]=' . $this->Azbn7->c_s($_GET['flt']['updated_at']['start']);
-	}
-	
-	if($_GET['flt']['updated_at']['stop'] != '') {
-		$flt_str = $flt_str . '&flt[updated_at][stop]=' . $this->Azbn7->c_s($_GET['flt']['updated_at']['stop']);
-	}
-	
 }
 
 if(count($param['items'])) {

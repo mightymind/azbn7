@@ -45,6 +45,6 @@ $this->Azbn7
 ?>
 
 </head>
-<body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
+<body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" <? if($this->Azbn7->config['debug']) { ?>data-php-process-session="<?=$this->Azbn7->php_process_session;?>"<? } ?> data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
 
 <div class="azbn7-container" >

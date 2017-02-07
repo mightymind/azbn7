@@ -24,7 +24,15 @@ class Viewer
 		
 		if(file_exists($file)) {
 			
+			if($this->Azbn7->config['debug']) {
+				echo "\n" . '<!-- ---------- ' . $this->event_prefix . ': tpl before: ' . $tpl . ' ---------- -->' . "\n";
+			}
+			
 			require($file);
+			
+			if($this->Azbn7->config['debug']) {
+				echo "\n" . '<!-- ---------- ' . $this->event_prefix . ': tpl after: ' . $tpl . ' ---------- -->' . "\n";
+			}
 			
 		} else {
 			

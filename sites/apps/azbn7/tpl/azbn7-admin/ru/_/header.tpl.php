@@ -4,7 +4,7 @@
 <html lang="ru" class="no-js" >
 <head>
 
-<title><?=$param['entity']['item']['title'];?></title>
+<title><?=isset($param['entity']['item']['title']) ? $param['entity']['item']['title'] : '';?></title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -60,8 +60,17 @@
 <script src="//api-maps.yandex.ru/2.1/?load=package.controls,package.standard,package.geoObjects,package.editor&lang=ru-RU" type="text/javascript"></script>
 <!-- /Yandex Maps API -->
 
+<?
+/* ---------- ext__event ---------- */
+$this->Azbn7
+	->mdl('Ext')
+		->event($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.head.after')
+;
+/* --------- /ext__event ---------- */
+?>
+
 </head>
-<body class=" <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
+<body class=" <?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" <? if($this->Azbn7->config['debug']) { ?>data-php-process-session="<?=$this->Azbn7->php_process_session;?>"<? } ?> data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
 
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
 	

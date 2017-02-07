@@ -58,7 +58,7 @@ if($param['search']['text'] != '' && mb_strlen($param['search']['text'], $this->
 			indexed_at
 	");
 	
-	$search_items = $search_items_sql->fetchAll(PDO::FETCH_ASSOC);
+	$search_items = $search_items_sql->fetchAll(\PDO::FETCH_ASSOC);
 	
 	if(count($search_items)) {
 		

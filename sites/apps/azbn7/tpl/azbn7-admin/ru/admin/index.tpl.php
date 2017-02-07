@@ -2,7 +2,7 @@
 // Административный шаблон
 ?>
 
-<?=$_SERVER['HTTPS'];?>
+<?=isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] : '';?>
 <?=$_SERVER['SERVER_NAME'];?>
 
 <!--<h2 class="mt-2 mb-1" >CMS Azbn7. Управление сайтом</h2>-->

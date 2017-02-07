@@ -14,8 +14,8 @@ class Storage_SQLite
 			
 			$this->t = $db['t'];
 			
-			$this->connection = new PDO('sqlite:' . $db['file']);
-			//$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$this->connection = new \PDO('sqlite:' . $db['file']);
+			//$this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 			$this->q('SET NAMES '.$db['charset']);
 			
 			$this->Azbn7->event(array(
@@ -102,9 +102,9 @@ class Storage_SQLite
 		}
 		
 		$query = $this->q('SELECT ' . $fields . ' FROM `' . $table . '` WHERE ' . $where);
-		//$query->setFetchMode(PDO::FETCH_ASSOC);
+		//$query->setFetchMode(\PDO::FETCH_ASSOC);
 		//while($row = $query->fetch()){$row};
-		return $query->fetchAll(PDO::FETCH_ASSOC);
+		return $query->fetchAll(\PDO::FETCH_ASSOC);
 	}
 	
 	public function one($table = '', $where = '1')

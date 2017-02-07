@@ -92,7 +92,7 @@ class Site
 		
 	}
 	
-	public function selectTheme($theme)
+	public function selectTheme($theme = '')
 	{
 		
 		if(isset($theme) && $theme != '') {

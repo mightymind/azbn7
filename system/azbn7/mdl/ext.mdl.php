@@ -9,6 +9,12 @@ class Ext
 	public $__exts = array();
 	public $event_prefix = 'system.azbn7.ext';
 	public $ext__ns_delimiter = '::';
+	//public $ext_session = '';
+	
+	function __construct()
+	{
+		
+	}
 	
 	public function load($arr)
 	{
@@ -42,7 +48,7 @@ class Ext
 				$this->__exts[$arr['uid']]->connectToListeners();
 			}
 			
-			$this->event(array(
+			$this->Azbn7->event(array(
 				'action' => $this->event_prefix . '.load.after',
 				'title' => $arr['ext'] . ' was loaded as '. $arr['uid'],
 			));
@@ -77,21 +83,19 @@ class Ext
 		return $this;
 	}
 	
-	public function event($uid, &$p = array())
+	public function event($uid = '', &$p = array())
 	{
-		
-		if($this->__listeners[$uid]) {
+		if(isset($this->__listeners[$uid])) {
 			if(count($this->__listeners[$uid])) {
 				foreach($this->__listeners[$uid] as $e) {
 					$ns = $e['dir'];
 					$ext = $e['ext'];
 					$f = $e['method'];
-					$o = &$this->ext($ns . $this->ext__ns_delimiter . $ext);
-					$o->$f($uid, $p);
+					//$o = &$this->ext($ns . $this->ext__ns_delimiter . $ext);
+					$this->ext($ns . $this->ext__ns_delimiter . $ext)->$f($uid, $p);
 				}
 			}
 		}
-		
 	}
 	
 	public function loadExts($arr = array())

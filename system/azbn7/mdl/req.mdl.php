@@ -9,7 +9,7 @@ class Req
 	public $event_prefix = 'system.azbn7.mdl.req';
 	
 	public function _get($k, $dflt = null) {
-		if ($_GET[$k]) {
+		if (isset($_GET[$k])) {
 			return $this->Azbn7->c_s($_GET[$k]);
 		} else {
 			return $dflt;
@@ -17,7 +17,7 @@ class Req
 	}
 	
 	public function _post($k, $dflt = null) {
-		if ($_POST[$k]) {
+		if (isset($_POST[$k])) {
 			return $this->Azbn7->c_s($_POST[$k]);
 		} else {
 			return $dflt;
@@ -25,7 +25,7 @@ class Req
 	}
 	
 	public function _cookie($k, $dflt = null) {
-		if ($_COOKIE[$k]) {
+		if (isset($_COOKIE[$k])) {
 			return $this->Azbn7->c_s($_COOKIE[$k]);
 		} else {
 			return $dflt;
@@ -33,7 +33,7 @@ class Req
 	}
 	
 	public function _server($k, $dflt = null) {
-		if ($_SERVER[$k]) {
+		if (isset($_SERVER[$k])) {
 			return $_SERVER[$k];
 		} else {
 			return $dflt;
@@ -72,9 +72,11 @@ class Req
 		}
 		//Header("Content-type: $contenttype; charset={$this->Azbn7->config['charset']}");
 		
-		if(count($this->data['headers'])) {
-			foreach($this->data['headers'] as $h) {
-				Header($h);
+		if(isset($this->data['headers'])) {
+			if(count($this->data['headers'])) {
+				foreach($this->data['headers'] as $h) {
+					Header($h);
+				}
 			}
 		}
 		

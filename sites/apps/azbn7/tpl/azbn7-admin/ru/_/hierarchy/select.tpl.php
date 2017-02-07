@@ -18,13 +18,15 @@ $func = function(&$catalog, $item_id, $tab = "&nbsp; ") use (&$func) {
 	?>
 	<option value="<?=$catalog['items'][$item_id]['id'];?>" data-uid="<?=$catalog['items'][$item_id]['uid'];?>" ><?=$tab.$catalog['items'][$item_id]['title'];?></option>
 	<?
-	if(count($catalog['tree'][$item_id])) {
-		foreach($catalog['tree'][$item_id] as $k => $v) {
-			?>
-			<?
-			$func($catalog, $k, $tab.'- ');
-			?>
-			<?
+	if(isset($catalog['tree'][$item_id])) {
+		if(count($catalog['tree'][$item_id])) {
+			foreach($catalog['tree'][$item_id] as $k => $v) {
+				?>
+				<?
+				$func($catalog, $k, $tab.'- ');
+				?>
+				<?
+			}
 		}
 	}
 };
@@ -42,8 +44,9 @@ if(count($param['hierarchy']) && count($param['hierarchy']['items'])) {
 	}
 	?>
 	
-	<select class="form-control" name="<?=$param['name'];?>" data-select-value="<?=$param['value'];?>" >
+	<select class="form-control" name="<?=isset($param['name']) ? $param['name'] : '';?>" data-select-value="<?=isset($param['value']) ? $param['value'] : '';?>" >
 		<?
+		$param['hide_zero'] = isset($param['hide_zero']) ? $param['hide_zero'] : 0;
 		if($param['hide_zero']) {
 			
 		} else {
