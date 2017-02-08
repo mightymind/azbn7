@@ -65,6 +65,15 @@ if(isset($param['entity']['id'])) {
 				'title' => 'Поиск: индексация ' . $param['entity']['id'],
 			));
 			
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.app.run.search.entity.reindex.after', $entity)
+			;
+			/* --------- /ext__event ---------- */
+			
+			
 			$this->Azbn7->mdl('Site')
 				->log('site.entity.search.reindex', array(
 					'entity' => $param['entity']['id'],

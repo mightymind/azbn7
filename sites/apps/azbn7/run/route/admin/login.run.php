@@ -6,6 +6,15 @@ if(count($_POST)) {
 		
 		if($this->Azbn7->mdl('Session')->hasRight('user', 'site.admin.login')) {
 			
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.app.run.route.admin.login.hasRight')
+			;
+			/* --------- /ext__event ---------- */
+			
+			
 			$this->Azbn7->go2('/admin/');
 			
 		} else {
@@ -13,11 +22,29 @@ if(count($_POST)) {
 			//sleep(1);
 			//var_dump($_SESSION);
 			
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.app.run.route.admin.login.not_hasRight')
+			;
+			/* --------- /ext__event ---------- */
+			
+			
 			$this->Azbn7->go2('/error/403/');
 			
 		}
 		
 	} else {
+		
+		
+		/* ---------- ext__event ---------- */
+		$this->Azbn7
+			->mdl('Ext')
+				->event($this->event_prefix . '.app.run.route.admin.login.not_login')
+		;
+		/* --------- /ext__event ---------- */
+		
 		
 		sleep(5);
 		

@@ -210,7 +210,7 @@ class DebugExt
 			
 			//echo '<!-- ---------- ' . $this->Azbn7->getJSON($info) . ' ---------- -->';
 			
-			$fp = fopen($this->Azbn7->config['path']['cache'] . '/' . $this->Azbn7->php_process_session . '.json', 'w');
+			$fp = fopen($this->Azbn7->config['path']['cache'] . '/' . $this->event_prefix . '_' . $this->Azbn7->php_process_session . '.json', 'w');
 			fwrite($fp, $this->Azbn7->getJSON($info));
 			fclose($fp);
 			
@@ -228,21 +228,21 @@ class DebugExt
 	public function viewer__tpl__require__before($uid, &$p = array())
 	{
 		if($this->Azbn7->config['debug']) {
-			echo "\n" . '<!-- ---------- ' . $uid . ': ' . $p . ' ---------- -->' . "\n";
+			echo "\n" . '<!-- ---------- ' . $uid . ': ' . $p['__this_tpl']['tpl'] . ' ---------- -->' . "\n";
 		}
 	}
 	
 	public function viewer__tpl__require__after($uid, &$p = array())
 	{
 		if($this->Azbn7->config['debug']) {
-			echo "\n" . '<!-- ---------- ' . $uid . ': ' . $p . ' ---------- -->' . "\n";
+			echo "\n" . '<!-- ---------- ' . $uid . ': ' . $p['__this_tpl']['tpl'] . ' ---------- -->' . "\n";
 		}
 	}
 	
 	public function viewer__tpl__not_found($uid, &$p = array())
 	{
 		if($this->Azbn7->config['debug']) {
-			echo "\n" . '<!-- ---------- ' . $uid . ': ' . $p . ' NOT FOUND!!! ---------- -->' . "\n";
+			echo "\n" . '<!-- ---------- ' . $uid . ': ' . $p['__this_tpl']['tpl'] . ' NOT FOUND!!! ---------- -->' . "\n";
 		}
 	}
 	

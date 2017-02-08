@@ -1,5 +1,14 @@
 <?
 
+
+/* ---------- ext__event ---------- */
+$this->Azbn7
+	->mdl('Ext')
+		->event($this->event_prefix . '.app.run.route.install.clear.before')
+;
+/* --------- /ext__event ---------- */
+
+
 $tables = $this->Azbn7->mdl('DB')->read('entity_type');
 
 if(count($tables)) {
@@ -33,5 +42,14 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		
 	}
 }
+
+
+/* ---------- ext__event ---------- */
+$this->Azbn7
+	->mdl('Ext')
+		->event($this->event_prefix . '.app.run.route.install.clear.after')
+;
+/* --------- /ext__event ---------- */
+
 
 $this->Azbn7->go2('/install/main/');

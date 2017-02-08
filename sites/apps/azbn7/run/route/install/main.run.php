@@ -10,6 +10,15 @@ $this->Azbn7->mdl('Session')->logout('profile');
 
 if(count($this->Azbn7->mdl('DB')->t)) {
 	
+	
+	/* ---------- ext__event ---------- */
+	$this->Azbn7
+		->mdl('Ext')
+			->event($this->event_prefix . '.app.run.route.install.main.before')
+	;
+	/* --------- /ext__event ---------- */
+	
+	
 	$this->Azbn7->mdl('DB')
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['sysopt'] . "` (
@@ -360,6 +369,15 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		'action' => $this->event_prefix . '.app.run.route.install.main.after',
 		'title' => 'Установка основных таблиц базы данных MySQL',
 	));
+	
+	
+	/* ---------- ext__event ---------- */
+	$this->Azbn7
+		->mdl('Ext')
+			->event($this->event_prefix . '.app.run.route.install.main.after')
+	;
+	/* --------- /ext__event ---------- */
+	
 	
 	$this->Azbn7->go2('/установлено/');
 	

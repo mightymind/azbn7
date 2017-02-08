@@ -162,8 +162,19 @@ class Site
 		$this->Azbn7->mdl('Viewer')
 			->tpl('_' . '/header', $p);
 		
+		/*
+		$p_cache = $p;
+		$p_cache['__this_tpl'] = array(
+			'cache' => 1,
+			'cache_ttl' => 60,
+		);
+		*/
+		
 		$this->Azbn7->mdl('Viewer')
 			->tpl($tpl, $p);
+		/*
+		$p_cache
+		*/
 		
 		$this->Azbn7->mdl('Viewer')
 			->tpl('_' . '/footer', $p);

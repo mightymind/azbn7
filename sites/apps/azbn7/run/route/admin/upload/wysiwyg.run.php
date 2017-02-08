@@ -35,6 +35,15 @@ $uploaded = $this->Azbn7->mdl('Uploader')->save(array(
 	'name' => 'upload',
 ));
 
+
+/* ---------- ext__event ---------- */
+$this->Azbn7
+	->mdl('Ext')
+		->event($this->event_prefix . '.app.run.route.admin.upload.wysiwyg.uploaded', $uploaded)
+;
+/* --------- /ext__event ---------- */
+
+
 if($uploaded['uploaded']) {
 	
 	$uploaded['url'] = '/' . $uploaded['fullname'];

@@ -99,4 +99,10 @@ $EXT__ON_LOAD = array(
 		'param' => array()
 	),
 	
+	array(
+		'dir' => 'app',
+		'ext' => 'Azbn_ru/SimpleCache/SimpleCache',
+		'param' => array()
+	),
+	
 );

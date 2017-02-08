@@ -9,6 +9,7 @@ class Viewer
 	public $body_class = 'azbn7';
 	public $body_data_attr = ' ';
 	public $is_admin_tpl = false;
+	public $inCache = false;
 	
 	public function __construct()
 	{
@@ -20,6 +21,13 @@ class Viewer
 		
 		$tpl_uid = $this->Azbn7->randstr(16);
 		
+		$__this_tpl = array(
+			'tpl' => $tpl,
+			'uid' => $tpl_uid,
+			'cache' => 0,
+			'cache_ttl' => 3600,
+		);
+		
 		if(!isset($this->Azbn7->mdl('Req')->data['headers_sended'])) {
 			
 			$this->Azbn7->mdl('Req')->genHeaders(true);
@@ -30,37 +38,39 @@ class Viewer
 		
 		if(file_exists($file)) {
 			
-			/*
-			if($this->Azbn7->config['debug']) {
-				echo "\n" . '<!-- ---------- ' . $this->event_prefix . ': tpl before: ' . $tpl . ' ---------- -->' . "\n";
+			$__this_tpl['file'] = $file;
+			
+			if(isset($param['__this_tpl'])) {
+				
+				$param['__this_tpl'] = array_merge($__this_tpl, $param['__this_tpl']);
+				
+			} else {
+				
+				$param['__this_tpl'] = $__this_tpl;
+				
 			}
-			*/
 			
 			
 			/* ---------- ext__event ---------- */
 			$this->Azbn7
 				->mdl('Ext')
-					->event($this->event_prefix . '.tpl.require.before', $tpl)
+					->event($this->event_prefix . '.tpl.require.before', $param)
 			;
 			/* --------- /ext__event ---------- */
 			
 			
-			require($file);
+			if(!$this->inCache) {
+				require($file);
+			}
 			
 			
 			/* ---------- ext__event ---------- */
 			$this->Azbn7
 				->mdl('Ext')
-					->event($this->event_prefix . '.tpl.require.after', $tpl)
+					->event($this->event_prefix . '.tpl.require.after', $param)
 			;
 			/* --------- /ext__event ---------- */
 			
-			
-			/*
-			if($this->Azbn7->config['debug']) {
-				echo "\n" . '<!-- ---------- ' . $this->event_prefix . ': tpl after: ' . $tpl . ' ---------- -->' . "\n";
-			}
-			*/
 			
 		} else {
 			
@@ -72,7 +82,7 @@ class Viewer
 			/* ---------- ext__event ---------- */
 			$this->Azbn7
 				->mdl('Ext')
-					->event($this->event_prefix . '.tpl.not_found', $tpl)
+					->event($this->event_prefix . '.tpl.not_found', $__this_tpl)
 			;
 			/* --------- /ext__event ---------- */
 			
