@@ -92,6 +92,25 @@ class SimpleCache
 		
 	}
 	
+	public function html_compress($html = '')
+	{
+		preg_match_all('!(<(?:code|pre|script).*>[^<]+</(?:code|pre|script)>)!', $html, $pre);
+		
+		$html = preg_replace('!<(?:code|pre).*>[^<]+</(?:code|pre)>!', '#pre#', $html);
+		$html = preg_replace('#<!–[^\[].+–>#', '', $html);
+		$html = preg_replace('/[\r\n\t]+/', ' ', $html);
+		$html = preg_replace('/>[\s]+</', '><', $html);
+		$html = preg_replace('/[\s]+/', ' ', $html);
+		
+		if (!empty($pre[0])) {
+			foreach ($pre[0] as $tag) {
+				$html = preg_replace('!#pre#!', $tag, $html,1);
+			}
+		}
+		
+		return $html;
+	}
+	
 	public function caching_start()
 	{
 		
@@ -129,7 +148,7 @@ class SimpleCache
 	{
 		//ob_get_length();
 		
-		$content = $this->caching_content();
+		$content = $this->html_compress($this->caching_content());
 		
 		$file = $this->caching_storage_file($tpl);
 		
