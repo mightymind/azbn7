@@ -196,6 +196,15 @@ $this->Azbn7
 					}
 					?>
 					
+					<?
+					/* ---------- ext__event ---------- */
+					$this->Azbn7
+						->mdl('Ext')
+							->event($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.body.navbar.settings.after')
+					;
+					/* --------- /ext__event ---------- */
+					?>
+					
 				</div>
 			</li>
 			

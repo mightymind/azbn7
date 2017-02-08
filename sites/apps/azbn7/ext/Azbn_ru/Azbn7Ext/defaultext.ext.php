@@ -69,6 +69,16 @@ class DefaultExt
 						),
 					))
 				
+				->addListeners(
+					array($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.body.navbar.settings.after'),
+					array(
+						array(
+							'dir' => 'app',
+							'ext' => $this->event_prefix,
+							'method' => 'viewer__header_body_navbar_settings__after',
+						),
+					))
+				
 		;
 		
 	}
@@ -152,6 +162,14 @@ class DefaultExt
 	public function viewer__footer_body_after($uid, &$p = array())
 	{
 		echo '<!-- footer -->';
+	}
+	
+	public function viewer__header_body_navbar_settings__after($uid, &$p = array())
+	{
+		?>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/');?>" >Пункт в меню, добавленный расширением</a>
+		<?
 	}
 	
 }
