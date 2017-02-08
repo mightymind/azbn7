@@ -48,7 +48,7 @@ window.Azbn7 = new Azbn7Constructor(jQuery, {
 /* ---------- ext__event ---------- */
 $this->Azbn7
 	->mdl('Ext')
-		->event($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.footer.body.after')
+		->event($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.footer.body.after', $param)
 ;
 /* --------- /ext__event ---------- */
 ?>

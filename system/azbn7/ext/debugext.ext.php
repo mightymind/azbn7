@@ -53,7 +53,17 @@ class DebugExt
 								'method' => 'req__parseURL__after',
 							),
 						))
-					//$this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.head.after'
+					
+					->addListeners(
+						array($this->Azbn7->mdl('Req')->event_prefix . '.request.before'),
+						array(
+							array(
+								'dir' => 'azbn7',
+								'ext' => $this->event_prefix,
+								'method' => 'req__request__before',
+							),
+						))
+					
 					->addListeners(
 						array($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.head.after'),
 						array(
@@ -61,6 +71,36 @@ class DebugExt
 								'dir' => 'azbn7',
 								'ext' => $this->event_prefix,
 								'method' => 'viewer__tpl__header_head__after',
+							),
+						))
+					
+					->addListeners(
+						array($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.require.before'),
+						array(
+							array(
+								'dir' => 'azbn7',
+								'ext' => $this->event_prefix,
+								'method' => 'viewer__tpl__require__before',
+							),
+						))
+					
+					->addListeners(
+						array($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.require.after'),
+						array(
+							array(
+								'dir' => 'azbn7',
+								'ext' => $this->event_prefix,
+								'method' => 'viewer__tpl__require__after',
+							),
+						))
+					
+					->addListeners(
+						array($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.not_found'),
+						array(
+							array(
+								'dir' => 'azbn7',
+								'ext' => $this->event_prefix,
+								'method' => 'viewer__tpl__not_found',
 							),
 						))
 					
@@ -142,13 +182,20 @@ class DebugExt
 		//$this->Azbn7->echo_dev('Этот код выполняется после парсинга запроса', $this->event_prefix);
 	}
 	
+	public function req__request__before($uid, &$p = array())
+	{
+		$this->Azbn7->mdl('Req')->addHeaders(array(
+			'X-Azbn7-Ext-Debug: ' . $this->event_prefix,
+		));
+	}
+	
 	public function approuter__route__after($uid, &$p = array())
 	{
 		//$this->Azbn7->echo_dev('Этот код выполняется после обработки запроса', $this->event_prefix);
 		if($this->Azbn7->config['debug']) {
 			
 			$this->Azbn7->timing['stop'] = $this->Azbn7->getMicroTime();
-			$this->Azbn7->timing['diff'] = $this->Azbn7->timing['stop'] - $this->Azbn7->timing['start'];
+			$this->Azbn7->timing['diff'] = $this->Azbn7->getTiming($this->Azbn7->timing['stop']);
 			
 			$info = array(
 				'request_uri' => $this->Azbn7->mdl('Req')->_server('REQUEST_URI'),
@@ -175,7 +222,28 @@ class DebugExt
 	{
 		$uid = str_replace('.', '__', $this->event_prefix);
 		$this->Azbn7->mdl('Viewer')->addBodyClass($uid);
-		$this->Azbn7->mdl('Viewer')->addBodyDataAttr($uid, $this->Azbn7->getJSON($p));
+		$this->Azbn7->mdl('Viewer')->addBodyDataAttr($uid, $this->Azbn7->getJSON($this->data));
+	}
+	
+	public function viewer__tpl__require__before($uid, &$p = array())
+	{
+		if($this->Azbn7->config['debug']) {
+			echo "\n" . '<!-- ---------- ' . $uid . ': ' . $p . ' ---------- -->' . "\n";
+		}
+	}
+	
+	public function viewer__tpl__require__after($uid, &$p = array())
+	{
+		if($this->Azbn7->config['debug']) {
+			echo "\n" . '<!-- ---------- ' . $uid . ': ' . $p . ' ---------- -->' . "\n";
+		}
+	}
+	
+	public function viewer__tpl__not_found($uid, &$p = array())
+	{
+		if($this->Azbn7->config['debug']) {
+			echo "\n" . '<!-- ---------- ' . $uid . ': ' . $p . ' NOT FOUND!!! ---------- -->' . "\n";
+		}
 	}
 	
 }

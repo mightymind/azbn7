@@ -357,7 +357,7 @@ $this->Azbn7->mdl('Viewer')->tpl('_/notifies_as-js', array());
 /* ---------- ext__event ---------- */
 $this->Azbn7
 	->mdl('Ext')
-		->event($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.footer.body.after')
+		->event($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.footer.body.after', $param)
 ;
 /* --------- /ext__event ---------- */
 ?>

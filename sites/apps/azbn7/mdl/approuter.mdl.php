@@ -86,6 +86,15 @@ class AppRouter
 			'title' => 'Событие роутера: Страница не найдена',
 		));
 		
+		
+		/* ---------- ext__event ---------- */
+		$this->Azbn7
+			->mdl('Ext')
+				->event($this->event_prefix . '.page404', $req)
+		;
+		/* --------- /ext__event ---------- */
+		
+		
 		$this->Azbn7->run('app', 'route/error/404', $req);
 		
 	}

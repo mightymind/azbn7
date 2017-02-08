@@ -37,6 +37,15 @@ class Session
 				'title' => 'Сессия: вход ' . $type . ' ' . $item['id'],
 			));
 			
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.' . $type . '.login.after', $item)
+			;
+			/* --------- /ext__event ---------- */
+			
+			
 			$this->Azbn7->mdl('Site')
 				->log('site.session.' . $type . '.login', array(
 					
@@ -59,6 +68,15 @@ class Session
 			'action' => $this->event_prefix . '.' . $type . '.logout',
 			'title' => 'Сессия: выход ' . $type . ' ' . $_SESSION[$type]['id'],
 		));
+		
+		
+		/* ---------- ext__event ---------- */
+		$this->Azbn7
+			->mdl('Ext')
+				->event($this->event_prefix . '.' . $type . '.logout.before', $type)
+		;
+		/* --------- /ext__event ---------- */
+		
 		
 		$this->Azbn7->mdl('Site')
 			->log('site.session.' . $type . '.logout', array(
@@ -111,6 +129,15 @@ class Session
 		if($item['id']) {
 			
 			$_SESSION[$type]['right'] = $this->Azbn7->parseJSON($item['right']);
+			
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.reloadRights.after', $type)
+			;
+			/* --------- /ext__event ---------- */
+			
 			
 		}
 		

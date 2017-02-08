@@ -3,7 +3,7 @@
 переиндексатор
 */
 
-$event_prefix = 'app.run.search.entity.reindex';
+$event_prefix = $this->event_prefix . '.app.run.search.entity.reindex';
 
 if(isset($param['entity']['id'])) {
 	

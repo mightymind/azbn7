@@ -357,7 +357,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	
 	
 	$this->Azbn7->event(array(
-		'action' => 'app.run.route.install.main.after',
+		'action' => $this->event_prefix . '.app.run.route.install.main.after',
 		'title' => 'Установка основных таблиц базы данных MySQL',
 	));
 	

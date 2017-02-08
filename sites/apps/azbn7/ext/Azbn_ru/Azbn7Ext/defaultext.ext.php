@@ -144,7 +144,7 @@ class DefaultExt
 	{
 		$uid = str_replace('.', '__', $this->event_prefix);
 		$this->Azbn7->mdl('Viewer')->addBodyClass($uid);
-		$this->Azbn7->mdl('Viewer')->addBodyDataAttr($uid, $this->Azbn7->getJSON($p));
+		$this->Azbn7->mdl('Viewer')->addBodyDataAttr($uid, $this->Azbn7->getJSON($this->data));
 		
 		echo '<!-- header -->';
 	}

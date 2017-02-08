@@ -51,6 +51,15 @@ namespace azbn7 {
 			}
 		}
 		
+		public function getTiming($m = 0)
+		{
+			if($m == 0) {
+				$m = $this->$this->getMicroTime();
+			}
+			
+			return ($m - $this->timing['start']);
+		}
+		
 		public function event($arr)
 		{
 			/*
@@ -59,6 +68,7 @@ namespace azbn7 {
 			)
 			*/
 			$arr['created_at'] = $this->getMicroTime();
+			$arr['timing'] = $this->getTiming($arr['created_at']);
 			$arr['memory'] = memory_get_usage();
 			
 			if($arr['action'] == 'error') {

@@ -82,15 +82,15 @@ $Azbn7
 	->mdl('Ext')
 		->loadExts($EXT__ON_LOAD)
 ;
-unset($EXT__ON_LOAD);
-
 
 /* ---------- ext__event ---------- */
 $Azbn7
 	->mdl('Ext')
-		->event($Azbn7->mdl('Ext')->event_prefix . '.loadExts.main.after')
+		->event($Azbn7->mdl('Ext')->event_prefix . '.loadExts.main.after', $EXT__ON_LOAD)
 ;
 /* --------- /ext__event ---------- */
+
+unset($EXT__ON_LOAD);
 
 
 

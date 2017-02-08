@@ -83,6 +83,15 @@ class Entity
 					'title' => 'Сущности: создание типа',
 				));
 				
+				
+				/* ---------- ext__event ---------- */
+				$this->Azbn7
+					->mdl('Ext')
+						->event($this->event_prefix . '.create.entity_type.after', $e)
+				;
+				/* --------- /ext__event ---------- */
+				
+				
 				$this->Azbn7->mdl('Site')
 					->log('site.entity.create.entity_type', array(
 						'id' => $e['id'],
@@ -141,6 +150,15 @@ class Entity
 						'title' => 'Сущности: создание записи',
 					));
 					
+					
+					/* ---------- ext__event ---------- */
+					$this->Azbn7
+						->mdl('Ext')
+							->event($this->event_prefix . '.create.entity.after', $e)
+					;
+					/* --------- /ext__event ---------- */
+					
+					
 					$this->Azbn7->mdl('Site')
 						->log('site.entity.create.entity', array(
 							'entity' => $e['entity']['id'],
@@ -192,6 +210,15 @@ class Entity
 				'action' => $this->event_prefix . '.create.entity_bound.after',
 				'title' => 'Сущности: создание связи между записями',
 			));
+			
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.create.entity_bound.after', $b)
+			;
+			/* --------- /ext__event ---------- */
+			
 			
 			$this->Azbn7->mdl('Site')
 				->log('site.entity.create.entity_bound', array(
@@ -355,6 +382,15 @@ class Entity
 				
 				$this->Azbn7->mdl('DB')->update($this->getTable($type['uid']), $e['item'], "entity = '$id'");
 				
+				
+				/* ---------- ext__event ---------- */
+				$this->Azbn7
+					->mdl('Ext')
+						->event($this->event_prefix . '.update.entity.after', $e)
+				;
+				/* --------- /ext__event ---------- */
+				
+				
 				$this->Azbn7->run('app', 'search/entity/reindex', $e);
 				
 			}
@@ -365,14 +401,24 @@ class Entity
 	
 	public function deleteEntity($id = 0)
 	{
+		$e = array();
 		
-		$entity = $this->Azbn7->mdl('DB')->one('entity', "id = '$id'");
+		$e['entity'] = $this->Azbn7->mdl('DB')->one('entity', "id = '$id'");
 		
-		if($entity['id']) {
+		if($e['entity']['id']) {
+			
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.delete.entity.before', $e)
+			;
+			/* --------- /ext__event ---------- */
+			
 			
 			$this->Azbn7->mdl('DB')->delete('entity', "id = '$id'");
 			
-			$type = $this->Azbn7->mdl('DB')->one('type', "id = '{$entity['type']}'");
+			$type = $this->Azbn7->mdl('DB')->one('type', "id = '{$e['entity']['type']}'");
 			
 			if($type['id']) {
 				

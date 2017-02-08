@@ -30,7 +30,7 @@ if(count($uid_arr)) {
 					/* ---------- ext__event ---------- */
 					$this->Azbn7
 						->mdl('Ext')
-							->event('app.api.azbn7.live-edit.save', $item)
+							->event($this->event_prefix . '.app.api.azbn7.live-edit.save', $item)
 					;
 					/* --------- /ext__event ---------- */
 					

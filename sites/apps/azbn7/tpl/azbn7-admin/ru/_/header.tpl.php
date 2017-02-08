@@ -74,6 +74,17 @@ $this->Azbn7
 </head>
 <body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" <? if($this->Azbn7->config['debug']) { ?>data-php-process-session="<?=$this->Azbn7->php_process_session;?>"<? } ?> <?=$this->Azbn7->mdl('Viewer')->bodyDataAttrs('');?> >
 
+
+<?
+/* ---------- ext__event ---------- */
+$this->Azbn7
+	->mdl('Ext')
+		->event($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.body.before', $param)
+;
+/* --------- /ext__event ---------- */
+?>
+
+
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
 	
 	<button type="button" class="navbar-toggler hidden-md-up" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" ></button>

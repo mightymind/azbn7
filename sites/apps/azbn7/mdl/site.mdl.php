@@ -100,6 +100,14 @@ class Site
 	public function selectTheme($theme = '')
 	{
 		
+		/* ---------- ext__event ---------- */
+		$this->Azbn7
+			->mdl('Ext')
+				->event($this->event_prefix . '.selectTheme.before', $theme)
+		;
+		/* --------- /ext__event ---------- */
+		
+		
 		if(isset($theme) && $theme != '') {
 			
 			$this->Azbn7->config['theme'] = $theme;
@@ -130,6 +138,15 @@ class Site
 			
 		}
 		
+		
+		/* ---------- ext__event ---------- */
+		$this->Azbn7
+			->mdl('Ext')
+				->event($this->event_prefix . '.selectTheme.after', $theme)
+		;
+		/* --------- /ext__event ---------- */
+		
+		
 	}
 	
 	public function render($tpl = 'default', $p)
@@ -156,6 +173,15 @@ class Site
 	{
 		
 		$seo = $this->Azbn7->mdl('DB')->one('entity_seo', "entity = '{$entity['entity']['id']}'");
+		
+		
+		/* ---------- ext__event ---------- */
+		$this->Azbn7
+			->mdl('Ext')
+				->event($this->event_prefix . '.showSEOHeader.before', $seo)
+		;
+		/* --------- /ext__event ---------- */
+		
 		
 		if($seo['id']) {
 			

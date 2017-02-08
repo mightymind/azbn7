@@ -30,15 +30,37 @@ class Viewer
 		
 		if(file_exists($file)) {
 			
+			/*
 			if($this->Azbn7->config['debug']) {
 				echo "\n" . '<!-- ---------- ' . $this->event_prefix . ': tpl before: ' . $tpl . ' ---------- -->' . "\n";
 			}
+			*/
+			
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.tpl.require.before', $tpl)
+			;
+			/* --------- /ext__event ---------- */
+			
 			
 			require($file);
 			
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.tpl.require.after', $tpl)
+			;
+			/* --------- /ext__event ---------- */
+			
+			
+			/*
 			if($this->Azbn7->config['debug']) {
 				echo "\n" . '<!-- ---------- ' . $this->event_prefix . ': tpl after: ' . $tpl . ' ---------- -->' . "\n";
 			}
+			*/
 			
 		} else {
 			
@@ -46,6 +68,13 @@ class Viewer
 				'action' => $this->event_prefix . '.tpl.not_found',
 				'title' => 'Tpl ' . $tpl . ' not found!',
 			));
+			
+			/* ---------- ext__event ---------- */
+			$this->Azbn7
+				->mdl('Ext')
+					->event($this->event_prefix . '.tpl.not_found', $tpl)
+			;
+			/* --------- /ext__event ---------- */
 			
 		}
 		
@@ -58,7 +87,7 @@ class Viewer
 	
 	public function addBodyDataAttr($k, $v)
 	{
-		$this->body_data_attr = $this->body_data_attr . ' data-' . $k . '="' . $v . '"';
+		$this->body_data_attr = $this->body_data_attr . ' data-' . $k . "='" . $v . "'";
 	}
 	
 	public function bodyClass($class = '')
