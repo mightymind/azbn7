@@ -7,13 +7,14 @@ class Ext
 	public $data = array();
 	public $__listeners = array();
 	public $__exts = array();
-	public $event_prefix = 'system.azbn7.ext';
+	public $__events = array();
+	public $event_prefix = '';//'system.azbn7.ext';
 	public $ext__ns_delimiter = '::';
 	//public $ext_session = '';
 	
 	function __construct()
 	{
-		
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
 	}
 	
 	public function load($arr)
@@ -27,9 +28,13 @@ class Ext
 		)
 		*/
 		
-		$class_name = '\\' . $arr['dir'] . '\\' . 'Ext' . '\\' . str_replace('/', '\\', $arr['ext']);
+		$class_name = $arr['dir'] . '\\' . 'Ext' . '\\' . str_replace('/', '\\', $arr['ext']);//'\\' . 
 		
-		$arr['uid'] = $arr['dir'] . $this->ext__ns_delimiter  . $arr['ext'];
+		//die($class_name);
+		
+		//$arr['uid'] = $arr['dir'] . $this->ext__ns_delimiter  . $arr['ext'];
+		
+		$arr['uid'] = strtolower(str_replace('\\', '.', $class_name));
 		
 		if(isset($this->__exts[$arr['uid']])) {
 			unset($this->__exts[$arr['uid']]);
@@ -85,14 +90,22 @@ class Ext
 	
 	public function event($uid = '', &$p = array())
 	{
+		$this->__events[] = $uid;
 		if(isset($this->__listeners[$uid])) {
 			if(count($this->__listeners[$uid])) {
 				foreach($this->__listeners[$uid] as $e) {
+					
 					$ns = $e['dir'];
 					$ext = $e['ext'];
 					$f = $e['method'];
-					//$o = &$this->ext($ns . $this->ext__ns_delimiter . $ext);
-					$this->ext($ns . $this->ext__ns_delimiter . $ext)->$f($uid, $p);
+					
+					if($this->__exts[$ext]) {
+						if(method_exists($this->__exts[$ext], $f)) {
+							$this->ext($ext)->$f($uid, $p);
+						}
+					}
+					
+					
 				}
 			}
 		}

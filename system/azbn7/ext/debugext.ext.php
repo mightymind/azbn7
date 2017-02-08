@@ -29,7 +29,7 @@ class DebugExt
 						array(
 							array(
 								'dir' => 'azbn7',
-								'ext' => 'DebugExt',
+								'ext' => $this->event_prefix,
 								'method' => 'storage_mysql__connect__before',
 							),
 						))
@@ -39,7 +39,7 @@ class DebugExt
 						array(
 							array(
 								'dir' => 'azbn7',
-								'ext' => 'DebugExt',
+								'ext' => $this->event_prefix,
 								'method' => 'storage_mysql__connect__after',
 							),
 						))
@@ -49,8 +49,18 @@ class DebugExt
 						array(
 							array(
 								'dir' => 'azbn7',
-								'ext' => 'DebugExt',
+								'ext' => $this->event_prefix,
 								'method' => 'req__parseURL__after',
+							),
+						))
+					//$this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.head.after'
+					->addListeners(
+						array($this->Azbn7->mdl('Viewer')->event_prefix . '.tpl.header.head.after'),
+						array(
+							array(
+								'dir' => 'azbn7',
+								'ext' => $this->event_prefix,
+								'method' => 'viewer__tpl__header_head__after',
 							),
 						))
 					
@@ -59,7 +69,7 @@ class DebugExt
 						array(
 							array(
 								'dir' => 'azbn7',
-								'ext' => 'DebugExt',
+								'ext' => $this->event_prefix,
 								'method' => 'approuter__route__after',
 							),
 						))
@@ -147,6 +157,7 @@ class DebugExt
 				'timing' => $this->Azbn7->timing,
 				'events' => $this->Azbn7->__events,
 				'errors' => $this->Azbn7->__errors,
+				'ext_events' => $this->Azbn7->mdl('Ext')->__events,
 				'listeners' => $this->Azbn7->mdl('Ext')->__listeners,
 			);
 			
@@ -158,6 +169,13 @@ class DebugExt
 			
 			//echo $this->Azbn7->config['path']['cache'] . '/' . $this->Azbn7->php_process_session . '.json';
 		}
+	}
+	
+	public function viewer__tpl__header_head__after($uid, &$p = array())
+	{
+		$uid = str_replace('.', '__', $this->event_prefix);
+		$this->Azbn7->mdl('Viewer')->addBodyClass($uid);
+		$this->Azbn7->mdl('Viewer')->addBodyDataAttr($uid, $this->Azbn7->getJSON($p));
 	}
 	
 }

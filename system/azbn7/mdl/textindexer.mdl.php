@@ -5,6 +5,12 @@ namespace azbn7;
 class TextIndexer
 {
 	public $morphy = null;
+	public $event_prefix = '';
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	public function initMorphy()
 	{

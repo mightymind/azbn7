@@ -22,6 +22,8 @@ namespace azbn7 {
 		
 		public function __construct($config = array()) // Конструктор класса
 		{
+			$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+			
 			$this->config = $config;
 			$this->created_at = $this->as_num(date('U'));
 			$this->data = array();
@@ -128,7 +130,7 @@ namespace azbn7 {
 				$this->__modules[$arr['uid']]->data = &$this->data['mdl'][$arr['uid']];
 				
 				$this->event(array(
-					'action' => 'system.azbn7.load.after',
+					'action' => $this->event_prefix . '.load.after',
 					'title' => $arr['mdl'] . ' was loaded as '. $arr['uid'],
 				));
 				

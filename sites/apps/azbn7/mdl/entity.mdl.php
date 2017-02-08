@@ -4,8 +4,13 @@ namespace app;
 
 class Entity
 {
-	public $event_prefix = 'app.mdl.entity';
+	public $event_prefix = '';//'app.mdl.entity';
 	public $cache = array();
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	public function getTable($uid = 'page', $sub = '')
 	{

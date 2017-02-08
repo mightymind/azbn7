@@ -4,7 +4,12 @@ namespace app;
 
 class AppRouter
 {
-	public $event_prefix = 'app.mdl.approuter';
+	public $event_prefix = '';//'app.mdl.approuter';
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	public function route($req = array())
 	{

@@ -6,7 +6,12 @@ class Storage_SQLite
 {
 	public $connection = null;
 	public $t = array();
-	public $event_prefix = 'system.azbn7.mdl.storage_sqlite';
+	public $event_prefix = '';//'system.azbn7.mdl.storage_sqlite';
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	public function connect($db)
 	{

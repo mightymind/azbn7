@@ -6,7 +6,12 @@ class Req
 {
 	public $req_arr = array();
 	public $data = array();
-	public $event_prefix = 'system.azbn7.mdl.req';
+	public $event_prefix = '';//'system.azbn7.mdl.req';
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	public function _get($k, $dflt = null) {
 		if (isset($_GET[$k])) {

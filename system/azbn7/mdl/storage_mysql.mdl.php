@@ -7,7 +7,12 @@ class Storage_MySQL
 	public $connection = null;
 	public $t = array();
 	public $prefix = '';
-	public $event_prefix = 'system.azbn7.mdl.storage_mysql';
+	public $event_prefix = '';//'system.azbn7.mdl.storage_mysql';
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	public function connect($db)
 	{

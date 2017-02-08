@@ -35,6 +35,7 @@ $this->Azbn7->mdl('Site')->showSEOHeader($param['entity']);
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr-custom.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
 
+
 <?
 /* ---------- ext__event ---------- */
 $this->Azbn7
@@ -44,7 +45,8 @@ $this->Azbn7
 /* --------- /ext__event ---------- */
 ?>
 
+
 </head>
-<body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" <? if($this->Azbn7->config['debug']) { ?>data-php-process-session="<?=$this->Azbn7->php_process_session;?>"<? } ?> data-fecss-jssearch="" data-fecss-modal="no-modal" data-context="container" >
+<body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" <? if($this->Azbn7->config['debug']) { ?>data-php-process-session="<?=$this->Azbn7->php_process_session;?>"<? } ?> <?=$this->Azbn7->mdl('Viewer')->bodyDataAttrs('');?> >
 
 <div class="azbn7-container" >

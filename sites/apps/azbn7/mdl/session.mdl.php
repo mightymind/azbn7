@@ -4,8 +4,13 @@ namespace app;
 
 class Session
 {
-	public $event_prefix = 'app.mdl.session';
+	public $event_prefix = '';//'app.mdl.session';
 	public $cache = array();
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	/*
 	public function is($type = 'user')

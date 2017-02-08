@@ -9,9 +9,6 @@ class DefaultExt
 	
 	function __construct()
 	{
-		//echo $this->event_prefix;
-		//$this->event_prefix = strtolower(str_replace('\\', '.', $this->event_prefix));
-		
 		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
 		$this->data = array();
 	}
@@ -27,7 +24,7 @@ class DefaultExt
 					array(
 						array(
 							'dir' => 'app',
-							'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
+							'ext' => $this->event_prefix,
 							'method' => 'storage_mysql__connect__before',
 						),
 					))
@@ -37,7 +34,7 @@ class DefaultExt
 					array(
 						array(
 							'dir' => 'app',
-							'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
+							'ext' => $this->event_prefix,
 							'method' => 'storage_mysql__connect__after',
 						),
 					))
@@ -47,7 +44,7 @@ class DefaultExt
 					array(
 						array(
 							'dir' => 'app',
-							'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
+							'ext' => $this->event_prefix,
 							'method' => '__api_ext',
 						),
 					))
@@ -57,7 +54,7 @@ class DefaultExt
 					array(
 						array(
 							'dir' => 'app',
-							'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
+							'ext' => $this->event_prefix,
 							'method' => 'viewer__header_head_after',
 						),
 					))
@@ -67,7 +64,7 @@ class DefaultExt
 					array(
 						array(
 							'dir' => 'app',
-							'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
+							'ext' => $this->event_prefix,
 							'method' => 'viewer__footer_body_after',
 						),
 					))
@@ -145,6 +142,10 @@ class DefaultExt
 	
 	public function viewer__header_head_after($uid, &$p = array())
 	{
+		$uid = str_replace('.', '__', $this->event_prefix);
+		$this->Azbn7->mdl('Viewer')->addBodyClass($uid);
+		$this->Azbn7->mdl('Viewer')->addBodyDataAttr($uid, $this->Azbn7->getJSON($p));
+		
 		echo '<!-- header -->';
 	}
 	

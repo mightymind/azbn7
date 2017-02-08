@@ -4,9 +4,14 @@ namespace app;
 
 class Site
 {
-	public $event_prefix = 'app.mdl.site';
+	public $event_prefix = '';//'app.mdl.site';
 	public $cache = array();
 	public $is_mainpage = false;
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	public function is($type = 'user')
 	{

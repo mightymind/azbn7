@@ -26,10 +26,13 @@ if(count($uid_arr)) {
 						$uid_arr[3] => $value,
 					), "id = '{$uid_arr[2]}'");
 					
+					
+					/* ---------- ext__event ---------- */
 					$this->Azbn7
 						->mdl('Ext')
 							->event('app.api.azbn7.live-edit.save', $item)
 					;
+					/* --------- /ext__event ---------- */
 					
 				}
 				

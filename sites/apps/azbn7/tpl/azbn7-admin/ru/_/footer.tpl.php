@@ -352,6 +352,7 @@ window.Azbn7.me('profile', function(type, entity){
 $this->Azbn7->mdl('Viewer')->tpl('_/notifies_as-js', array());
 ?>
 
+
 <?
 /* ---------- ext__event ---------- */
 $this->Azbn7
@@ -360,6 +361,7 @@ $this->Azbn7
 ;
 /* --------- /ext__event ---------- */
 ?>
+
 
 <!--
 административный шаблон

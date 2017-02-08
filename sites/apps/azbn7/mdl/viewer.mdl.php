@@ -4,10 +4,16 @@ namespace app;
 
 class Viewer
 {
-	public $event_prefix = 'app.mdl.viewer';
+	public $event_prefix = '';//'app.mdl.viewer';
 	
 	public $body_class = 'azbn7';
+	public $body_data_attr = ' ';
 	public $is_admin_tpl = false;
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	public function tpl($tpl, $param = array())
 	{
@@ -50,9 +56,19 @@ class Viewer
 		$this->body_class = $this->body_class . ' ' . $class;
 	}
 	
+	public function addBodyDataAttr($k, $v)
+	{
+		$this->body_data_attr = $this->body_data_attr . ' data-' . $k . '="' . $v . '"';
+	}
+	
 	public function bodyClass($class = '')
 	{
 		return $this->body_class . ' ' . $class;
+	}
+	
+	public function bodyDataAttrs($data = '')
+	{
+		return $this->body_data_attr . ' ' . $data;
 	}
 	
 }

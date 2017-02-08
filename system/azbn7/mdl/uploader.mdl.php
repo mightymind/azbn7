@@ -6,7 +6,7 @@ class Uploader
 {
 	public $path = '';
 	public $uploaded = 0;
-	public $event_prefix = 'system.azbn7.mdl.uploader';
+	public $event_prefix = '';//'system.azbn7.mdl.uploader';
 	
 	public $mime_type = array(
 		
@@ -68,6 +68,11 @@ class Uploader
 		'odt' => 'application/vnd.oasis.opendocument.text',
 		'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
 	);
+	
+	public function __construct()
+	{
+		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
+	}
 	
 	public function initUploader($config = array())
 	{
