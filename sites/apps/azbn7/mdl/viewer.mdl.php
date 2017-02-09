@@ -7,7 +7,9 @@ class Viewer
 	public $event_prefix = '';//'app.mdl.viewer';
 	
 	public $body_class = 'azbn7';
-	public $evalContent__code = 'widget';
+	public $evalContent__codes = array(
+		'widget',
+	);
 	public $body_data_attr = ' ';
 	public $is_admin_tpl = false;
 	public $inCache = false;
@@ -96,6 +98,47 @@ class Viewer
 		
 	}
 	
+	public function wgt($widget_caller, $param = array())
+	{
+		
+		$res = '';
+		
+		$tpl_uid = $this->Azbn7->randstr(16);
+		
+		if(isset($param['tpl'])) {
+			
+			$file = $this->Azbn7->config['path']['app'] . '/tpl/' . $this->Azbn7->config['theme'] . '/' . strtolower($param['tpl']) . '.tpl.php';
+			
+			if(file_exists($file)) {
+				
+				ob_start();
+				ob_implicit_flush(0);
+				
+				require($file);
+				
+				$res = ob_get_contents();
+				ob_end_clean();
+				
+			} else {
+				
+				$res = $widget_caller;
+				
+			}
+			
+		} else if(isset($param['id'])) {
+			
+			$res = $widget_caller;
+			
+		} else {
+			
+			$res = $widget_caller;
+			
+		}
+		
+		return $res;
+		
+	}
+	
 	public function addBodyClass($class = '')
 	{
 		$this->body_class = $this->body_class . ' ' . $class;
@@ -128,7 +171,11 @@ class Viewer
 		/* --------- /ext__event ---------- */
 		
 		
-		$content = preg_replace_callback("/\[\[" . $this->evalContent__code . "([^\]]*)\]\]/isu", array(&$this,'evalContent__callback'), $content);
+		if(count($this->evalContent__codes)) {
+			foreach($this->evalContent__codes as $code) {
+				$content = preg_replace_callback("/\[\[(" . $code . ")([^\]]*)\]\]/isu", array(&$this,'evalContent__callback'), $content);
+			}
+		}
 		
 		
 		/* ---------- ext__event ---------- */
@@ -143,51 +190,32 @@ class Viewer
 	
 	public function evalContent__callback($matches)
 	{
-		var_dump($matches);
-		return 'evalContent__callback';
-	}
-	
-	/*
-	public function evalContent__callback($str)
-	{
-		$id = $str[1];
+		//var_dump($matches);
+		$_argv = array();
+		$p = array();
 		
-		if(isset($this->snippets[$id])) {
-			$snp = $this->snippets[$id];
-		} else {
-			$snp=$this->FE->DB->dbSelectFirstRow("SELECT * FROM `".$this->cfg['tbl']['item']."` WHERE (id='$id')");
-		}
-		
-		if($snp['id']) {
-			
-			$_param = $this->getSnippetParams($str[2]);
-			$_param['{class}'] = $snp['class'].' '.$_param['{class}'];
-			$snp['html'] = strtr($this->codeByStorage('html/'.$snp['id'].'.html'),$_param);
-			
-			$this->snippets[$snp['id']] = $snp;
-			
-			return $this->parseHTML($snp['html']);
-		} else {
-			return '';
-		}
-	}
-	
-	public function getSnippetParams($str)
-	{
 		preg_match_all(
-			"/(\w+)=\"([^\"]*)\"/isu",
-			$str,
-			$res,
+			"/\b(\w+)=\"([^\"]*)\"/isu",
+			//"/\b(\w+=([\"'])[^\\2]+?\\2)/isu",
+			$matches[2],
+			$_argv,
 			PREG_SET_ORDER//PREG_PATTERN_ORDER
-			);
-		$arr = array();
-		if(count($res)) {
-			foreach($res as $p) {
-				$arr['{'.$p[1].'}']=$p[2];
+		);
+		
+		if(count($_argv)) {
+			foreach($_argv as $_a) {
+				$p[$_a[1]] = $_a[2];
 			}
 		}
-		return $arr;
+		
+		/*
+		echo '<pre>';
+		var_dump($matches);
+		//var_dump($p);
+		echo '</pre>';
+		*/
+		
+		return $this->wgt($matches[1], $p);
 	}
-	*/
 	
 }
