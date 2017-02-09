@@ -147,8 +147,11 @@ class SimpleCache
 	public function caching_save(&$tpl = array())
 	{
 		//ob_get_length();
+		$content = $this->caching_content();
 		
-		$content = $this->html_compress($this->caching_content());
+		if($tpl['cache_compress']) {
+			$content = $this->html_compress($content);
+		}
 		
 		$file = $this->caching_storage_file($tpl);
 		

@@ -1,9 +1,24 @@
-<?
+<?php
 
 $entity = &$param['entity'];
 
 ?>
 
-<h1 class="azbn7__live-edit__html" data-azbn7-live-edit="entity.<?=$entity['type']['uid'];?>.<?=$entity['item']['id'];?>.title" ><?=$entity['item']['title'];?></h1>
+<?
+$this->Azbn7->mdl('Viewer')
+	->tpl('_/banner/entity/by_type/page/header', array(
+		'__this_tpl' => array(
+			'cache' => 1,
+			'cache_ttl' => 60,
+			'cache_compress' => 1,
+		),
+	));
+?>
 
-<div class="azbn7__live-edit__html" data-azbn7-live-edit="entity.<?=$entity['type']['uid'];?>.<?=$entity['item']['id'];?>.content" ><?=$entity['item']['content'];?></div>
+<div class="content" >
+	
+	<h1 class="azbn7__live-edit__html" data-azbn7-live-edit="entity.<?=$entity['type']['uid'];?>.<?=$entity['item']['id'];?>.title" ><?=$entity['item']['title'];?></h1>
+	
+	<div class="azbn7__live-edit__html" data-azbn7-live-edit="entity.<?=$entity['type']['uid'];?>.<?=$entity['item']['id'];?>.content" ><?=$this->Azbn7->mdl('Viewer')->evalContent($entity['item']['content']);?></div>
+	
+</div>
