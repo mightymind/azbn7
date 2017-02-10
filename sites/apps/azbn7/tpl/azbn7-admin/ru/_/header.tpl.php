@@ -1,5 +1,8 @@
 <?
 // header админки
+
+$this->Azbn7->mdl('Viewer')->setAzbn7BodyConfig();
+
 ?><!DOCTYPE html>
 <html lang="ru" class="no-js" >
 <head>
@@ -72,7 +75,7 @@ $this->Azbn7
 
 
 </head>
-<body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" <? if($this->Azbn7->config['debug']) { ?>data-php-process-session="<?=$this->Azbn7->php_process_session;?>"<? } ?> <?=$this->Azbn7->mdl('Viewer')->bodyDataAttrs('');?> >
+<body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" <?=$this->Azbn7->mdl('Viewer')->bodyDataAttrs('');?> >
 
 
 <?

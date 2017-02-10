@@ -62,6 +62,39 @@
 			
 		}
 		
+		/*
+		Azbn7.CodeCache.load({
+			tag : 'script',
+			uid : 'codecache.js.test',
+			url : '/js/azbn7/test.js',
+			expires_in : 90,
+		}, function(element){
+			element
+				.appendTo($(document.body))
+				.empty()
+				.remove()
+			;
+		});
+		
+		Azbn7.CodeCache.load({
+			tag : 'style',
+			uid : 'codecache.css.test',
+			url : '/css/azbn7/test.css',
+			expires_in : 19,
+		}, function(element){
+			element.prependTo($(document.body))
+		});
+		
+		Azbn7.CodeCache.load({
+			tag : 'div',
+			uid : 'codecache.html.test',
+			url : '',
+			expires_in : 33,
+		}, function(element){
+			$('.azbn7-container').html($('.azbn7-container', element).html());
+		});
+		*/
+		
 	});
 	
 })(jQuery);

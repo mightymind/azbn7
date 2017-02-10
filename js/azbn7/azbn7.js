@@ -5,9 +5,25 @@
 Требуется подключение jQuery
 */
 
-function Azbn7Constructor($, cfg) {
+function Azbn7Constructor($, cfg, settings) {
+	
+	
+	
 	
 	var ctrl = this;
+	
+	
+	
+	
+	ctrl.settings = $.extend({}, {
+			intervals : {
+				codecache : null,
+			},
+			cache : {
+				expires_in : 3600,
+				update_or_expires : 600,
+			},
+		}, settings);
 	
 	if(typeof cfg != 'object') {
 		cfg = new Object();
@@ -21,8 +37,21 @@ function Azbn7Constructor($, cfg) {
 			method : 'version',
 		}, cfg);
 	
+	
+	
+	
+	/* ---------- служебные ---------- */
+	
 	ctrl.randstr = function() {
 		return (Math.random().toString(36).split('.'))[1];
+	};
+	
+	ctrl.now = function() {
+		return new Date().getTime();
+	};
+	
+	ctrl.now_sec = function() {
+		return Math.floor(ctrl.now() / 1000);
 	};
 	
 	ctrl.ls = {
@@ -42,7 +71,35 @@ function Azbn7Constructor($, cfg) {
 		s2obj : function(id) {var item = this.get(id);if(typeof item !== 'undefined' && item != null) {return JSON.parse(item);} else {return null;}},
 	};
 	
+	ctrl.needReload = function(need) {
+		if(need) {
+			window.location.reload();
+		}
+	};
+	
+	ctrl.echo = function(text, prefix) {
+		prefix = prefix || 'Azbn7 Default';
+		console.log(prefix + ': ' + text);
+	}
+	
+	/* ---------- /служебные ---------- */
+	
+	
+	
+	
+	
+	
+	/* ---------- профиль админа или пользователя ---------- */
+	
 	ctrl.User = {};
+	
+	/* ---------- /профиль админа или пользователя ---------- */
+	
+	
+	
+	
+	
+	/* ---------- API вызов ---------- */
 	
 	ctrl.api = function(params, cb) {
 		
@@ -64,6 +121,15 @@ function Azbn7Constructor($, cfg) {
 		});
 		
 	};
+	
+	/* ---------- /API вызов ---------- */
+	
+	
+	
+	
+	
+	
+	/* ---------- обновление инфы о пользователе ---------- */
 	
 	ctrl.me = function(type, _cb) {
 		
@@ -104,6 +170,12 @@ function Azbn7Constructor($, cfg) {
 		
 	};
 	
+	/* ---------- /обновление инфы о пользователе ---------- */
+	
+	
+	
+	
+	
 	ctrl.buildUserPanel = function(user) {
 		
 		$(function(){
@@ -120,15 +192,6 @@ function Azbn7Constructor($, cfg) {
 		
 	};
 	
-	ctrl.needReload = function(need) {
-		
-		if(need) {
-			
-			window.location.reload();
-			
-		}
-		
-	};
 	
 	ctrl.User.notify = function(state, text) {
 		
@@ -162,75 +225,153 @@ function Azbn7Constructor($, cfg) {
 		
 	};
 	
-	ctrl.echo = function(text, prefix) {
-		
-		prefix = prefix || 'Azbn7 Default';
-		
-		console.log(prefix + ': ' + text);
-		
-	}
 	
-	/*
-	ctrl.User.msg = function(state, text) {
+	
+	
+	
+	
+	/* ---------- кеширование кода ---------- */
+	
+	ctrl.CodeCache = {};
+	
+	ctrl.CodeCache.remove = function(uid) {
+		ctrl.ls.remove(uid);
+	};
+	
+	ctrl.CodeCache.download = function(code, reload_in_body, cb) {
 		
+		//ctrl.CodeCache.remove(uid)
 		
-		//state = state || 'hide';
+		reload_in_body = reload_in_body || false;
 		
-		//console.warn('.admin-action-line: ' + state + ': ' + text);
-		
-		//var block = $('.admin-action-line');
-		
-		//block.find('.text').html(text);
-		
-		//block.attr('data-state', state);
-		
-		//if(block.data('cleartimeout')) {
-		//	
-		//	clearTimeout(block.data('cleartimeout'));
-		//	
-		//}
-		
-		//block.data('cleartimeout', setTimeout(function(){
-		//	
-		//	block.attr('data-state', 'hide');
-		//	
-		//	//clearTimeout(block.data('cleartimeout'));
-		//	
-		//}, 4444));
-		
-		
-		state = state || 'hide';
-		
-		var __uid = 'killme_timeout';
-		
-		var block = $('.azbn7-user-msg-cont');
-		
-		(function(){
-			
-			var msg = $('<div/>', {
-				class : 'azbn7-notify-item alert alert-' + state,
-				html : text
-			});
-			
-			msg.data(__uid, setTimeout(function(){
+		$.ajax(code.url, {
+			type : 'GET',
+			dataType : 'text',
+			success : function(data){
 				
-				clearTimeout(block.data(__uid));
+				var _code = {
+					tag : code.tag,
+					uid : code.uid,
+					url : code.url,
+					expires : ctrl.now_sec() + (code.expires_in || ctrl.settings.cache.expires_in),
+					expires_in : code.expires_in,
+					html : '<' + code.tag + '>' + data + '</' + code.tag + '>',
+				};
 				
-				msg
-					.empty()
-					.remove()
-				;
+				ctrl.ls.obj2s(code.uid, _code);
 				
-			}, 10000));
-			
-			msg.prependTo(block);
-			
-		})();
+				$('.azbn7-codecache[data-azbn7-codecache-uid="' + code.uid + '"]').attr('data-azbn7-codecache-expires-in', code.expires_in);
+				
+				if(reload_in_body) {
+					ctrl.CodeCache.eval(_code, true, cb);
+				}
+				
+			},
+		});
 		
 	};
 	
-	*/
+	ctrl.CodeCache.doUpdate = function(interval) {
+		
+		interval = interval || 60000;
+		
+		ctrl.settings.intervals.codecache = setInterval(function(){
+			
+			var items = $('.azbn7-codecache');
+			items.each(function(index){
+				
+				var item = $(this);
+				var uid = item.attr('data-azbn7-codecache-uid') || '';
+				
+				var code = ctrl.ls.s2obj(uid);
+				
+				if(code) {
+					
+					var _period = code.expires - ctrl.now_sec();
+					
+					item.attr('data-azbn7-codecache-expires-in', _period);
+					
+					if(_period > 0) {
+						
+						if(_period < ctrl.settings.cache.update_or_expires) {
+							ctrl.CodeCache.download(code, false);
+						}
+						
+					} else {
+						
+						ctrl.CodeCache.download(code, false);
+						
+					}
+					
+				}
+				
+			})
+			
+		}, interval);
+	};
+	
+	ctrl.CodeCache.eval = function(code, updated, cb) {
+		
+		var el = $(code.html);
+		el
+			.attr('id', 'codecache-' + ctrl.randstr())
+			.attr('class', 'azbn7-codecache')
+			.attr('data-azbn7-codecache-expires-in', code.expires - ctrl.now_sec())
+			.attr('data-azbn7-codecache-uid', code.uid)
+			.attr('data-azbn7-codecache-from-url', updated)
+			//.appendTo($(document.body))
+		;
+		if(cb) {
+			cb(el);
+		}
+		
+	};
+	
+	ctrl.CodeCache.load = function(item, cb) {
+		
+		var newcode = $.extend({}, {
+			tag : '!--',
+			uid : 'codecache.html.default',
+			url : '',
+			expires : ctrl.now_sec() + (item.expires_in || ctrl.settings.cache.expires_in),
+			expires_in : 3600,
+			html : '',
+		}, item);
+		
+		var code = ctrl.ls.s2obj(newcode.uid);
+		
+		if(code) {
+			
+			code.expires_in = newcode.expires_in;
+			
+			if((code.expires > ctrl.now_sec())) {
+				ctrl.CodeCache.eval(code, false, cb);
+			} else {
+				ctrl.CodeCache.download(newcode, true, cb);
+			}
+			
+		} else {
+			
+			ctrl.CodeCache.download(newcode, true, cb);
+			
+		}
+		
+	};
+	
+	ctrl.CodeCache.doUpdate(30 * 1000);
+	
+	/* ---------- /кеширование кода ---------- */
+	
+	
 	
 	return ctrl;
 	
 };
+
+
+
+
+document.addEventListener('DOMContentLoaded', function(){
+	while(typeof jQuery == 'undefined') {}
+	window.Azbn7 = new Azbn7Constructor(jQuery, JSON.parse($(document.body).attr('data-azbn7') || '{}'));
+});

@@ -171,6 +171,39 @@ class Viewer
 		return $this->body_data_attr . ' ' . $data;
 	}
 	
+	public function setAzbn7BodyConfig()
+	{
+		
+		$azbn7_config = array();
+		
+		if($this->Azbn7->mdl('Site')->is('user')) {
+			$azbn7_config = array(
+				'access_as' => 'user',
+				'key' => $_SESSION['user']['key'],
+			);
+		} else if($this->Azbn7->mdl('Site')->is('profile')) {
+			$azbn7_config = array(
+				'access_as' => 'profile',
+				'key' => $_SESSION['profile']['key'],
+			);
+		} else {
+			
+			$access = $this->Azbn7->mdl('DB')->one('profile', "`login` = 'anonymous'");
+			
+			$azbn7_config = array(
+				'access_as' => 'profile',
+				'key' => $access['key'],
+			);
+			
+		}
+		
+		$azbn7_config['php_process_session'] = $this->Azbn7->php_process_session;
+		
+		$this->addBodyDataAttr('azbn7', $this->Azbn7->getJSON($azbn7_config));
+		
+	}
+	
+	
 	public function evalContent($content = '', $p = array())
 	{
 		

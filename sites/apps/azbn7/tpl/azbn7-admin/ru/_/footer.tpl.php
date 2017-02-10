@@ -318,14 +318,10 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/azbn7.js');?>" ></script>
 <?
+/*
 if($this->Azbn7->mdl('Site')->is('user')) {
 ?>
 <script>
-window.Azbn7 = new Azbn7Constructor(jQuery, {
-	access_as : 'user',
-	key : '<?=$_SESSION['user']['key'];?>',
-});
-
 window.Azbn7.me('user', function(type, entity){
 	
 	console.log('I am ' + type + ' with ID ' + entity.id);
@@ -339,10 +335,10 @@ window.Azbn7.me('user', function(type, entity){
 window.Azbn7.me('profile', function(type, entity){
 	console.log('I am ' + type + ' with ID ' + entity.id);
 });
-
 </script>
 <?
 }
+*/
 ?>
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/document-ready.js');?>" ></script>
