@@ -262,7 +262,7 @@ namespace azbn7 {
 			return $this;
 		}
 		
-		public function is_email($email)
+		public function is_email($email = '')
 		{
 			return preg_match("/^([a-zA-Z0-9])+([\.a-zA-Z0-9_-])*@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-]+)*\.([a-zA-Z]{2,6})$/", $email);
 		}
@@ -297,7 +297,7 @@ namespace azbn7 {
 			return getdate($utc);
 		}
 		
-		public function w2f($file,$str)
+		public function w2f($file, $str = '')
 		{
 			$fp=fopen($file, "w");
 			fwrite($fp, $str);
@@ -323,7 +323,7 @@ namespace azbn7 {
 			return $str;
 		}
 		
-		public function ru2en($str)
+		public function ru2en($str = '')
 		{
 			$str=mb_strtolower($str, $this->config['charset']);
 			$str=strtr($str,array(
