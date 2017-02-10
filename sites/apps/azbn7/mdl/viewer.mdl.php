@@ -119,6 +119,18 @@ class Viewer
 				$res = ob_get_contents();
 				ob_end_clean();
 				
+				
+				/* ---------- ext__event ---------- */
+				
+				$param['__this_widget_result'] = &$res;
+				
+				$this->Azbn7
+					->mdl('Ext')
+						->event($this->event_prefix . '.widget.wgt.' . $widget_caller, $param)
+				;
+				/* --------- /ext__event ---------- */
+				
+				
 			} else {
 				
 				$res = $widget_caller;

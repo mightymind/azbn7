@@ -26,7 +26,7 @@ $CONFIG = array(
 							'upload' => 'upload/'.$app_uid,
 							'system' => 'system',
 							'azbn7' => 'system/azbn7',
-							'phpmorphy' => 'system/phpmorphy',
+							'phpmorphy' => 'system/vendor/phpmorphy',
 							'app' => 'sites/apps/'.$app_uid,
 							//'tpl' => 'sites/apps/'.$app_uid,
 	),
