@@ -326,10 +326,6 @@ window.Azbn7.me('user', function(type, entity){
 	
 	console.log('I am ' + type + ' with ID ' + entity.id);
 	
-	if(entity && (entity.id > 0)) {
-		window.Azbn7.buildUserPanel(entity);
-	}
-	
 });
 
 window.Azbn7.me('profile', function(type, entity){

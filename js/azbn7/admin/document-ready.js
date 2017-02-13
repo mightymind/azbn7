@@ -11,23 +11,8 @@
 	
 	$(function(){
 		
-		/*
-		Azbn7.api({}, function(resp){
-			console.log(resp);
-		});
-		*/
 		
-		/*
-		$(document.body).on('', '.', {}, function(event){
-			event.preventDefault();
-			
-			//var block = $(this);
-			//var btn = $(this);
-			
-		});
-		*/
 		if($(document.body).hasClass(a7_class + ' ' + a7admin_class)) {
-			
 			
 			
 			(function(){
@@ -126,8 +111,6 @@
 					$(container_class + ' ' + trg).slideToggle('fast');
 					
 				});
-				
-				//$(container_class + ' .azbn-flt-block-btn').trigger('click.azbn7');
 				
 			})();
 			
