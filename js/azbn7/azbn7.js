@@ -14,6 +14,8 @@ function Azbn7Constructor($, cfg, settings) {
 	
 	
 	
+	ctrl.__mdl = {};
+	ctrl.__argv = {};
 	
 	ctrl.settings = $.extend({}, {
 			intervals : {
@@ -82,10 +84,73 @@ function Azbn7Constructor($, cfg, settings) {
 		console.log(prefix + ': ' + text);
 	}
 	
+	ctrl.warn = function(text, prefix) {
+		prefix = prefix || 'Azbn7 Default';
+		console.warn(prefix + ': ' + text);
+	}
+	
+	ctrl.is_def = function(v) {
+		if(v == undefined || typeof v == "undefined") {
+			return false;
+		} else {
+			return true;
+		}
+	};
+	
+	ctrl.is_null = function(v) {
+		if(v == null) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+	
+	ctrl.is_func = function(functionToCheck) {
+		var getType = {};
+		return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+	};
+	
+	ctrl.sleep = function(milliSeconds) {
+		milliSeconds = milliSeconds || 1;
+		
+		var startTime = this.now();
+		while (this.now() < startTime + milliSeconds);
+	},
+	
 	/* ---------- /служебные ---------- */
 	
 	
+	/* --------- Параметры командной строки --------- */
+	ctrl.parseArgv = function(prms, sym) {
+		for (var i = 0; i < prms.length; i++) {
+			var arr = prms[i].split(sym||"=");
+			ctrl.__argv[arr[0]] = arr[1];
+		}
+	},
 	
+	ctrl.getArgv = function(name) {
+		return ctrl.__argv[name];
+	},
+	/* --------- /Параметры командной строки --------- */
+	
+	
+	
+	/* --------- Модули --------- */
+	ctrl.load = function(name, mdl) {
+		ctrl.__mdl[name] = mdl;
+		return ctrl;
+	};
+	
+	ctrl.unload = function(name) {
+		ctrl.__mdl[name] = null;
+		delete ctrl.__mdl[name];
+		return ctrl.is_def(ctrl.__mdl[name]);
+	};
+	
+	ctrl.mdl = function(name) {
+		return ctrl.__mdl[name];
+	};
+	/* --------- /Модули --------- */
 	
 	
 	
@@ -361,6 +426,79 @@ function Azbn7Constructor($, cfg, settings) {
 	ctrl.CodeCache.doUpdate(30 * 1000);
 	
 	/* ---------- /кеширование кода ---------- */
+	
+	
+	
+	
+	
+	if(ctrl) {
+		
+		ctrl.load('fnc', {
+			byTag : function(tag) {return document.getElementsByTagName(tag);},
+			byId : function(id) {return document.getElementById(id);},
+			include : function(url, cb){
+				var script;
+				//void(script.setAttribute('class', 'included-script'));
+				script = document.createElement('script');
+				
+				if(cb) {
+					script.onload = cb;
+				}
+				
+				script.language = 'javascript';
+				script.type = 'text/javascript';
+				//script.setAttribute('data-url', url);
+				script.setAttribute('class', 'azbn7-mdl-fnc-include-script');
+				script.src = url;
+				
+				document.documentElement.appendChild(script);
+				//document.createTextNode('Тут был я');
+			},
+			script2head : function(url, cb){
+				var head = document.getElementsByTagName('head')[0];
+				if(!head) {
+					//return;
+				} else {
+					var script = document.createElement('script');
+					
+					if(cb) {
+						script.onload = cb;
+					}
+					
+					script.language = 'javascript';
+					script.type = 'text/javascript';
+					//script.setAttribute('data-url', url);
+					script.setAttribute('class', 'azbn7-mdl-fnc-script2head-script');
+					script.src = url;
+					
+					head.appendChild(script);
+				}
+			},
+			nl2br : function(str) {
+				return str.replace(/([^>])\n/g, '$1<br/>');
+			},
+			tpl : function(str,tpls){
+				var _str = '';
+				for(var key in tpls) {
+					_str=str.replace(key, tpls[key]);
+				}
+				return _str;
+			},
+			strip_tags : function(str){
+				return str.replace(/<\/?[^>]+>/gi, '');
+			},
+			obj2param : function(obj){
+				var param_str='';
+				for(var key in obj) {
+					param_str = param_str+'&'+key+'='+obj[key];
+				}
+				return param_str;
+			},
+		});
+		
+		ctrl.warn('azbn7.mdl(fnc) loaded');
+		
+	};
 	
 	
 	
