@@ -8,7 +8,7 @@ $this->Azbn7->mdl('Ext')->ext('azbn7.ext.cron')->setTask(array(
 	'period' => 0,
 	'run' => array(
 		'dir' => 'app',
-		'path' => 'route/_/test',
+		'path' => 'cron/test',
 	)
 ));
 
@@ -19,7 +19,7 @@ $this->Azbn7->mdl('Ext')->ext('azbn7.ext.cron')->setTask(array(
 	'period' => 60,
 	'run' => array(
 		'dir' => 'app',
-		'path' => 'route/_/test',
+		'path' => 'cron/test',
 	)
 ));
 */
