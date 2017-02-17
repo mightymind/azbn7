@@ -5,13 +5,10 @@ namespace azbn7\Ext;
 class DebugExt
 {
 	public $data = null;
-	public $event_prefix = '';//__NAMESPACE__ . '\DefaultExt';
+	public $event_prefix = '';
 	
 	function __construct()
 	{
-		//echo $this->event_prefix;
-		//$this->event_prefix = strtolower(str_replace('\\', '.', $this->event_prefix));
-		
 		$this->event_prefix = strtolower(str_replace('\\', '.', static::class));
 		$this->data = array();
 	}
@@ -158,12 +155,11 @@ class DebugExt
 	
 	public function storage_mysql__connect__before($uid, &$p = array())
 	{
-		//$this->Azbn7->echo_dev('Этот код выполняется перед подключением к БД', $this->event_prefix);
+		
 	}
 	
 	public function storage_mysql__connect__after($uid, &$p = array())
 	{
-		//$this->Azbn7->echo_dev('Этот код выполняется после подключения к БД<br />', $this->event_prefix);
 		
 		$this->loadData();
 		
@@ -179,7 +175,7 @@ class DebugExt
 	
 	public function req__parseURL__after($uid, &$p = array())
 	{
-		//$this->Azbn7->echo_dev('Этот код выполняется после парсинга запроса', $this->event_prefix);
+		
 	}
 	
 	public function req__request__before($uid, &$p = array())
@@ -191,7 +187,7 @@ class DebugExt
 	
 	public function approuter__route__after($uid, &$p = array())
 	{
-		//$this->Azbn7->echo_dev('Этот код выполняется после обработки запроса', $this->event_prefix);
+		
 		if($this->Azbn7->config['debug']) {
 			
 			$this->Azbn7->timing['stop'] = $this->Azbn7->getMicroTime();
@@ -216,6 +212,7 @@ class DebugExt
 			
 			//echo $this->Azbn7->config['path']['cache'] . '/' . $this->Azbn7->php_process_session . '.json';
 		}
+		
 	}
 	
 	public function viewer__tpl__header_head__after($uid, &$p = array())

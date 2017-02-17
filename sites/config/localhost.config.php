@@ -94,6 +94,12 @@ $EXT__ON_LOAD = array(
 	),
 	
 	array(
+		'dir' => 'azbn7',
+		'ext' => 'Cron',
+		'param' => array()
+	),
+	
+	array(
 		'dir' => 'app',
 		'ext' => 'Azbn_ru/Azbn7Ext/DefaultExt',
 		'param' => array()

@@ -10,10 +10,10 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script defer src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr-custom.js');?>" ></script>
-<script defer src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr-custom.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
 
-<script defer src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>
 
 <script defer src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/azbn7.js');?>" ></script>
 
