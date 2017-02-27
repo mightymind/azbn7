@@ -316,7 +316,7 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/azbn7.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery.azbn7.js');?>" ></script>
 <?
 /*
 if($this->Azbn7->mdl('Site')->is('user')) {
@@ -339,6 +339,7 @@ window.Azbn7.me('profile', function(type, entity){
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/document-ready.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/admin/document-ready.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/mdl/user.mdl.js');?>" ></script>
 
 <?
 $this->Azbn7->mdl('Viewer')->tpl('_/notifies_as-js', array());

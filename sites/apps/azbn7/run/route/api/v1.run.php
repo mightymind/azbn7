@@ -34,6 +34,7 @@ if($access['id']) {
 	$resp = array(
 		'meta' => array(
 			'version' => $this->Azbn7->version['number'],
+			'version_api' => 1,
 			'created_at' => $this->Azbn7->created_at,
 			'created_at_str'=>date('Y/m/d H:i:s', $this->Azbn7->created_at),
 			'platform'=>'Azbn7',
@@ -56,7 +57,7 @@ if($access['id']) {
 		),
 	);
 	
-	$this->Azbn7->run('app', 'api/' . $this->Azbn7->mdl('Req')->_post('method'), $resp);
+	$this->Azbn7->run('app', 'api/v1/' . $this->Azbn7->mdl('Req')->_post('method'), $resp);
 	
 	echo $this->Azbn7->getJSON($resp);
 	

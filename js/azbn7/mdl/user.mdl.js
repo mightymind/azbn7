@@ -1,62 +1,70 @@
-if(Azbn7) {
+(function($){
 	
-	(function(){
+	if($.Azbn7) {
 		
-		var _ = function(){
+		(function(){
 			
-			var ctrl = this;
-			
-			ctrl.name = 'user';
-			ctrl.uid = 'azbn7__mdl__user';
-			
-			ctrl.notify = function(state, text) {
+			var _ = function(){
 				
-				state = state || 'hide';
+				var ctrl = this;
 				
-				var __uid = 'killme_timeout';
+				ctrl.name = 'user';
+				ctrl.uid = 'azbn7__mdl__user';
 				
-				var block = $('.azbn7-user-msg-cont');
-				
-				(function(){
+				ctrl.notify = function(state, text) {
 					
-					var msg = $('<div/>', {
-						class : 'azbn7-notify-item alert alert-' + state,
-						html : text
-					});
+					state = state || 'hide';
 					
-					msg.data(__uid, setTimeout(function(){
+					var __uid = 'killme_timeout';
+					
+					var block = $('.azbn7-user-msg-cont');
+					
+					(function(){
 						
-						clearTimeout(block.data(__uid));
+						var msg = $('<div/>', {
+							class : 'azbn7-notify-item alert alert-' + state,
+							html : text
+						});
 						
-						msg
-							.empty()
-							.remove()
-						;
-						
-					}, 10000));
-					
-					msg.prependTo(block);
-					
-				})();
-				
-			};
-			
-			ctrl.is = function(cb) {
-				
-				if(!Azbn7.ss.get('me.' + ctrl.name)) {
-					
-					Azbn7.api({
-						method : 'me',
-						type : ctrl.name,
-					}, function(resp){
-						
-						if(resp && resp.response && resp.response.entity) {
+						msg.data(__uid, setTimeout(function(){
 							
-							if(typeof resp.response.entity == 'object') {
+							clearTimeout(block.data(__uid));
+							
+							msg
+								.empty()
+								.remove()
+							;
+							
+						}, 10000));
+						
+						msg.prependTo(block);
+						
+					})();
+					
+				};
+				
+				ctrl.is = function(cb) {
+					
+					if(!$.Azbn7.ss.get('me.' + ctrl.name)) {
+						
+						$.Azbn7.api({
+							method : 'me',
+							type : ctrl.name,
+						}, function(resp){
+							
+							if(resp && resp.response && resp.response.entity) {
 								
-								Azbn7.ss.obj2s('me.' + ctrl.name, resp.response.entity);
-								cb(resp.response.entity);
-								Azbn7.needReload(parseInt(resp.meta.need.reload));
+								if(typeof resp.response.entity == 'object') {
+									
+									$.Azbn7.ss.obj2s('me.' + ctrl.name, resp.response.entity);
+									cb(resp.response.entity);
+									$.Azbn7.needReload(parseInt(resp.meta.need.reload));
+									
+								} else {
+									
+									cb(null);
+									
+								}
 								
 							} else {
 								
@@ -64,28 +72,24 @@ if(Azbn7) {
 								
 							}
 							
-						} else {
-							
-							cb(null);
-							
-						}
+						});
 						
-					});
-					
-				} else {
-					
-					cb(Azbn7.ss.s2obj('me.' + ctrl.name));
+					} else {
+						
+						cb($.Azbn7.ss.s2obj('me.' + ctrl.name));
+						
+					}
 					
 				}
 				
-			}
+				return ctrl;
+				
+			};
 			
-			return ctrl;
+			$.Azbn7.load('User', new _());
 			
-		};
+		})();
 		
-		Azbn7.load('User', new _());
-		
-	})();
+	}
 	
-}
+})(jQuery);
