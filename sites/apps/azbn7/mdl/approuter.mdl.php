@@ -21,6 +21,8 @@ class AppRouter
 			'title' => 'Событие роутера: ДО обработки',
 		));
 		
+		$this->Azbn7->mdl('Site')->selectLang();
+		
 		if(count($req)) {
 			
 			//var_dump($this->Azbn7->data['mdl']['Req']['req_url']);

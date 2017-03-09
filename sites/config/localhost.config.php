@@ -19,6 +19,7 @@ $CONFIG = array(
 	'app_uid'			=> $app_uid,
 	'charset'			=> 'UTF-8',
 	'theme'				=> 'azbn-tpl/ru',
+	'lang'				=> 'ru_ru',
 	'path'				=> array(
 							'root' => '',
 							'cache' => 'cache/'.$app_uid,

@@ -7,6 +7,7 @@ class Site
 	public $event_prefix = '';//'app.mdl.site';
 	public $cache = array();
 	public $is_mainpage = false;
+	public $__lang_data = array();
 	
 	public function __construct()
 	{
@@ -111,7 +112,7 @@ class Site
 		if(isset($theme) && $theme != '') {
 			
 			$this->Azbn7->config['theme'] = $theme;
-		
+			
 		} elseif($this->Azbn7->mdl('Viewer')->is_admin_tpl) {
 			
 			$this->Azbn7->config['theme'] = $_SESSION['user']['param']['theme_admin'];
@@ -146,6 +147,92 @@ class Site
 		;
 		/* --------- /ext__event ---------- */
 		
+		
+	}
+	
+	public function selectLang($lang = '')
+	{
+		
+		/* ---------- ext__event ---------- */
+		$this->Azbn7
+			->mdl('Ext')
+				->event($this->event_prefix . '.selectLang.before', $lang)
+		;
+		/* --------- /ext__event ---------- */
+		
+		
+		if(isset($lang) && $lang != '') {
+			
+			$this->Azbn7->config['lang'] = $lang;
+			
+		} elseif(isset($_COOKIE['lang'])) {
+			
+			$this->Azbn7->config['lang'] = $this->Azbn7->mdl('Req')->_cookie('lang');
+			
+		} elseif(isset($_GET['lang'])) {
+			
+			$this->Azbn7->config['lang'] = $this->Azbn7->mdl('Req')->_get('lang');
+			
+		} elseif(isset($_POST['lang'])) {
+			
+			$this->Azbn7->config['lang'] = $this->Azbn7->mdl('Req')->_post('lang');
+			
+		} else {
+			
+			
+			
+		}
+		
+		$this->loadLang($this->Azbn7->config['lang']);
+		
+		/* ---------- ext__event ---------- */
+		$this->Azbn7
+			->mdl('Ext')
+				->event($this->event_prefix . '.selectLang.after', $lang)
+		;
+		/* --------- /ext__event ---------- */
+		
+		
+	}
+	
+	public function loadLang($lang = 'ru_ru')
+	{
+		
+		$file = $this->Azbn7->config['path']['app'] . '/lang/' . strtolower($lang) . '.lang.json';
+		
+		if(file_exists($file)) {
+			
+			//require($file);
+			$this->__lang_data = $this->Azbn7->parseJSON(file_get_contents($file));
+			
+		}
+		
+	}
+	
+	public function msg($uid = '')
+	{
+		
+		$uid_arr = explode('.', $uid);
+		$str = &$this->__lang_data;
+		
+		if(count($uid_arr)) {
+			
+			foreach($uid_arr as $item) {
+				$_str = isset($str[$item]) ? ($str[$item]) : null;
+				if($_str) {
+					$str = &$_str;
+				}
+			}
+			
+			if($str) {
+				echo $str;
+			} else {
+				$this->Azbn7->echo_dev('Not-founded-string placeholder!');
+			}
+			
+		} else {
+			$this->Azbn7->echo_dev('Undefined string UID!');
+		}
 		
 	}
 	

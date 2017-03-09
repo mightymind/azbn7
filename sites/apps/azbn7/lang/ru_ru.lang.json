@@ -1,0 +1,13 @@
+{
+	"default" : {
+		"helloworld" : "Привет, мир!",
+		"error" : {
+			"default" : "Обычная ошибка"
+		}
+	},
+	"error" : {
+		"entity" : {
+			"not_found" : "Запись не найдена!"
+		}
+	}
+}

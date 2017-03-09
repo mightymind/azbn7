@@ -15,6 +15,8 @@ $this->Azbn7->mdl('Viewer')
 	));
 ?>
 
+<h2><?php echo $this->Azbn7->mdl('Site')->msg('error.entity.not_found1');?></h2>
+
 <div class="content" >
 	
 	<h1 class="azbn7__live-edit__html" data-azbn7-live-edit="entity.<?=$entity['type']['uid'];?>.<?=$entity['item']['id'];?>.title" ><?=$entity['item']['title'];?></h1>
