@@ -80,7 +80,7 @@ class Entity
 				
 				$this->Azbn7->event(array(
 					'action' => $this->event_prefix . '.create.entity_type.after',
-					'title' => 'Сущности: создание типа',
+					'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.create.entity_type.after') . ': ' . $e['uid'],
 				));
 				
 				
@@ -147,7 +147,7 @@ class Entity
 					
 					$this->Azbn7->event(array(
 						'action' => $this->event_prefix . '.create.entity.after',
-						'title' => 'Сущности: создание записи',
+						'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.create.entity.after') . ': ' . $e['entity']['id'],
 					));
 					
 					
@@ -208,7 +208,7 @@ class Entity
 			
 			$this->Azbn7->event(array(
 				'action' => $this->event_prefix . '.create.entity_bound.after',
-				'title' => 'Сущности: создание связи между записями',
+				'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.create.entity_bound.after') . ': ' . $res,
 			));
 			
 			

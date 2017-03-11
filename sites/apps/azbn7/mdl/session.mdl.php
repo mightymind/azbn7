@@ -34,7 +34,7 @@ class Session
 			
 			$this->Azbn7->event(array(
 				'action' => $this->event_prefix . '.' . $type . '.login',
-				'title' => 'Сессия: вход ' . $type . ' ' . $item['id'],
+				'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.' .$type . '.login'),
 			));
 			
 			
@@ -66,7 +66,7 @@ class Session
 		
 		$this->Azbn7->event(array(
 			'action' => $this->event_prefix . '.' . $type . '.logout',
-			'title' => 'Сессия: выход ' . $type . ' ' . $_SESSION[$type]['id'],
+			'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.' .$type . '.logout'),
 		));
 		
 		

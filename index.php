@@ -45,6 +45,12 @@ $Azbn7
 		'param' => array()
 	))
 	->load(array(
+		'dir' => 'azbn7',
+		'mdl' => 'Lang',
+		'uid' => 'Lang',
+		'param' => array()
+	))
+	->load(array(
 		'dir' => 'app',
 		'mdl' => 'Session',
 		'uid' => 'Session',
@@ -167,7 +173,7 @@ $Azbn7
 ;
 /* --------- /ext__event ---------- */
 
-
+//var_dump($Azbn7->__events);
 
 /*
 register_shutdown_function('my_shutdown');

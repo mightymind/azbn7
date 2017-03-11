@@ -84,7 +84,7 @@ class Viewer
 			
 			$this->Azbn7->event(array(
 				'action' => $this->event_prefix . '.tpl.not_found',
-				'title' => 'Tpl ' . $tpl . ' not found!',
+				'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.tpl.not_found') . ': ' . $tpl,
 			));
 			
 			/* ---------- ext__event ---------- */

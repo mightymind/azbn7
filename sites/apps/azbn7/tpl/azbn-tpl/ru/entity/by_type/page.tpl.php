@@ -15,7 +15,7 @@ $this->Azbn7->mdl('Viewer')
 	));
 ?>
 
-<h2><?php echo $this->Azbn7->mdl('Site')->msg('error.entity.not_found1');?></h2>
+<h2><?php echo $this->Azbn7->mdl('Lang')->msg('error.entity.not_found');?></h2>
 
 <div class="content" >
 	

@@ -1,5 +1,20 @@
 {
 	"error.entity.not_found" : "Запись не найдена!",
 	
+	"app.entity.create.entity_type.after" : "Создание нового типа записей",
+	"app.entity.create.entity.after" : "Создание записи",
+	"app.entity.create.entity_bound.after" : "Создание связи между записями",
+	
+	"app.approuter.route.before" : "Событие роутера: ДО обработки",
+	"app.approuter.route.after" : "Событие роутера: ПОСЛЕ обработки",
+	"app.approuter.page404" : "Событие роутера: Страница не найдена",
+	
+	"app.session.user.login" : "Вход администратора",
+	"app.session.user.logout" : "Выход администратора",
+	"app.session.profile.login" : "Вход пользователя",
+	"app.session.profile.logout" : "Выход пользователя",
+	
+	"app.viewer.tpl.not_found" : "Шаблон не найден",
+	
 	"default" : "default"
 }

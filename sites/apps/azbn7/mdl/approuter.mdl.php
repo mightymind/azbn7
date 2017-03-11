@@ -18,10 +18,12 @@ class AppRouter
 		
 		$this->Azbn7->event(array(
 			'action' => $this->event_prefix . '.route.before',
-			'title' => 'Событие роутера: ДО обработки',
+			'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.route.before'),
 		));
 		
 		$this->Azbn7->mdl('Site')->selectLang();
+		
+		$this->Azbn7->mdl('Site')->loadLang();
 		
 		if(count($req)) {
 			
@@ -75,7 +77,7 @@ class AppRouter
 		
 		$this->Azbn7->event(array(
 			'action' => $this->event_prefix . '.route.after',
-			'title' => 'Событие роутера: ПОСЛЕ обработки',
+			'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.route.after'),
 		));
 		
 	}
@@ -85,7 +87,7 @@ class AppRouter
 		
 		$this->Azbn7->event(array(
 			'action' => $this->event_prefix . '.page404',
-			'title' => 'Событие роутера: Страница не найдена',
+			'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.page404'),
 		));
 		
 		

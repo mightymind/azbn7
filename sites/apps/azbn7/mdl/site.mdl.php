@@ -183,7 +183,7 @@ class Site
 			
 		}
 		
-		$this->loadLang($this->Azbn7->config['lang']);
+		//$this->loadLang($this->Azbn7->config['lang']);
 		
 		/* ---------- ext__event ---------- */
 		$this->Azbn7
@@ -195,15 +195,17 @@ class Site
 		
 	}
 	
-	public function loadLang($lang = 'ru_ru')
+	public function loadLang()//$lang = 'ru_ru'
 	{
 		
-		$file = $this->Azbn7->config['path']['app'] . '/lang/' . strtolower($lang) . '.lang.json';
+		$file = $this->Azbn7->config['path']['app'] . '/lang/' . strtolower($this->Azbn7->config['lang']) . '.lang.json';
 		
 		if(file_exists($file)) {
 			
 			//require($file);
-			$this->__lang_data = $this->Azbn7->parseJSON(file_get_contents($file));
+			$tmp_lang_data = $this->Azbn7->parseJSON(file_get_contents($file));
+			
+			$this->Azbn7->mdl('Lang')->loadData($tmp_lang_data);
 			
 		}
 		
@@ -212,26 +214,10 @@ class Site
 	public function msg($uid = '')
 	{
 		
-		$uid_arr = explode('.', $uid);
-		$str = &$this->__lang_data;
-		
-		if(count($uid_arr)) {
-			
-			foreach($uid_arr as $item) {
-				$_str = isset($str[$item]) ? ($str[$item]) : null;
-				if($_str) {
-					$str = &$_str;
-				}
-			}
-			
-			if($str) {
-				echo $str;
-			} else {
-				$this->Azbn7->echo_dev('Not-founded-string placeholder!');
-			}
-			
+		if(isset($this->__lang_data[$uid])) {
+			echo $this->__lang_data[$uid];
 		} else {
-			$this->Azbn7->echo_dev('Undefined string UID!');
+			echo $uid;
 		}
 		
 	}
