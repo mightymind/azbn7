@@ -20,6 +20,12 @@ session_start();
 $Azbn7
 	->load(array(
 		'dir' => 'azbn7',
+		'mdl' => 'Lang',
+		'uid' => 'Lang',
+		'param' => array()
+	))
+	->load(array(
+		'dir' => 'azbn7',
 		'mdl' => 'Storage_MySQL',
 		'uid' => 'DB',
 		'param' => array()
@@ -42,12 +48,6 @@ $Azbn7
 		'dir' => 'azbn7',
 		'mdl' => 'Req',
 		'uid' => 'Req',
-		'param' => array()
-	))
-	->load(array(
-		'dir' => 'azbn7',
-		'mdl' => 'Lang',
-		'uid' => 'Lang',
 		'param' => array()
 	))
 	->load(array(
@@ -190,4 +190,4 @@ echo uniqid('bar_',true);
 $files = glob('*.php'); glob('*.{php,txt}', GLOB_BRACE);
 */
 
-//print_r(\PDO::getAvailableDrivers());
+print_r(\PDO::getAvailableDrivers());
