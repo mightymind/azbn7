@@ -190,4 +190,4 @@ echo uniqid('bar_',true);
 $files = glob('*.php'); glob('*.{php,txt}', GLOB_BRACE);
 */
 
-print_r(\PDO::getAvailableDrivers());
+//print_r(\PDO::getAvailableDrivers());
