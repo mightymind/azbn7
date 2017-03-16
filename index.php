@@ -174,20 +174,3 @@ $Azbn7
 /* --------- /ext__event ---------- */
 
 //var_dump($Azbn7->__events);
-
-/*
-register_shutdown_function('my_shutdown');
-function my_shutdown(){}
-*/
-
-/*
-echo uniqid('bar_',true);
-выведет bar_4bd67da367b650.43684647
-*/
-
-/*
-найти все php файлы
-$files = glob('*.php'); glob('*.{php,txt}', GLOB_BRACE);
-*/
-
-//print_r(\PDO::getAvailableDrivers());
