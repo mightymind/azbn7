@@ -10,7 +10,7 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr-custom.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr.min.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>

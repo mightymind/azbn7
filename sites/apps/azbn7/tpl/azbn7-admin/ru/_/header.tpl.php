@@ -36,6 +36,7 @@ $this->Azbn7->mdl('Viewer')->setAzbn7BodyConfig();
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous" />
 <!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/dashboard.css');?>" />-->
 <!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/signin.css');?>" />-->
+<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7.css');?>" />-->
 <link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7-admin.css');?>" />
 <link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/font-awesome/css/font-awesome.min.css');?>" />
 
@@ -45,7 +46,7 @@ $this->Azbn7->mdl('Viewer')->setAzbn7BodyConfig();
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr-custom.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr.min.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>
@@ -77,7 +78,6 @@ $this->Azbn7
 </head>
 <body class="<?=$this->Azbn7->mdl('Viewer')->bodyClass('');?>" <?=$this->Azbn7->mdl('Viewer')->bodyDataAttrs('');?> >
 
-
 <?
 /* ---------- ext__event ---------- */
 $this->Azbn7
@@ -87,6 +87,15 @@ $this->Azbn7
 /* --------- /ext__event ---------- */
 ?>
 
+<!--
+<div class="azbn7-preloader" >
+	
+	<a href="#" class="azbn7-preloader__cancel-btn" >
+		
+	</a>
+	
+</div>
+-->
 
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
 	

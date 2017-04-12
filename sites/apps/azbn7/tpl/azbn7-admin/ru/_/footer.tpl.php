@@ -339,7 +339,7 @@ window.Azbn7.me('profile', function(type, entity){
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/document-ready.js');?>" ></script>
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/admin/document-ready.js');?>" ></script>
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/mdl/user.mdl.js');?>" ></script>
+<!--<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/mdl/user.mdl.js');?>" ></script>-->
 
 <?
 $this->Azbn7->mdl('Viewer')->tpl('_/notifies_as-js', array());
@@ -354,6 +354,9 @@ $this->Azbn7
 ;
 /* --------- /ext__event ---------- */
 ?>
+
+
+<!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter44096394 = new Ya.Metrika({ id:44096394, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/44096394" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 
 
 <!--

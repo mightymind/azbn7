@@ -12,7 +12,7 @@
 	$(function(){
 		
 		
-		if($(document.body).hasClass(a7_class + ' ' + a7admin_class)) {
+		if($.Azbn7.body.hasClass(a7_class + ' ' + a7admin_class)) {
 			
 			
 			(function(){
@@ -102,7 +102,7 @@
 			
 			(function(){
 				
-				$(document.body).on('click.azbn7', container_class + ' .azbn-flt-block-btn', {}, function(event){
+				$.Azbn7.body.on('click.azbn7', container_class + ' .azbn-flt-block-btn', {}, function(event){
 					event.preventDefault();
 					
 					var btn = $(this);
@@ -121,7 +121,7 @@
 				
 				// создание нового типа сущностей
 				
-				$(document.body).on('azbn7.field-list.field-item.reset', container_class + ' .field-list .field-item', {}, function(event){
+				$.Azbn7.body.on('azbn7.field-list.field-item.reset', container_class + ' .field-list .field-item', {}, function(event){
 					event.preventDefault();
 					
 					var block = $(this);
@@ -139,31 +139,12 @@
 							
 							var list = input.attr('list') || '';
 							
-							/*
-							if(list != '') {
-								
-								list = list.replace('-0', '-' + nid);
-								input.attr('list', list);
-								
-								var dl = input.next('datalist');
-								var dl_id = dl.attr('id') || '';
-								
-								if(dl_id != '') {
-									
-									dl_id = dl_id.replace('-0', '-' + nid);
-									dl.attr('id', dl_id);
-									
-								}
-								
-							}
-							*/
-							
 						})
 					;
 					
 				});
 				
-				$(document.body).on('click.azbn7', container_class + ' .field-list .btn-panel .btn-add-item', {}, function(event){
+				$.Azbn7.body.on('click.azbn7', container_class + ' .field-list .btn-panel .btn-add-item', {}, function(event){
 					event.preventDefault();
 					
 					var btn = $(this);
@@ -186,7 +167,7 @@
 				
 				// запрос при нажатии на кнопку удаления
 				
-				$(document.body).on('click.azbn7', container_class + ' .delete-confirm', {}, function(event){
+				$.Azbn7.body.on('click.azbn7', container_class + ' .delete-confirm', {}, function(event){
 					event.preventDefault();
 					
 					var btn = $(this);
@@ -264,7 +245,7 @@
 				
 				// быстрый поиск
 				
-				$(document.body).on('azbn7.field-list.field-item.reset', container_class + ' .field-list .field-item', {}, function(event){
+				$.Azbn7.body.on('azbn7.field-list.field-item.reset', container_class + ' .field-list .field-item', {}, function(event){
 					event.preventDefault();
 					
 					var block = $(this);
@@ -272,7 +253,7 @@
 					
 				});
 				
-				$(document.body).on('keyup.azbn7', container_class + ' .azbn7-search-input[data-result]', {}, function(event){
+				$.Azbn7.body.on('keyup.azbn7', container_class + ' .azbn7-search-input[data-result]', {}, function(event){
 					event.preventDefault();
 					
 					var input = $(this);
@@ -1061,7 +1042,7 @@
 							
 							var arr = [];
 							
-							$(document.body).Azbn7_AjaxUploader('upload', {
+							$.Azbn7.body.Azbn7_AjaxUploader('upload', {
 								name : 'uploading_file',
 								action : '/admin/upload/file/',
 								on_percent : function(file, total, loaded, percent) {
@@ -1158,7 +1139,7 @@
 			(function(){
 				
 				/*
-				$(document.body).Azbn7_AjaxUploader('dropping', {
+				$.Azbn7.body.Azbn7_AjaxUploader('dropping', {
 					name : 'uploading_file',
 					action : '/admin/upload/file/',
 					on_percent : function(file, total, loaded, percent) {
@@ -1174,13 +1155,13 @@
 				});
 				*/
 				
-				$(document.body).Azbn7_ImageMinimizer('dropping', {
+				$.Azbn7.body.Azbn7_ImageMinimizer('dropping', {
 					callback : function(data) {
 						
 						console.log(data.file.name);
 						
 						/*
-						$(document.body).append(
+						$.Azbn7.body.append(
 							$('<img/>', {
 								src : data.dataURL,
 							})
@@ -1242,7 +1223,7 @@
 					btn.on('click', function(event){
 						event.preventDefault();
 						
-						$(document.body).Azbn7_AjaxUploader('upload', {
+						$.Azbn7.body.Azbn7_AjaxUploader('upload', {
 							name : 'uploading_file',
 							action : '/admin/upload/file/',
 							on_percent : function(file, total, loaded, percent) {
@@ -1274,7 +1255,7 @@
 			
 			(function(){
 				
-				$(document.body).on('change.azbn7', '.azbn-entity-all-mass-select', {}, function(event){
+				$.Azbn7.body.on('change.azbn7', '.azbn-entity-all-mass-select', {}, function(event){
 					event.preventDefault();
 					
 					var sel = $(this);
@@ -1313,7 +1294,7 @@
 					
 				});
 				
-				$(document.body).on('change.azbn7', '.azbn-entity-all-cbs-cb', {}, function(event){
+				$.Azbn7.body.on('change.azbn7', '.azbn-entity-all-cbs-cb', {}, function(event){
 					//event.preventDefault();
 					
 					var cb = $(this);
@@ -1433,7 +1414,7 @@
 					btn.on('click.azbn7', function(event){
 						event.preventDefault();
 						
-						$(document.body).Azbn7_AjaxUploader('upload', {
+						$.Azbn7.body.Azbn7_AjaxUploader('upload', {
 							name : 'uploading_file',
 							action : '/admin/upload/file/',
 							on_percent : function(file, total, loaded, percent) {

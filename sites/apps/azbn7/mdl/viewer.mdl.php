@@ -6,7 +6,7 @@ class Viewer
 {
 	public $event_prefix = '';//'app.mdl.viewer';
 	
-	public $body_class = 'azbn7';
+	public $body_class = 'azbn7 _preloading';
 	public $evalContent__codes = array(
 		'widget',
 	);
@@ -174,32 +174,41 @@ class Viewer
 	public function setAzbn7BodyConfig()
 	{
 		
-		$azbn7_config = array();
+		$azbn7_config = array(
+			'php_process_session' => $this->Azbn7->php_process_session,
+			'path' => array(
+				'root' => '',
+			),
+		);
+		
+		$this->addBodyDataAttr('azbn7', $this->Azbn7->getJSON($azbn7_config));
+		
+		
+		
+		$azbn7_config = array(
+			'request_method' => 'POST',
+			
+		);
 		
 		if($this->Azbn7->mdl('Site')->is('user')) {
-			$azbn7_config = array(
-				'access_as' => 'user',
-				'key' => $_SESSION['user']['key'],
-			);
+			
+			$azbn7_config['access_as'] = 'user';
+			$azbn7_config['key'] = $_SESSION['user']['key'];
+			
 		} else if($this->Azbn7->mdl('Site')->is('profile')) {
-			$azbn7_config = array(
-				'access_as' => 'profile',
-				'key' => $_SESSION['profile']['key'],
-			);
+			
+			$azbn7_config['access_as'] = 'profile';
+			$azbn7_config['key'] = $_SESSION['profile']['key'];
+			
 		} else {
 			
 			$access = $this->Azbn7->mdl('DB')->one('profile', "`login` = 'anonymous'");
-			
-			$azbn7_config = array(
-				'access_as' => 'profile',
-				'key' => $access['key'],
-			);
+			$azbn7_config['access_as'] = 'profile';
+			$azbn7_config['key'] = $access['key'];
 			
 		}
 		
-		$azbn7_config['php_process_session'] = $this->Azbn7->php_process_session;
-		
-		$this->addBodyDataAttr('azbn7', $this->Azbn7->getJSON($azbn7_config));
+		$this->addBodyDataAttr('azbn7__mdl__api', $this->Azbn7->getJSON($azbn7_config));
 		
 	}
 	
