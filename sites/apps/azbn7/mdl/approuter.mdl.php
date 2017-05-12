@@ -162,6 +162,7 @@ class AppRouter
 		
 	}
 	
+	/*
 	public function checkCatExists($req)
 	{
 		
@@ -170,6 +171,7 @@ class AppRouter
 		return $res;
 		
 	}
+	*/
 	
 	public function loadURLAlias()
 	{
