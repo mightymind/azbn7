@@ -39,7 +39,7 @@
 				'title' => 'Адрес URL на сайте (без начального и конечного /)',
 				'html' => ' id="" ',
 				'name' => 'entity[url]',
-				'value' => $param['type']['uid'] . '/' . $this->Azbn7->randstr(32),
+				'value' => $this->Azbn7->randstr(64),//$param['type']['uid'] . '/' . $this->Azbn7->randstr(32),
 				//'path' => 'entity',
 			));
 			?>
