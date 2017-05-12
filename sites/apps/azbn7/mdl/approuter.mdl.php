@@ -37,9 +37,11 @@ class AppRouter
 			
 			$this->Azbn7->mdl('Site')->selectTheme();
 			
+			/*
 			if(count($_POST)) {
 				
 			}
+			*/
 			
 			if($this->checkFileExists($req)) {
 				
