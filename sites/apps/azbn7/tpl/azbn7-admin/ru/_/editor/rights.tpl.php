@@ -19,7 +19,7 @@ if(count($rights)) {
 ?>
 
 <div class="form-group " >
-	<label><input type="checkbox" class="right-item-cb" name="item[right][<?=$row['uid'];?>]" value="1" <?if(isset($param['item']['right'][$row['uid']])) { echo 'checked';}?> /> <?=$row['title'];?></label>
+	<label><input type="checkbox" class="right-item-cb" name="item[right][<?=$row['uid'];?>]" value='1' <?if(isset($param['item']['right'][$row['uid']])) { echo 'checked';}?> /> <?=$row['title'];?></label>
 </div>
 
 <?

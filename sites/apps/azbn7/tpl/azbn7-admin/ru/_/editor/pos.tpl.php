@@ -11,11 +11,11 @@
 		</div>
 		
 		<div class="col-md-9" >
-			<input type="range" class="form-control item-pos-range " value="<?=$param['value'];?>" min="0" max="<?=$this->Azbn7->config['mysql'][0]['max_value']['js_int'];?>" step="1" />
+			<input type="range" class="form-control item-pos-range " value='<?=$param['value'];?>' min="0" max="<?=$this->Azbn7->config['mysql'][0]['max_value']['js_int'];?>" step="1" />
 		</div>
 		
 		<div class="col-md-3" >
-			<input type="number" class="form-control item-pos-view" name="<?=$param['name'];?>" value="<?=$param['value'];?>" min="0" max="<?=$this->Azbn7->config['mysql'][0]['max_value']['js_int'];?>" step="1" />
+			<input type="number" class="form-control item-pos-view" name="<?=$param['name'];?>" value='<?=$param['value'];?>' min="0" max="<?=$this->Azbn7->config['mysql'][0]['max_value']['js_int'];?>" step="1" />
 		</div>
 		
 	</div>

@@ -14,4 +14,14 @@ if(count($items) == 1) {
 		))
 	;
 	
+} else {
+	
+	$item = $this->Azbn7->mdl('DB')->one('sysopt', "id = '{$param[3]}'");
+	
+	$this->Azbn7->mdl('Site')
+		->render('admin/edit/sysopt', array(
+			'item' => $item,
+		))
+	;
+	
 }
