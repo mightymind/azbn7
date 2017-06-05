@@ -16,7 +16,7 @@ $access = $this->Azbn7->mdl('DB')->one($access_as, "`key` = '$key'");
 
 if($access['id']) {
 	
-	//$access['right'] = $this->Azbn7->parseJSON($access['right']);
+	$access['right'] = $this->Azbn7->parseJSON($access['right']);
 	//$access['param'] = $this->Azbn7->parseJSON($access['param']);
 	
 	$this->Azbn7->mdl('Req')
@@ -41,6 +41,7 @@ if($access['id']) {
 			'access' => array(
 				'access_as' => $access_as,
 				'id' => $access['id'],
+				'right' => $access['right'],
 			),
 			'msg' => array(
 				'type' => 'info',

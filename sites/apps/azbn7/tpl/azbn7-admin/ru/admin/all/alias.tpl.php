@@ -5,7 +5,7 @@
 
 
 <h2 class="mt-2 mb-1" >
-	Перенаправления
+	Синонимы
 	
 	<div class="float-xs-right item-base-functions" >
 		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/alias/');?>" ><i class="fa fa-plus-circle" aria-hidden="true" title="Создать запись" ></i></a>

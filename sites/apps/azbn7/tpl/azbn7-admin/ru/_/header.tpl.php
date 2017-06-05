@@ -186,7 +186,7 @@ $this->Azbn7
 					<?
 					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.alias.all.access')) {
 					?>
-					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/alias/');?>" ><i class="fa fa-random" aria-hidden="true"></i> Перенаправления</a>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/alias/');?>" ><i class="fa fa-random" aria-hidden="true"></i> Синонимы</a>
 					<?
 					}
 					?>

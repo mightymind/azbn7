@@ -2,7 +2,7 @@
 // Административный шаблон
 ?>
 
-<h2 class="mt-2 mb-1" >Редактирование перенаправления</h2>
+<h2 class="mt-2 mb-1" >Редактирование синонима</h2>
 
 <form action="<?=$this->Azbn7->mdl('Site')->url('/admin/update/alias/');?>" method="POST" >
 	
@@ -18,7 +18,7 @@
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
-		'title' => 'Название перенаправления',
+		'title' => 'Название синонима',
 		'html' => ' id="" ',
 		'name' => 'item[title]',
 		'value' => $param['item']['title'],

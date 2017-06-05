@@ -8,7 +8,7 @@
 	
 	<?
 	$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
-		'title' => 'Название перенаправления',
+		'title' => 'Название',
 		'html' => ' id="" ',
 		'name' => 'item[title]',
 		'value' => '',
