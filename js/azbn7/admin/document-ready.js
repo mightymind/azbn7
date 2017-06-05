@@ -263,7 +263,7 @@
 					
 					if(val.length > 2) {
 						
-						$.Azbn7.api({
+						$.Azbn7.mdl('API').r({
 							method : 'admin/entity/search',
 							text : val,
 						}, function(resp){
@@ -392,7 +392,7 @@
 							
 							if(val.length > 2) {
 								
-								$.Azbn7.api({
+								$.Azbn7.mdl('API').r({
 									method : 'admin/entity/search',
 									text : val,
 									type : type,
@@ -479,7 +479,7 @@
 								res = JSON.parse(___val);
 							}
 							
-							$.Azbn7.api({
+							$.Azbn7.mdl('API').r({
 								method : 'admin/entity/search_by_id',
 								text : '0,' + res.join(),
 								type : type,
@@ -776,7 +776,7 @@
 							
 							if(val.length > 2) {
 								
-								$.Azbn7.api({
+								$.Azbn7.mdl('API').r({
 									method : 'admin/entity/search',
 									text : val,
 									type : type,
@@ -876,7 +876,7 @@
 								res = JSON.parse(___val);
 							}
 							
-							$.Azbn7.api({
+							$.Azbn7.mdl('API').r({
 								method : 'admin/entity/search_by_id',
 								text : '0,' + res.join(','),
 								type : type,
@@ -1088,7 +1088,7 @@
 										
 									}
 									
-									$.Azbn7.api({
+									$.Azbn7.mdl('API').r({
 										method : 'admin/entity/create_upload',
 										type : type,
 										title : json.title,
@@ -1278,7 +1278,7 @@
 						
 						var items_str = items.join();
 						
-						$.Azbn7.api({
+						$.Azbn7.mdl('API').r({
 							method : 'admin/entity/mass_action',
 							ids : items_str,
 							action : val,
@@ -1374,7 +1374,7 @@
 										
 									});
 									
-									$.Azbn7.api({
+									$.Azbn7.mdl('API').r({
 										method : 'admin/entity/set_positions',
 										entities : __entities,
 									}, function(resp){
@@ -1460,7 +1460,7 @@
 									
 								}
 								
-								$.Azbn7.api({
+								$.Azbn7.mdl('API').r({
 									method : 'admin/entity/create_upload',
 									type : type,
 									title : json.title,
@@ -1530,7 +1530,7 @@
 								
 							}
 							
-							$.Azbn7.api({
+							$.Azbn7.mdl('API').r({
 								method : 'admin/entity/create_upload',
 								type : type,
 								title : json.title,
