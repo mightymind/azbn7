@@ -135,11 +135,11 @@ class AppRouter
 				
 				$this->Azbn7->go2($routejson['redirect']);
 				
-			} elseif($routejson['alias'] != '') {
+			}/* elseif($routejson['alias'] != '') {
 				
 				$res = $this->checkRouteJSONExists(explode('/', $routejson['alias']));
 				
-			} elseif($routejson['run']['path'] != '') {
+			} */elseif($routejson['run']['path'] != '') {
 				
 				if($this->Azbn7->as_int($routejson['entity']['id'])) {
 					$routejson['run']['param']['entity'] = $this->Azbn7->mdl('Entity')->item($routejson['entity']['id']);

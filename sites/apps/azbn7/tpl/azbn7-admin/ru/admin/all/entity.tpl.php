@@ -192,7 +192,17 @@ if(count($param['items'])) {
 				<td>
 					<?=$item['title'];?>
 					<br />
+					<?
+					if($v['url'] != '') {
+					?>
 					<a href="<?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?>" target="_blank" ><?=$this->Azbn7->mdl('Site')->url('/' . $v['url'] . '/');?></a>
+					<?
+					} else {
+					?>
+					<a href="<?=$this->Azbn7->mdl('Site')->url('/');?>" target="_blank" ><?=$this->Azbn7->mdl('Site')->url('/');?></a>
+					<?
+					}
+					?>
 				</td>
 				<td class="at-center" ><?=$user_arr[$v['user']]['login'];?></td>
 				<td class="at-center" >

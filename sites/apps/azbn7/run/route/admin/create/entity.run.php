@@ -22,6 +22,13 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 			'title' => $this->Azbn7->c_s($_POST['item']['title']),
 			'param' => $this->Azbn7->getJSON(array()),
 		),
+		'route' => array(
+			'redirect' => $this->Azbn7->c_s($_POST['route']['redirect']),
+			'run' => array(
+				'path' => $this->Azbn7->c_s($_POST['route']['run']['path']),
+				'param' => array(),
+			),
+		),
 	);
 	
 	if(count($type['param']['field'])) {

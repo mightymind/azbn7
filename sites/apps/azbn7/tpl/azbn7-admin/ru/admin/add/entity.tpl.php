@@ -39,7 +39,31 @@
 				'title' => 'Адрес URL на сайте (без начального и конечного /)',
 				'html' => ' id="" ',
 				'name' => 'entity[url]',
-				'value' => $this->Azbn7->randstr(64),//$param['type']['uid'] . '/' . $this->Azbn7->randstr(32),
+				'value' => $param['type']['uid'] . '/' . date('Ymd') . '/' . $this->Azbn7->randstr(32),//$param['type']['uid'] . '/' . $this->Azbn7->randstr(32),
+				//'path' => 'entity',
+			));
+			?>
+			
+			<div class="spacer" data-space="20" ></div>
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
+				'title' => 'Перенаправить на URL (без начального и конечного /)',
+				'html' => ' id="" ',
+				'name' => 'route[redirect]',
+				'value' => '',
+				//'path' => 'entity',
+			));
+			?>
+			
+			<div class="spacer" data-space="20" ></div>
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
+				'title' => 'Код обработчик (без .run.php)',
+				'html' => ' id="" ',
+				'name' => 'route[run][path]',
+				'value' => $param['type']['uid'],
 				//'path' => 'entity',
 			));
 			?>

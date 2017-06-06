@@ -1,5 +1,8 @@
 <?
 // Административный шаблон
+
+$param['route'] = $this->Azbn7->mdl('Entity')->getRoute($param);
+
 ?>
 
 <h2 class="mt-2 mb-1" >
@@ -95,6 +98,30 @@
 				'html' => ' id="" ',
 				'name' => 'entity[url]',
 				'value' => $param['entity']['url'],
+				//'path' => 'entity',
+			));
+			?>
+			
+			<div class="spacer" data-space="20" ></div>
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
+				'title' => 'Перенаправить на URL (без начального и конечного /)',
+				'html' => ' id="" ',
+				'name' => 'route[redirect]',
+				'value' => $param['route']['redirect'],
+				//'path' => 'entity',
+			));
+			?>
+			
+			<div class="spacer" data-space="20" ></div>
+			
+			<?
+			$this->Azbn7->mdl('Viewer')->tpl('_/editor/input', array(
+				'title' => 'Код обработчик (без .run.php)',
+				'html' => ' id="" ',
+				'name' => 'route[run][path]',
+				'value' => $param['route']['run']['path'],
 				//'path' => 'entity',
 			));
 			?>

@@ -187,6 +187,12 @@
 						"preview" : "Краткое описание",
 						"content" : "./tmp/fish/index.html",
 						"param" : "{}"
+					},
+					"route" : {
+						"redirect" : "",
+						"run" : {
+							"path" : "index"
+						}
 					}
 				}
 			]

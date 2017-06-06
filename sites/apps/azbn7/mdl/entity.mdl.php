@@ -120,6 +120,7 @@ class Entity
 			'type' => 'page',
 			'entity' => array(),
 			'item' => array(),
+			'route' => array(),
 		))
 	{
 		
@@ -143,14 +144,14 @@ class Entity
 				
 				if($e['item']['id']) {
 					
+					$this->createRoute($e);
+					
 					$this->Azbn7->run('app', 'search/entity/reindex', $e);
 					
 					$this->Azbn7->event(array(
 						'action' => $this->event_prefix . '.create.entity.after',
 						'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.create.entity.after') . ': ' . $e['entity']['id'],
 					));
-					
-					$this->createRoute($e);
 					
 					/* ---------- ext__event ---------- */
 					$this->Azbn7
@@ -193,13 +194,15 @@ class Entity
 		if($e['entity']['id']) {
 			
 			$route = array(
-				'redirect' => '',
-				'alias' => '',
+				'url' => $e['entity']['url'],
+				'redirect' => $e['route']['redirect'],
+				//'alias' => '',
 				'entity' => array(
 					'id' => $e['entity']['id'],
+					//'url' => $e['entity']['url'],
 				),
 				'run' => array(
-					'path' => '',
+					'path' => $e['route']['run']['path'],
 					'param' => array(),
 				),
 				/*
@@ -272,6 +275,19 @@ class Entity
 		
 		return $res;
 		
+	}
+	
+	public function getRoute($e = array())
+	{
+		$route_file = $this->Azbn7->config['path']['app'] . '/route/' . $e['entity']['url'] . '/route.json';
+		
+		$res = array();
+		
+		if(file_exists($route_file)) {
+			$res = $this->Azbn7->parseJSON(file_get_contents($route_file));
+		}
+		
+		return $res;
 	}
 	
 	public function getItems($_type = 0, $where_entities = '1', $where_items = '1')
@@ -421,6 +437,7 @@ class Entity
 				
 				$this->Azbn7->mdl('DB')->update($this->getTable($type['uid']), $e['item'], "entity = '$id'");
 				
+				$this->createRoute($e);
 				
 				/* ---------- ext__event ---------- */
 				$this->Azbn7
@@ -463,6 +480,12 @@ class Entity
 				
 				$this->Azbn7->mdl('DB')->delete($this->getTable($type['uid']), "entity = '$id'");
 				
+			}
+			
+			$routejson = $this->Azbn7->config['path']['app'] . '/route/' . $e['entity']['url'] . '/route.json';
+			
+			if(file_exists($routejson)) {
+				unlink($routejson);
 			}
 			
 		}
