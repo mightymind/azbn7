@@ -150,6 +150,7 @@ class Entity
 						'title' => $this->Azbn7->mdl('Lang')->msg($this->event_prefix . '.create.entity.after') . ': ' . $e['entity']['id'],
 					));
 					
+					$this->createRoute($e);
 					
 					/* ---------- ext__event ---------- */
 					$this->Azbn7
@@ -185,6 +186,44 @@ class Entity
 			
 		}
 	
+	}
+	
+	public function createRoute($e = array())
+	{
+		if($e['entity']['id']) {
+			
+			$route = array(
+				'redirect' => '',
+				'alias' => '',
+				'entity' => array(
+					'id' => $e['entity']['id'],
+				),
+				'run' => array(
+					'path' => '',
+					'param' => array(),
+				),
+				/*
+				'tpl' => array(
+					'_' . '/header',
+					'entity/by_type/' . $e['type'],
+					'_' . '/footer',
+				),
+				*/
+			);
+			
+			$route_str = $this->Azbn7->getJSON($route);
+			
+			$route_dir = $this->Azbn7->config['path']['app'] . '/route/' . $e['entity']['url'];
+			
+			if(file_exists($route_dir)) {
+				
+			} else {
+				@mkdir($route_dir, 0777, true);
+			}
+			
+			$this->Azbn7->w2f($route_dir . '/route.json', $route_str);
+			
+		}
 	}
 	
 	public function createBound($b = array(

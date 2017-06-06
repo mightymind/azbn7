@@ -42,8 +42,13 @@ class AppRouter
 				
 			}
 			*/
+			//var_dump($req);
 			
-			if($this->checkFileExists($req)) {
+			if($this->checkRouteJSONExists($req)) {
+				
+				// найден файл с параметрами url
+				
+			} elseif($this->checkFileExists($req)) {
 				
 				// найден файл-обработчик
 				
@@ -73,7 +78,15 @@ class AppRouter
 			
 			$this->Azbn7->mdl('Site')->is_mainpage = true;
 			
-			$this->Azbn7->run('app', 'route/index', $_req);
+			if($this->checkRouteJSONExists(array())) {
+				
+				
+				
+			} else {
+				
+				$this->Azbn7->run('app', 'route/index', $_req);
+				
+			}
 			
 		}
 		
@@ -102,6 +115,47 @@ class AppRouter
 		
 		
 		$this->Azbn7->run('app', 'route/error/404', $req);
+		
+	}
+	
+	public function checkRouteJSONExists($req)
+	{
+		
+		$res_file = $this->Azbn7->config['path']['app'] . '/route/' . implode('/', $req) . '/route.json';
+		
+		//echo $res_file;
+		
+		$res = file_exists($res_file);
+		
+		if($res) {
+			
+			$routejson = $this->Azbn7->parseJSON(file_get_contents($res_file));
+			
+			if($routejson['redirect'] != '') {
+				
+				$this->Azbn7->go2($routejson['redirect']);
+				
+			} elseif($routejson['alias'] != '') {
+				
+				$res = $this->checkRouteJSONExists(explode('/', $routejson['alias']));
+				
+			} elseif($routejson['run']['path'] != '') {
+				
+				if($this->Azbn7->as_int($routejson['entity']['id'])) {
+					$routejson['run']['param']['entity'] = $this->Azbn7->mdl('Entity')->item($routejson['entity']['id']);
+				}
+				
+				$this->Azbn7->run('app', 'route/' . $routejson['run']['path'], $routejson['run']['param']);
+				
+			} else {
+				
+				$res = false;
+				
+			}
+			
+		}
+		
+		return $res;
 		
 	}
 	
