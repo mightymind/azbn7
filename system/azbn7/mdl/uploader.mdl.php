@@ -157,7 +157,10 @@ $_FILES['userfile']['error']
 		} else {
 			$res_arr['mime_type'] = 'application/octet-stream';
 		}
-		$res_arr['fullname'] = $path . $res_arr['basename'] . $res_arr['suffix'];
+		
+		$this->makePath($path . $res_arr['basename']);
+		
+		$res_arr['fullname'] = $path . $res_arr['basename'] . '/original' . $res_arr['suffix'];
 		
 		if (move_uploaded_file($_FILES[$param['name']]['tmp_name'], $res_arr['fullname'])) {
 			
@@ -214,7 +217,10 @@ $_FILES['userfile']['error']
 		} else {
 			$res_arr['mime_type'] = 'application/octet-stream';
 		}
-		$res_arr['fullname'] = $path . $res_arr['basename'] . $res_arr['suffix'];
+		
+		$this->makePath($path . $res_arr['basename']);
+		
+		$res_arr['fullname'] = $path . $res_arr['basename'] . '/original' . $res_arr['suffix'];
 		
 		$pic = explode(',',$_POST[$param['name']]);
 		$pic = str_replace(' ', '+', $pic[1]);
