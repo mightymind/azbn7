@@ -32,11 +32,11 @@ if(count($_POST['item'])) {
 	
 	if($item['id']) {
 		
-		$this->Azbn7->go2('/admin/edit/user/' . $item['id'] . '/');
+		$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/user/' . $item['id'] . '/'));
 		
 	} else {
 		
-		$this->Azbn7->go2('/admin/all/user/');
+		$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/all/user/'));
 		
 	}
 	

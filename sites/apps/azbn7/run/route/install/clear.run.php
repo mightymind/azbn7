@@ -52,4 +52,4 @@ $this->Azbn7
 /* --------- /ext__event ---------- */
 
 
-$this->Azbn7->go2('/install/main/');
+$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/install/main/'));

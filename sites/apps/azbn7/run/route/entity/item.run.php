@@ -35,7 +35,7 @@ switch(intval($param['entity']['type']['id'])) {
 	case 6 :
 	case 7 : {
 		
-		$this->Azbn7->go2($param['entity']['item']['path']);
+		$this->Azbn7->go2($this->Azbn7->mdl('Site')->url($param['entity']['item']['path']));
 		
 	}
 	break;

@@ -22,6 +22,6 @@ if(count($_POST['item'])) {
 		
 	}
 	
-	$this->Azbn7->go2('/admin/all/sysopt/' . $item_id . '/');
+	$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/all/sysopt/' . $item_id . '/'));
 	
 }

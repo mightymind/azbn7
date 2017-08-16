@@ -379,6 +379,6 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	/* --------- /ext__event ---------- */
 	
 	
-	$this->Azbn7->go2('/установлено/');
+	$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/установлено/'));
 	
 }

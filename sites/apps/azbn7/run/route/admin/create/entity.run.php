@@ -74,7 +74,7 @@ if(count($_POST['item']) && count($_POST['type']) && count($_POST['entity'])) {
 			'title' => 'Запись добавлена',
 		));
 		
-		$this->Azbn7->go2('/admin/edit/entity/' . $item['entity']['id'] . '/');
+		$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $item['entity']['id'] . '/'));
 		
 	}
 	

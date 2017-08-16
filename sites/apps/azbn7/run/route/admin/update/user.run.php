@@ -40,6 +40,6 @@ if(count($_POST['item'])) {
 		$this->Azbn7->mdl('Session')->reloadRights('user');
 	}
 	
-	$this->Azbn7->go2('/admin/edit/user/' . $item_id . '/');
+	$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/user/' . $item_id . '/'));
 	
 }

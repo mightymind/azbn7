@@ -14,6 +14,6 @@ if(count($_POST['item'])) {
 	
 	$this->Azbn7->mdl('DB')->update('alias', $item, "id = '$item_id'");
 	
-	$this->Azbn7->go2('/admin/edit/alias/' . $item_id . '/');
+	$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/alias/' . $item_id . '/'));
 	
 }

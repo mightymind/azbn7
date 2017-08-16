@@ -14,4 +14,4 @@ if($item['id']) {
 	;
 }
 
-$this->Azbn7->go2('/admin/all/entity/?type=' . $item['type']);
+$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/all/entity/?type=' . $item['type']));

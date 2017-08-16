@@ -35,6 +35,6 @@ if(count($_POST['item'])) {
 	
 	$this->Azbn7->mdl('DB')->update('profile', $item, "id = '$item_id'");
 	
-	$this->Azbn7->go2('/admin/edit/profile/' . $item_id . '/');
+	$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/profile/' . $item_id . '/'));
 	
 }

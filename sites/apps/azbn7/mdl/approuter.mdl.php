@@ -275,7 +275,7 @@ class AppRouter
 				if($req[1] == 'login') {
 					$this->Azbn7->mdl('Viewer')->is_admin_tpl = false;
 				} else {
-					$this->Azbn7->go2('/admin/login/');
+					$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/login/'));
 				}
 			}
 		}

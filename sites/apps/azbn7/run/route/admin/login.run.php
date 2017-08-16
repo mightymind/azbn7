@@ -15,7 +15,7 @@ if(count($_POST)) {
 			/* --------- /ext__event ---------- */
 			
 			
-			$this->Azbn7->go2('/admin/');
+			$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/'));
 			
 		} else {
 			
@@ -31,7 +31,7 @@ if(count($_POST)) {
 			/* --------- /ext__event ---------- */
 			
 			
-			$this->Azbn7->go2('/error/403/');
+			$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/error/403/'));
 			
 		}
 		
@@ -48,7 +48,7 @@ if(count($_POST)) {
 		
 		sleep(5);
 		
-		$this->Azbn7->go2('/error/403/');
+		$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/error/403/'));
 		
 	}
 	

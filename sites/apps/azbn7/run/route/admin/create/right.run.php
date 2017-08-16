@@ -11,11 +11,11 @@ if(count($_POST['item'])) {
 	
 	if($item['id']) {
 		
-		$this->Azbn7->go2('/admin/all/right/');
+		$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/all/right/'));
 		
 	} else {
 		
-		$this->Azbn7->go2('/admin/add/right/');
+		$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/add/right/'));
 		
 	}
 	

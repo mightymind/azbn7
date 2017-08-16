@@ -73,4 +73,4 @@ if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.lock')) {
 	
 }
 
-$this->Azbn7->go2('/admin/all/entity/?type=' . $entity['type']);
+$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/all/entity/?type=' . $entity['type']));

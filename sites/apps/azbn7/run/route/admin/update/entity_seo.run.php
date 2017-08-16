@@ -23,6 +23,6 @@ if(count($_POST['item'])) {
 		
 	}
 	
-	$this->Azbn7->go2('/admin/edit/entity_seo/' . $item_id . '/');
+	$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/entity_seo/' . $item_id . '/'));
 	
 }

@@ -6,4 +6,4 @@ if($item_id) {
 	$this->Azbn7->mdl('DB')->delete('entity_seo', "entity = '{$item_id}'");
 }
 
-$this->Azbn7->go2('/admin/all/entity/');
+$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/all/entity/'));

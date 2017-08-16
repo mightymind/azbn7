@@ -55,6 +55,6 @@ if(count($_POST['item'])) {
 		'title' => 'Запись обновлена',
 	));
 	
-	$this->Azbn7->go2('/admin/edit/entity_type/' . $type_id . '/');
+	$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/entity_type/' . $type_id . '/'));
 	
 }

@@ -34,7 +34,7 @@ if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.copy') && $entity
 			'title' => 'Запись скопирована',
 		));
 		
-		$this->Azbn7->go2('/admin/edit/entity/' . $item['entity']['id'] . '/');
+		$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $item['entity']['id'] . '/'));
 		
 	} else {
 		
@@ -43,7 +43,7 @@ if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.copy') && $entity
 			'title' => 'Запись не скопирована',
 		));
 		
-		$this->Azbn7->go2('/admin/edit/entity/' . $entity_id . '/');
+		$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $entity_id . '/'));
 		
 	}
 	
@@ -51,7 +51,7 @@ if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity.copy') && $entity
 	
 } else {
 	
-	$this->Azbn7->go2('/admin/');
+	$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/'));
 	
 }
 

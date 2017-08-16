@@ -6,4 +6,4 @@ if($item_id) {
 	$this->Azbn7->mdl('DB')->delete('user', "id = '{$item_id}'");
 }
 
-$this->Azbn7->go2('/admin/all/user/');
+$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/all/user/'));

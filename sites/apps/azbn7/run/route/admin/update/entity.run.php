@@ -79,6 +79,6 @@ if(count($_POST['item']) && count($_POST['entity'])) {
 		'title' => 'Запись обновлена',
 	));
 	
-	$this->Azbn7->go2('/admin/edit/entity/' . $entity['id'] . '/');
+	$this->Azbn7->go2($this->Azbn7->mdl('Site')->url('/admin/edit/entity/' . $entity['id'] . '/'));
 	
 }
