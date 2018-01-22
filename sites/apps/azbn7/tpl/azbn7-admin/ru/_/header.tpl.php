@@ -190,6 +190,14 @@ $this->Azbn7
 					<?
 					}
 					?>
+
+					<?
+					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.state.all.access')) {
+					?>
+					<a class="dropdown-item" href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/state/');?>" ><i class="fa fa-check-circle" aria-hidden="true"></i> Состояния</a>
+					<?
+					}
+					?>
 					
 					<?
 					if($this->Azbn7->mdl('Session')->hasRight('user', 'site.entity_type.all.access')) {

@@ -457,6 +457,7 @@ class Entity
 	
 	public function deleteEntity($id = 0)
 	{
+		
 		$e = array();
 		
 		$e['entity'] = $this->Azbn7->mdl('DB')->one('entity', "id = '$id'");
@@ -490,6 +491,174 @@ class Entity
 			
 		}
 		
+	}
+
+	public function getStates($id = 0)
+	{
+		
+		$result = array();
+
+		$__semi_res = array();
+
+		$items = $this->Azbn7->mdl('DB')->read('entity_state', "`entity` = '{$id}' ORDER BY `created_at`");
+
+		if(count($items)) {
+			
+			foreach($items as $item) {
+				$__semi_res[] = $item['state'];
+			}
+
+			$states = $this->Azbn7->mdl('DB')->read('state', "`id` IN (" . implode(',', $__semi_res) . ")");
+			$__semi_res = array();
+			if(count($states)) {
+				foreach($states as $state) {
+					$__semi_res[$state['id']] = $state;
+				}
+			}
+
+			foreach($items as $item) {
+				$item['state_uid'] = $__semi_res[$item['state']]['uid'];
+				$item['state_title'] = $__semi_res[$item['state']]['title'];
+				$item['param'] = $this->Azbn7->parseJSON($item['param'] != '' ? $item['param'] : '{}');
+				$result[$item['id']] = $item;
+			}
+
+		}
+
+		return $result;
+
+	}
+
+	public function getActiveStates($id = 0)
+	{
+		
+		$result = array();
+
+		$states = $this->getActiveStatesByIds($id);
+
+		if(count($states)) {
+			
+			$items = $this->Azbn7->mdl('DB')->read('state', "`id` IN (" . implode(',', $states) . ")");
+
+			if(count($items)) {
+				foreach($items as $item) {
+					$result[$item['uid']] = 1;
+				}
+			}
+
+		}
+
+		return $result;
+
+	}
+
+	public function getActiveStatesByIds($id = 0)
+	{
+		
+		$states = array();
+
+		$now = $this->Azbn7->created_at;
+
+		$items = $this->Azbn7->mdl('DB')->read('entity_state', "`entity` = '{$id}' AND `deleted_at` = '0' AND `created_at` < '{$now}'");
+
+		if(count($items)) {
+			foreach($items as $item) {
+
+				$states[] = $item['state'];
+
+			}
+		}
+
+		return $states;
+
+	}
+
+	public function inState($id = 0, $state = 'default')
+	{
+		
+		$result = false;
+
+		$item = $this->Azbn7->mdl('DB')->one('state', "`uid` = '{$state}'");
+
+		if($item['id']) {
+			$result = $this->inStateById($id, $item['id']);
+		}
+
+		return $result;
+
+	}
+
+	public function inStateById($id = 0, $state = 0)
+	{
+
+		$now = $this->Azbn7->created_at;
+
+		$states = $this->Azbn7->mdl('DB')->read('entity_state', "`entity` = '{$id}' AND `state` = '{$state}' AND `deleted_at` = '0' AND `created_at` < '{$now}'");
+
+		if(count($states)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public function createState($id = 0, $state = 'default', $p = array())
+	{
+
+		$result = 0;
+
+		$item = $this->Azbn7->mdl('DB')->one('state', "`uid` = '{$state}'");
+
+		if($item['id']) {
+
+			if($this->inStateById($id, $item['id'])) {
+
+			} else {
+
+				$result = $this->createStateById($id, $item['id'], $p);
+
+			}
+
+		}
+
+		return $result;
+
+	}
+
+	public function createStateById($id = 0, $state = 0, $p = array())
+	{
+
+		return $this->Azbn7->mdl('DB')->create('entity_state', array(
+			'entity' => $id,
+			'state' => $state,
+			'created_at' => $this->Azbn7->created_at,
+			'deleted_at' => 0,
+			'param' => $this->Azbn7->parseJSON($p),
+		));
+
+	}
+
+	public function deleteState($id = 0, $state = 'default', $param = array())
+	{
+		
+		$item = $this->Azbn7->mdl('DB')->one('state', "`uid` = '{$state}'");
+
+		if($item['id']) {
+
+			$this->deleteStateById($id, $item['id']);//, $param
+
+		}
+
+	}
+
+	public function deleteStateById($id = 0, $state = 0)//, $param = array()
+	{
+
+		$this->Azbn7->mdl('DB')->update('entity_state', array(
+			'deleted_at' => $this->Azbn7->created_at,
+		), "`entity` = '{$id}' AND `state` = '{$state}' AND `deleted_at` = '0'");
+
 	}
 	
 }

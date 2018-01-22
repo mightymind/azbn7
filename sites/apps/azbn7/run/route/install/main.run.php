@@ -40,6 +40,15 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['state'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`parent` BIGINT DEFAULT '0',
+				`uid` VARCHAR(256) NOT NULL UNIQUE,
+				`title` VARCHAR(256) DEFAULT '',
+				INDEX uid_index (uid(64))
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['alias'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`pos` BIGINT DEFAULT '{$default['max_bigint']}',
@@ -92,6 +101,17 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`title` VARCHAR(256) DEFAULT '',
 				`description` VARCHAR(256) DEFAULT '',
 				`keywords` VARCHAR(256) DEFAULT '',
+				`param` MEDIUMBLOB DEFAULT NULL,
+				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_state'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`entity` BIGINT DEFAULT '0',
+				`state` BIGINT DEFAULT '0',
+				`created_at` BIGINT DEFAULT '0',
+				`deleted_at` BIGINT DEFAULT '0',
 				`param` MEDIUMBLOB DEFAULT NULL,
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -179,6 +199,9 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		))
 	;
 	
+	//$this->Azbn7->mdl('DB')->create('state', array('uid' => 'default', 'title' => 'Стандартное состояние записи'));
+	$this->Azbn7->mdl('DB')->create('state', array('uid' => 'test', 'title' => 'Состояние тестирования'));
+	
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.created_at', 'title' => 'Дата и время инсталяции сайта'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.updated_at', 'title' => 'Дата и время последнего обновления'));
 	$this->Azbn7->mdl('DB')->create('sysopt_data', array('uid' => 'azbn7.install_version', 'title' => 'Версия движка Azbn7 при установке'));
@@ -238,6 +261,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.right.all.access', 'title' => 'Доступ к списку прав'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.sysopt.all.access', 'title' => 'Доступ к настройкам сайта'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.entity_type.all.access', 'title' => 'Доступ к типам данных'));
+	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.state.all.access', 'title' => 'Доступ к состояниям'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.alias.all.access', 'title' => 'Доступ к синонимам'));
 	$this->Azbn7->mdl('DB')->create('right', array('uid' => 'site.log.all.access', 'title' => 'Доступ к логам'));
 	

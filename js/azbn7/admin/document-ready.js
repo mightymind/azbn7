@@ -92,6 +92,15 @@
 						select.val(val);
 						
 					})();
+
+					(function(){
+						
+						var select = block.find('select[name="item[parent]"]');
+						var val = parseInt(select.attr('data-select-value')) || 0;
+						
+						select.val(val);
+						
+					})();
 					
 				}
 				

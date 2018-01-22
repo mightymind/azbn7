@@ -26,6 +26,17 @@ $this->Azbn7->mdl('Ext')->ext('azbn7.ext.cron')->setTask(array(
 
 $param['entity'] = $this->Azbn7->mdl('Entity')->item(1);
 
+//$this->Azbn7->mdl('Entity')->createState($param['entity']['entity']['id'], 'default');
+//$this->Azbn7->mdl('Entity')->createState($param['entity']['entity']['id'], 'test');
+
+//$this->Azbn7->mdl('Viewer')->echo_dev($this->Azbn7->mdl('Entity')->getSTates($param['entity']['entity']['id']), true);
+
+//$this->Azbn7->mdl('Entity')->createState($param['entity']['entity']['id'], 'default');
+//$this->Azbn7->mdl('Entity')->deleteState($param['entity']['entity']['id'], 'default');
+
+//$this->Azbn7->mdl('Viewer')->echo_dev($this->Azbn7->mdl('Entity')->inState($param['entity']['entity']['id'], 'default'), true);
+//$this->Azbn7->mdl('Viewer')->echo_dev($this->Azbn7->mdl('Entity')->inState($param['entity']['entity']['id'], 'test'), true);
+
 $this->Azbn7->mdl('Site')
 	->render('entity/by_type/page', $param)
 ;
