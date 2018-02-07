@@ -51,6 +51,12 @@ $Azbn7
 		'param' => array()
 	))
 	->load(array(
+		'dir' => 'azbn7',
+		'mdl' => 'FS',
+		'uid' => 'FS',
+		'param' => array()
+	))
+	->load(array(
 		'dir' => 'app',
 		'mdl' => 'Session',
 		'uid' => 'Session',
