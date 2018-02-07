@@ -7,9 +7,10 @@
 //@error_reporting(0); // отключение вывода ошибок и предупреждений
 @set_time_limit(0); // отключение лимита на время работы скрипта
 @ini_set('register_globals', false); // отключение register_globals
-@ini_set('memory_limit', '32M'); // определение лимита для выделения памяти
-@ini_set('default_charset', 'UTF-8');
-@date_default_timezone_set('Europe/Minsk');
+@ini_set('max_input_vars', 2000);// максимальное число переменных в запросе
+@ini_set('memory_limit', '64M'); // определение лимита для выделения памяти
+@ini_set('default_charset', 'UTF-8');// кодировка по-умолчанию
+@date_default_timezone_set('Europe/Minsk');// временная зона
 
 $app_uid = 'azbn7';
 
