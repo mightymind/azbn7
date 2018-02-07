@@ -1,6 +1,6 @@
 <?php
 
-namespace Azbn\Test {
+namespace Azbn_ru\Test {
 	
 	class DefaultClass
 	{

@@ -25,7 +25,7 @@ $this->Azbn7->mdl('Ext')->ext('azbn7.ext.cron')->setTask(array(
 */
 
 /*
-$d = new \Azbn\Test\DefaultClass();
+$d = new \Azbn_ru\Test\DefaultClass();
 $d::test(array(
 	'test' => true,
 	'created_at' => $this->Azbn7->created_at,
