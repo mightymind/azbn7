@@ -216,7 +216,7 @@ class Entity
 			
 			$route_str = $this->Azbn7->getJSON($route);
 			
-			$route_dir = $this->Azbn7->config['path']['app'] . '/route/' . $e['entity']['url'];
+			$route_dir = $this->Azbn7->config['path']['route'] . '/' . $e['entity']['url'];
 			
 			if(file_exists($route_dir)) {
 				
@@ -279,7 +279,7 @@ class Entity
 	
 	public function getRoute($e = array())
 	{
-		$route_file = $this->Azbn7->config['path']['app'] . '/route/' . $e['entity']['url'] . '/route.json';
+		$route_file = $this->Azbn7->config['path']['route'] . '/' . $e['entity']['url'] . '/route.json';
 		
 		$res = array();
 		
@@ -483,7 +483,7 @@ class Entity
 				
 			}
 			
-			$routejson = $this->Azbn7->config['path']['app'] . '/route/' . $e['entity']['url'] . '/route.json';
+			$routejson = $this->Azbn7->config['path']['route'] . '/' . $e['entity']['url'] . '/route.json';
 			
 			if(file_exists($routejson)) {
 				unlink($routejson);
