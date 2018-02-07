@@ -7,6 +7,8 @@ class Storage_MySQL
 	public $connection = null;
 	public $t = array();
 	public $prefix = '';
+	public $charset = '';
+	public $engine = '';
 	public $event_prefix = '';//'system.azbn7.mdl.storage_mysql';
 	
 	public function __construct()
@@ -20,10 +22,12 @@ class Storage_MySQL
 			
 			$this->t = $db['t'];
 			$this->prefix = $db['prefix'];
+			$this->charset = $db['charset'];
+			$this->engine = $db['engine'];
 			
 			$this->connection = new \PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['db'], $db['user'], $db['pass'], $db['connect_settings']);
 			//$this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-			$this->q('SET NAMES '.$db['charset']);
+			$this->q('SET NAMES ' . $db['charset']);
 			
 			$this->Azbn7->event(array(
 				'action' => $this->event_prefix . '.connect.after',

@@ -29,7 +29,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`editor` VARCHAR(256) DEFAULT 'input',
 				`value` MEDIUMBLOB DEFAULT NULL,
 				INDEX uid_index (uid(64))
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['sysopt_data'] . "` (
@@ -37,7 +37,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`uid` VARCHAR(256) NOT NULL UNIQUE,
 				`title` VARCHAR(256) DEFAULT '',
 				INDEX uid_index (uid(64))
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['state'] . "` (
@@ -46,7 +46,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`uid` VARCHAR(256) NOT NULL UNIQUE,
 				`title` VARCHAR(256) DEFAULT '',
 				INDEX uid_index (uid(64))
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['alias'] . "` (
@@ -56,14 +56,14 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`find` VARCHAR(256) DEFAULT '',
 				`set` VARCHAR(256) DEFAULT '',
 				`title` VARCHAR(256) DEFAULT ''
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['right'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`uid` VARCHAR(256) NOT NULL UNIQUE,
 				`title` VARCHAR(256) DEFAULT ''
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		
@@ -74,7 +74,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`uid` VARCHAR(256) NOT NULL UNIQUE,
 				`title` VARCHAR(256) DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT NULL
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity'] . "` (
@@ -92,7 +92,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`param` MEDIUMBLOB DEFAULT NULL,
 				INDEX url_index (url(64)),
 				FOREIGN KEY (type) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity_type'] . "(id)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_seo'] . "` (
@@ -103,7 +103,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`keywords` VARCHAR(256) DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT NULL,
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_state'] . "` (
@@ -114,7 +114,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`deleted_at` BIGINT DEFAULT '0',
 				`param` MEDIUMBLOB DEFAULT NULL,
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['log'] . "` (
@@ -127,7 +127,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`param` MEDIUMBLOB DEFAULT NULL,
 				INDEX uid_index (uid(64)),
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['role'] . "` (
@@ -135,7 +135,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`title` VARCHAR(256) DEFAULT '',
 				`right` MEDIUMBLOB DEFAULT NULL,
 				`param` MEDIUMBLOB DEFAULT NULL
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['user'] . "` (
@@ -149,7 +149,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`view_as` VARCHAR(256) NOT NULL,
 				`right` MEDIUMBLOB DEFAULT NULL,
 				`param` MEDIUMBLOB DEFAULT NULL
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['profile'] . "` (
@@ -163,7 +163,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`view_as` VARCHAR(256) NOT NULL,
 				`right` MEDIUMBLOB DEFAULT NULL,
 				`param` MEDIUMBLOB DEFAULT NULL
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['role_bound'] . "` (
@@ -172,7 +172,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`item` BIGINT DEFAULT '0',
 				`type` VARCHAR(256) DEFAULT 'profile',
 				FOREIGN KEY (role) REFERENCES " . $this->Azbn7->mdl('DB')->t['role'] . "(id) ON DELETE CASCADE
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		
@@ -183,7 +183,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				INDEX parent_index (`parent`),
 				INDEX child_index (`child`),
 				FOREIGN KEY (parent) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_data'] . "` (
@@ -194,7 +194,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`value` MEDIUMBLOB DEFAULT NULL,
 				INDEX main_index (entity, uid(64)),
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_search'] . "` (
@@ -206,7 +206,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				INDEX by_entity (`entity`),
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE,
 				FULLTEXT KEY `content_search` (`content`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 	;

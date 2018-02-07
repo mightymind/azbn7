@@ -67,7 +67,7 @@ class Entity
 							{$field_str} ,
 							`param` MEDIUMBLOB DEFAULT NULL,
 							FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
-						) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+						) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 					")
 				;
 				
