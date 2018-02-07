@@ -130,6 +130,14 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['role'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`title` VARCHAR(256) DEFAULT '',
+				`right` MEDIUMBLOB DEFAULT NULL,
+				`param` MEDIUMBLOB DEFAULT NULL
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['user'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`status` TINYINT DEFAULT '1',
@@ -143,6 +151,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`param` MEDIUMBLOB DEFAULT NULL
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
+		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['profile'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`status` TINYINT DEFAULT '1',
@@ -154,6 +163,15 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`view_as` VARCHAR(256) NOT NULL,
 				`right` MEDIUMBLOB DEFAULT NULL,
 				`param` MEDIUMBLOB DEFAULT NULL
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		")
+		
+		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['role_bound'] . "` (
+				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				`role` BIGINT DEFAULT '0',
+				`item` BIGINT DEFAULT '0',
+				`type` VARCHAR(256) DEFAULT 'profile',
+				FOREIGN KEY (role) REFERENCES " . $this->Azbn7->mdl('DB')->t['role'] . "(id) ON DELETE CASCADE
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 		")
 		

@@ -87,6 +87,11 @@ class Session
 		unset($_SESSION[$type]);
 	}
 	
+	public function hasRole($profile_id = 0, $role_id = 0, $type = 'user')
+	{
+		
+	}
+	
 	public function getPassHash($pass = '', $type = '', $login = '')
 	{
 		return $this->Azbn7->hash($pass, $type, $login);

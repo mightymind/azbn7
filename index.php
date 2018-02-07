@@ -20,6 +20,14 @@ session_start();
 $Azbn7
 	->load(array(
 		'dir' => 'azbn7',
+		'mdl' => 'Autoloader',
+		'uid' => 'Autoloader',
+		'param' => array()
+	))
+	->mdl('Autoloader')
+		->register_autoloaders()
+	->load(array(
+		'dir' => 'azbn7',
 		'mdl' => 'Lang',
 		'uid' => 'Lang',
 		'param' => array()
@@ -87,8 +95,6 @@ $Azbn7
 		'param' => array()
 	))
 ;
-
-
 
 $Azbn7
 	->mdl('Ext')

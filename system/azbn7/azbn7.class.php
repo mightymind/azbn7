@@ -252,7 +252,7 @@ namespace azbn7 {
 
 		public function mail2($to, $from, $subject, $body, $headers=array())
 		{
-			$headers_str="From: $from\r\n"."Reply-To: $from\r\n";
+			$headers_str = "From: $from\r\n" . "Reply-To: $from\r\n";
 			if(count($headers)) {
 				foreach($headers as $param=>$value) {
 					$headers_str=$headers_str."$param: $value\r\n";
@@ -299,7 +299,7 @@ namespace azbn7 {
 		
 		public function w2f($file, $str = '')
 		{
-			$fp=fopen($file, "w");
+			$fp = fopen($file, "w");
 			fwrite($fp, $str);
 			fclose($fp);
 			return $this;
@@ -312,21 +312,21 @@ namespace azbn7 {
 		
 		public function randstr($len, $sym = false)
 		{
-			$tpl='qwertyuiopasdfghjklzxcvbnm0192837465';
+			$tpl = 'qwertyuiopasdfghjklzxcvbnm0192837465';
 			if($sym) {
-				$tpl.='-_+=()%$#@!*^&\|/:';
-				}
+				$tpl .= '-_+=()%$#@!*^&\|/:';
+			}
 			$str='';
-			for($i=0;$i<$len;$i++) {
-				$str.=$tpl[rand(0, strlen($tpl)-1)];
-				}
+			for($i = 0; $i < $len; $i++) {
+				$str .= $tpl[rand(0, strlen($tpl) - 1)];
+			}
 			return $str;
 		}
 		
 		public function ru2en($str = '')
 		{
-			$str=mb_strtolower($str, $this->config['charset']);
-			$str=strtr($str,array(
+			$str = mb_strtolower($str, $this->config['charset']);
+			$str = strtr($str,array(
 				'а'=>'a',	'б'=>'b',	'в'=>'v',	'г'=>'g',	'д'=>'d',	'е'=>'e',	'ё'=>'yo',	'ж'=>'zh',	'з'=>'z',	'и'=>'i',
 				'й'=>'yi',	'к'=>'k',	'л'=>'l',	'м'=>'m',	'н'=>'n',	'о'=>'o',	'п'=>'p',	'р'=>'r',	'с'=>'s',	'т'=>'t',
 				'у'=>'u',	'ф'=>'f',	'х'=>'h',	'ц'=>'ts',	'ч'=>'ch',	'ш'=>'sh',	'щ'=>'shch',	'ъ'=>'',	'ы'=>'y',	'ь'=>'',
@@ -336,13 +336,13 @@ namespace azbn7 {
 				//'У'=>'U',	'Ф'=>'F',	'Х'=>'H',	'Ц'=>'Ts',	'Ч'=>'Ch',	'Ш'=>'Sh',	'Щ'=>'Shch',	'Ъ'=>'',	'Ы'=>'Y',	'Ь'=>'',
 				//'Э'=>'E',	'Ю'=>'Yu',	'Я'=>'Ya',
 				));
-			$str=preg_replace('~[^-a-z0-9_]+~u', '-', $str);
-			$str=trim($str, "-");
+			$str = preg_replace('~[^-a-z0-9_]+~u', '-', $str);
+			$str = trim($str, "-");
 			return $str;
 		}
 		
 		public function getJSON_prepareUTF($matches){
-			return json_decode('"'.$matches[1].'"');
+			return json_decode('"' . $matches[1] . '"');
 		}
 		
 		public function getJSON($_a = array()) // arr2json
