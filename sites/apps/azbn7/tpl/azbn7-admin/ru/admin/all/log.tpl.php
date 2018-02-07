@@ -7,7 +7,7 @@
 <h2 class="mt-2 mb-1" >
 	Логи сайта
 	
-	<div class="float-xs-right item-base-functions" >
+	<div class="float-sm-right item-base-functions" >
 		<a class="azbn-flt-block-btn" href="#" title="Фильтр логов" data-flt-block=".azbn-flt-block" ><i class="fa fa-filter" aria-hidden="true"></i></a>
 	</div>
 	

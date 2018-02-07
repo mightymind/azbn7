@@ -228,6 +228,24 @@
 
 
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7-admin.css');?>" />
+<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/font-awesome/css/font-awesome.min.css');?>" />
+
+
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_AjaxUploader.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_ImageMinimizer.js');?>" ></script>
+
+<!-- jQuery UI 1.12.1 -->
+<link href="<?=$this->Azbn7->mdl('Site')->url('/css/jquery-ui-1.12.1/jquery-ui.min.css');?>" rel="stylesheet">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
+<!--<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery-ui-1.12.1/jquery-ui.min.js');?>" ></script>-->
+<!-- /jQuery UI 1.12.1 -->
+
+<!-- Yandex Maps API -->
+<script src="//api-maps.yandex.ru/2.1/?load=package.controls,package.standard,package.geoObjects,package.editor&lang=ru-RU" type="text/javascript"></script>
+<!-- /Yandex Maps API -->
+
 
 
 <?
@@ -240,7 +258,9 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 		<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.css');?>" />
 		<script src="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.min.js');?>"></script>
 		<script>
-		$(function(){
+		jQuery(function(){
+			
+			var $ = jQuery;
 			
 			$('.azbn7-cleditor').cleditor({
 				docType : '<!DOCTYPE html>',
@@ -276,7 +296,9 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 		<!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>-->
 		<script src="<?=$this->Azbn7->mdl('Site')->url('/js/tinymce/tinymce.min.js');?>"></script>
 		<script>
-		$(function(){
+		jQuery(function(){
+			
+			var $ = jQuery;
 			
 			tinymce.init({
 				selector:'.azbn7-tinymce',
@@ -313,8 +335,8 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 }
 ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery.azbn7.js');?>" ></script>
 <?

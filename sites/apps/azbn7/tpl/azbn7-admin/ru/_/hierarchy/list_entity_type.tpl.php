@@ -17,7 +17,7 @@ $param = array(
 $func = function(&$catalog, $item_id, $tab = '') use (&$func) {//$tab = "&nbsp; "
 	?>
 	<li value="<?=$catalog['items'][$item_id]['id'];?>" data-uid="<?=$catalog['items'][$item_id]['uid'];?>" >
-		<div class="float-xs-right entity-type__list-item" >
+		<div class="float-sm-right entity-type__list-item" >
 			
 			<?
 			if($catalog['items'][$item_id]['fill']) {

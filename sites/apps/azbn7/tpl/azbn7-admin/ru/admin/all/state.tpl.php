@@ -5,7 +5,7 @@
 <h2 class="mt-2 mb-1" >
 	Состояния
 	
-	<div class="float-xs-right item-base-functions" >
+	<div class="float-sm-right item-base-functions" >
 		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/add/state/');?>" ><i class="fa fa-plus-circle" aria-hidden="true" title="Создать запись" ></i></a>
 	</div>
 	

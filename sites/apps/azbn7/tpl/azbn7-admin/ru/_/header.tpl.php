@@ -33,12 +33,14 @@ $this->Azbn7->mdl('Viewer')->setAzbn7BodyConfig();
 <meta property="og:image" content="<?=$this->Azbn7->mdl('Site')->url('/favicon.ico');?>" />
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous" />
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous" />-->
 <!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/dashboard.css');?>" />-->
 <!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/signin.css');?>" />-->
 <!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7.css');?>" />-->
-<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7-admin.css');?>" />
-<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/font-awesome/css/font-awesome.min.css');?>" />
+<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7-admin.css');?>" />-->
+<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/font-awesome/css/font-awesome.min.css');?>" />-->
+
+
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -50,19 +52,8 @@ $this->Azbn7->mdl('Viewer')->setAzbn7BodyConfig();
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
 
 <script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_AjaxUploader.js');?>" ></script>
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_ImageMinimizer.js');?>" ></script>
-
-<!-- jQuery UI 1.12.1 -->
-<link href="<?=$this->Azbn7->mdl('Site')->url('/css/jquery-ui-1.12.1/jquery-ui.min.css');?>" rel="stylesheet">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
-<!--<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery-ui-1.12.1/jquery-ui.min.js');?>" ></script>-->
-<!-- /jQuery UI 1.12.1 -->
-
-<!-- Yandex Maps API -->
-<script src="//api-maps.yandex.ru/2.1/?load=package.controls,package.standard,package.geoObjects,package.editor&lang=ru-RU" type="text/javascript"></script>
-<!-- /Yandex Maps API -->
 
 
 <?
@@ -97,14 +88,17 @@ $this->Azbn7
 </div>
 -->
 
-<nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 	
-	<button type="button" class="navbar-toggler hidden-md-up" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" ></button>
 	<a class="navbar-brand" href="<?=$this->Azbn7->mdl('Site')->url('/admin/');?>">CMS Azbn7</a>
 	
-	<div id="navbarResponsive" class="collapse navbar-toggleable-sm " >
+	<button type="button" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" >
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<div id="navbarResponsive" class="collapse navbar-collapse" >
 		
-		<ul class="nav navbar-nav float-sm-left nav-inline">
+		<ul class="nav navbar-nav mr-auto nav-inline">
 			
 			<li class="nav-item "><div class="divider"></div></li>
 			
@@ -250,7 +244,7 @@ $this->Azbn7
 			
 		</ul>
 		
-		<ul class="nav navbar-nav float-sm-right nav-inline">
+		<ul class="nav navbar-nav nav-inline">
 			
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus" aria-hidden="true"></i> Создать</a>
@@ -279,7 +273,7 @@ $this->Azbn7
 		</ul>
 		
 		<!--
-		<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/search/');?>" class="float-xs-right">
+		<form action="<?=$this->Azbn7->mdl('Site')->url('/admin/search/');?>" class="float-sm-right">
 			<input type="text" name="text" class="form-control" placeholder="Поиск...">
 		</form>
 		-->

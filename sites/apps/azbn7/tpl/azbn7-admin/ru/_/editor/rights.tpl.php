@@ -8,7 +8,7 @@ if(count($rights)) {
 
 <div class="azbn-rights-list <? if($this->Azbn7->mdl('Session')->hasRight('user', 'site.' . $param['type'] . '.item.right.access')) {} else { echo 'azbn7-hidden'; } ?> " >
 
-	<div class="mass-btns float-xs-right" >
+	<div class="mass-btns float-sm-right" >
 		<a class="check-btn btn btn-sm btn-success" data-check-all="1" href="#checkall" >Все</a>
 		/
 		<a class="check-btn btn btn-sm btn-warning" data-check-all="0" href="#uncheckall" >Ничего</a>

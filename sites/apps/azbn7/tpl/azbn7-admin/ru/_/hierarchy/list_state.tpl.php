@@ -17,7 +17,7 @@ $param = array(
 $func = function(&$catalog, $item_id, $tab = '') use (&$func) {//$tab = "&nbsp; "
 	?>
 	<li value="<?=$catalog['items'][$item_id]['id'];?>" data-uid="<?=$catalog['items'][$item_id]['uid'];?>" >
-		<div class="float-xs-right entity-type__list-item" >
+		<div class="float-sm-right entity-type__list-item" >
 			<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/edit/state/' . $catalog['items'][$item_id]['id'] . '/');?>" title="Редактировать состояние" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 		</div>
 		<?=$tab.$catalog['items'][$item_id]['title'];?>

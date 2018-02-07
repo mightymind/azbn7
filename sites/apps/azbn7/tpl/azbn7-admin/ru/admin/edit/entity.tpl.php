@@ -8,7 +8,7 @@ $param['route'] = $this->Azbn7->mdl('Entity')->getRoute($param);
 <h2 class="mt-2 mb-1" >
 	<?=$param['type']['title'];?>. Редактирование записи
 	
-	<div class="float-xs-right item-base-functions" >
+	<div class="float-sm-right item-base-functions" >
 		
 		<?
 		/*

@@ -15,7 +15,7 @@ if(count($users)) {
 <h2 class="mt-2 mb-1" >
 	<?=$param['type']['title'];?>. Записи. В виде дерева
 	
-	<div class="float-xs-right item-base-functions" >
+	<div class="float-sm-right item-base-functions" >
 		
 		<a href="<?=$this->Azbn7->mdl('Site')->url('/admin/all/entity/?type=' . $param['type']['id']);?>" title="В виде списка" ><i class="fa fa-list" aria-hidden="true"></i></a>
 		

@@ -6,7 +6,9 @@
 ?>
 
 <script>
-$(function(){
+jQuery(function(){
+	
+	var $ = jQuery;
 	
 	CKEDITOR.replace('azbn7-ckeditor-<?=$tpl_uid;?>', {
 		allowedContent:true,
