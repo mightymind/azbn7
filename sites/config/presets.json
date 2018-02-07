@@ -77,12 +77,12 @@
 					"title" :			"Страницы",
 					"field" : 			{
 						"preview" :	{
-							"type" :			"TEXT DEFAULT ''",
+							"type" :			"TEXT DEFAULT NULL",
 							"editor" :			"textarea",
 							"title" :			"Краткое описание"
 						},
 						"content" :	{
-							"type" :			"MEDIUMTEXT DEFAULT ''",
+							"type" :			"MEDIUMTEXT DEFAULT NULL",
 							"editor" :			"wysiwyg",
 							"title" :			"Основное содержание"
 						}
@@ -95,12 +95,12 @@
 					"title" :			"Категории",
 					"field" : 			{
 						"preview" :	{
-							"type" :			"TEXT DEFAULT ''",
+							"type" :			"TEXT DEFAULT NULL",
 							"editor" :			"textarea",
 							"title" :			"Краткое описание"
 						},
 						"content" :	{
-							"type" :			"MEDIUMTEXT DEFAULT ''",
+							"type" :			"MEDIUMTEXT DEFAULT NULL",
 							"editor" :			"wysiwyg",
 							"title" :			"Основное содержание"
 						}
@@ -113,7 +113,7 @@
 					"title" :			"Загруженный файл",
 					"field" : 			{
 						"path" :	{
-							"type" :			"TEXT DEFAULT ''",
+							"type" :			"TEXT DEFAULT NULL",
 							"editor" :			"upload",
 							"title" :			"Путь до файла"
 						}
@@ -126,7 +126,7 @@
 					"title" :			"Изображение",
 					"field" : 			{
 						"path" :	{
-							"type" :			"TEXT DEFAULT ''",
+							"type" :			"TEXT DEFAULT NULL",
 							"editor" :			"uploadimg",
 							"title" :			"Путь до файла"
 						}
@@ -139,7 +139,7 @@
 					"title" :			"Аудио",
 					"field" : 			{
 						"path" :	{
-							"type" :			"TEXT DEFAULT ''",
+							"type" :			"TEXT DEFAULT NULL",
 							"editor" :			"uploadaudio",
 							"title" :			"Путь до файла"
 						}
@@ -152,7 +152,7 @@
 					"title" :			"Видео",
 					"field" : 			{
 						"path" :	{
-							"type" :			"TEXT DEFAULT ''",
+							"type" :			"TEXT DEFAULT NULL",
 							"editor" :			"uploadvideo",
 							"title" :			"Путь до файла"
 						}
@@ -165,7 +165,7 @@
 					"title" :			"Произвольный файл",
 					"field" : 			{
 						"path" :	{
-							"type" :			"TEXT DEFAULT ''",
+							"type" :			"TEXT DEFAULT NULL",
 							"editor" :			"upload",
 							"title" :			"Путь до файла"
 						}
@@ -206,12 +206,12 @@
 					"title" :			"Отзывы",
 					"field" : 			{
 						"name" :	{
-							"type" :			"VARCHAR(256) DEFAULT ''",
+							"type" :			"VARCHAR(255) DEFAULT ''",
 							"editor" :			"input",
 							"title" :			"Имя автора отзыва"
 						},
 						"content" :	{
-							"type" :			"MEDIUMTEXT DEFAULT ''",
+							"type" :			"MEDIUMTEXT DEFAULT NULL",
 							"editor" :			"wysiwyg",
 							"title" :			"Текст отзыва"
 						}

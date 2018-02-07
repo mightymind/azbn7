@@ -25,8 +25,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`json` ENUM('0', '1') DEFAULT '0',
 				`editable` ENUM('0', '1') DEFAULT '0',
-				`uid` VARCHAR(256) NOT NULL UNIQUE,
-				`editor` VARCHAR(256) DEFAULT 'input',
+				`uid` VARCHAR(255) NOT NULL UNIQUE,
+				`editor` VARCHAR(255) DEFAULT 'input',
 				`value` MEDIUMBLOB DEFAULT NULL,
 				INDEX uid_index (uid(64))
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
@@ -34,8 +34,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['sysopt_data'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`uid` VARCHAR(256) NOT NULL UNIQUE,
-				`title` VARCHAR(256) DEFAULT '',
+				`uid` VARCHAR(255) NOT NULL UNIQUE,
+				`title` VARCHAR(255) DEFAULT '',
 				INDEX uid_index (uid(64))
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
@@ -43,8 +43,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['state'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`parent` BIGINT DEFAULT '0',
-				`uid` VARCHAR(256) NOT NULL UNIQUE,
-				`title` VARCHAR(256) DEFAULT '',
+				`uid` VARCHAR(255) NOT NULL UNIQUE,
+				`title` VARCHAR(255) DEFAULT '',
 				INDEX uid_index (uid(64))
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
@@ -53,16 +53,16 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`pos` BIGINT DEFAULT '{$default['max_bigint']}',
 				`visible` ENUM('0', '10') DEFAULT '10',
-				`find` VARCHAR(256) DEFAULT '',
-				`set` VARCHAR(256) DEFAULT '',
-				`title` VARCHAR(256) DEFAULT ''
+				`find` VARCHAR(255) DEFAULT '',
+				`set` VARCHAR(255) DEFAULT '',
+				`title` VARCHAR(255) DEFAULT ''
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['right'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`uid` VARCHAR(256) NOT NULL UNIQUE,
-				`title` VARCHAR(256) DEFAULT ''
+				`uid` VARCHAR(255) NOT NULL UNIQUE,
+				`title` VARCHAR(255) DEFAULT ''
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
 		
@@ -71,8 +71,8 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`fill` ENUM('0', '1') DEFAULT '1',
 				`parent` BIGINT DEFAULT '0',
-				`uid` VARCHAR(256) NOT NULL UNIQUE,
-				`title` VARCHAR(256) DEFAULT '',
+				`uid` VARCHAR(255) NOT NULL UNIQUE,
+				`title` VARCHAR(255) DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT NULL
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
@@ -98,9 +98,9 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['entity_seo'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`entity` BIGINT DEFAULT '0',
-				`title` VARCHAR(256) DEFAULT '',
-				`description` VARCHAR(256) DEFAULT '',
-				`keywords` VARCHAR(256) DEFAULT '',
+				`title` VARCHAR(255) DEFAULT '',
+				`description` VARCHAR(255) DEFAULT '',
+				`keywords` VARCHAR(255) DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT NULL,
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
@@ -123,7 +123,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`user` BIGINT DEFAULT '0',
 				`profile` BIGINT DEFAULT '0',
 				`entity` BIGINT DEFAULT '0',
-				`uid` VARCHAR(256) DEFAULT '',
+				`uid` VARCHAR(255) DEFAULT '',
 				`param` MEDIUMBLOB DEFAULT NULL,
 				INDEX uid_index (uid(64)),
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id)
@@ -132,7 +132,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 		
 		->exec("CREATE TABLE IF NOT EXISTS `" . $this->Azbn7->mdl('DB')->t['role'] . "` (
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`title` VARCHAR(256) DEFAULT '',
+				`title` VARCHAR(255) DEFAULT '',
 				`right` MEDIUMBLOB DEFAULT NULL,
 				`param` MEDIUMBLOB DEFAULT NULL
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
@@ -144,9 +144,9 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`created_at` BIGINT DEFAULT '0',
 				`pass` VARCHAR(64) DEFAULT '',
 				`key` VARCHAR(64) DEFAULT '',
-				`email` VARCHAR(256) DEFAULT '',
-				`login` VARCHAR(256) NOT NULL UNIQUE,
-				`view_as` VARCHAR(256) NOT NULL,
+				`email` VARCHAR(255) DEFAULT '',
+				`login` VARCHAR(255) NOT NULL UNIQUE,
+				`view_as` VARCHAR(255) NOT NULL,
 				`right` MEDIUMBLOB DEFAULT NULL,
 				`param` MEDIUMBLOB DEFAULT NULL
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
@@ -158,9 +158,9 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`created_at` BIGINT DEFAULT '0',
 				`pass` VARCHAR(64) DEFAULT '',
 				`key` VARCHAR(64) DEFAULT '',
-				`email` VARCHAR(256) DEFAULT '',
-				`login` VARCHAR(256) NOT NULL UNIQUE,
-				`view_as` VARCHAR(256) NOT NULL,
+				`email` VARCHAR(255) DEFAULT '',
+				`login` VARCHAR(255) NOT NULL UNIQUE,
+				`view_as` VARCHAR(255) NOT NULL,
 				`right` MEDIUMBLOB DEFAULT NULL,
 				`param` MEDIUMBLOB DEFAULT NULL
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
@@ -170,7 +170,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`role` BIGINT DEFAULT '0',
 				`item` BIGINT DEFAULT '0',
-				`type` VARCHAR(256) DEFAULT 'profile',
+				`type` VARCHAR(255) DEFAULT 'profile',
 				FOREIGN KEY (role) REFERENCES " . $this->Azbn7->mdl('DB')->t['role'] . "(id) ON DELETE CASCADE
 			) ENGINE=" . $this->Azbn7->mdl('DB')->engine . " DEFAULT CHARSET=" . $this->Azbn7->mdl('DB')->charset . ";
 		")
@@ -190,7 +190,7 @@ if(count($this->Azbn7->mdl('DB')->t)) {
 				`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				`json` ENUM('0', '1') DEFAULT '0',
 				`entity` BIGINT DEFAULT '0',
-				`uid` VARCHAR(256) DEFAULT '',
+				`uid` VARCHAR(255) DEFAULT '',
 				`value` MEDIUMBLOB DEFAULT NULL,
 				INDEX main_index (entity, uid(64)),
 				FOREIGN KEY (entity) REFERENCES " . $this->Azbn7->mdl('DB')->t['entity'] . "(id) ON DELETE CASCADE
