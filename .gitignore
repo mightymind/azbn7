@@ -2,3 +2,4 @@ var/backup/azbn7/*
 var/cache/azbn7/*
 var/route/azbn7/*
 var/log/azbn7/*
+var/upload/azbn7/*

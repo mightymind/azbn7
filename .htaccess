@@ -30,13 +30,13 @@ AddDefaultCharset UTF-8
 #AddOutputFilterByType DEFLATE application/rss+xml
 
 
-#ErrorDocument 401 /error/by_code.php?code=401
-ErrorDocument 403 /error/by_code.php?code=403
-#ErrorDocument 404 /error/by_code.php?code=404
-#ErrorDocument 500 /error/by_code.php?code=500
-#ErrorDocument 502 /error/by_code.php?code=502
-#ErrorDocument 503 /error/by_code.php?code=503
-#ErrorDocument 504 /error/by_code.php?code=504
+#ErrorDocument 401 /var/error/by_code.php?code=401
+ErrorDocument 403 /var/error/by_code.php?code=403
+#ErrorDocument 404 /var/error/by_code.php?code=404
+#ErrorDocument 500 /var/error/by_code.php?code=500
+#ErrorDocument 502 /var/error/by_code.php?code=502
+#ErrorDocument 503 /var/error/by_code.php?code=503
+#ErrorDocument 504 /var/error/by_code.php?code=504
 
 
 Redirect 301 /mainpage/ /
