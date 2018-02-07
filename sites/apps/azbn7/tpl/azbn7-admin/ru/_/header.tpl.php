@@ -34,11 +34,11 @@ $this->Azbn7->mdl('Viewer')->setAzbn7BodyConfig();
 
 
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous" />-->
-<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/dashboard.css');?>" />-->
-<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/signin.css');?>" />-->
-<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7.css');?>" />-->
-<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7-admin.css');?>" />-->
-<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/font-awesome/css/font-awesome.min.css');?>" />-->
+<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/css/dashboard.css');?>" />-->
+<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/css/signin.css');?>" />-->
+<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/css/azbn7.css');?>" />-->
+<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/css/azbn7-admin.css');?>" />-->
+<!--<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/css/font-awesome/css/font-awesome.min.css');?>" />-->
 
 
 
@@ -48,10 +48,10 @@ $this->Azbn7->mdl('Viewer')->setAzbn7BodyConfig();
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr.min.js');?>" ></script>
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/modernizr.min.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/device.min.js');?>" ></script>
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/jquery.min.js');?>" ></script>
 <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
 
 

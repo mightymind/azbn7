@@ -10,16 +10,16 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/modernizr.min.js');?>" ></script>
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/device.min.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/modernizr.min.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/device.min.js');?>" ></script>
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery.min.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/jquery.min.js');?>" ></script>
 
-<script defer src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery.azbn7.js');?>" ></script>
+<script defer src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/jquery.azbn7.js');?>" ></script>
 
-<script defer src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/document-ready.js');?>" ></script>
+<script defer src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/document-ready.js');?>" ></script>
 
-<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7.css');?>" />
+<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/css/azbn7.css');?>" />
 
 
 <?

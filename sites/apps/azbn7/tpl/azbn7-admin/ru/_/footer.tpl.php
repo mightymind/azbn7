@@ -229,17 +229,17 @@
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/azbn7/azbn7-admin.css');?>" />
-<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/css/font-awesome/css/font-awesome.min.css');?>" />
+<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/css/azbn7-admin.css');?>" />
+<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/css/font-awesome/css/font-awesome.min.css');?>" />
 
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_AjaxUploader.js');?>" ></script>
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery-plugin/Azbn7_ImageMinimizer.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/jquery-plugin/Azbn7_AjaxUploader.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/jquery-plugin/Azbn7_ImageMinimizer.js');?>" ></script>
 
 <!-- jQuery UI 1.12.1 -->
-<link href="<?=$this->Azbn7->mdl('Site')->url('/css/jquery-ui-1.12.1/jquery-ui.min.css');?>" rel="stylesheet">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
-<!--<script src="<?=$this->Azbn7->mdl('Site')->url('/js/jquery-ui-1.12.1/jquery-ui.min.js');?>" ></script>-->
+<link href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/css/jquery-ui-1.12.1/jquery-ui.min.css');?>" rel="stylesheet">
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/jquery-ui-1.12.1/jquery-ui.min.js');?>" ></script>
+<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>-->
 <!-- /jQuery UI 1.12.1 -->
 
 <!-- Yandex Maps API -->
@@ -255,8 +255,8 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 		?>
 		
 		<!-- CLEditor -->
-		<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.css');?>" />
-		<script src="<?=$this->Azbn7->mdl('Site')->url('/js/cleditor/jquery.cleditor.min.js');?>"></script>
+		<link rel="stylesheet" href="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/cleditor/jquery.cleditor.css');?>" />
+		<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/cleditor/jquery.cleditor.min.js');?>"></script>
 		<script>
 		jQuery(function(){
 			
@@ -279,7 +279,7 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 		
 		<!-- CKEditor -->
 		<!--<script src="//cdn.ckeditor.com/4.6.0/full/ckeditor.js"></script>-->
-		<script src="<?=$this->Azbn7->mdl('Site')->url('/js/ckeditor/ckeditor.js');?>"></script>
+		<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/ckeditor/ckeditor.js');?>"></script>
 		<script>
 		CKEDITOR.disableAutoInline = true;
 		</script>
@@ -294,7 +294,7 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 		
 		<!-- TinyMCE -->
 		<!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>-->
-		<script src="<?=$this->Azbn7->mdl('Site')->url('/js/tinymce/tinymce.min.js');?>"></script>
+		<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/tinymce/tinymce.min.js');?>"></script>
 		<script>
 		jQuery(function(){
 			
@@ -338,7 +338,7 @@ switch($_SESSION['user']['param']['wysiwyg']) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/jquery.azbn7.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/jquery.azbn7.js');?>" ></script>
 <?
 /*
 if($this->Azbn7->mdl('Site')->is('user')) {
@@ -359,9 +359,9 @@ window.Azbn7.me('profile', function(type, entity){
 */
 ?>
 
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/document-ready.js');?>" ></script>
-<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/admin/document-ready.js');?>" ></script>
-<!--<script src="<?=$this->Azbn7->mdl('Site')->url('/js/azbn7/mdl/user.mdl.js');?>" ></script>-->
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/document-ready.js');?>" ></script>
+<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/admin/document-ready.js');?>" ></script>
+<!--<script src="<?=$this->Azbn7->mdl('Site')->url('/var/style/azbn7/js/mdl/user.mdl.js');?>" ></script>-->
 
 <?
 $this->Azbn7->mdl('Viewer')->tpl('_/notifies_as-js', array());
