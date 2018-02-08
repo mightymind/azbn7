@@ -39,7 +39,15 @@ ErrorDocument 403 /var/error/by_code.php?code=403
 #ErrorDocument 504 /var/error/by_code.php?code=504
 
 
+
 Redirect 301 /mainpage/ /
+
+
+AuthType Basic
+AuthName "Azbn7. Need access"
+AuthUserFile D:\os\OpenServer\domains\azbn7.localhost\.htpasswd
+Require valid-user
+
 
 <FilesMatch ".(htaccess|htpasswd|htgroup|ini|phps|fla|psd|log|sh|cache)$">
 	Order allow,deny
